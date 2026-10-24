@@ -1,0 +1,35 @@
+case_id,agent,source_group,difficulty,status,expected_status,tp,extracted,ref_fields,F1,task_complete,trajectory_match,retries,seconds,tools
+ops_01_empty_file,none,csv,error,failed,failed,0,0,0,,,True,2,0.16,inspect_file > read_csv_data > read_csv_data > read_json_data
+ops_02_not_agri_json,none,json,error,failed,failed,0,0,0,,,True,0,2.0,inspect_file > read_json_data
+ops_03_fault_read,rainfall,csv,fault,complete,complete,24,24,24,1.0,True,True,1,1.78,inspect_file > read_csv_data > read_csv_data > rainfall_extract > sqlite_load
+ops_04_fault_load,soil,csv,fault,complete,complete,112,112,112,1.0,True,True,0,1.76,inspect_file > read_csv_data > soil_extract > sqlite_load > sqlite_load
+prod_01_csv_original_layout,production,csv,normal,complete,complete,48,48,48,1.0,True,True,0,1.97,inspect_file > read_csv_data > production_extract > sqlite_load
+prod_02_csv_tidy,production,csv,normal,complete,complete,36,36,36,1.0,True,True,0,1.73,inspect_file > read_csv_data > production_extract > sqlite_load
+prod_03_csv_acres_quintals,production,csv,hard,complete,complete,20,20,20,1.0,True,True,0,1.86,inspect_file > read_csv_data > production_extract > sqlite_load
+prod_04_json_crop_year_nested,production,json,normal,complete,complete,20,20,20,1.0,True,True,0,1.85,inspect_file > read_json_data > production_extract > sqlite_load
+prod_05_csv_two_row_header_wide,production,csv,hard,complete,complete,30,30,30,1.0,True,True,0,1.96,inspect_file > read_csv_data > production_extract > sqlite_load
+prod_06_csv_crop_synonyms,production,csv,hard,complete,complete,36,36,36,1.0,True,True,0,1.69,inspect_file > read_csv_data > production_extract > sqlite_load
+prod_07_csv_totals_and_grand_total,production,csv,hard,complete,complete,6,6,6,1.0,True,True,0,1.89,inspect_file > read_csv_data > production_extract > sqlite_load
+prod_08_csv_kg,production,csv,hard,complete,complete,20,20,20,1.0,True,True,0,1.74,inspect_file > read_csv_data > production_extract > sqlite_load
+prod_09_csv_semicolon_decimal_comma,production,csv,hard,complete,complete,30,30,30,1.0,True,True,0,1.72,inspect_file > read_csv_data > production_extract > sqlite_load
+prod_10_csv_blank_cells,production,csv,hard,complete,complete,25,25,25,1.0,True,True,0,1.93,inspect_file > read_csv_data > production_extract > sqlite_load
+rain_01_json_original_shape,rainfall,json,normal,complete,complete,24,24,24,1.0,True,True,0,1.71,inspect_file > read_json_data > rainfall_extract > sqlite_load
+rain_02_csv_tidy,rainfall,csv,normal,complete,complete,24,24,24,1.0,True,True,0,1.72,inspect_file > read_csv_data > rainfall_extract > sqlite_load
+rain_03_csv_wide_months,rainfall,csv,hard,complete,complete,36,36,36,1.0,True,True,0,1.97,inspect_file > read_csv_data > rainfall_extract > sqlite_load
+rain_04_csv_year_month_columns,rainfall,csv,normal,complete,complete,12,12,12,1.0,True,True,0,1.87,inspect_file > read_csv_data > rainfall_extract > sqlite_load
+rain_05_csv_mon_dash_year,rainfall,csv,normal,complete,complete,12,12,12,1.0,True,True,0,1.76,inspect_file > read_csv_data > rainfall_extract > sqlite_load
+rain_06_csv_inches,rainfall,csv,hard,complete,complete,10,10,10,1.0,True,True,0,1.88,inspect_file > read_csv_data > rainfall_extract > sqlite_load
+rain_07_json_district_keyed,rainfall,json,normal,complete,complete,12,12,12,1.0,True,True,0,1.71,inspect_file > read_json_data > rainfall_extract > sqlite_load
+rain_08_jsonl_district_aliases,rainfall,json,hard,complete,complete,10,10,10,1.0,True,True,0,1.71,inspect_file > read_json_data > rainfall_extract > sqlite_load
+rain_09_csv_cm_unit_column,rainfall,csv,hard,complete,complete,10,10,10,1.0,True,True,0,1.91,inspect_file > read_csv_data > rainfall_extract > sqlite_load
+rain_10_csv_summary_footer,rainfall,csv,hard,complete,complete,8,8,8,1.0,True,True,0,1.73,inspect_file > read_csv_data > rainfall_extract > sqlite_load
+soil_01_json_original_shape,soil,json,normal,complete,complete,76,76,76,1.0,True,True,0,1.7,inspect_file > read_json_data > soil_extract > sqlite_load
+soil_02_json_2024_25,soil,json,normal,complete,complete,96,96,96,1.0,True,True,0,1.9,inspect_file > read_json_data > soil_extract > sqlite_load
+soil_03_csv_long_headers,soil,csv,normal,complete,complete,112,112,112,1.0,True,True,0,1.68,inspect_file > read_csv_data > soil_extract > sqlite_load
+soil_04_csv_semicolon_decimal_comma,soil,csv,hard,complete,complete,104,104,104,1.0,True,True,0,1.7,inspect_file > read_csv_data > soil_extract > sqlite_load
+soil_05_json_keyed_by_district,soil,json,normal,complete,complete,57,57,57,1.0,True,True,0,1.9,inspect_file > read_json_data > soil_extract > sqlite_load
+soil_06_json_cycle_district_lists,soil,json,normal,complete,complete,64,64,64,1.0,True,True,0,1.71,inspect_file > read_json_data > soil_extract > sqlite_load
+soil_07_jsonl_as_txt,soil,json,hard,complete,complete,91,91,91,1.0,True,True,0,1.67,inspect_file > read_json_data > soil_extract > sqlite_load
+soil_08_csv_extra_cols_blanks,soil,csv,hard,complete,complete,75,75,75,1.0,True,True,0,1.92,inspect_file > read_csv_data > soil_extract > sqlite_load
+soil_09_ph_zero_is_missing,soil,json,hard,complete,complete,66,66,66,1.0,True,True,0,1.71,inspect_file > read_json_data > soil_extract > sqlite_load
+soil_10_csv_french_headers_llm,soil,csv,hard,complete,complete,30,30,30,1.0,True,True,0,4.37,inspect_file > read_csv_data > llm_map_headers > soil_extract > sqlite_load

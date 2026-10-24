@@ -1,0 +1,131 @@
+{
+ "case_id": "rain_10_csv_summary_footer",
+ "agent": "rainfall",
+ "source_group": "csv",
+ "file": "cases/rain_10.csv",
+ "description": "Trailing Total / Average rows must not become data",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "rainfall_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "KAMJONG",
+    "period": "2020-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 77.5,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2020-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 178.3,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAMJONG",
+    "period": "2020-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 119.6,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAMJONG",
+    "period": "2020-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 219.8,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAMJONG",
+    "period": "2020-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 175.3,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2020-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 45.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2020-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 10.7,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAMJONG",
+    "period": "2020-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 232.9,
+     "unit": "mm"
+    }
+   }
+  }
+ ]
+}

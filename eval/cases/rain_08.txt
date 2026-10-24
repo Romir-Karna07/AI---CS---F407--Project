@@ -1,0 +1,10 @@
+{"dist": "Noney", "ym": "2022-03", "rainfall_mm": 20.2}
+{"dist": "TENGNOUPAL", "ym": "2023-06", "rainfall_mm": 133.4}
+{"dist": "Imphal-East", "ym": "2020-11", "rainfall_mm": 78.4}
+{"dist": "TENGNOUPAL", "ym": "2015-05", "rainfall_mm": 45.5}
+{"dist": "Imphal-East", "ym": "2017-10", "rainfall_mm": 226.1}
+{"dist": "TENGNOUPAL", "ym": "2022-07", "rainfall_mm": 148.9}
+{"dist": "Imphal-East", "ym": "2015-01", "rainfall_mm": 40.7}
+{"dist": "Imphal-East", "ym": "2017-08", "rainfall_mm": 146.9}
+{"dist": "imphal west", "ym": "2023-06", "rainfall_mm": 170.2}
+{"dist": "Imphal-East", "ym": "2023-10", "rainfall_mm": 38.0}

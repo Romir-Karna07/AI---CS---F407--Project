@@ -1,0 +1,199 @@
+{
+ "case_id": "prod_04_json_crop_year_nested",
+ "agent": "production",
+ "source_group": "json",
+ "file": "cases/prod_04.json",
+ "description": "crop -> year -> district records",
+ "difficulty": "normal",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_json_data",
+  "production_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2009-10",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 810.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10530.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2008-09",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 801.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10324.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2015-16",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 799.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10877.61,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2019-20",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 810.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 15471.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2001-02",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 340.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 4370.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2012-13",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 756.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10130.4,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2017-18",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 876.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 11766.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2012-13",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 997.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 13359.8,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2010-11",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 817.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10631.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2012-13",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 693.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 9286.2,
+     "unit": "t"
+    }
+   }
+  }
+ ]
+}
