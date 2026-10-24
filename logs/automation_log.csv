@@ -1,0 +1,4 @@
+run_id,timestamp,input_file,status,manual_intervention,manual_note,rows_extracted,rows_inserted,retries,notes
+run_20261024225138_4834e1,2026-10-24T22:51:44,manipur_soil_health.json,complete,no,,438,438,0,
+run_20261024225149_848eca,2026-10-24T22:51:52,manipur_rainfall_monthly.json,complete,no,,2112,2112,0,
+run_20261024225156_cb1596,2026-10-24T22:51:58,CSV_Agent.csv,complete,no,,1217,1217,0,
