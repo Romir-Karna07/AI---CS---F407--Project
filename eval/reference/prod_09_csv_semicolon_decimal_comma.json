@@ -1,0 +1,239 @@
+{
+ "case_id": "prod_09_csv_semicolon_decimal_comma",
+ "agent": "production",
+ "source_group": "csv",
+ "file": "cases/prod_09.csv",
+ "description": "';' delimiter, decimal commas in yield",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "production_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2002-03",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 181.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1300.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.18,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2016-17",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 595.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8116.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 13.64,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2015-16",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 32.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 281.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.78,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2015-16",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 220.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3344.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 15.2,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2009-10",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 150.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3552.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 23.68,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2010-11",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 787.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 6256.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.95,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2003-04",
+    "crop": "Other Vegetables",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 45.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 326.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.24,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2016-17",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 250.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 13100.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 52.4,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2016-17",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 834.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 11256.5,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 13.5,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2007-08",
+    "crop": "Onion",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 120.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 260.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 2.17,
+     "unit": "t/ha"
+    }
+   }
+  }
+ ]
+}

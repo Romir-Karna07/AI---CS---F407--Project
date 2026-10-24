@@ -1,0 +1,119 @@
+MANIPUR DATA HEADERS (database / LangGraph schema)
+===================================================
+Covers: manipur_soil_health.json, manipur_rainfall_monthly.json
+Both files are nested JSON. This file defines the FLAT tables (one row per record) to
+load them into, the column headers, types, units, and the JSON path each column comes from.
+
+Common key: district_code (see TABLE 0). Use it to join soil and rainfall.
+
+
+---------------------------------------------------------------------------
+TABLE 0: districts   (dimension table - 16 rows, join key for both datasets)
+---------------------------------------------------------------------------
+Built by hand from the two files; neither JSON carries both the code and the rainfall name.
+
+column            type     description
+district_code     TEXT PK  Portal/LGD district code, e.g. "252"       <- soil: districts[].district_code
+district_name     TEXT     Canonical UPPERCASE name, e.g. "BISHNUPUR"  <- soil: districts[].district
+rainfall_name     TEXT     Name as spelled in the rainfall file        <- rainfall: districts[].district
+state_code        TEXT     "14" (Manipur)
+aspirational      BOOLEAN  Aspirational-district flag                  <- soil: districts[].aspirational
+bbox_minx / bbox_miny / bbox_maxx / bbox_maxy   REAL   District bounding box (lon/lat, EPSG:4326)  <- soil: districts[].bbox
+
+district_code -> district_name -> rainfall_name
+252 BISHNUPUR     -> BISHNUPUR
+253 CHANDEL       -> CHANDEL
+254 CHURACHANDPUR -> CHURACHANDPUR
+255 IMPHAL EAST   -> IMPHAL EAST
+256 IMPHAL WEST   -> IMPHAL WEST
+257 SENAPATI      -> SENAPATI
+258 TAMENGLONG    -> TAMENGLONG
+259 THOUBAL       -> THOUBAL
+260 UKHRUL        -> UKHRUL
+711 KAKCHING      -> KAKCHING
+712 KANGPOKPI     -> KANGPOKPI
+713 JIRIBAM       -> JIRIBAM
+714 NONEY         -> NONEI        (spelling differs between files)
+715 PHERZAWL      -> PHERZAWL
+716 TENGNOUPAL    -> TENGNOUPAL
+717 KAMJONG       -> KAMJONG
+
+
+---------------------------------------------------------------------------
+TABLE 1: soil_health   (source: manipur_soil_health.json)
+---------------------------------------------------------------------------
+One row per soil-health-card point record. 438 rows total
+(2017-19: 167, 2024-25: 270, 2015-17: 1).
+Flatten: for district in districts[]; for cycle, rows in district.shc_cycles; for row in rows.
+
+column            type      unit / values        JSON path / notes
+record_id         TEXT PK   e.g. "14_252_shc_2017-19.1"   rows[].feature_id
+state_code        TEXT      "14"                 root.state_code
+district_code     TEXT FK   -> districts          districts[].district_code
+cycle             TEXT      "2015-17" | "2017-19" | "2024-25"   key of shc_cycles
+village           TEXT                           rows[].VILLAGE (2017-19, 2015-17) or rows[].village (2024-25)
+tehsil            TEXT      NULL for 2024-25     rows[].TEHSIL (not published for 2024-25)
+block             TEXT      only 2015-17 (1 row) rows[].BLOCK
+category          TEXT      e.g. "Sufficient", "Deficient"   rows[].Category (NULL for 2024-25)
+latitude          REAL      degrees, APPROXIMATE rows[].approx_latitude  (map-pixel position, not surveyed coordinates)
+longitude         REAL      degrees, APPROXIMATE rows[].approx_longitude
+n_kg_ha           REAL      available nitrogen N               rows[].N
+p_kg_ha           REAL      available phosphorus P             rows[].P
+k_kg_ha           REAL      available potassium K              rows[].K
+oc_pct            REAL      organic carbon, %                  rows[].OC
+ph                REAL      soil pH                            rows[].pH
+ec_ds_m           REAL      electrical conductivity, dS/m      rows[].EC
+s_ppm             REAL      sulphur                            rows[].S   (nullable)
+zn_ppm            REAL      zinc                               rows[].Zn  (nullable)
+fe_ppm            REAL      iron                               rows[].fe (2017-19) / rows[].Fe (2015-17, 2024-25)  (nullable)
+cu_ppm            REAL      copper                             rows[].Cu  (nullable)
+mn_ppm            REAL      manganese                          rows[].Mn  (nullable)
+b_ppm             REAL      boron                              rows[].B   (nullable)
+
+Notes
+- Units: the portal does not print units. The units above are the standard Soil Health Card
+  conventions (N/P/K in kg/ha, micronutrients in ppm, EC in dS/m, OC in %). Confirm with the
+  portal/SHC documentation before quoting them as official.
+- Raw key names are inconsistent between cycles (fe vs Fe, VILLAGE vs village). The flat
+  headers above are the normalised names.
+- Redundant raw fields not kept as columns: DISTRICT, DISTRICT_L, STATE, STATE_LGD (they duplicate
+  district_code / state_code).
+- Record counts have gaps in feature_id numbering (some IDs do not exist on the server).
+- No SHC data on the portal for: JIRIBAM, SENAPATI, TAMENGLONG (district rows exist with empty shc_cycles).
+- Missing values are JSON null -> SQL NULL.
+- Churachandpur is the only district with both 2017-19 and 2024-25; Noney is the only one with 2015-17.
+
+
+---------------------------------------------------------------------------
+TABLE 2: rainfall_monthly   (source: manipur_rainfall_monthly.json)
+---------------------------------------------------------------------------
+One row per district per month. 16 districts x 132 months (2015-01 .. 2025-12) = 2,112 rows.
+Flatten: for district in districts[]; for m in district.monthly.
+
+column               type      unit / values      JSON path / notes
+district_code        TEXT FK   -> districts        look up via districts.rainfall_name = districts[].district
+year_month           TEXT      "YYYY-MM"           monthly[].month
+year                 INTEGER                       derived from year_month
+month                INTEGER   1-12                derived from year_month
+rainfall_mm          REAL      mm, monthly total   monthly[].rainfall_mm (NULL if no data; none are NULL currently)
+rainy_days_ge_2_5mm  INTEGER   days               monthly[]."rainy_days_ge_2.5mm"  (days with >= 2.5 mm; rename - no dot in SQL names)
+days_with_data       INTEGER   days                monthly[].days_with_data
+days_in_month        INTEGER   days                monthly[].days_in_month
+(primary key: district_code + year_month)
+
+Dataset-level metadata (store once, e.g. in a `datasets` table or as column comments)
+source    IMD Pune gridded daily rainfall (0.25 deg), https://imdpune.gov.in/, via imdlib
+method    area-weighted mean of overlapping grid cells per district (IMD district polygons), daily values summed per month
+unit      mm
+caveat    Derived estimates from a gridded analysis, not rain-gauge readings; can differ from IMD's district station-based statistics.
+
+
+---------------------------------------------------------------------------
+LANGGRAPH / AGENT NOTES
+---------------------------------------------------------------------------
+- Suggested tables to expose as tools: districts, soil_health, rainfall_monthly.
+- Typical join: soil_health.district_code = rainfall_monthly.district_code (via districts),
+  e.g. "average pH and annual rainfall by district". Soil is point data by cycle (2015-17 .. 2024-25);
+  rainfall is monthly 2015-2025, so align on cycle years if relating them.
+- The two datasets have different granularity: soil = village-level samples, rainfall = district-level monthly.
+- Tell the agent about the caveats above (approximate coordinates, derived rainfall, missing districts/units).

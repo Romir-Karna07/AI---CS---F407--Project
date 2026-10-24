@@ -1,0 +1,523 @@
+{
+ "case_id": "rain_03_csv_wide_months",
+ "agent": "rainfall",
+ "source_group": "csv",
+ "file": "cases/rain_03.csv",
+ "description": "One column per month (Jan..Dec)",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "rainfall_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2018-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 10.9,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2018-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 4.2,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2018-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 43.7,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2018-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 101.0,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2018-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 254.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2018-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 355.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2018-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 434.6,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2018-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 304.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2018-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 111.8,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2018-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 82.6,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2018-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 1.8,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2018-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 35.4,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2021-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 4.7,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2021-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2021-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 46.9,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2021-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 46.8,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2021-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 113.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2021-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 126.4,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2021-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 158.7,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2021-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 235.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2021-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 103.8,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2021-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 66.8,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2021-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2021-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 49.7,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "PHERZAWL",
+    "period": "2016-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 4.5,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "PHERZAWL",
+    "period": "2016-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 45.0,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "PHERZAWL",
+    "period": "2016-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 73.7,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "PHERZAWL",
+    "period": "2016-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 372.3,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "PHERZAWL",
+    "period": "2016-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 405.5,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "PHERZAWL",
+    "period": "2016-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 318.2,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "PHERZAWL",
+    "period": "2016-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 364.5,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "PHERZAWL",
+    "period": "2016-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 224.6,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "PHERZAWL",
+    "period": "2016-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 393.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "PHERZAWL",
+    "period": "2016-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 165.5,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "PHERZAWL",
+    "period": "2016-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 60.6,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "PHERZAWL",
+    "period": "2016-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 4.3,
+     "unit": "mm"
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "report": "District Crop Report",
+ "by_year": {
+  "2019-20": {
+   "Paddy": [
+    {
+     "District": "Thoubal",
+     "Area (acres)": 1000,
+     "Production (quintals)": 25000
+    },
+    {
+     "District": "Bishnupur",
+     "Area (acres)": 500,
+     "Production (quintals)": 10000
+    }
+   ],
+   "Maize": [
+    {
+     "District": "Ukhrul",
+     "Area (acres)": 100,
+     "Production (quintals)": 1500
+    }
+   ]
+  }
+ }
+}

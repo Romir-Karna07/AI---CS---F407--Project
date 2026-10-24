@@ -1,0 +1,106 @@
+{
+ "source": "slice",
+ "method": "slice",
+ "unit": "mm",
+ "districts": [
+  {
+   "district": "UKHRUL",
+   "monthly": [
+    {
+     "month": "2019-12",
+     "rainfall_mm": 6.2,
+     "rainy_days_ge_2.5mm": 1,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2019-02",
+     "rainfall_mm": 11.4,
+     "rainy_days_ge_2.5mm": 1,
+     "days_with_data": 28,
+     "days_in_month": 28
+    },
+    {
+     "month": "2019-10",
+     "rainfall_mm": 212.7,
+     "rainy_days_ge_2.5mm": 12,
+     "days_with_data": 31,
+     "days_in_month": 31
+    }
+   ]
+  },
+  {
+   "district": "THOUBAL",
+   "monthly": [
+    {
+     "month": "2019-06",
+     "rainfall_mm": 96.1,
+     "rainy_days_ge_2.5mm": 12,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2019-04",
+     "rainfall_mm": 51.0,
+     "rainy_days_ge_2.5mm": 6,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2019-01",
+     "rainfall_mm": 0.6,
+     "rainy_days_ge_2.5mm": 0,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2019-08",
+     "rainfall_mm": 98.8,
+     "rainy_days_ge_2.5mm": 9,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2019-07",
+     "rainfall_mm": 140.5,
+     "rainy_days_ge_2.5mm": 11,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2019-10",
+     "rainfall_mm": 103.6,
+     "rainy_days_ge_2.5mm": 10,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2019-12",
+     "rainfall_mm": 8.7,
+     "rainy_days_ge_2.5mm": 1,
+     "days_with_data": 31,
+     "days_in_month": 31
+    }
+   ]
+  },
+  {
+   "district": "CHANDEL",
+   "monthly": [
+    {
+     "month": "2019-09",
+     "rainfall_mm": 194.5,
+     "rainy_days_ge_2.5mm": 13,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2019-04",
+     "rainfall_mm": 50.2,
+     "rainy_days_ge_2.5mm": 6,
+     "days_with_data": 30,
+     "days_in_month": 30
+    }
+   ]
+  }
+ ]
+}
