@@ -1,0 +1,2 @@
+{"district":"Chandel","year_month":"2018-06","rain_mm":410.5}
+{"district":"Chandel","year_month":"2018-07","rain_mm":520}
