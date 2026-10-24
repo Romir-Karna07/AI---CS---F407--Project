@@ -1,0 +1,31 @@
+{
+  "synonyms": {
+    "paddy": "Rice",
+    "rice paddy": "Rice",
+    "redish": "Radish",
+    "radish": "Radish",
+    "bhindi": "Okra",
+    "lady finger": "Okra",
+    "ladies finger": "Okra",
+    "tapioca": "Cassava",
+    "jack fruit": "Jackfruit",
+    "dry chillies": "Chilli (dry)",
+    "dry chilli": "Chilli (dry)",
+    "chillies": "Chilli",
+    "maize": "Maize",
+    "corn": "Maize",
+    "brinjal": "Brinjal",
+    "eggplant": "Brinjal",
+    "potato": "Potato",
+    "irish potato": "Potato",
+    "sweet potato": "Sweet Potato",
+    "sweet potatoes": "Sweet Potato",
+    "pome fruit": "Pome Fruit",
+    "cashewnut": "Cashew Nut",
+    "cashew": "Cashew Nut",
+    "groundnut": "Groundnut",
+    "ground nut": "Groundnut",
+    "pea": "Peas",
+    "peas": "Peas"
+  }
+}

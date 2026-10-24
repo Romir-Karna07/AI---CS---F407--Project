@@ -1,0 +1,110 @@
+{
+  "state": "MANIPUR",
+  "state_code": "14",
+  "state_aliases": [
+    "MANIPUR"
+  ],
+  "code_system": "SLUSI/SHC portal district codes (as in manipur_soil_health.json); NOT verified against LGD",
+  "districts": [
+    {
+      "name": "BISHNUPUR",
+      "code": "252",
+      "aliases": []
+    },
+    {
+      "name": "CHANDEL",
+      "code": "253",
+      "aliases": []
+    },
+    {
+      "name": "CHURACHANDPUR",
+      "code": "254",
+      "aliases": [
+        "CHURACHANDPUR",
+        "LAMKA"
+      ]
+    },
+    {
+      "name": "IMPHAL EAST",
+      "code": "255",
+      "aliases": [
+        "IMPHAL-EAST"
+      ]
+    },
+    {
+      "name": "IMPHAL WEST",
+      "code": "256",
+      "aliases": [
+        "IMPHAL-WEST"
+      ]
+    },
+    {
+      "name": "SENAPATI",
+      "code": "257",
+      "aliases": []
+    },
+    {
+      "name": "TAMENGLONG",
+      "code": "258",
+      "aliases": [
+        "TAMENGLONG"
+      ]
+    },
+    {
+      "name": "THOUBAL",
+      "code": "259",
+      "aliases": []
+    },
+    {
+      "name": "UKHRUL",
+      "code": "260",
+      "aliases": []
+    },
+    {
+      "name": "KAKCHING",
+      "code": "711",
+      "aliases": []
+    },
+    {
+      "name": "KANGPOKPI",
+      "code": "712",
+      "aliases": [
+        "SADAR HILLS",
+        "KANGPOKPI"
+      ]
+    },
+    {
+      "name": "JIRIBAM",
+      "code": "713",
+      "aliases": [
+        "JIRBAM"
+      ]
+    },
+    {
+      "name": "NONEY",
+      "code": "714",
+      "aliases": [
+        "NONEI"
+      ]
+    },
+    {
+      "name": "PHERZAWL",
+      "code": "715",
+      "aliases": [
+        "PHERZWAL"
+      ]
+    },
+    {
+      "name": "TENGNOUPAL",
+      "code": "716",
+      "aliases": [
+        "TENGNOUPAL"
+      ]
+    },
+    {
+      "name": "KAMJONG",
+      "code": "717",
+      "aliases": []
+    }
+  ]
+}
