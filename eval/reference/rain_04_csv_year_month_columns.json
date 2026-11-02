@@ -1,0 +1,187 @@
+{
+ "case_id": "rain_04_csv_year_month_columns",
+ "agent": "rainfall",
+ "source_group": "csv",
+ "file": "cases/rain_04.csv",
+ "description": "Separate Year and full month name columns",
+ "difficulty": "normal",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "rainfall_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2015-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 5.4,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "JIRIBAM",
+    "period": "2022-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 38.3,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2017-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 374.7,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2016-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 28.8,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2020-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 141.0,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "JIRIBAM",
+    "period": "2022-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.2,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2015-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 38.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2019-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 32.2,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2024-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 1.2,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2021-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 46.3,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "JIRIBAM",
+    "period": "2025-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 97.2,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "JIRIBAM",
+    "period": "2015-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 7.7,
+     "unit": "mm"
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,175 @@
+{
+ "source": "slice",
+ "state": "MANIPUR",
+ "state_code": "14",
+ "districts": [
+  {
+   "district": "IMPHAL EAST",
+   "district_code": "255",
+   "shc_cycles": {
+    "2017-19": [
+     {
+      "B": 0.36,
+      "Category": "Deficient",
+      "Cu": null,
+      "DISTRICT": "Imphal East",
+      "DISTRICT_L": "255",
+      "EC": 0.01,
+      "K": 129.5,
+      "Mn": 46.3,
+      "N": 390.3,
+      "OC": 1.27,
+      "P": 2.681,
+      "S": 12.0,
+      "STATE": "Manipur",
+      "STATE_LGD": "14",
+      "TEHSIL": "Sawombung",
+      "VILLAGE": "Sagolmang",
+      "Zn": 1.66,
+      "fe": 24.8,
+      "pH": 4.95,
+      "feature_id": "14_255_shc_2017-19.23",
+      "approx_longitude": 94.01587,
+      "approx_latitude": 24.93785
+     },
+     {
+      "B": null,
+      "Category": "Sufficient",
+      "Cu": 3.74,
+      "DISTRICT": "Imphal East",
+      "DISTRICT_L": "255",
+      "EC": 0.02,
+      "K": 68.955,
+      "Mn": 29.85,
+      "N": 328.35,
+      "OC": 0.985,
+      "P": 29.04,
+      "S": 13.5,
+      "STATE": "Manipur",
+      "STATE_LGD": "14",
+      "TEHSIL": "Sawombung",
+      "VILLAGE": "Sekta",
+      "Zn": 2.035,
+      "fe": 34.05,
+      "pH": 5.87,
+      "feature_id": "14_255_shc_2017-19.29",
+      "approx_longitude": 94.03481,
+      "approx_latitude": 24.87825
+     }
+    ]
+   }
+  },
+  {
+   "district": "THOUBAL",
+   "district_code": "259",
+   "shc_cycles": {
+    "2017-19": [
+     {
+      "B": 0.92,
+      "Category": "Sufficient",
+      "Cu": 2.9,
+      "DISTRICT": "Thoubal",
+      "DISTRICT_L": "259",
+      "EC": 0.15,
+      "K": 236.8,
+      "Mn": 28.3,
+      "N": 433.2,
+      "OC": 1.47,
+      "P": 143.0,
+      "S": 33.0,
+      "STATE": "Manipur",
+      "STATE_LGD": "14",
+      "TEHSIL": "Thoubal",
+      "VILLAGE": "Cherapur",
+      "Zn": 0.37,
+      "fe": 33.5,
+      "pH": 6.32,
+      "feature_id": "14_259_shc_2017-19.21",
+      "approx_longitude": 94.02913,
+      "approx_latitude": 24.60633
+     },
+     {
+      "B": 0.915,
+      "Category": "Sufficient",
+      "Cu": 0.28,
+      "DISTRICT": "Thoubal",
+      "DISTRICT_L": "259",
+      "EC": 0.055,
+      "K": 184.39,
+      "Mn": 20.645,
+      "N": 333.15,
+      "OC": 1.0,
+      "P": 88.455,
+      "S": 7.5,
+      "STATE": "Manipur",
+      "STATE_LGD": "14",
+      "TEHSIL": "Thoubal",
+      "VILLAGE": "Khongjom",
+      "Zn": 2.865,
+      "fe": 29.85,
+      "pH": 5.895,
+      "feature_id": "14_259_shc_2017-19.25",
+      "approx_longitude": 94.04119,
+      "approx_latitude": 24.56011
+     },
+     {
+      "B": 1.74,
+      "Category": "Sufficient",
+      "Cu": 1.77,
+      "DISTRICT": "Thoubal",
+      "DISTRICT_L": "259",
+      "EC": 0.07,
+      "K": 278.6,
+      "Mn": 26.0,
+      "N": 428.4,
+      "OC": 1.45,
+      "P": 79.54,
+      "S": 2.0,
+      "STATE": "Manipur",
+      "STATE_LGD": "14",
+      "TEHSIL": "Thoubal",
+      "VILLAGE": "Khangabok",
+      "Zn": 1.48,
+      "fe": 32.7,
+      "pH": 6.41,
+      "feature_id": "14_259_shc_2017-19.10",
+      "approx_longitude": 93.99758,
+      "approx_latitude": 24.59426
+     }
+    ]
+   }
+  },
+  {
+   "district": "BISHNUPUR",
+   "district_code": "252",
+   "shc_cycles": {
+    "2017-19": [
+     {
+      "B": null,
+      "Category": "Non saline",
+      "Cu": null,
+      "DISTRICT": "Bishnupur",
+      "DISTRICT_L": "252",
+      "EC": 0.01,
+      "K": 321.0,
+      "Mn": null,
+      "N": 282.36,
+      "OC": 1.25,
+      "P": 25.35,
+      "S": null,
+      "STATE": "Manipur",
+      "STATE_LGD": "14",
+      "TEHSIL": "Bishnupur",
+      "VILLAGE": "Nachou",
+      "Zn": null,
+      "fe": null,
+      "pH": 4.85,
+      "feature_id": "14_252_shc_2017-19.11",
+      "approx_longitude": 93.7668,
+      "approx_latitude": 24.59463
+     }
+    ]
+   }
+  }
+ ]
+}

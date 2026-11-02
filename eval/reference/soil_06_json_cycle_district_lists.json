@@ -1,0 +1,355 @@
+{
+ "case_id": "soil_06_json_cycle_district_lists",
+ "agent": "soil",
+ "source_group": "json",
+ "file": "cases/soil_06.json",
+ "description": "cycle -> district -> records",
+ "difficulty": "normal",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_json_data",
+  "soil_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Tarao Laimanai"
+   },
+   "fields": {
+    "n": {
+     "value": 57.6,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 20.0,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 93.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.54,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.8,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.26,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Liwa Changning"
+   },
+   "fields": {
+    "n": {
+     "value": 95.4,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 21.0,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 98.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.36,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.4,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.3,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 68.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 0.8,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 0.26,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 2.9,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.7,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Ch K Hringkhu"
+   },
+   "fields": {
+    "n": {
+     "value": 0.06,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 75.0,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 212.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.28,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.5,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.04,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAKCHING",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Wangoo"
+   },
+   "fields": {
+    "n": {
+     "value": 197.5,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 18.25,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 202.5,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.26,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.165,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.035,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Tonsen Khullen"
+   },
+   "fields": {
+    "n": {
+     "value": 88.2,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 17.0,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 94.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.49,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.8,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.42,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Tonsen Tampak"
+   },
+   "fields": {
+    "n": {
+     "value": 90.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 18.0,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 93.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.5,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.66,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.4,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAKCHING",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Keirak"
+   },
+   "fields": {
+    "n": {
+     "value": 186.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 17.655,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 112.205,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.895,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.22,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.025,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 43.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 4.44,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 28.5,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.21,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 19.7,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.92,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAKCHING",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Mantak"
+   },
+   "fields": {
+    "n": {
+     "value": 385.6,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 52.73,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 78.01,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.25,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.56,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.03,
+     "unit": "dS/m"
+    },
+    "zn": {
+     "value": 2.77,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.4,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.96,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 27.4,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.73,
+     "unit": "ppm"
+    }
+   }
+  }
+ ]
+}
