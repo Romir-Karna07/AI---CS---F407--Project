@@ -1,0 +1,291 @@
+{
+ "case_id": "soil_05_json_keyed_by_district",
+ "agent": "soil",
+ "source_group": "json",
+ "file": "dev/cases/soil_05.json",
+ "description": "Object keyed by district name, spelled-out nutrient names",
+ "difficulty": "normal",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_json_data",
+  "soil_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Naharup"
+   },
+   "fields": {
+    "n": {
+     "value": 304.5,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 12.51,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 29.25,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.87,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 4.28,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.01,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 14.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 1.29,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 31.1,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 45.4,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.38,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "New Chayang"
+   },
+   "fields": {
+    "n": {
+     "value": 265.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 22.1,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 174.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.45,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.8,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.48,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 0.4,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 0.5,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 4.2,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 0.5,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 2.1,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.6,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Sunusiphai"
+   },
+   "fields": {
+    "n": {
+     "value": 195.16,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 8.22,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 89.31,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.75,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.29,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.01,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAKCHING",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Wangoo"
+   },
+   "fields": {
+    "n": {
+     "value": 197.5,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 18.25,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 202.5,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.26,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.165,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.035,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KANGPOKPI",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Leirongthel"
+   },
+   "fields": {
+    "n": {
+     "value": 392.75,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 41.555,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 92.645,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.285,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.195,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.055,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 18.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 1.29,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 31.4,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 0.325,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 16.4,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.825,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Mualkot"
+   },
+   "fields": {
+    "n": {
+     "value": 400.5,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 20.285,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 169.23,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.826,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.96,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.284,
+     "unit": "dS/m"
+    }
+   }
+  }
+ ]
+}

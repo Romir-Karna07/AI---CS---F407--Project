@@ -1,0 +1,417 @@
+{
+ "case_id": "pdf_03_production_bilingual_hindi_headers",
+ "agent": "production",
+ "owner_agent": "document_agent",
+ "source_group": "pdf",
+ "file": "dev/cases/pdf_03.pdf",
+ "description": "English + Hindi (Devanagari) headers; acres and quintals -> expected ha and tonnes",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_pdf_data",
+  "production_extract",
+  "sqlite_load"
+ ],
+ "has_text_layer": true,
+ "records": [
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2004-05",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1120.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 14400.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2018-19",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 250.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 4250.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "1999-00",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 10.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2010-11",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 168.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3668.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2007-08",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 400.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 13070.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2004-05",
+    "crop": "Onion",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 70.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 150.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2010-11",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 672.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8690.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2016-17",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 300.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 14090.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2003-04",
+    "crop": "Pome Fruit",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 38.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 119.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2005-06",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 20.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 650.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2012-13",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1048.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8279.2,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2004-05",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1200.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 6270.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2011-12",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1740.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 14360.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "1997-98",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 7.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2010-11",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1016.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7223.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2002-03",
+    "crop": "Mango",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 10.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 52.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2002-03",
+    "crop": "Pome Fruit",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 70.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 180.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2016-17",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 154.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1850.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "1999-00",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 670.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8620.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2018-19",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1250.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10600.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2001-02",
+    "crop": "Onion",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 100.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 210.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2004-05",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 190.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 990.0,
+     "unit": "t"
+    }
+   }
+  }
+ ]
+}

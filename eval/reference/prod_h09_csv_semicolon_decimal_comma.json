@@ -1,0 +1,680 @@
+{
+ "case_id": "prod_h09_csv_semicolon_decimal_comma",
+ "agent": "production",
+ "source_group": "csv",
+ "file": "cases/prod_h09.csv",
+ "description": "';' delimiter, decimal commas in every number column",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "production_extract",
+  "sqlite_load"
+ ],
+ "n_source_records": 30,
+ "records": [
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Bottle Gourd",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 5.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 0.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 0.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2003-04",
+    "crop": "Bottle Gourd",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 11.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 79.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.18,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 360.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 4233.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 11.76,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2003-04",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 402.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 4904.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.2,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Cauliflower",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 180.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 997.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.54,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Cauliflower",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 218.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1875.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.6,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Mango",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 10.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 70.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Mango",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 12.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 61.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.08,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Other Fresh Fruits",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1140.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1437.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 1.26,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2003-04",
+    "crop": "Other Fresh Fruits",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1090.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2412.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 2.21,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "1999-00",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 160.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 840.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.25,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2000-01",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 170.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 890.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.24,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2002-03",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1170.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 6120.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.23,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2004-05",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 30.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 160.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.33,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2005-06",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 260.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1360.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.23,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2006-07",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 310.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1620.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.23,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2007-08",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 260.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1360.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.23,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2008-09",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 970.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7320.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.55,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2009-10",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1100.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8320.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.56,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2010-11",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 970.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7320.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.55,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2011-12",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1060.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8750.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.25,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2012-13",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1080.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8820.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.17,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2013-14",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1070.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8820.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.24,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2014-15",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1070.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8820.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.24,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2015-16",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1090.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 9120.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.37,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2016-17",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1090.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8390.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.7,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2017-18",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1090.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 9120.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.37,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2018-19",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1110.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 9220.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.31,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2021-22",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1100.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8150.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.41,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2022-23",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1100.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8150.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.41,
+     "unit": "t/ha"
+    }
+   }
+  }
+ ]
+}

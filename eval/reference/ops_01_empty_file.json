@@ -3,7 +3,7 @@
  "agent": "none",
  "source_group": "csv",
  "file": "cases/ops_01.csv",
- "description": "Empty file must fail cleanly",
+ "description": "Blank file (only newlines) must fail cleanly",
  "difficulty": "error",
  "needs_llm": false,
  "inject_fault": null,
@@ -14,5 +14,6 @@
   "read_csv_data",
   "read_json_data"
  ],
+ "n_source_records": 0,
  "records": []
 }

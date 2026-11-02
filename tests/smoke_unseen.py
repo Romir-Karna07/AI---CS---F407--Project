@@ -87,6 +87,22 @@ check("  pH 0.0 treated as missing (44 NULL, none invalid, source value kept in 
       and q("select count(*) from soil_health where extra like '%ph_source_value%'")[0][0] == 44)
 check("real rainfall json: 2112 rows", run(ROOT / "manipur_rainfall_monthly.json")["result"]["totals"]["extracted"] == 2112)
 
+# --- PDF input (document agent): dev PDFs, never the held-out evaluation PDFs -------------------------------
+PDFDIR = ROOT / "eval" / "dev" / "cases"
+r = run(PDFDIR / "pdf_08.pdf")
+check("PDF (ruled soil table): complete, 20 rows via read_pdf_data", r["status"] == "complete" and r["result"]["totals"]["extracted"] == 20
+      and "read_pdf_data" in [t["tool"] for t in r["trajectory"]], str(r["result"].get("totals")))
+check("  provenance locator names page, table and line", q("select locator from soil_health where source_file='pdf_08.pdf' limit 1")[0][0].startswith("p1 t1 line"))
+r = run(PDFDIR / "pdf_02.pdf")
+check("PDF without ruling lines: district + year taken from the caption", r["status"] == "complete" and
+      q("select count(*) from crop_production where source_file='pdf_02.pdf' and district<>'UNSPECIFIED' and period is not null")[0][0] == 30)
+r = run(PDFDIR / "pdf_08.pdf", inject_fault="read")
+check("PDF injected read fault recovered (retry, retries=1)", r["status"] == "complete" and r["retries"] == 1)
+bad = tmp / "broken.pdf"
+bad.write_bytes(b"%PDF-1.4 this is not a real pdf")
+r = run(bad)
+check("corrupt PDF fails cleanly after trying the OCR route (no crash)", r["status"] == "failed" and r["retries"] == 2)
+
 # --- live LLM fallback (only if a Groq key is configured) ------------------------------------------
 from pipeline.llm import get_llm  # noqa: E402
 if get_llm() is not None:

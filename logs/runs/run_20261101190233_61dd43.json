@@ -1,0 +1,213 @@
+{
+  "run_id": "run_20261101190233_61dd43",
+  "input": "soil_P2.json",
+  "status": "complete",
+  "source_type": "json",
+  "groups": [
+    {
+      "pattern": "$.districts[].shc_cycles[*][]",
+      "domain": "soil",
+      "records": 82,
+      "scores": {
+        "soil": 12,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "rules",
+      "mapped_headers": {
+        "state": "state",
+        "state_code": "state_code",
+        "district": "district",
+        "district_code": "district_code",
+        "B": "b",
+        "Category": "category",
+        "Cu": "cu",
+        "EC": "ec",
+        "K": "k",
+        "Mn": "mn",
+        "N": "n",
+        "OC": "oc",
+        "P": "p",
+        "S": "s",
+        "TEHSIL": "tehsil",
+        "VILLAGE": "village",
+        "Zn": "zn",
+        "fe": "fe",
+        "pH": "ph",
+        "feature_id": "record_id",
+        "approx_longitude": "longitude",
+        "approx_latitude": "latitude"
+      },
+      "unmapped_headers": [
+        "source",
+        "partition",
+        "aspirational",
+        "DISTRICT",
+        "DISTRICT_L",
+        "STATE",
+        "STATE_LGD"
+      ]
+    },
+    {
+      "pattern": "$.districts[]",
+      "domain": null,
+      "records": 3,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm_rejected_no_measurement_columns",
+      "mapped_headers": {
+        "state": "state",
+        "state_code": "state_code",
+        "district": "district",
+        "district_code": "district_code"
+      },
+      "unmapped_headers": [
+        "source",
+        "partition",
+        "aspirational",
+        "bbox.minx",
+        "bbox.miny",
+        "bbox.maxx",
+        "bbox.maxy"
+      ]
+    }
+  ],
+  "result": {
+    "by_agent": {
+      "soil_agent": {
+        "table": "soil_health",
+        "extracted": 82,
+        "inserted": 82,
+        "duplicates": 0,
+        "invalid": 0,
+        "rejected": 0
+      }
+    },
+    "rejected": [],
+    "totals": {
+      "extracted": 82,
+      "inserted": 82,
+      "duplicate": 0,
+      "invalid": 0,
+      "rejected": 0
+    }
+  },
+  "notes": {
+    "error": null,
+    "agent_errors": [],
+    "unclassified_groups": [
+      "$.districts[]"
+    ]
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "soil_P2.json"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 61471,
+        "type": "json"
+      },
+      "ms": 0.8
+    },
+    {
+      "step": "read",
+      "tool": "read_json_data",
+      "args": {
+        "file_path": "soil_P2.json"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 85,
+        "groups": 2,
+        "notes": []
+      },
+      "ms": 4.1
+    },
+    {
+      "step": "classify",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "source",
+          "partition",
+          "aspirational",
+          "bbox.minx",
+          "bbox.miny",
+          "bbox.maxx",
+          "bbox.maxy"
+        ]
+      },
+      "status": "rejected",
+      "detail": {},
+      "ms": 1365.8
+    },
+    {
+      "step": "classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": "soil",
+      "ms": 655.2
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "$.districts[].shc_cycles[*][]",
+            "soil",
+            82
+          ],
+          [
+            "$.districts[]",
+            null,
+            3
+          ]
+        ],
+        "queue": [
+          "soil"
+        ]
+      },
+      "ms": 4300.5
+    },
+    {
+      "step": "soil_agent",
+      "tool": "soil_extract",
+      "args": {
+        "records_in": 82
+      },
+      "status": "ok",
+      "detail": {
+        "rows_out": 82
+      },
+      "ms": 24.7
+    },
+    {
+      "step": "load",
+      "tool": "sqlite_load",
+      "args": {
+        "db": "manipur.db"
+      },
+      "status": "ok",
+      "detail": {
+        "extracted": 82,
+        "inserted": 82,
+        "duplicate": 0,
+        "invalid": 0,
+        "rejected": 0
+      },
+      "ms": 24.6
+    }
+  ]
+}

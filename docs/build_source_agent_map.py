@@ -31,22 +31,25 @@ PENDING_STRUCT = "no sample file collected yet; generic CSV/JSON reader can inge
 A = {
     # ---- implemented, with data in the database ---------------------------------------------------------
     "S24": ("soil_agent", "partial",
-            "438 village-level SHC records for Manipur (2015-17, 2017-19, 2024-25) scraped from the SLUSI visualisation layer and loaded "
-            "(manipur_soil_health.json). Not done: the portal's aggregate state/district cards and the other districts' older cycles"),
+            "367 village-level SHC records (dev partitions Data/partitions/soil_P1+P2.json) loaded; the scraped file has 438 - 70 records of Imphal West, "
+            "Thoubal and Ukhrul are held out for evaluation. Not done: the portal's aggregate state/district cards and the other districts' older cycles"),
     "S22": ("rainfall_agent", "partial",
-            "monthly district rainfall 2015-2025 for all 16 districts loaded (manipur_rainfall_monthly.json) - derived from IMD Pune's gridded "
+            "monthly district rainfall 2015-2025 for 13 districts (1,716 rows, Data/partitions/rain_P1_imd.json; Imphal West, Thoubal, Ukhrul held out) - derived from IMD Pune's gridded "
             "daily product, not from the district bulletins/PDFs this row names. Not done: bulletin PDFs, Hindi text, forecasts"),
     "S02": ("production_agent", "partial",
-            "Data/CSV_Agent.csv (29 horticulture crops x 9 districts x 1997-2023, 1,217 area/production/yield rows) is in the APY export layout; "
+            "Data/partitions/prod_P1+P2.csv (29 horticulture crops x 6 of the 9 districts, 811 rows; Imphal West, Thoubal, Ukhrul held out) from Data/CSV_Agent.csv in the APY export layout; "
             "its origin is assumed to be this portal - CONFIRM. Not done: field crops, the 7 post-2016 districts, other seasons"),
     # ---- structured sources, same format family as the implemented agents --------------------------------
-    "S01": ("production_agent", "pending", "OGD CSV/API datasets: " + PENDING_STRUCT.replace("the target table does not exist", "needs dataset selection")),
-    "S03": ("production_agent", "pending", "UPAg state-wise APY: HTML/CSV export; not collected yet"),
+    "S01": ("production_agent", "pending", "in scope; waiting for a manual CSV download from data.gov.in (JS site, free API key needed); Manipur coverage is patchy"),
+    "S03": ("production_agent", "pending", "in scope; waiting for a manual export from the UPAg state-wise APY dashboard (no scripted download)"),
     "S04": ("production_agent", "pending", "Agricultural Statistics at a Glance: CSV/XLSX tables are readable by the generic reader; PDF part needs document_agent; not collected yet"),
     "S06": ("production_agent", "pending", "NHB/MIDH horticulture statistics: not collected yet (CSV/XLSX part); PDF part needs document_agent"),
     "S07": ("production_agent", "pending", "Agriculture Census holdings tables: CSV/XLSX; needs fact_land table (KB extension); not collected"),
     "S13": ("production_agent", "pending", "Livestock census / BAHS: PDF + CSV; allied production (KB extension table); not collected"),
-    "S21": ("rainfall_agent", "pending", "NASA POWER daily API: pipeline handles monthly rows only; needs a daily->monthly step and an API fetcher; not collected"),
+    "S21": ("rainfall_agent", "partial",
+            "monthly district rainfall 2015-2025 for 13 districts (1,716 rows, Data/partitions/rain_P2_nasa.json; 3 districts held out) via "
+            "scrapers/scrape_manipur_nasa_power.py (daily API -> monthly sums). Point estimate at each district's bbox centre, "
+            "modelled MERRA-2 data, not a district mean or gauge. Not done: other POWER parameters (temperature, humidity ...)"),
     "S23": ("rainfall_agent", "pending", "India-WRIS: server certificate is revoked (checked 2026-10-24), so it was not connected; revisit"),
     # ---- document_agent: PDF-first -----------------------------------------------------------------------
     **{k: ("document_agent", "pending", "PDF source; no PDF/OCR extractor built yet (candidates: Docling, pdfplumber, OCR for scans)")
@@ -68,6 +71,32 @@ A = {
     "S26": ("reference_geo_agent", "pending", "MARSAC land use: URL unconfirmed (lead only); not collected"),
 }
 
+# All 54 inventory sources are mapped (the PDF requires one row per inventory source). `phase2_scope` marks the 6 sources that the three
+# implemented table agents can read and that the team is working on now (S24, S22, S02, S21 loaded; S01, S03 waiting for a manual download);
+# the rest are "on_hold": mapped to the agent that will own them, declared pending, not started.
+IN_SCOPE = ["S24", "S22", "S02", "S21", "S01", "S03"]
+
+# Real PDFs downloaded 2026-11-01 (Data/pdf_samples) and run through read_pdf_data / run.py: what actually happened (docs/challenge.md)
+TESTED = {
+    "S04": "PDF part tested: Table 2.28 (yield by state, ROTATED page 161) read exactly (40/40 numbers) but it is state-level with no district, so no row is stored",
+    "S05": "downloaded desagri time-series final estimates 2024-25 (3 pages): scrambled text layer, all-India foodgrain table without districts; run failed cleanly (no recognised records)",
+    "S06": "PDF part tested: Table 3.1 population (p53, no ruling lines) read exactly (20/20) but it is not a soil / rainfall / production table, so nothing is stored",
+    "S12": "downloaded State Focus Paper Manipur 2024-25 (152 pp): dense bilingual banking profile p33 read exactly (14/14) but banking data has no target table; nothing stored",
+    "S31": "downloaded 3 district plans (Imphal West, Imphal East, Chandel): ruled land-use / irrigation tables read exactly (16/16); the 'normal rainfall' table is seasonal not monthly (0 rows stored, run still says complete); a land-use table was misclassified as production and stored invalid",
+    "S53": "downloaded the rice-production journal paper: ARIMA statistics table p10 read exactly (24/24); not a domain table, nothing stored; the data series the paper analyses is not printed as a table",
+    "S54": "downloaded the Manipur state profile: p4 overview table has units inside the cell text ('22,327 sq. km'), no numeric table found; failed after the OCR recovery route",
+}
+
+# tool that will own each agent type: built = code exists in this repo; planned = named in the Phase 1 inventory, not written
+TOOLS = {"soil_agent": ("built", "pipeline/readers.py + agents.py (JSON / CSV)"),
+         "rainfall_agent": ("built", "pipeline/readers.py + agents.py (JSON / CSV); NASA POWER via scrapers/scrape_manipur_nasa_power.py"),
+         "production_agent": ("built", "pipeline/readers.py + agents.py (CSV / JSON); PDF tables via document_agent"),
+         "document_agent": ("built (tables only)", "pipeline/pdf_reader.py: pdfplumber -> camelot stream -> RapidOCR; prose needs an LLM extractor (planned)"),
+         "price_agent": ("planned", "OGD API / Playwright fetcher + fact_price table"),
+         "advisory_agent": ("planned", "LLM extractor with Manipuri handling (needs the adapter work of M18)"),
+         "web_registry_agent": ("planned", "Playwright + BeautifulSoup scraper per site + fact tables"),
+         "reference_geo_agent": ("planned", "CSV / GIS loader (LGD, Census, boundaries, OSM) -> dimension tables")}
+
 AGENT_TYPE = {"soil_agent": "structured", "rainfall_agent": "structured", "production_agent": "structured",
               "document_agent": "document (PDF text/scan)", "price_agent": "structured/API (prices)",
               "advisory_agent": "free text (multilingual)", "web_registry_agent": "web/HTML",
@@ -88,11 +117,14 @@ def main():
     for r in inv:
         sid = r[0]
         agent, status, ev = A[sid]
+        if sid in TESTED:
+            ev = ev + " | REAL FILE TESTED: " + TESTED[sid]
         rows.append({
             "source_id": sid, "source_name": r[ix["Source / dataset"]], "category": r[ix["Category"]],
             "modality": r[ix["Modality"]], "language": r[ix["Language"]], "non_english": r[ix["Non-English content?"]],
             "priority": r[ix["Priority"]], "phase1_status": r[ix["Status"]], "agent": agent, "agent_type": AGENT_TYPE[agent],
-            "status": status, "evidence_or_barrier": ev})
+            "status": status, "tool_status": TOOLS[agent][0], "tool": TOOLS[agent][1],
+            "phase2_scope": "in_scope" if sid in IN_SCOPE else "on_hold", "evidence_or_barrier": ev})
     with OUT.open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=list(rows[0]))
         w.writeheader()

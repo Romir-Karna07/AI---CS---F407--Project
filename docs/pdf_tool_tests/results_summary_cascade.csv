@@ -1,0 +1,2 @@
+tool,field_accuracy_micro,field_accuracy_macro_pages,rows_exact,pages_all_fields_correct,files_with_error,median_sec_per_page,total_seconds_window
+cascade_pdfplumber_then_camelot,0.958,0.8333,18/23,5/6,0,5.96,24.9

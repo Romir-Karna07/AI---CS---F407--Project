@@ -1,0 +1,63 @@
+{
+ "case_id": "prod_07_csv_totals_and_grand_total",
+ "agent": "production",
+ "source_group": "csv",
+ "file": "dev/cases/prod_07.csv",
+ "description": "Original layout + Total rows + a Grand Total row that must all be skipped",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "production_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2022-23",
+    "crop": "Wheat",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 260.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 600.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 2.31,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2022-23",
+    "crop": "Wheat",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 450.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1100.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 2.44,
+     "unit": "t/ha"
+    }
+   }
+  }
+ ]
+}

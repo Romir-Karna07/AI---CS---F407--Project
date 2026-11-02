@@ -1,0 +1,8 @@
+District,Tehsil,Village,Category,Cycle,Available Nitrogen (kg/ha),Available Phosphorus (kg/ha),Available Potassium (kg/ha),pH,Organic Carbon (%),EC (dS/m),Sulphur (ppm),Zinc (ppm),Iron (ppm),Copper (ppm),Manganese (ppm),Boron (ppm)
+Imphal West,Lamsang,Kangchup,Non saline,2017-19,299.8,23.23,97.52,5.33,0.85,0.01,27.0,1.48,32.9,,25.6,
+Thoubal,Thoubal,Icham Kunou,Sufficient,2017-19,404.6,85.8,306.5,6.59,1.34,0.06,37.0,3.14,21.9,0.74,34.6,1.01
+Thoubal,Thoubal,Nepra Company,Sufficient,2017-19,418.9,129.5,446.3,6.68,1.41,0.11,7.0,0.92,33.0,1.77,15.7,1.65
+Thoubal,Thoubal,Lamding,Sufficient,2017-19,366.5,107.68,168.87,6.185,1.16,0.145,17.5,1.57,33.4,1.915,27.6,0.965
+Imphal West,Nambol,Utlou,Non saline,2017-19,237.0,35.58,227.715,5.32,1.29,0.03,,,,,,
+Thoubal,Thoubal,Hayel Labuk,Sufficient,2017-19,438.0,85.8,352.1,6.23,1.5,0.28,25.0,3.88,3.33,1.87,27.4,1.84
+Thoubal,Lilong,Moijing,Non saline,2017-19,196.5,21.98,174.485,5.695,1.385,0.04,,,,,,

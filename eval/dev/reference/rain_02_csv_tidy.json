@@ -1,0 +1,235 @@
+{
+ "case_id": "rain_02_csv_tidy",
+ "agent": "rainfall",
+ "source_group": "csv",
+ "file": "dev/cases/rain_02.csv",
+ "description": "Tidy CSV with YYYY-MM",
+ "difficulty": "normal",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "rainfall_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2015-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 285.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 21,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAMJONG",
+    "period": "2019-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 137.4,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 15,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2024-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 204.2,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 19,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2019-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 141.6,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 11,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAMJONG",
+    "period": "2018-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 3.8,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 0,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAMJONG",
+    "period": "2018-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 58.8,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 7,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2022-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 148.8,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 12,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2019-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 64.8,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 11,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2018-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 115.1,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 8,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2022-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 13.5,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 3,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAMJONG",
+    "period": "2019-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 112.7,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 14,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2016-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 6.7,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 1,
+     "unit": "days"
+    }
+   }
+  }
+ ]
+}

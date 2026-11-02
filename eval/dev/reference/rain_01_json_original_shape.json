@@ -1,0 +1,235 @@
+{
+ "case_id": "rain_01_json_original_shape",
+ "agent": "rainfall",
+ "source_group": "json",
+ "file": "dev/cases/rain_01.json",
+ "description": "Same nesting as the monthly file",
+ "difficulty": "normal",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_json_data",
+  "rainfall_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2019-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 91.3,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 12,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2019-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.5,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 0,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2019-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 14.2,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 2,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2019-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 19.2,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 4,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2019-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 99.1,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 8,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2019-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 136.3,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 10,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2019-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 50.2,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 6,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2019-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 87.3,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 8,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2019-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 33.4,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 4,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2019-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 91.5,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 9,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2019-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 194.5,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 13,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2019-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 8.9,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 1,
+     "unit": "days"
+    }
+   }
+  }
+ ]
+}

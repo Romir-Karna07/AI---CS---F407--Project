@@ -1,0 +1,111 @@
+{
+  "run_id": "run_20261101204617_a7feb2",
+  "input": "S12_nabard_state_focus_paper_manipur_2024-25.pdf",
+  "status": "failed",
+  "source_type": "pdf",
+  "groups": [
+    {
+      "pattern": "pdf:p33.t1",
+      "domain": null,
+      "records": 68,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm_rejected_no_measurement_columns",
+      "mapped_headers": {
+        "\u0930\u093e\uf021 State": "state"
+      },
+      "unmapped_headers": [
+        "\u092e\u093f\u0923\u092a\u0941\u0930 Manipur",
+        "\u0905\uf00d\u0923\u0940 \u092c\u0915\uf013 Lead Bank",
+        "\uf058\u0947\u091f \u092c\u0915\uf013 \u0911\u092b \u0907\u0902\u093f\u0921\u092f\u093e SBI"
+      ]
+    }
+  ],
+  "result": {},
+  "notes": {
+    "error": "no recognised soil / rainfall / production records (unclassified: pdf:p33.t1)",
+    "agent_errors": [],
+    "unclassified_groups": [
+      "pdf:p33.t1"
+    ]
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "S12_nabard_state_focus_paper_manipur_2024-25.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 21757607,
+        "type": "pdf"
+      },
+      "ms": 140.4
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_data",
+      "args": {
+        "file_path": "S12_nabard_state_focus_paper_manipur_2024-25.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 68,
+        "groups": 1,
+        "notes": [
+          "pages=152",
+          "backend=auto",
+          "page range 33",
+          "tables by route: pdfplumber=1"
+        ]
+      },
+      "ms": 11563.7
+    },
+    {
+      "step": "classify",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "\u092e\u093f\u0923\u092a\u0941\u0930 Manipur",
+          "\u0905\uf00d\u0923\u0940 \u092c\u0915\uf013 Lead Bank",
+          "\uf058\u0947\u091f \u092c\u0915\uf013 \u0911\u092b \u0907\u0902\u093f\u0921\u092f\u093e SBI"
+        ]
+      },
+      "status": "rejected",
+      "detail": {
+        "\u092e\u093f\u0923\u092a\u0941\u0930 Manipur": "state"
+      },
+      "ms": 1714.1
+    },
+    {
+      "step": "classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": null,
+      "ms": 773.0
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "pdf:p33.t1",
+            null,
+            68
+          ]
+        ],
+        "queue": []
+      },
+      "ms": 5885.5
+    }
+  ]
+}

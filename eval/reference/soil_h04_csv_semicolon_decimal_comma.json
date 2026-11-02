@@ -1,0 +1,390 @@
+{
+ "case_id": "soil_h04_csv_semicolon_decimal_comma",
+ "agent": "soil",
+ "source_group": "csv",
+ "file": "cases/soil_h04.csv",
+ "description": "';' delimiter with decimal commas",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "soil_extract",
+  "sqlite_load"
+ ],
+ "n_source_records": 7,
+ "records": [
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Wangbal"
+   },
+   "fields": {
+    "n": {
+     "value": 376.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 134.9,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 269.6,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.2,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.59,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.04,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 5.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 3.14,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.2,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.21,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 16.6,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.01,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Thoubal",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Khoirom"
+   },
+   "fields": {
+    "n": {
+     "value": 361.7,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 20.1085,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 135.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.135,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.2,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.1,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 24.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 1.015,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 24.55,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 0.885,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 27.4,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.09,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Thoubal",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Paoyei"
+   },
+   "fields": {
+    "n": {
+     "value": 447.5,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 27.7,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 374.7,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.54,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.87,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.04,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 13.0,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 31.1,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.59,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 13.5,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.1,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Chingai",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Tekcham"
+   },
+   "fields": {
+    "n": {
+     "value": 345.05,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 40.215,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 144.3,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.06,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.78,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.05,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 7.5,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 1.755,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 32.25,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 13.95,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.505,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Thoubal",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Kanglatongbi"
+   },
+   "fields": {
+    "n": {
+     "value": 216.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 62.11,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 107.52,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.47,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.0,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 1.0,
+     "unit": "dS/m"
+    },
+    "tehsil": {
+     "value": "Lamsang",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Waithou Chiru"
+   },
+   "fields": {
+    "n": {
+     "value": 98.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 29.39,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 232.23,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.54,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 4.8,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.03,
+     "unit": "dS/m"
+    },
+    "tehsil": {
+     "value": "Keirao Bitra",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Kanto"
+   },
+   "fields": {
+    "n": {
+     "value": 466.6,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 26.81,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 54.33,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.63,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.78,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.01,
+     "unit": "dS/m"
+    },
+    "zn": {
+     "value": 0.37,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 34.3,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.02,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 18.4,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Lamsang",
+     "unit": "text"
+    }
+   }
+  }
+ ]
+}

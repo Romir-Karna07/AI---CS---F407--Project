@@ -1,0 +1,488 @@
+{
+ "case_id": "prod_h04_json_crop_year_nested",
+ "agent": "production",
+ "source_group": "json",
+ "file": "cases/prod_h04.json",
+ "description": "crop -> year -> district records",
+ "difficulty": "normal",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_json_data",
+  "production_extract",
+  "sqlite_load"
+ ],
+ "n_source_records": 26,
+ "records": [
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Cauliflower",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 345.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3622.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2003-04",
+    "crop": "Cauliflower",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 350.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3010.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Mango",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 20.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 100.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2003-04",
+    "crop": "Mango",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 21.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 107.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2002-03",
+    "crop": "Other Fresh Fruits",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 855.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1215.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2003-04",
+    "crop": "Other Fresh Fruits",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1123.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 5032.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Other Vegetables",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 20.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 100.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Other Vegetables",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 59.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 428.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Papaya",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 90.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 630.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Papaya",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 94.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 545.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "1999-00",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 10.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 10.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2003-04",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 40.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 30.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2004-05",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 50.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 30.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2008-09",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 85.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 909.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2009-10",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 135.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1446.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2010-11",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 153.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1501.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2011-12",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 172.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1972.84,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2012-13",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 178.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2082.6,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2013-14",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 208.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2496.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2014-15",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 245.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2893.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2015-16",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 698.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7626.07,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2016-17",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 696.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7604.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-18",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 705.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7668.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2018-19",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 701.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7641.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2022-23",
+    "crop": "Wheat",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 10.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 20.0,
+     "unit": "t"
+    }
+   }
+  }
+ ]
+}

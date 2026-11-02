@@ -1,0 +1,8 @@
+{"district": "BISHNUPUR", "cycle": "2017-19", "village": "Khoijuman Khullen", "N": 238.92, "P": 27.4434, "K": 213.415, "OC": 1.094, "pH": 5.175, "EC": 0.025, "S": 47.0, "ZN": 1.29, "FE": 33.3, "CU": 1.4, "MN": 6.6, "B": 0.82}
+{"district": "IMPHAL EAST", "cycle": "2017-19", "village": "Taretkhul", "N": 285.5, "P": 23.23, "K": 247.9, "OC": 0.78, "pH": 6.02, "EC": 0.01, "S": 16.0, "ZN": 2.96, "FE": 34.7, "CU": 2.15, "MN": 32.3}
+{"district": "BISHNUPUR", "cycle": "2017-19", "village": "Ningthoukhong Kha Pt", "N": 279.4, "P": 15.395, "K": 73.63, "OC": 1.135, "pH": 6.215, "EC": 0.02, "S": 10.0, "ZN": 3.51, "FE": 33.7, "CU": 1.68, "MN": 13.5, "B": 0.73}
+{"district": "IMPHAL EAST", "cycle": "2017-19", "village": "Lamboikhul", "N": 433.2, "P": 22.785, "K": 130.22, "OC": 1.41, "pH": 5.71, "EC": 0.035, "S": 23.0, "ZN": 3.51, "FE": 34.7, "MN": 28.75, "B": 0.36}
+{"district": "KAKCHING", "cycle": "2017-19", "village": "Waikhong Laimanai", "N": 272.76, "P": 21.67, "K": 271.165, "OC": 1.365, "pH": 5.715, "EC": 0.03, "S": 12.0, "ZN": 4.155, "FE": 30.5, "CU": 2.05, "MN": 20.6}
+{"district": "IMPHAL EAST", "cycle": "2017-19", "village": "Pukhao Naharup", "N": 361.7, "P": 32.17, "K": 83.59, "OC": 1.14, "pH": 5.87, "EC": 0.02, "FE": 37.4, "CU": 4.11, "MN": 38.6, "B": 0.18}
+{"district": "IMPHAL EAST", "cycle": "2017-19", "village": "Yambem", "N": 235.76, "P": 25.845, "K": 197.34, "OC": 1.27, "pH": 4.7, "EC": 0.05}
+{"district": "IMPHAL EAST", "cycle": "2017-19", "village": "Pukhao Ahallup", "N": 423.7, "P": 44.24, "K": 144.17, "OC": 1.43, "pH": 5.945, "EC": 0.03, "S": 5.5, "ZN": 1.2, "FE": 33.7, "CU": 1.965, "MN": 37.3, "B": 0.46}

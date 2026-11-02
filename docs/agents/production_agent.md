@@ -26,12 +26,14 @@ within 5% or the source's rounding) are **fixed code**. The LLM only maps unknow
 ## Tools
 `inspect_file` -> `read_csv_data` / `read_json_data` -> (`llm_map_headers`) -> `production_extract` -> `sqlite_load`.
 
-## Evaluation (dev set)
-10 cases / 271 reference fields (original layout, tidy, acres + quintals, kg, semicolon + decimal comma, two-row header,
-synonyms, Total rows, blank cells); F1 1.00 on our own cases (same caveat as `soil_agent.md`).
+## Evaluation (held-out districts; see `eval/README.md` for the split and its limits)
+* **Official:** 10 held-out files `prod_h01`..`h10` (original APY layout +/- totals, tidy, acres + quintals, kg, nested JSON, two-row header, crop synonyms, `;` with decimal commas,
+  blank cells): **F1 1.000** on the first cold run (1,095/1,095 fields; 406 held-out district-crop-year rows divided by whole (crop, district) pairs).
+* The PDF cases for production (`pdf_01`..`pdf_04`) are in `document_agent.md`: 1.000, 1.000, 1.000 and 0.933 (scan).
+* **Dev set:** 10 older cases in `eval/dev/`; first run F1 was 0.18 on production before the layout fixes (`eval/dev/results/first_run_metrics.csv`).
 
 ## Limitations
-* The corpus file `Data/CSV_Agent.csv` is team-supplied: 29 horticulture / plantation crops, 9 pre-2016 districts,
+* The corpus file `Data/CSV_Agent.csv` is team-supplied (6 of its 9 districts, 811 rows, are in the database as `Data/partitions/prod_P1+P2.csv`; Imphal West, Thoubal and Ukhrul are held out): 29 horticulture / plantation crops, 9 pre-2016 districts,
   1997-2023 with missing years (no 1998-99, 2020-21). Its origin is **assumed** to be S02 and must be confirmed.
 * The 7 districts created in 2016 are absent from that file; no field crops (rice, maize ...) either.
 * `season` is "Whole Year" in the corpus; Kharif / Rabi series are supported by the code but untested on real files.

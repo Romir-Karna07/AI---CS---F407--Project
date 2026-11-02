@@ -1,0 +1,641 @@
+{
+ "case_id": "pdf_10_soil_scanned_ocr",
+ "agent": "soil",
+ "owner_agent": "document_agent",
+ "source_group": "pdf",
+ "file": "dev/cases/pdf_10.pdf",
+ "description": "Scanned page (image only): OCR needed, ruled landscape table",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_pdf_data",
+  "soil_extract",
+  "sqlite_load"
+ ],
+ "has_text_layer": false,
+ "records": [
+  {
+   "key": {
+    "location": "KANGPOKPI",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Sinam"
+   },
+   "fields": {
+    "n": {
+     "value": 376.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 46.92,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 85.675,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.2,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.405,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.025,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 11.5,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 32.8,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 2.935,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 38.7,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Wangoo Ahallup"
+   },
+   "fields": {
+    "n": {
+     "value": 300.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 23.23,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 189.25,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.66,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.24,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.01,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Pukhao Laipham"
+   },
+   "fields": {
+    "n": {
+     "value": 205.275,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 22.55,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 110.305,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.135,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.7,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.035,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Nachou"
+   },
+   "fields": {
+    "n": {
+     "value": 282.36,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 25.35,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 321.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.25,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 4.85,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.01,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Pukhao Naharup"
+   },
+   "fields": {
+    "n": {
+     "value": 361.7,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 32.17,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 83.59,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.14,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.87,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.02,
+     "unit": "dS/m"
+    },
+    "fe": {
+     "value": 37.4,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 4.11,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 38.6,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.18,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Arapti"
+   },
+   "fields": {
+    "n": {
+     "value": 390.35,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 49.6,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 307.85,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.27,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.035,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.02,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 14.0,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 28.55,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 4.86,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 39.05,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAKCHING",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Wangoo"
+   },
+   "fields": {
+    "n": {
+     "value": 197.5,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 18.25,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 202.5,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.26,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.165,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.035,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAKCHING",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Wabagai"
+   },
+   "fields": {
+    "n": {
+     "value": 190.5,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 20.57,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 97.85,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.84,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.4,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.02,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 82.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 3.51,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 29.6,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 2.8,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 8.55,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.09,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Kitna Panung"
+   },
+   "fields": {
+    "n": {
+     "value": 98.87,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 22.23,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 71.25,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.58,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.34,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.03,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Ningthoukhong Awang Pt"
+   },
+   "fields": {
+    "n": {
+     "value": 193.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 31.76,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 216.385,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.48,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.12015,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.02,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 6.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 0.46,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 16.65,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 7.85,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.32,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Heingang CT"
+   },
+   "fields": {
+    "n": {
+     "value": 361.7,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 22.34,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 132.3,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.14,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 4.78,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.05,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 20.0,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.2,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 6.08,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 31.4,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2024-25",
+    "crop": "UNSPECIFIED",
+    "entity": "Kholmun"
+   },
+   "fields": {
+    "n": {
+     "value": 560.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 2.7,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 0.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.818,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.71,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.461,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 18.7,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 7.4,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 8.26,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 0.0,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 0.0,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.0,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "PHERZAWL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Parbung"
+   },
+   "fields": {
+    "p": {
+     "value": 20.57,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 336.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.99,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 4.6,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.03,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TENGNOUPAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Koijam"
+   },
+   "fields": {
+    "n": {
+     "value": 290.2,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 7.15,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 307.8,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.8,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 4.69,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.02,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 20.0,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 16.1,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 35.0,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 2.57,
+     "unit": "ppm"
+    }
+   }
+  }
+ ]
+}

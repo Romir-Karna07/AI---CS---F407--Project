@@ -1,0 +1,136 @@
+{
+  "run_id": "run_20261101190302_88fe05",
+  "input": "prod_P2.csv",
+  "status": "complete",
+  "source_type": "csv",
+  "groups": [
+    {
+      "pattern": "csv",
+      "domain": "production",
+      "records": 395,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 3
+      },
+      "method": "rules",
+      "mapped_headers": {
+        "State": "state",
+        "Crop": "crop",
+        "District": "district",
+        "Season": "season",
+        "period": "period",
+        "Area": "area",
+        "Production": "production",
+        "Yield": "yield"
+      },
+      "unmapped_headers": []
+    }
+  ],
+  "result": {
+    "by_agent": {
+      "production_agent": {
+        "table": "crop_production",
+        "extracted": 395,
+        "inserted": 395,
+        "duplicates": 0,
+        "invalid": 0,
+        "rejected": 0
+      }
+    },
+    "rejected": [],
+    "totals": {
+      "extracted": 395,
+      "inserted": 395,
+      "duplicate": 0,
+      "invalid": 0,
+      "rejected": 0
+    }
+  },
+  "notes": {
+    "error": null,
+    "agent_errors": [],
+    "unclassified_groups": []
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "prod_P2.csv"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 16213,
+        "type": "csv"
+      },
+      "ms": 1.0
+    },
+    {
+      "step": "read",
+      "tool": "read_csv_data",
+      "args": {
+        "file_path": "prod_P2.csv"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 395,
+        "groups": 1,
+        "notes": [
+          "delimiter=','",
+          "header_rows=3",
+          "label_columns=[0, 1]"
+        ]
+      },
+      "ms": 23.5
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "csv",
+            "production",
+            395
+          ]
+        ],
+        "queue": [
+          "production"
+        ]
+      },
+      "ms": 2079.6
+    },
+    {
+      "step": "production_agent",
+      "tool": "production_extract",
+      "args": {
+        "records_in": 395
+      },
+      "status": "ok",
+      "detail": {
+        "rows_out": 395
+      },
+      "ms": 41.7
+    },
+    {
+      "step": "load",
+      "tool": "sqlite_load",
+      "args": {
+        "db": "manipur.db"
+      },
+      "status": "ok",
+      "detail": {
+        "extracted": 395,
+        "inserted": 395,
+        "duplicate": 0,
+        "invalid": 0,
+        "rejected": 0
+      },
+      "ms": 80.0
+    }
+  ]
+}

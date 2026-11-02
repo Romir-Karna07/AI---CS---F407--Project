@@ -2,6 +2,7 @@
 LangGraph orchestration.
 
     inspect -> read --(error)--> recover -> read ...          (max 2 recoveries, then finish as failed)
+              (CSV / JSON / PDF; PDF: read_pdf_data = pdfplumber -> camelot stream -> OCR per page, recovery = OCR route)
                  |
                  v
               classify -> soil_agent -> rainfall_agent -> production_agent -> load -> finish
@@ -88,7 +89,8 @@ def inspect_node(state: State) -> State:
         if head.startswith(b"\xef\xbb\xbf"):  # UTF-8 BOM
             head = head[3:]
         looks_json = head.lstrip()[:1] in (b"{", b"[")
-        out["source_type"] = ("json" if ext in (".json", ".geojson", ".jsonl", ".ndjson") or looks_json else "csv")
+        is_pdf = ext == ".pdf" or data[:5] == b"%PDF-"
+        out["source_type"] = ("pdf" if is_pdf else "json" if ext in (".json", ".geojson", ".jsonl", ".ndjson") or looks_json else "csv")
         out["trajectory"] = _trace(state, "inspect", "inspect_file", {"file": p.name}, "ok",
                                    {"bytes": len(data), "type": out["source_type"]}, t0)
     except Exception as e:
@@ -100,13 +102,17 @@ def inspect_node(state: State) -> State:
 def read_node(state: State) -> State:
     t0 = time.perf_counter()
     stype = state.get("force_format") or state["source_type"]
-    tool = "read_json_data" if stype == "json" else "read_csv_data"
+    tool = {"json": "read_json_data", "pdf": "read_pdf_data", "pdf_ocr": "read_pdf_ocr"}.get(stype, "read_csv_data")
     args = {"file_path": Path(state["input_path"]).name}
     try:
         _maybe_fault(state, "read")
-        parsed = (read_json if stype == "json" else read_csv_file)(Path(state["input_path"]))
+        if stype in ("pdf", "pdf_ocr"):
+            from .pdf_reader import read_pdf_file   # lazy: the PDF libraries are only needed for PDF input
+            parsed = read_pdf_file(Path(state["input_path"]), backend="ocr" if stype == "pdf_ocr" else "auto")
+        else:
+            parsed = (read_json if stype == "json" else read_csv_file)(Path(state["input_path"]))
         n = sum(len(g["rows"]) for g in parsed["groups"])
-        return {"parsed": parsed, "error": None, "source_type": stype,
+        return {"parsed": parsed, "error": None, "source_type": "pdf" if stype.startswith("pdf") else stype,
                 "trajectory": _trace(state, "read", tool, args, "ok",
                                      {"records": n, "groups": len(parsed["groups"]), "notes": parsed["notes"]}, t0)}
     except Exception as e:
@@ -115,11 +121,15 @@ def read_node(state: State) -> State:
 
 
 def recover_node(state: State) -> State:
-    """1st recovery: retry the same parser (transient error). 2nd: try the other parser (mislabelled file)."""
+    """1st recovery: retry the same parser (transient error). 2nd: try the other parser (mislabelled file);
+    for a PDF the 2nd is the OCR route (a scan whose text layer is missing or unreadable)."""
     t0 = time.perf_counter()
     attempt = state.get("retries", 0) + 1
     current = state.get("force_format") or state["source_type"]
-    fmt = current if attempt == 1 else ("csv" if current == "json" else "json")
+    if current.startswith("pdf"):   # 1st: retry the text-layer route (transient error); 2nd: force OCR for every page
+        fmt = "pdf" if attempt == 1 and current == "pdf" else "pdf_ocr"
+    else:
+        fmt = current if attempt == 1 else ("csv" if current == "json" else "json")
     return {"force_format": fmt, "retries": attempt, "error": None,
             "trajectory": _trace(state, "recover", None, {"attempt": attempt, "retry_with": fmt}, "ok", None, t0)}
 

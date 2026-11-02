@@ -2,3 +2,18 @@ run_id,timestamp,input_file,status,manual_intervention,manual_note,rows_extracte
 run_20261024225138_4834e1,2026-10-24T22:51:44,manipur_soil_health.json,complete,no,,438,438,0,
 run_20261024225149_848eca,2026-10-24T22:51:52,manipur_rainfall_monthly.json,complete,no,,2112,2112,0,
 run_20261024225156_cb1596,2026-10-24T22:51:58,CSV_Agent.csv,complete,no,,1217,1217,0,
+run_20261101183226_0fd12b,2026-11-01T18:32:28,manipur_rainfall_nasa_power.json,complete,no,,2112,2112,0,
+run_20261101190226_716b81,2026-11-01T19:02:29,soil_P1.json,complete,no,,285,285,0,
+run_20261101190233_61dd43,2026-11-01T19:02:37,soil_P2.json,complete,no,,82,82,0,
+run_20261101190242_71581a,2026-11-01T19:02:44,rain_P1_imd.json,complete,no,,1716,1716,0,
+run_20261101190249_4fe3c5,2026-11-01T19:02:52,rain_P2_nasa.json,complete,no,,1716,1716,0,
+run_20261101190256_ab7942,2026-11-01T19:02:58,prod_P1.csv,complete,no,,416,416,0,
+run_20261101190302_88fe05,2026-11-01T19:03:04,prod_P2.csv,complete,no,,395,395,0,
+run_20261101204327_810f16,2026-11-01T20:43:47,S06_nhb_horticulture_at_a_glance_2018.pdf,failed,yes,real-source PDF demo: page range 53 chosen by hand via AGRI_PDF_PAGES,0,0,0,no recognised soil / rainfall / production records (unclassified: pdf:p53.t1)
+run_20261101204356_38400f,2026-11-01T20:44:09,S53_rice_production_growth_manipur.pdf,failed,yes,real-source PDF demo: page range 10 chosen by hand via AGRI_PDF_PAGES,0,0,0,no recognised soil / rainfall / production records (unclassified: pdf:p10.t1)
+run_20261101204418_965156,2026-11-01T20:44:50,S31_dacp_imphal_west.pdf,complete,yes,real-source PDF demo: page range 1-4 chosen by hand via AGRI_PDF_PAGES,6,0,0,
+run_20261101204458_9cf619,2026-11-01T20:45:41,S54_mofpi_manipur_state_profile.pdf,failed,yes,real-source PDF demo: page range 4 chosen by hand via AGRI_PDF_PAGES,0,0,2,read failed (pdf_ocr): no tables with numeric data found in the PDF (no text layer; OCR found none)
+run_20261101204548_9f281b,2026-11-01T20:46:09,S04_agri_stats_at_a_glance_2024-25_bilingual.pdf,failed,yes,real-source PDF demo: page range 161 chosen by hand via AGRI_PDF_PAGES,0,0,0,no recognised soil / rainfall / production records (unclassified: pdf:p161.t1)
+run_20261101204617_a7feb2,2026-11-01T20:46:34,S12_nabard_state_focus_paper_manipur_2024-25.pdf,failed,yes,real-source PDF demo: page range 33 chosen by hand via AGRI_PDF_PAGES,0,0,0,no recognised soil / rainfall / production records (unclassified: pdf:p33.t1)
+run_20261101204642_80a104,2026-11-01T20:46:52,S05_desagri_final_estimates_2024-25.pdf,failed,yes,real-source PDF demo: page range 1-3 chosen by hand via AGRI_PDF_PAGES,0,0,0,"no recognised soil / rainfall / production records (unclassified: pdf:p1.t1, pdf:p2.t1, pdf:p3.t1)"
+run_20261101204701_1c9c97,2026-11-01T20:47:32,S31_dacp_chandel.pdf,complete,yes,real-source PDF demo: page range 1-6 chosen by hand via AGRI_PDF_PAGES,12,3,0,

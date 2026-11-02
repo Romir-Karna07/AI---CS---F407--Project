@@ -1,0 +1,157 @@
+{
+  "run_id": "run_20261101190226_716b81",
+  "input": "soil_P1.json",
+  "status": "complete",
+  "source_type": "json",
+  "groups": [
+    {
+      "pattern": "$.districts[].shc_cycles[*][]",
+      "domain": "soil",
+      "records": 285,
+      "scores": {
+        "soil": 12,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "rules",
+      "mapped_headers": {
+        "state": "state",
+        "state_code": "state_code",
+        "district": "district",
+        "district_code": "district_code",
+        "B": "b",
+        "Category": "category",
+        "Cu": "cu",
+        "EC": "ec",
+        "K": "k",
+        "Mn": "mn",
+        "N": "n",
+        "OC": "oc",
+        "P": "p",
+        "S": "s",
+        "TEHSIL": "tehsil",
+        "VILLAGE": "village",
+        "Zn": "zn",
+        "fe": "fe",
+        "pH": "ph",
+        "feature_id": "record_id",
+        "approx_longitude": "longitude",
+        "approx_latitude": "latitude",
+        "BLOCK": "block"
+      },
+      "unmapped_headers": [
+        "source",
+        "partition",
+        "aspirational",
+        "DISTRICT",
+        "DISTRICT_L",
+        "STATE",
+        "STATE_LGD",
+        "village",
+        "Fe"
+      ]
+    }
+  ],
+  "result": {
+    "by_agent": {
+      "soil_agent": {
+        "table": "soil_health",
+        "extracted": 285,
+        "inserted": 285,
+        "duplicates": 0,
+        "invalid": 0,
+        "rejected": 0
+      }
+    },
+    "rejected": [],
+    "totals": {
+      "extracted": 285,
+      "inserted": 285,
+      "duplicate": 0,
+      "invalid": 0,
+      "rejected": 0
+    }
+  },
+  "notes": {
+    "error": null,
+    "agent_errors": [],
+    "unclassified_groups": []
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "soil_P1.json"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 146103,
+        "type": "json"
+      },
+      "ms": 1.2
+    },
+    {
+      "step": "read",
+      "tool": "read_json_data",
+      "args": {
+        "file_path": "soil_P1.json"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 285,
+        "groups": 1,
+        "notes": []
+      },
+      "ms": 10.9
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "$.districts[].shc_cycles[*][]",
+            "soil",
+            285
+          ]
+        ],
+        "queue": [
+          "soil"
+        ]
+      },
+      "ms": 2269.4
+    },
+    {
+      "step": "soil_agent",
+      "tool": "soil_extract",
+      "args": {
+        "records_in": 285
+      },
+      "status": "ok",
+      "detail": {
+        "rows_out": 285
+      },
+      "ms": 94.0
+    },
+    {
+      "step": "load",
+      "tool": "sqlite_load",
+      "args": {
+        "db": "manipur.db"
+      },
+      "status": "ok",
+      "detail": {
+        "extracted": 285,
+        "inserted": 285,
+        "duplicate": 0,
+        "invalid": 0,
+        "rejected": 0
+      },
+      "ms": 100.2
+    }
+  ]
+}

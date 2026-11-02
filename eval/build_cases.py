@@ -23,8 +23,9 @@ import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-CASES = ROOT / "eval" / "cases"
-REFS = ROOT / "eval" / "reference"
+CASES = ROOT / "eval" / "dev" / "cases"          # DEVELOPMENT set (the code was tuned against these)
+REFS = ROOT / "eval" / "dev" / "reference"
+HELD = {"IMPHAL WEST", "THOUBAL", "UKHRUL"}       # held-out districts: never used here (see Data/make_partitions.py)
 rng = random.Random(42)
 
 # ------------------------------------------------------------------ expected normalisation (declared in eval/README.md)
@@ -85,6 +86,9 @@ def load_prod():
 
 
 SOIL, RAIN, PROD = load_soil(), load_rain(), load_prod()
+SOIL = [x for x in SOIL if x["district"] not in HELD]
+RAIN = [x for x in RAIN if x["district"] not in HELD]
+PROD = [x for x in PROD if x["district"] not in HELD]
 
 
 # ------------------------------------------------------------------ helpers
@@ -300,7 +304,7 @@ rows = [["District", "YearMonth", "Rainfall (mm)", "Rainy Days (>=2.5 mm)"]] + \
 add("rain_02_csv_tidy", "rainfall", "rain_02.csv", csv_text(rows), "Tidy CSV with YYYY-MM", [rain_record(m) for m in recs])
 
 # r03 wide months
-pairs = [("UKHRUL", "2018"), ("TAMENGLONG", "2021"), ("PHERZAWL", "2016")]
+pairs = [("CHANDEL", "2018"), ("TAMENGLONG", "2021"), ("PHERZAWL", "2016")]
 rows = [["District", "Year"] + [m[:3] for m in MONTHS]]
 recs = []
 for d, y in pairs:
@@ -341,12 +345,12 @@ add("rain_07_json_district_keyed", "rainfall", "rain_07.json", json.dumps(doc), 
     [rain_record(m, days=False) for m in recs])
 
 # r08 JSONL with district spelling variants
-alias = {"IMPHAL EAST": "Imphal-East", "NONEI": "Noney", "JIRIBAM": "Jiribam", "IMPHAL WEST": "imphal west",
+alias = {"IMPHAL EAST": "Imphal-East", "NONEI": "Noney", "JIRIBAM": "Jiribam", "KAKCHING": "kakching",
          "TENGNOUPAL": "TENGNOUPAL"}
 recs = rain_pick(10, pred=lambda m: m["district"] in alias)
 lines = [json.dumps({"dist": alias[m["district"]], "ym": m["month"], "rainfall_mm": m["rainfall_mm"]}) for m in recs]
 add("rain_08_jsonl_district_aliases", "rainfall", "rain_08.txt", "\n".join(lines) + "\n",
-    "JSON Lines, district spellings (Imphal-East, Noney, imphal west)", [rain_record(m, days=False) for m in recs], difficulty="hard")
+    "JSON Lines, district spellings (Imphal-East, Noney, kakching)", [rain_record(m, days=False) for m in recs], difficulty="hard")
 
 # r09 centimetres via a Unit column
 recs = rain_pick(10, pred=lambda m: m["district"] in ("UKHRUL", "BISHNUPUR") and m["rainfall_mm"] > 0)
@@ -413,7 +417,7 @@ def refs_from_orig(rows, years):
 
 
 YEARS4 = ["2001 - 2002", "2005 - 2006", "2012 - 2013", "2022 - 2023"]
-sel = {"Banana": {"Bishnupur", "Chandel", "Thoubal"}, "Potato": {"Imphal east", "Ukhrul", "Senapati"}}
+sel = {"Banana": {"Bishnupur", "Chandel", "Churachandpur"}, "Potato": {"Imphal east", "Tamenglong", "Senapati"}}
 
 # p01 original multi-row-header layout
 rows = orig_layout(sel, YEARS4)
@@ -465,7 +469,7 @@ add("prod_06_csv_crop_synonyms", "production", "prod_06.csv", csv_text(rows),
     "Crop names that need standardising (Redish->Radish, Tapioca->Cassava, ...)", [prod_record(p) for p in recs], difficulty="hard")
 
 # p07 original layout with Total rows and a Grand Total footer
-sel7 = {"Wheat": {"Imphal east", "Thoubal"}, "Tomato": {"Bishnupur", "Imphal west"}}
+sel7 = {"Wheat": {"Imphal east", "Senapati"}, "Tomato": {"Bishnupur", "Chandel"}}
 y7 = ["2019 - 2020", "2021 - 2022", "2022 - 2023"]
 rows = orig_layout(sel7, y7, grand=True)
 add("prod_07_csv_totals_and_grand_total", "production", "prod_07.csv", csv_text(rows),
@@ -509,10 +513,11 @@ add("ops_04_fault_load", "soil", "ops_04.csv", src["content"], "Injected load fa
 cases[-1]["trajectory"] = ["inspect_file", "read_csv_data", "soil_extract", "sqlite_load", "sqlite_load"]
 
 # ================================================================== write + self-check
-for d in (CASES, REFS):
-    if d.exists():
-        shutil.rmtree(d)
-    d.mkdir(parents=True)
+for d in (CASES, REFS):                 # rebuild everything except the PDF cases (eval/build_pdf_cases.py owns pdf_*)
+    d.mkdir(parents=True, exist_ok=True)
+    for old in d.glob("*"):
+        if old.is_file() and not old.name.startswith("pdf_"):
+            old.unlink()
 
 FACTORS = [1, 0.404686, 0.1, 0.001, 25.4, 10, 1000, 100, 1 / 0.404686, 10.0]
 
@@ -540,7 +545,7 @@ for c in cases:
             if not ok:
                 bad += 1
                 print("REFERENCE NOT FOUND IN CASE FILE:", c["id"], rec["key"], f, spec)
-    ref = {"case_id": c["id"], "agent": c["agent"], "source_group": c["source_group"], "file": f"cases/{c['file']}",
+    ref = {"case_id": c["id"], "agent": c["agent"], "source_group": c["source_group"], "file": f"dev/cases/{c['file']}",
            "description": c["desc"], "difficulty": c["difficulty"], "needs_llm": c["needs_llm"],
            "inject_fault": c["fault"], "expected_status": c["expected_status"],
            "expected_trajectory": c["trajectory"], "records": c["records"]}

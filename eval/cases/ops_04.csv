@@ -1,9 +1,8 @@
 District,Tehsil,Village,Category,Cycle,Available Nitrogen (kg/ha),Available Phosphorus (kg/ha),Available Potassium (kg/ha),pH,Organic Carbon (%),EC (dS/m),Sulphur (ppm),Zinc (ppm),Iron (ppm),Copper (ppm),Manganese (ppm),Boron (ppm)
-Thoubal,Thoubal,Kairembikhok,Deficient,2017-19,366.5,75.96,196.0,6.11,1.16,0.06,5.0,2.4,32.8,2.52,17.9,0.46
-Thoubal,Thoubal,Heirok Part Ii Pt,Sufficient,2017-19,299.8,14.3,152.8,6.05,0.85,0.02,26.0,1.015,31.5,0.23,23.75,0.685
-Kakching,Kakching,Tangjeng,Sufficient,2017-19,457.0,21.45,115.6,5.4,1.59,0.01,30.0,2.4,32.8,5.14,20.8,1.65
-Thoubal,Thoubal,Khangabok,Sufficient,2017-19,428.4,79.54,278.6,6.41,1.45,0.07,2.0,1.48,32.7,1.77,26.0,1.74
-Thoubal,Thoubal,Papal,Sufficient,2017-19,399.9,53.62,283.7,7.04,1.32,0.08,17.0,2.59,32.9,2.05,19.4,0.92
-Kakching,Kakching,Irengband,Sufficient,2017-19,162.0,18.78,154.0,5.48,1.23,0.02,20.0,0.74,29.1,0.37,11.2,1.425
-Kakching,Kakching,Keirak,Sufficient,2017-19,186.0,17.655,112.205,6.22,0.895,0.025,43.0,4.44,28.5,1.21,19.7,0.92
-Thoubal,Thoubal,Sapam,Sufficient,2017-19,416.55,131.35,272.3,6.065,1.395,0.065,15.5,2.68,32.95,4.065,24.0,0.775
+Imphal West,Lamsang,Kangchup,Non saline,2017-19,299.8,23.23,97.52,5.33,0.85,0.01,27.0,1.48,32.9,,25.6,
+Thoubal,Thoubal,Icham Kunou,Sufficient,2017-19,404.6,85.8,306.5,6.59,1.34,0.06,37.0,3.14,21.9,0.74,34.6,1.01
+Thoubal,Thoubal,Nepra Company,Sufficient,2017-19,418.9,129.5,446.3,6.68,1.41,0.11,7.0,0.92,33.0,1.77,15.7,1.65
+Thoubal,Thoubal,Lamding,Sufficient,2017-19,366.5,107.68,168.87,6.185,1.16,0.145,17.5,1.57,33.4,1.915,27.6,0.965
+Imphal West,Nambol,Utlou,Non saline,2017-19,237.0,35.58,227.715,5.32,1.29,0.03,,,,,,
+Thoubal,Thoubal,Hayel Labuk,Sufficient,2017-19,438.0,85.8,352.1,6.23,1.5,0.28,25.0,3.88,3.33,1.87,27.4,1.84
+Thoubal,Lilong,Moijing,Non saline,2017-19,196.5,21.98,174.485,5.695,1.385,0.04,,,,,,

@@ -1,0 +1,395 @@
+{
+ "case_id": "soil_08_csv_extra_cols_blanks",
+ "agent": "soil",
+ "source_group": "csv",
+ "file": "dev/cases/soil_08.csv",
+ "description": "Shuffled columns, irrelevant extra columns, NA / '-' for missing",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "soil_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Thanga"
+   },
+   "fields": {
+    "n": {
+     "value": 328.4,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 91.16,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 300.9,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.45,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.05,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.02,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 27.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 1.11,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 25.0,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 9.89,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.64,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Lemba Khul"
+   },
+   "fields": {
+    "n": {
+     "value": 211.87,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 8.98,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 107.5,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.2,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.66,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.04,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Pukhao Ahallup"
+   },
+   "fields": {
+    "n": {
+     "value": 423.7,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 44.24,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 144.17,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.43,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.945,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.03,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 5.5,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 1.2,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.7,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.965,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 37.3,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.46,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Khoijuman Khunou"
+   },
+   "fields": {
+    "n": {
+     "value": 347.45,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 111.015,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 58.51,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.07,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.705,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.045,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 24.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 3.05,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 32.5,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 2.54,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 13.52,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.59,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Keibi Kumuda"
+   },
+   "fields": {
+    "n": {
+     "value": 395.1,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 52.73,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 217.3,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.29,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.19,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.05,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 20.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 2.4,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 34.9,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 23.9,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Wangoo Ahallup"
+   },
+   "fields": {
+    "n": {
+     "value": 300.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 23.23,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 189.25,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.66,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.24,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.01,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "PHERZAWL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Parbung"
+   },
+   "fields": {
+    "p": {
+     "value": 20.57,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 336.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.99,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 4.6,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.03,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Laikot"
+   },
+   "fields": {
+    "n": {
+     "value": 418.9,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 26.81,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 144.8,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.41,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.6,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.01,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 33.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 0.92,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.5,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.87,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 46.3,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.27,
+     "unit": "ppm"
+    }
+   }
+  }
+ ]
+}

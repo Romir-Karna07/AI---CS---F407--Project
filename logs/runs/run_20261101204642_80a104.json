@@ -1,0 +1,134 @@
+{
+  "run_id": "run_20261101204642_80a104",
+  "input": "S05_desagri_final_estimates_2024-25.pdf",
+  "status": "failed",
+  "source_type": "pdf",
+  "groups": [
+    {
+      "pattern": "pdf:p1.t1",
+      "domain": null,
+      "records": 270,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "rules",
+      "mapped_headers": {
+        "Crop": "crop",
+        "Season": "season",
+        "period": "period",
+        "Production": "production"
+      },
+      "unmapped_headers": []
+    },
+    {
+      "pattern": "pdf:p2.t1",
+      "domain": null,
+      "records": 240,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "rules",
+      "mapped_headers": {
+        "Crop": "crop",
+        "Season": "season",
+        "period": "period",
+        "Production": "production"
+      },
+      "unmapped_headers": []
+    },
+    {
+      "pattern": "pdf:p3.t1",
+      "domain": null,
+      "records": 260,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "rules",
+      "mapped_headers": {
+        "Crop": "crop",
+        "Season": "season",
+        "period": "period",
+        "Production": "production"
+      },
+      "unmapped_headers": []
+    }
+  ],
+  "result": {},
+  "notes": {
+    "error": "no recognised soil / rainfall / production records (unclassified: pdf:p1.t1, pdf:p2.t1, pdf:p3.t1)",
+    "agent_errors": [],
+    "unclassified_groups": [
+      "pdf:p1.t1",
+      "pdf:p2.t1",
+      "pdf:p3.t1"
+    ]
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "S05_desagri_final_estimates_2024-25.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 463333,
+        "type": "pdf"
+      },
+      "ms": 5.6
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_data",
+      "args": {
+        "file_path": "S05_desagri_final_estimates_2024-25.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 770,
+        "groups": 3,
+        "notes": [
+          "pages=3",
+          "backend=auto",
+          "page range 1-3",
+          "tables by route: pdfplumber=3"
+        ]
+      },
+      "ms": 6965.0
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "pdf:p1.t1",
+            null,
+            270
+          ],
+          [
+            "pdf:p2.t1",
+            null,
+            240
+          ],
+          [
+            "pdf:p3.t1",
+            null,
+            260
+          ]
+        ],
+        "queue": []
+      },
+      "ms": 3325.2
+    }
+  ]
+}

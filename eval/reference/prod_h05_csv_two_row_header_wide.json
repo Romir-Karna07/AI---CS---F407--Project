@@ -1,0 +1,680 @@
+{
+ "case_id": "prod_h05_csv_two_row_header_wide",
+ "agent": "production",
+ "source_group": "csv",
+ "file": "cases/prod_h05.csv",
+ "description": "Years row + Area/Production/Yield row, crop and district in label columns",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "production_extract",
+  "sqlite_load"
+ ],
+ "n_source_records": 30,
+ "records": [
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "1999-00",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 240.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3090.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.88,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2000-01",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 320.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 4110.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.84,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2001-02",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 940.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 12090.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.86,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2002-03",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 50.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 393.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.86,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2003-04",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 54.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 424.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.85,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2004-05",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 680.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8750.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.87,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2005-06",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1210.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 15560.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.86,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2006-07",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 980.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 12600.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.86,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2007-08",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1750.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 22510.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.86,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2008-09",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 320.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 4153.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.98,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2009-10",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 410.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 5330.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 13.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2010-11",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 418.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 5405.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.93,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2011-12",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 490.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 6365.1,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.99,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2012-13",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 514.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 6887.6,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 13.4,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2013-14",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 520.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7020.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 13.5,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2014-15",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 561.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7685.7,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 13.7,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2015-16",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 682.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 9280.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 13.61,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2016-17",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 650.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8810.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 13.55,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2017-18",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 688.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 9261.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 13.46,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2018-19",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 235.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2849.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.12,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2019-20",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 613.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8398.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 13.7,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2002-03",
+    "crop": "Brinjal",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 26.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 110.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 4.23,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2003-04",
+    "crop": "Brinjal",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 18.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 85.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 4.72,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Citrus Fruit",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 99.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 396.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 4.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2003-04",
+    "crop": "Citrus Fruit",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 99.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 475.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 4.8,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2002-03",
+    "crop": "Citrus Fruit",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 335.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1708.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.1,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2003-04",
+    "crop": "Citrus Fruit",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 350.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1680.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 4.8,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Pome Fruit",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 41.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 129.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 3.15,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2022-23",
+    "crop": "Wheat",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 260.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 700.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 2.69,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2022-23",
+    "crop": "Wheat",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 400.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1000.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 2.5,
+     "unit": "t/ha"
+    }
+   }
+  }
+ ]
+}

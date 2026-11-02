@@ -1,0 +1,18 @@
+{
+ "case_id": "ops_01_empty_file",
+ "agent": "none",
+ "source_group": "csv",
+ "file": "dev/cases/ops_01.csv",
+ "description": "Empty file must fail cleanly",
+ "difficulty": "error",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "failed",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "read_csv_data",
+  "read_json_data"
+ ],
+ "records": []
+}

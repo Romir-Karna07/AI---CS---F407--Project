@@ -1,0 +1,200 @@
+{
+ "crops": {
+  "Cauliflower": {
+   "2002-03": [
+    {
+     "district": "Thoubal",
+     "area_ha": 345.0,
+     "production_t": 3622.0
+    }
+   ],
+   "2003-04": [
+    {
+     "district": "Thoubal",
+     "area_ha": 350.0,
+     "production_t": 3010.0
+    }
+   ]
+  },
+  "Mango": {
+   "2002-03": [
+    {
+     "district": "Thoubal",
+     "area_ha": 20.0,
+     "production_t": 100.0
+    }
+   ],
+   "2003-04": [
+    {
+     "district": "Thoubal",
+     "area_ha": 21.0,
+     "production_t": 107.0
+    }
+   ]
+  },
+  "Other Fresh Fruits": {
+   "2002-03": [
+    {
+     "district": "Ukhrul",
+     "area_ha": 855.0,
+     "production_t": 1215.0
+    }
+   ],
+   "2003-04": [
+    {
+     "district": "Ukhrul",
+     "area_ha": 1123.0,
+     "production_t": 5032.0
+    }
+   ]
+  },
+  "Other Vegetables": {
+   "2002-03": [
+    {
+     "district": "Imphal West",
+     "area_ha": 20.0,
+     "production_t": 100.0
+    }
+   ],
+   "2003-04": [
+    {
+     "district": "Imphal West",
+     "area_ha": 59.0,
+     "production_t": 428.0
+    }
+   ]
+  },
+  "Papaya": {
+   "2002-03": [
+    {
+     "district": "Imphal West",
+     "area_ha": 90.0,
+     "production_t": 630.0
+    }
+   ],
+   "2003-04": [
+    {
+     "district": "Imphal West",
+     "area_ha": 94.0,
+     "production_t": 545.0
+    }
+   ]
+  },
+  "Turmeric": {
+   "1999-00": [
+    {
+     "district": "Thoubal",
+     "area_ha": 10.0,
+     "production_t": 10.0
+    }
+   ],
+   "2002-03": [
+    {
+     "district": "Thoubal",
+     "area_ha": 10.0,
+     "production_t": 10.0
+    }
+   ],
+   "2003-04": [
+    {
+     "district": "Thoubal",
+     "area_ha": 40.0,
+     "production_t": 30.0
+    }
+   ],
+   "2004-05": [
+    {
+     "district": "Thoubal",
+     "area_ha": 50.0,
+     "production_t": 30.0
+    }
+   ],
+   "2008-09": [
+    {
+     "district": "Thoubal",
+     "area_ha": 85.0,
+     "production_t": 909.0
+    }
+   ],
+   "2009-10": [
+    {
+     "district": "Thoubal",
+     "area_ha": 135.0,
+     "production_t": 1446.0
+    }
+   ],
+   "2010-11": [
+    {
+     "district": "Thoubal",
+     "area_ha": 153.0,
+     "production_t": 1501.0
+    }
+   ],
+   "2011-12": [
+    {
+     "district": "Thoubal",
+     "area_ha": 172.0,
+     "production_t": 1972.84
+    }
+   ],
+   "2012-13": [
+    {
+     "district": "Thoubal",
+     "area_ha": 178.0,
+     "production_t": 2082.6
+    }
+   ],
+   "2013-14": [
+    {
+     "district": "Thoubal",
+     "area_ha": 208.0,
+     "production_t": 2496.0
+    }
+   ],
+   "2014-15": [
+    {
+     "district": "Thoubal",
+     "area_ha": 245.0,
+     "production_t": 2893.0
+    }
+   ],
+   "2015-16": [
+    {
+     "district": "Thoubal",
+     "area_ha": 698.0,
+     "production_t": 7626.07
+    }
+   ],
+   "2016-17": [
+    {
+     "district": "Thoubal",
+     "area_ha": 696.0,
+     "production_t": 7604.0
+    }
+   ],
+   "2017-18": [
+    {
+     "district": "Thoubal",
+     "area_ha": 705.0,
+     "production_t": 7668.0
+    }
+   ],
+   "2018-19": [
+    {
+     "district": "Thoubal",
+     "area_ha": 701.0,
+     "production_t": 7641.0
+    }
+   ]
+  },
+  "Wheat": {
+   "2022-23": [
+    {
+     "district": "Ukhrul",
+     "area_ha": 10.0,
+     "production_t": 20.0
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,200 @@
+{
+ "case_id": "soil_10_csv_french_headers_llm",
+ "agent": "soil",
+ "source_group": "csv",
+ "file": "dev/cases/soil_10.csv",
+ "description": "Non-English headers; rules cannot map them, the Groq header mapper must",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "llm_map_headers",
+  "soil_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Pukhao Laipham"
+   },
+   "fields": {
+    "n": {
+     "value": 205.275,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 22.55,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 110.305,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.135,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.7,
+     "unit": "pH units"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAKCHING",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Mahou"
+   },
+   "fields": {
+    "n": {
+     "value": 199.705,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 13.0,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 208.72,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.155,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.025,
+     "unit": "pH units"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Mata"
+   },
+   "fields": {
+    "n": {
+     "value": 221.625,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 21.99,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 199.7,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.45,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.49,
+     "unit": "pH units"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Bamon Kampu"
+   },
+   "fields": {
+    "n": {
+     "value": 366.45,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 34.856,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 262.55,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.16,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.19,
+     "unit": "pH units"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Khurai Konsam Leikai"
+   },
+   "fields": {
+    "n": {
+     "value": 340.5,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 12.835,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 137.05,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.88,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.19,
+     "unit": "pH units"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Laikot"
+   },
+   "fields": {
+    "n": {
+     "value": 418.9,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 26.81,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 144.8,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.41,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.6,
+     "unit": "pH units"
+    }
+   }
+  }
+ ]
+}

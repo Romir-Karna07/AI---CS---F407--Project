@@ -1,0 +1,7 @@
+tool,file,page,gt_rows,rows_found,rows_exact,gt_fields,fields_correct,field_accuracy,seconds,extracted_rows,error
+rapidocr3_lines,S06_nhb_horticulture_at_a_glance_2018.pdf,53,4,4,4,20,20,1.0,42.15,45,
+rapidocr3_lines,S53_rice_production_growth_manipur.pdf,10,3,3,3,24,24,1.0,31.0,37,
+rapidocr3_lines,S31_dacp_imphal_west.pdf,2,7,7,6,16,15,0.9375,16.78,24,
+rapidocr3_lines,S54_mofpi_manipur_state_profile.pdf,4,5,5,5,5,5,1.0,30.76,48,
+rapidocr3_lines,S04_agri_stats_at_a_glance_2024-25_bilingual.pdf,161,2,2,0,40,0,0.0,44.84,24,
+rapidocr3_lines,S12_nabard_state_focus_paper_manipur_2024-25.pdf,33,2,2,2,14,14,1.0,60.96,96,

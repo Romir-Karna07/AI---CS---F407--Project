@@ -33,8 +33,15 @@ sys.path.insert(0, str(ROOT))
 ap = argparse.ArgumentParser()
 ap.add_argument("--skip-llm-cases", action="store_true", help="drop cases that need the Groq header mapper")
 ap.add_argument("--no-official-db", action="store_true", help="skip the M14-M17 SQL checks on db/manipur.db")
+ap.add_argument("--set", choices=["official", "dev"], default="official",
+                help="official = held-out evaluation set (eval/cases); dev = development regression set (eval/dev)")
 ap.add_argument("--db", default=str(ROOT / "db" / "manipur.db"))
 args = ap.parse_args()
+DEV = args.set == "dev"
+OUTDIR = EVAL / "dev" if DEV else EVAL                       # official results live in eval/, dev regression results in eval/dev/
+REFDIR = OUTDIR / "reference"
+RESDIR = OUTDIR / "results"
+METRICS_FILE = OUTDIR / ("dev_phase2_metrics.csv" if DEV else "phase2_metrics.csv")
 
 WORK = Path(tempfile.mkdtemp(prefix="agri_eval_"))
 os.environ["AGRI_LOG_DIR"] = str(WORK / "logs")
@@ -92,8 +99,34 @@ def _read_text(path):
             pass
 
 
+_PDF_PAGE_CACHE = {}
+
+
+def _pdf_page_numbers(path, page_no):
+    """numbers printed on one PDF page: from the text layer, or - for a scan - from OCR of the rendered page"""
+    key = (str(path), page_no)
+    if key not in _PDF_PAGE_CACHE:
+        import pymupdf
+        d = pymupdf.open(str(path))
+        if not 1 <= page_no <= len(d):
+            _PDF_PAGE_CACHE[key] = None
+        else:
+            pg = d[page_no - 1]
+            txt = pg.get_text()
+            if len(txt.strip()) < 20:
+                from pipeline.pdf_reader import OCR_DPI, _ocr_words
+                txt = " ".join(w[4] for w in _ocr_words(pg.get_pixmap(dpi=OCR_DPI)))
+            _PDF_PAGE_CACHE[key] = [float(x.replace(",", "")) for x in re.findall(r"-?\d[\d,]*\.?\d*", txt)
+                                    if x.replace(",", "").replace("-", "").replace(".", "").isdigit()]
+    return _PDF_PAGE_CACHE[key]
+
+
 def source_numbers(path, locator):
-    """Numbers found in the source at `locator`, or None if the locator does not lead anywhere."""
+    """Numbers found in the source at `locator`, or None if the locator does not lead anywhere.
+    PDF locators ('p3 t1 line 7, cols B-F') are checked at page level: the number must be printed on page 3."""
+    if str(path).lower().endswith(".pdf"):
+        m = re.match(r"p(\d+) t\d+ line", locator)
+        return _pdf_page_numbers(path, int(m.group(1))) if m else None
     text = _read_text(path)
     if locator.startswith("$"):
         try:
@@ -114,7 +147,7 @@ def source_numbers(path, locator):
     if not m:
         return None
     ln = int(m.group(1))
-    delim = ";" if text.count(";") > text.count(",") else ","
+    delim = max((";", "	", ","), key=lambda d: text.count(d))      # scorer: also handles tab-delimited files
     rows = list(csv.reader(text.splitlines(), delimiter=delim))
     if ln - 1 >= len(rows):
         return None
@@ -201,7 +234,7 @@ def value_ok(exp, got):
 
 
 # ------------------------------------------------------------------------------------------------ run the cases
-refs = [json.loads(p.read_text(encoding="utf-8")) for p in sorted((EVAL / "reference").glob("*.json"))]
+refs = [json.loads(p.read_text(encoding="utf-8")) for p in sorted(REFDIR.glob("*.json"))]
 if args.skip_llm_cases:
     refs = [r for r in refs if not r["needs_llm"]]
 print(f"{len(refs)} cases; LLM available: {get_llm() is not None}; work dir {WORK}")
@@ -218,7 +251,7 @@ for ref in refs:
     traj = out["trajectory"] or []
     tools = [t["tool"] for t in traj if t["tool"]]
     retries = sum(1 for t in traj if t["step"] == "recover")
-    res = {"case": ref, "id": cid, "agent": agent, "group": ref["source_group"], "ops": is_ops, "status": out["status"],
+    res = {"case": ref, "id": cid, "agent": agent, "owner": ref.get("owner_agent", agent), "group": ref["source_group"], "ops": is_ops, "status": out["status"],
            "tools": tools, "retries": retries, "seconds": secs, "tp": 0, "extracted": 0, "ref_fields": 0,
            "complete": None, "traced_rows": 0, "ok_rows": 0, "sup_fields": 0, "tot_fields": 0, "wrong": [], "missing": []}
     if agent in TABLES and out["status"] in ("complete", "partial"):
@@ -272,7 +305,7 @@ for ref in refs:
     for t in traj:
         if not t["tool"]:
             continue
-        if t["tool"] in ("inspect_file", "read_json_data", "read_csv_data"):
+        if t["tool"] in ("inspect_file", "read_json_data", "read_csv_data", "read_pdf_data", "read_pdf_ocr"):
             if (t["args"].get("file") or t["args"].get("file_path")) != case_path.name:
                 bad_in += 1
         elif t["tool"].endswith("_extract"):
@@ -310,13 +343,13 @@ def emit(metric, scope, value, num=None, den=None, status="measured", notes=""):
 
 
 scored = [r for r in results if not r["ops"] and r["agent"] in TABLES]
-agents = sorted({r["agent"] for r in scored})
+agents = sorted({r["owner"] for r in scored})
 groups = sorted({r["group"] for r in scored})
 
 # M3
 per_agent = {}
 for a in agents:
-    f, tp, ex, rf = f1_of([r for r in scored if r["agent"] == a])
+    f, tp, ex, rf = f1_of([r for r in scored if r["owner"] == a])
     per_agent[a] = f
     emit("M3", a, f, tp, ex, notes=f"P={tp / ex if ex else 0:.3f} R={tp / rf if rf else 0:.3f}; {rf} reference fields")
 for g in groups:
@@ -327,7 +360,7 @@ emit("M3", "end_to_end", macro, notes="macro-average of agent F1 (as the PDF req
      f"{f1_of(scored)[0]:.3f}")
 
 # M4 / M10 from the source tracer
-for scope, rs in [(a, [r for r in scored if r["agent"] == a]) for a in agents] + [("end_to_end", scored)]:
+for scope, rs in [(a, [r for r in scored if r["owner"] == a]) for a in agents] + [("end_to_end", scored)]:
     n, ok = sum(r["traced_rows"] for r in rs), sum(r["ok_rows"] for r in rs)
     emit("M4", scope, ok / n if n else None, ok, n, notes="automated: locator opened in the case file; every numeric field must appear "
          "at that locator (after unit conversion). The evaluator's live check is the scored one.")
@@ -347,19 +380,36 @@ if xlsx.exists():
         inv_ids = [r[0] for r in openpyxl.load_workbook(xlsx, data_only=True)["Source Inventory"].iter_rows(min_row=2, values_only=True) if r[0]]
     except Exception as e:  # reporting only
         print("could not read inventory workbook:", e)
+# M1 / M2 are measured over ALL inventory sources (one map row per Phase 1 source, ids checked against the workbook).
+# "phase2_scope" marks the 6 sources the team is working on now; their share is reported on its own row for information.
 n_inv = len(inv_ids) if inv_ids else len(map_rows)
 ids_match = inv_ids is None or sorted(inv_ids) == sorted(r["source_id"] for r in map_rows)
 mapped = sum(1 for r in map_rows if r["agent"].strip() and (inv_ids is None or r["source_id"] in inv_ids))
 impl = sum(1 for r in map_rows if r["status"] in ("done", "partial"))
 emit("M1", "end_to_end", mapped / n_inv, mapped, n_inv, status="measured" if ids_match else "CHECK",
-     notes="rows in docs/source_agent_map.csv with an agent / inventory rows" + ("" if ids_match else "; IDS DO NOT MATCH THE INVENTORY"))
+     notes="rows in docs/source_agent_map.csv with an agent / Phase 1 inventory rows" + ("" if ids_match else "; IDS DO NOT MATCH THE INVENTORY"))
 emit("M2", "end_to_end", impl / n_inv, impl, n_inv,
-     notes="sources with an agent marked done or partial / inventory rows; 'partial' only where rows are in db/manipur.db; spot-check live")
+     notes="sources with an agent marked done or partial / Phase 1 inventory rows; 'partial' only where rows are in db/manipur.db; spot-check live")
+scope_rows = [r for r in map_rows if r.get("phase2_scope") == "in_scope"]
+if scope_rows:
+    emit("M2", "in_scope_sources", sum(r["status"] in ("done", "partial") for r in scope_rows) / len(scope_rows),
+         sum(r["status"] in ("done", "partial") for r in scope_rows), len(scope_rows), status="reported",
+         notes="the 6 sources the team is working on now (phase2_scope=in_scope); information only, not the scored M2")
+try:
+    sys.path.insert(0, str(EVAL))
+    import contamination_check
+    cc = contamination_check.check(args.db)
+    emit("M18", "overlap_check", cc["overlap_total"], cc["overlap_total"], cc["eval_files"], status="measured" if not DEV else "n/a",
+         notes="overlap between evaluation files and anything the agents ran on / were tuned on: file hashes, DB rows, held-out districts "
+               "in the DB, record keys, frozen hashes (eval/contamination_check.py); 0 = clean. " + json.dumps(cc))
+    print("contamination check:", "PASS" if cc["overlap_total"] == 0 else "FAIL", cc)
+except Exception as e:
+    print("contamination check could not run:", e)
 emit("M18", "end_to_end", None, status="pending", notes="no LoRA/QLoRA adapter trained yet; pipeline extraction is rule-based")
 
 # M6-M9, M11, M13 (per agent + end_to_end)
 traj_cases = [r for r in results]
-for scope, rs in [(a, [r for r in results if r["agent"] == a and not r["ops"]]) for a in agents] + [("end_to_end", results)]:
+for scope, rs in [(a, [r for r in results if r["owner"] == a and not r["ops"]]) for a in agents] + [("end_to_end", results)]:
     calls = sum(r["tool_calls"] for r in rs)
     emit("M6", scope, sum(r["tool_correct"] for r in rs) / calls if calls else None, sum(r["tool_correct"] for r in rs), calls,
          notes="vs the reference trajectory in eval/reference (authored from our own design, positional comparison)")
@@ -421,8 +471,7 @@ if not args.no_official_db and Path(args.db).exists():
     for t, _ in tabs:
         allrows += [(t, dict(r)) for r in con.execute(f"SELECT * FROM {t}")]
     sample = rng.sample(allrows, 3)
-    SRC = {"manipur_soil_health.json": ROOT / "manipur_soil_health.json", "manipur_rainfall_monthly.json": ROOT / "manipur_rainfall_monthly.json",
-           "CSV_Agent.csv": ROOT / "Data" / "CSV_Agent.csv"}
+    SRC = {p.name: p for p in (ROOT / "Data" / "partitions").glob("*")}
     ok3 = 0
     for t, r in sample:
         numeric = {k: r[k] for k in (SOIL_NUTRIENTS + ["rainfall_mm", "area_ha", "production_t", "yield_t_ha"]) if k in r and r[k] is not None}
@@ -442,15 +491,61 @@ if not args.no_official_db and Path(args.db).exists():
     con.close()
 
 # ------------------------------------------------------------------------------------------------ write files
-(EVAL / "results" / "history").mkdir(parents=True, exist_ok=True)
+(RESDIR / "history").mkdir(parents=True, exist_ok=True)
 fields = ["metric_id", "metric_name", "scope", "value", "numerator", "denominator", "floor", "target", "points", "max_points",
           "status", "notes"]
-for dest in (EVAL / "phase2_metrics.csv", EVAL / "results" / "history" / f"phase2_metrics_{datetime.now():%Y%m%d_%H%M%S}.csv"):
+
+# ---- the file the instructor asked for: exactly the template columns of Eval.xlsx (one row per metric per scope)
+TEMPLATE = ["metric_id", "scope", "numerator", "denominator", "value", "n_cases", "evaluator_or_script", "notes"]
+EVALUATOR = {"M1": "docs/source_agent_map.csv", "M2": "docs/source_agent_map.csv", "M3": "eval/run_eval.py (exact match, unit converted)",
+             "M4": "eval/run_eval.py (automated locator check; evaluator checks live)", "M5": "instructor answer key (pending)",
+             "M6": "eval/run_eval.py (strict trajectory, own reference)", "M7": "eval/run_eval.py (argument check)",
+             "M8": "eval/run_eval.py (strict trajectory match)", "M9": "eval/run_eval.py (schema-valid + all reference records)",
+             "M10": "eval/run_eval.py (numeric fields found in source; no LLM judge)", "M11": "eval/run_eval.py (graph status + fault injection)",
+             "M12": "logs/automation_log.csv", "M13": "eval/run_eval.py (trajectory length vs reference)", "M14": "SQL on db/manipur.db",
+             "M15": "SQL on db/manipur.db", "M16": "SQL on db/manipur.db", "M17": "eval/run_eval.py (seeded sample traced to source)",
+             "M18": "eval/contamination_check.py (overlap); adapter_comparison pending"}
+table_names = set(TABLES.values())
+
+
+def n_cases_of(m):
+    sc, mid = m["scope"], m["metric_id"]
+    if sc in agents:
+        return len([r for r in results if r["owner"] == sc and not r["ops"]])
+    if sc in groups:
+        return len([r for r in scored if r["group"] == sc])
+    if sc in ("database", "overlap_check") or sc in table_names:
+        return m["denominator"]
+    if sc == "in_scope_sources" or mid in ("M1", "M2", "M11", "M12"):
+        return m["denominator"]
+    if sc == "surprise":
+        return ""
+    return len(scored) if mid in ("M3", "M4", "M10") else len(results)
+
+
+def template_row(m):
+    extra = [m["status"]] if m["status"] else []
+    if m["floor"] != "" and m["target"] != "":
+        extra.append(f"floor {m['floor']} -> target {m['target']}")
+    if m["points"] != "":
+        extra.append(f"{m['points']}/{m['max_points']} pts")
+    return {"metric_id": m["metric_id"], "scope": m["scope"], "numerator": m["numerator"], "denominator": m["denominator"], "value": m["value"],
+            "n_cases": n_cases_of(m), "evaluator_or_script": EVALUATOR.get(m["metric_id"], "eval/run_eval.py"),
+            "notes": "; ".join(extra + ([m["notes"]] if m["notes"] else []))}
+
+
+stamp = f"{datetime.now():%Y%m%d_%H%M%S}"
+for dest in (RESDIR / "phase2_metrics_detailed.csv", RESDIR / "history" / f"phase2_metrics_detailed_{stamp}.csv"):
     with dest.open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=fields)
         w.writeheader()
         w.writerows(rows_out)
-with (EVAL / "results" / "per_case.csv").open("w", newline="", encoding="utf-8") as fh:
+for dest in (METRICS_FILE, RESDIR / "history" / f"phase2_metrics_{stamp}.csv"):
+    with dest.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=TEMPLATE)
+        w.writeheader()
+        w.writerows(template_row(m) for m in rows_out)
+with (RESDIR / "per_case.csv").open("w", newline="", encoding="utf-8") as fh:
     w = csv.writer(fh)
     w.writerow(["case_id", "agent", "source_group", "difficulty", "status", "expected_status", "tp", "extracted", "ref_fields",
                 "F1", "task_complete", "trajectory_match", "retries", "seconds", "tools"])
@@ -459,10 +554,15 @@ with (EVAL / "results" / "per_case.csv").open("w", newline="", encoding="utf-8")
         w.writerow([r["id"], r["agent"], r["group"], r["case"]["difficulty"], r["status"], r["case"]["expected_status"], r["tp"],
                     r["extracted"], r["ref_fields"], f1 if f1 == "" else round(f1, 4), r["complete"], r["traj_match"],
                     r["retries"], round(r["seconds"], 2), " > ".join(r["tools"])])
-with (EVAL / "results" / "errors.json").open("w", encoding="utf-8") as fh:
+with (RESDIR / "errors.json").open("w", encoding="utf-8") as fh:
     json.dump({r["id"]: {"wrong": [(list(k), f, g, e) for k, f, g, e in r["wrong"]][:25],
                          "missing": [(list(k), f, e) for k, f, e in r["missing"]][:25]}
                for r in results if r["wrong"] or r["missing"]}, fh, indent=1, default=str)
+
+first = RESDIR / ("first_run_metrics.csv")
+if not first.exists():          # the very first run on a set is frozen: later runs can never overwrite it
+    shutil.copy(RESDIR / "phase2_metrics_detailed.csv", first)
+    shutil.copy(RESDIR / "per_case.csv", RESDIR / "first_run_per_case.csv")
 
 # ------------------------------------------------------------------------------------------------ summary
 print("\n=== headline (end_to_end / database scope) ===")

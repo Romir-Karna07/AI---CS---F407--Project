@@ -1,0 +1,81 @@
+{
+  "run_id": "run_20261101204458_9cf619",
+  "input": "S54_mofpi_manipur_state_profile.pdf",
+  "status": "failed",
+  "source_type": "pdf",
+  "groups": null,
+  "result": {},
+  "notes": {
+    "error": "read failed (pdf_ocr): no tables with numeric data found in the PDF (no text layer; OCR found none)",
+    "agent_errors": [],
+    "unclassified_groups": []
+  },
+  "retries": 2,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "S54_mofpi_manipur_state_profile.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 1099863,
+        "type": "pdf"
+      },
+      "ms": 15.0
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_data",
+      "args": {
+        "file_path": "S54_mofpi_manipur_state_profile.pdf"
+      },
+      "status": "error",
+      "detail": "no tables with numeric data found in the PDF",
+      "ms": 10859.3
+    },
+    {
+      "step": "recover",
+      "tool": null,
+      "args": {
+        "attempt": 1,
+        "retry_with": "pdf"
+      },
+      "status": "ok",
+      "detail": null,
+      "ms": 0.0
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_data",
+      "args": {
+        "file_path": "S54_mofpi_manipur_state_profile.pdf"
+      },
+      "status": "error",
+      "detail": "no tables with numeric data found in the PDF",
+      "ms": 970.0
+    },
+    {
+      "step": "recover",
+      "tool": null,
+      "args": {
+        "attempt": 2,
+        "retry_with": "pdf_ocr"
+      },
+      "status": "ok",
+      "detail": null,
+      "ms": 0.0
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_ocr",
+      "args": {
+        "file_path": "S54_mofpi_manipur_state_profile.pdf"
+      },
+      "status": "error",
+      "detail": "no tables with numeric data found in the PDF (no text layer; OCR found none)",
+      "ms": 30386.6
+    }
+  ]
+}

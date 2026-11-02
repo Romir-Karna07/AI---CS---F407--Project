@@ -1,0 +1,40 @@
+{
+  "note": "Values read BY EYE from rendered page images (PyMuPDF, 100-260 dpi) on 2026-11-01, not from any extraction tool. A row = an anchor text that must appear in the row, plus the numbers that must follow it in order (the LAST k numbers of the row are compared; '-' cells are not numbers).",
+  "items": [
+    {"file": "S06_nhb_horticulture_at_a_glance_2018.pdf", "page": 53, "what": "Table 3.1 Population and growth rate 2011 (clean ruled-less table, 6 columns)",
+     "rows": [
+       {"anchor": "Manipur",  "values": [1438586, 1417208, 2855794, 24.86, 31.80]},
+       {"anchor": "Nagaland", "values": [1024649, 953853, 1978502, 64.53, -0.58]},
+       {"anchor": "Mizoram",  "values": [555339, 541867, 1097206, 28.82, 23.48]},
+       {"anchor": "India",    "values": [623270258, 587584719, 1210854977, 21.54, 17.72]}]},
+    {"file": "S53_rice_production_growth_manipur.pdf", "page": 10, "what": "Table 1 ARIMA fit statistics (journal table, merged header cells, negative numbers)",
+     "rows": [
+       {"anchor": "Production",   "values": [0.521, 0.545, 1.578, 5.742, 1.081, 1.268, 23.747, 0.07]},
+       {"anchor": "Area",         "values": [0.348, 0.260, 0.318, 1.512, 0.192, -1.843, 11.632, 0.636]},
+       {"anchor": "Productivity", "values": [0.389, 0.422, 0.121, 5.335, 0.077, -3.786, 12.840, 0.539]}]},
+    {"file": "S31_dacp_imphal_west.pdf", "page": 2, "what": "District contingency plan, land-use / irrigation tables (ruled tables, '-' cells, landscape page)",
+     "rows": [
+       {"anchor": "Area (000",                "values": [51.9, 21.23, 2.13, 28.25, 0.24, 0.22, 0.14]},
+       {"anchor": "Area under more than once", "values": [7.01]},
+       {"anchor": "Gross cropped area",       "values": [28.24]},
+       {"anchor": "Net irrigated area",       "values": [2.73, 12.85]},
+       {"anchor": "Gross irrigated area",     "values": [3.15, 14.83]},
+       {"anchor": "Rainfed area",             "values": [25.51]},
+       {"anchor": "Canal",                    "values": [2.03, 74.36]}]},
+    {"file": "S54_mofpi_manipur_state_profile.pdf", "page": 4, "what": "Manipur overview table (two-column key/value table, footnote superscripts glued to labels)",
+     "rows": [
+       {"anchor": "Geographic Area",   "values": [22327]},
+       {"anchor": "Total Road Length", "values": [32694]},
+       {"anchor": "Rail network",      "values": [56]},
+       {"anchor": "Installed power",   "values": [270.41]},
+       {"anchor": "Available land",    "values": [36.44]}]},
+    {"file": "S04_agri_stats_at_a_glance_2024-25_bilingual.pdf", "page": 161, "what": "Table 2.28 yield (kg/ha) by state 2005-06..2024-25 (ROTATED page, 20 numeric columns)",
+     "rows": [
+       {"anchor": "Manipur",   "values": [2241, 2241, 2348, 2285, 1832, 2371, 2541, 2263, 2094, 2323, 2565, 3676, 3421, 2289, 3341, 2356, 2176, 2207, 2147, 2307]},
+       {"anchor": "Meghalaya", "values": [1405, 1632, 1556, 1599, 1623, 1616, 1688, 1745, 2195, 2361, 2385, 1726, 2398, 1722, 2395, 2399, 2394, 2275, 2152, 2275]}]},
+    {"file": "S12_nabard_state_focus_paper_manipur_2024-25.pdf", "page": 33, "what": "Banking profile (dense, bilingual Hindi+English, coloured cells, 9 tables on one page)",
+     "rows": [
+       {"anchor": "Commercial Banks",   "values": [20, 209, 92, 60, 57, 4295, 410]},
+       {"anchor": "Regional Rural Bank", "values": [1, 27, 16, 10, 1, 1428, 45]}]}
+  ]
+}

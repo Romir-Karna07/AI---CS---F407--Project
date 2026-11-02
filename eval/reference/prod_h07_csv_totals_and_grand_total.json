@@ -1,0 +1,1010 @@
+{
+ "case_id": "prod_h07_csv_totals_and_grand_total",
+ "agent": "production",
+ "source_group": "csv",
+ "file": "cases/prod_h07.csv",
+ "description": "Original layout + Total rows + a Grand Total row that must all be skipped",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "production_extract",
+  "sqlite_load"
+ ],
+ "n_source_records": 45,
+ "records": [
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2003-04",
+    "crop": "Bottle Gourd",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Carrot",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 55.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 548.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 9.96,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2003-04",
+    "crop": "Carrot",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 45.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 338.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.51,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Other Vegetables",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 60.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 300.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2003-04",
+    "crop": "Other Vegetables",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 59.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 428.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.25,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Papaya",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 260.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1560.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 6.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2003-04",
+    "crop": "Papaya",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 261.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1514.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.8,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Pome Fruit",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 50.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 189.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 3.78,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2003-04",
+    "crop": "Pome Fruit",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 50.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 157.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 3.14,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "1999-00",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 100.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 520.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.2,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2000-01",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 90.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 470.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.22,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 370.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1940.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.24,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2004-05",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 340.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1780.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.24,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2005-06",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 510.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2670.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.24,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2006-07",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 20.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 110.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.5,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2007-08",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 250.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1310.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.24,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2008-09",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 890.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7100.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.98,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2009-10",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 920.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7780.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.46,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2010-11",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1040.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8750.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.41,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2011-12",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1140.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10150.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.9,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2012-13",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1240.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10750.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.67,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2013-14",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1200.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10310.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.59,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2014-15",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1200.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10310.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.59,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-16",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1290.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 11180.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.67,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2016-17",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1290.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 11180.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.67,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-18",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1290.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 11180.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.67,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2018-19",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1350.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 11270.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.35,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2021-22",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1310.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 11000.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.4,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2022-23",
+    "crop": "Potato",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1300.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 11270.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.67,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2000-01",
+    "crop": "Sugarcane",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 30.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 980.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 32.67,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2005-06",
+    "crop": "Sugarcane",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 20.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 660.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 33.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2007-08",
+    "crop": "Sugarcane",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 20.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 650.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 32.5,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2008-09",
+    "crop": "Sugarcane",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1370.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 79370.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 57.93,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2009-10",
+    "crop": "Sugarcane",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1210.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 70210.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 58.02,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2010-11",
+    "crop": "Sugarcane",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1370.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 79500.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 58.03,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2011-12",
+    "crop": "Sugarcane",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1470.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 85900.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 58.44,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2012-13",
+    "crop": "Sugarcane",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1400.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 82450.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 58.89,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2013-14",
+    "crop": "Sugarcane",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1460.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 86010.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 58.91,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2014-15",
+    "crop": "Sugarcane",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1460.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 86010.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 58.91,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2015-16",
+    "crop": "Sugarcane",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1450.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 87270.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 60.19,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2016-17",
+    "crop": "Sugarcane",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1450.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 87270.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 60.19,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-18",
+    "crop": "Sugarcane",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1450.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 87270.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 60.19,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2018-19",
+    "crop": "Sugarcane",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1450.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 87270.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 60.19,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2021-22",
+    "crop": "Sugarcane",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1450.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 87270.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 60.19,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2022-23",
+    "crop": "Sugarcane",
+    "entity": "Whole Year"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1370.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 88000.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 64.23,
+     "unit": "t/ha"
+    }
+   }
+  }
+ ]
+}

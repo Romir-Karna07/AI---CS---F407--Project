@@ -1,0 +1,78 @@
+{
+ "crops": {
+  "Banana": {
+   "2005-06": [
+    {
+     "district": "Imphal East",
+     "area_ha": 130.0,
+     "production_t": 1670.0
+    }
+   ],
+   "2007-08": [
+    {
+     "district": "Imphal East",
+     "area_ha": 580.0,
+     "production_t": 7460.0
+    }
+   ],
+   "2006-07": [
+    {
+     "district": "Churachandpur",
+     "area_ha": 370.0,
+     "production_t": 4760.0
+    }
+   ],
+   "2003-04": [
+    {
+     "district": "Senapati",
+     "area_ha": 229.0,
+     "production_t": 1798.0
+    },
+    {
+     "district": "Tamenglong",
+     "area_ha": 477.0,
+     "production_t": 3744.0
+    }
+   ],
+   "2013-14": [
+    {
+     "district": "Churachandpur",
+     "area_ha": 924.0,
+     "production_t": 12474.0
+    }
+   ],
+   "2002-03": [
+    {
+     "district": "Churachandpur",
+     "area_ha": 2690.0,
+     "production_t": 1850.0
+    }
+   ],
+   "2018-19": [
+    {
+     "district": "Chandel",
+     "area_ha": 960.0,
+     "production_t": 12480.0
+    }
+   ]
+  },
+  "Wheat": {
+   "2022-23": [
+    {
+     "district": "Tamenglong",
+     "area_ha": 10.0,
+     "production_t": 20.0
+    }
+   ]
+  },
+  "Tomato": {
+   "2003-04": [
+    {
+     "district": "Chandel",
+     "area_ha": 29.0,
+     "production_t": 232.0
+    }
+   ]
+  }
+ }
+}

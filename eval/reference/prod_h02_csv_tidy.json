@@ -1,0 +1,834 @@
+{
+ "case_id": "prod_h02_csv_tidy",
+ "agent": "production",
+ "source_group": "csv",
+ "file": "cases/prod_h02.csv",
+ "description": "Tidy CSV, units in headers",
+ "difficulty": "normal",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "production_extract",
+  "sqlite_load"
+ ],
+ "n_source_records": 37,
+ "records": [
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 180.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2232.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.4,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 250.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3050.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.2,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2002-03",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 115.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1380.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2003-04",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 145.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1770.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.21,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2002-03",
+    "crop": "Cauliflower",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 20.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 172.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.6,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2003-04",
+    "crop": "Cauliflower",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 23.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 198.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.61,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2003-04",
+    "crop": "Orange",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 76.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 312.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 4.11,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Pineapple",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 195.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1365.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Pineapple",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 230.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1725.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.5,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2008-09",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 110.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8450.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 76.82,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2009-10",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 90.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 4060.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 45.11,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2010-11",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 120.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 9500.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 79.17,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2011-12",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 150.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8470.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 56.47,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2012-13",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 150.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7870.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 52.47,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2013-14",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 170.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 9050.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 53.24,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2014-15",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 170.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 9050.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 53.24,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2015-16",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 210.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10900.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 51.9,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2016-17",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 210.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10900.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 51.9,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2017-18",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 210.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10900.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 51.9,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2018-19",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 210.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10900.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 51.9,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2021-22",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 210.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10900.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 51.9,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2022-23",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 210.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10900.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 51.9,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "1999-00",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 10.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 1.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 10.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 1.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2005-06",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 30.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 20.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 0.67,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2007-08",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 10.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 1.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2008-09",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 98.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1090.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 11.12,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2009-10",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 153.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1715.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 11.21,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2010-11",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 169.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1885.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 11.15,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2011-12",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 192.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2202.24,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 11.47,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2012-13",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 201.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2351.7,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 11.7,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2013-14",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 235.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2820.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2014-15",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 262.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3105.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 11.85,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-16",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 300.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3244.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 10.81,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2016-17",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 302.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3265.45,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 10.81,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-18",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 306.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3296.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 10.77,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2018-19",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 306.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3297.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 10.77,
+     "unit": "t/ha"
+    }
+   }
+  }
+ ]
+}

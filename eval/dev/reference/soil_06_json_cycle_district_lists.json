@@ -1,0 +1,383 @@
+{
+ "case_id": "soil_06_json_cycle_district_lists",
+ "agent": "soil",
+ "source_group": "json",
+ "file": "dev/cases/soil_06.json",
+ "description": "cycle -> district -> records",
+ "difficulty": "normal",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_json_data",
+  "soil_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "KAKCHING",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Langmeidong"
+   },
+   "fields": {
+    "n": {
+     "value": 196.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 20.57,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 308.25,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.14,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.59,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.26,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 27.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 2.59,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 28.7,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.02,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 12.6,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.1,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Liwa Changning"
+   },
+   "fields": {
+    "n": {
+     "value": 95.4,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 21.0,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 98.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.36,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.4,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.3,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 68.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 0.8,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 0.26,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 2.9,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.7,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAKCHING",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Laphupat"
+   },
+   "fields": {
+    "n": {
+     "value": 404.6,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 136.7,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 401.2,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.34,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.17,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.11,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 16.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 2.77,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.9,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.02,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 51.7,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.64,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Leishokching"
+   },
+   "fields": {
+    "n": {
+     "value": 95.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 19.0,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 98.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.55,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.6,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.36,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAKCHING",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Hiyanglam I"
+   },
+   "fields": {
+    "n": {
+     "value": 40.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 38.23,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 167.23,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.29,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.23,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.09,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAKCHING",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Tangjeng"
+   },
+   "fields": {
+    "n": {
+     "value": 457.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 21.45,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 115.6,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.59,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.4,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.01,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 30.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 2.4,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 32.8,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 5.14,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 20.8,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.65,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAKCHING",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Wangoo"
+   },
+   "fields": {
+    "n": {
+     "value": 197.5,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 18.25,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 202.5,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.26,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.165,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.035,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Tarao Laimanai"
+   },
+   "fields": {
+    "n": {
+     "value": 57.6,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 20.0,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 93.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.54,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.8,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.26,
+     "unit": "dS/m"
+    }
+   }
+  }
+ ]
+}

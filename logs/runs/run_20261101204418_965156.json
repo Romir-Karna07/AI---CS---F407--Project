@@ -1,0 +1,603 @@
+{
+  "run_id": "run_20261101204418_965156",
+  "input": "S31_dacp_imphal_west.pdf",
+  "status": "complete",
+  "source_type": "pdf",
+  "groups": [
+    {
+      "pattern": "pdf:p1.t1",
+      "domain": "rainfall",
+      "records": 6,
+      "scores": {
+        "soil": 0,
+        "rainfall": 2,
+        "production": 0
+      },
+      "method": "rules+llm_headers",
+      "mapped_headers": {
+        "Rainfall": "rainfall_mm",
+        "Normal rainy days (nos.)": "rainy_days"
+      },
+      "unmapped_headers": [
+        "1.2",
+        "Normal rainfall (mm)",
+        "Normal onset",
+        "Normal cessation"
+      ]
+    },
+    {
+      "pattern": "pdf:p2.t1",
+      "domain": null,
+      "records": 1,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm_rejected_no_measurement_columns",
+      "mapped_headers": {
+        "Land use pattern of the district (latest statistics)": "district"
+      },
+      "unmapped_headers": [
+        "1.3",
+        "Geograp hical area",
+        "Cultiva ble area",
+        "Forest area",
+        "Land under agril. use",
+        "Permanen t pastures",
+        "Cultivable waste land",
+        "Land under Misc tree crops and groves",
+        "Barren and uncultivab le land",
+        "Current fallows",
+        "Other fallows"
+      ]
+    },
+    {
+      "pattern": "pdf:p2.t2",
+      "domain": null,
+      "records": 4,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm_rejected_no_measurement_columns",
+      "mapped_headers": {},
+      "unmapped_headers": [
+        "1.4",
+        "Alluvial soils Black soils",
+        "- -"
+      ]
+    },
+    {
+      "pattern": "pdf:p2.t3",
+      "domain": null,
+      "records": 8,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm_rejected_no_measurement_columns",
+      "mapped_headers": {
+        "Area (\u2018000 ha)": "area"
+      },
+      "unmapped_headers": [
+        "1.6",
+        "Irrigation",
+        "Percent (%)"
+      ]
+    },
+    {
+      "pattern": "pdf:p3.t1",
+      "domain": null,
+      "records": 10,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm_rejected_no_measurement_columns",
+      "mapped_headers": {},
+      "unmapped_headers": [
+        "entity",
+        "Lift irrigation Micro-irrigation Other sources",
+        "Lift irrigation Micro-irrigation ",
+        "0.70 Micro-irrigation "
+      ]
+    },
+    {
+      "pattern": "pdf:p3.t2",
+      "domain": null,
+      "records": 5,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm_rejected_no_measurement_columns",
+      "mapped_headers": {},
+      "unmapped_headers": [
+        "1.7",
+        "Kharif Irrigated",
+        "Kharif Rainfed",
+        "Total ",
+        "Rabi Irrigated",
+        "Rabi Rainfed"
+      ]
+    },
+    {
+      "pattern": "pdf:p4.t1",
+      "domain": null,
+      "records": 6,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm_rejected_no_measurement_columns",
+      "mapped_headers": {},
+      "unmapped_headers": [
+        "1.7",
+        "Horticulture crops-Fruits",
+        "Total area (\u2018000 ha)*",
+        "Irrigated *",
+        "Rainfed *"
+      ]
+    },
+    {
+      "pattern": "pdf:p4.t2",
+      "domain": null,
+      "records": 5,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm_rejected_no_measurement_columns",
+      "mapped_headers": {},
+      "unmapped_headers": [
+        "1.7",
+        "Horticultural crops -Vegetables",
+        "Total area (\u2018000 ha) (2008-09)",
+        "Irrigated (\u2018000 ha)",
+        "Rainfed"
+      ]
+    },
+    {
+      "pattern": "pdf:p4.t3",
+      "domain": null,
+      "records": 2,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm_rejected_no_measurement_columns",
+      "mapped_headers": {},
+      "unmapped_headers": [
+        "1.7",
+        "Flowers",
+        "Total area",
+        "Irrigated",
+        "Rainfed"
+      ]
+    }
+  ],
+  "result": {
+    "by_agent": {
+      "rainfall_agent": {
+        "table": "rainfall_monthly",
+        "extracted": 6,
+        "inserted": 0,
+        "duplicates": 0,
+        "invalid": 0,
+        "rejected": 6
+      }
+    },
+    "rejected": [
+      {
+        "agent": "rainfall_agent",
+        "locator": "p1 t1 line 2",
+        "reason": "year_month:string_type; year:int_type; month:int_type"
+      },
+      {
+        "agent": "rainfall_agent",
+        "locator": "p1 t1 line 3",
+        "reason": "year_month:string_type; year:int_type; month:int_type"
+      },
+      {
+        "agent": "rainfall_agent",
+        "locator": "p1 t1 line 4",
+        "reason": "year_month:string_type; year:int_type; month:int_type"
+      },
+      {
+        "agent": "rainfall_agent",
+        "locator": "p1 t1 line 5",
+        "reason": "year_month:string_type; year:int_type; month:int_type"
+      },
+      {
+        "agent": "rainfall_agent",
+        "locator": "p1 t1 line 6",
+        "reason": "year_month:string_type; year:int_type; month:int_type"
+      },
+      {
+        "agent": "rainfall_agent",
+        "locator": "p1 t1 line 7",
+        "reason": "year_month:string_type; year:int_type; month:int_type"
+      }
+    ],
+    "totals": {
+      "extracted": 6,
+      "inserted": 0,
+      "duplicate": 0,
+      "invalid": 0,
+      "rejected": 6
+    }
+  },
+  "notes": {
+    "error": null,
+    "agent_errors": [],
+    "unclassified_groups": [
+      "pdf:p2.t1",
+      "pdf:p2.t2",
+      "pdf:p2.t3",
+      "pdf:p3.t1",
+      "pdf:p3.t2",
+      "pdf:p4.t1",
+      "pdf:p4.t2",
+      "pdf:p4.t3"
+    ]
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "S31_dacp_imphal_west.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 681966,
+        "type": "pdf"
+      },
+      "ms": 6.6
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_data",
+      "args": {
+        "file_path": "S31_dacp_imphal_west.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 47,
+        "groups": 9,
+        "notes": [
+          "pages=26",
+          "backend=auto",
+          "page range 1-4",
+          "tables by route: pdfplumber=9"
+        ]
+      },
+      "ms": 8371.5
+    },
+    {
+      "step": "classify",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "1.2",
+          "Normal rainfall (mm)",
+          "Normal rainy days (nos.)",
+          "Normal onset",
+          "Normal cessation"
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "Normal rainfall (mm)": "rainfall_mm",
+        "Normal rainy days (nos.)": "rainy_days"
+      },
+      "ms": 1551.8
+    },
+    {
+      "step": "classify",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "1.3",
+          "Geograp hical area",
+          "Cultiva ble area",
+          "Forest area",
+          "Land under agril. use",
+          "Permanen t pastures",
+          "Cultivable waste land",
+          "Land under Misc tree crops and groves",
+          "Barren and uncultivab le land",
+          "Current fallows"
+        ]
+      },
+      "status": "rejected",
+      "detail": {
+        "Geograp hical area": "area"
+      },
+      "ms": 1243.4
+    },
+    {
+      "step": "classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": null,
+      "ms": 928.4
+    },
+    {
+      "step": "classify",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "1.4",
+          "Alluvial soils Black soils",
+          "- -"
+        ]
+      },
+      "status": "rejected",
+      "detail": {
+        "Alluvial soils Black soils": "category"
+      },
+      "ms": 1705.2
+    },
+    {
+      "step": "classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": "production",
+      "ms": 1241.2
+    },
+    {
+      "step": "classify",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "1.6",
+          "Irrigation",
+          "Percent (%)"
+        ]
+      },
+      "status": "rejected",
+      "detail": {
+        "Irrigation": "area"
+      },
+      "ms": 1134.5
+    },
+    {
+      "step": "classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": null,
+      "ms": 876.5
+    },
+    {
+      "step": "classify",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "entity",
+          "Lift irrigation Micro-irrigation Other sources",
+          "Lift irrigation Micro-irrigation ",
+          "0.70 Micro-irrigation "
+        ]
+      },
+      "status": "rejected",
+      "detail": {
+        "Lift irrigation Micro-irrigation Other sources": "area"
+      },
+      "ms": 1445.8
+    },
+    {
+      "step": "classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": null,
+      "ms": 926.3
+    },
+    {
+      "step": "classify",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "1.7",
+          "Kharif Irrigated",
+          "Kharif Rainfed",
+          "Total ",
+          "Rabi Irrigated",
+          "Rabi Rainfed"
+        ]
+      },
+      "status": "rejected",
+      "detail": {},
+      "ms": 1132.2
+    },
+    {
+      "step": "classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": "production",
+      "ms": 832.8
+    },
+    {
+      "step": "classify",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "1.7",
+          "Horticulture crops-Fruits",
+          "Total area (\u2018000 ha)*",
+          "Irrigated *",
+          "Rainfed *"
+        ]
+      },
+      "status": "rejected",
+      "detail": {
+        "Horticulture crops-Fruits": "crop",
+        "Total area (\u2018000 ha)*": "area"
+      },
+      "ms": 1499.5
+    },
+    {
+      "step": "classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": "production",
+      "ms": 844.0
+    },
+    {
+      "step": "classify",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "1.7",
+          "Horticultural crops -Vegetables",
+          "Total area (\u2018000 ha) (2008-09)",
+          "Irrigated (\u2018000 ha)",
+          "Rainfed"
+        ]
+      },
+      "status": "rejected",
+      "detail": {
+        "Total area (\u2018000 ha) (2008-09)": "area",
+        "Horticultural crops -Vegetables": "crop"
+      },
+      "ms": 1822.4
+    },
+    {
+      "step": "classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": "production",
+      "ms": 663.1
+    },
+    {
+      "step": "classify",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "1.7",
+          "Flowers",
+          "Total area",
+          "Irrigated",
+          "Rainfed"
+        ]
+      },
+      "status": "rejected",
+      "detail": {
+        "Total area": "area",
+        "Flowers": "category"
+      },
+      "ms": 1246.8
+    },
+    {
+      "step": "classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": "production",
+      "ms": 690.9
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "pdf:p1.t1",
+            "rainfall",
+            6
+          ],
+          [
+            "pdf:p2.t1",
+            null,
+            1
+          ],
+          [
+            "pdf:p2.t2",
+            null,
+            4
+          ],
+          [
+            "pdf:p2.t3",
+            null,
+            8
+          ],
+          [
+            "pdf:p3.t1",
+            null,
+            10
+          ],
+          [
+            "pdf:p3.t2",
+            null,
+            5
+          ],
+          [
+            "pdf:p4.t1",
+            null,
+            6
+          ],
+          [
+            "pdf:p4.t2",
+            null,
+            5
+          ],
+          [
+            "pdf:p4.t3",
+            null,
+            2
+          ]
+        ],
+        "queue": [
+          "rainfall"
+        ]
+      },
+      "ms": 23366.2
+    },
+    {
+      "step": "rainfall_agent",
+      "tool": "rainfall_extract",
+      "args": {
+        "records_in": 6
+      },
+      "status": "ok",
+      "detail": {
+        "rows_out": 6
+      },
+      "ms": 2.0
+    },
+    {
+      "step": "load",
+      "tool": "sqlite_load",
+      "args": {
+        "db": "manipur.db"
+      },
+      "status": "ok",
+      "detail": {
+        "extracted": 6,
+        "inserted": 0,
+        "duplicate": 0,
+        "invalid": 0,
+        "rejected": 6
+      },
+      "ms": 17.2
+    }
+  ]
+}

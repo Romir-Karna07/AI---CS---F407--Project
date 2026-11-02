@@ -1,0 +1,231 @@
+{
+ "case_id": "soil_h09_csv_french_headers_llm",
+ "agent": "soil",
+ "source_group": "csv",
+ "file": "cases/soil_h09.csv",
+ "description": "Non-English headers; rules cannot map them, the Groq header mapper must",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "llm_map_headers",
+  "soil_extract",
+  "sqlite_load"
+ ],
+ "n_source_records": 7,
+ "records": [
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Heirok Part Ii Pt"
+   },
+   "fields": {
+    "n": {
+     "value": 299.8,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 14.3,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 152.8,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.85,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.05,
+     "unit": "pH units"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Langathel"
+   },
+   "fields": {
+    "n": {
+     "value": 324.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 11.75,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 142.14,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.12,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 7.0,
+     "unit": "pH units"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Charangpat Maklang"
+   },
+   "fields": {
+    "n": {
+     "value": 190.41,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 22.11,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 151.05,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.055,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.495,
+     "unit": "pH units"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Chandrakhong"
+   },
+   "fields": {
+    "n": {
+     "value": 376.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 84.01,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 71.05,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.2,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.59,
+     "unit": "pH units"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Chingtham"
+   },
+   "fields": {
+    "n": {
+     "value": 187.835,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 26.9,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 280.5,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.22,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.73,
+     "unit": "pH units"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Sangaiyumpham"
+   },
+   "fields": {
+    "n": {
+     "value": 380.8,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 100.1,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 309.5,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.23,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.59,
+     "unit": "pH units"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Uyal"
+   },
+   "fields": {
+    "n": {
+     "value": 385.6,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 89.37,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 286.9,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.25,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.23,
+     "unit": "pH units"
+    }
+   }
+  }
+ ]
+}

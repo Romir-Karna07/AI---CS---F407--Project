@@ -28,13 +28,17 @@ locator, run_id`).
 ## Tools (as logged in the trajectory)
 `inspect_file` -> `read_json_data` / `read_csv_data` -> (`llm_map_headers`) -> `soil_extract` -> `sqlite_load`.
 
-## Evaluation (dev set, see `eval/README.md` before quoting)
-11 cases / 771 reference fields; macro-F1 contribution 1.00 on our own cases. This is optimistic: cases were written by us
-while fixing failures. First run was lower (see `eval/results/first_run_metrics.csv`).
+## Evaluation (held-out districts; see `eval/README.md` for the split and its limits)
+* **Official:** 10 held-out files `soil_h01`..`h10` (Imphal West, Thoubal, Ukhrul; 70 records divided between them, 775 reference fields): **F1 1.000** on the
+  first cold run (691/691 fields scored; soil also owns the 3 PDF cases, which are scored under `document_agent`). One file needs the LLM header mapper (French headers).
+* The PDF cases for soil (`pdf_08`, `pdf_09`, `pdf_10`) are in `document_agent.md`: 1.000, 1.000 and 0.957 (scan).
+* **Dev set:** 11 older cases in `eval/dev/` (built from dev districts only); the pipeline was tuned against an earlier version, whose first run scored macro F1 0.60
+  (`eval/dev/results/first_run_metrics.csv`). It is a regression suite, not a headline number.
+* A perfect score means the rules cope with these layouts and these districts, not that arbitrary soil documents would be read.
 
 ## Limitations
-* S24 in the inventory is the portal's **aggregate** card data; what is loaded is the SLUSI **point** layer (438 records,
-  13 of 16 districts; Jiribam, Senapati, Tamenglong have none).
+* S24 in the inventory is the portal's **aggregate** card data; what is loaded is the SLUSI **point** layer: 438 records scraped (13 of 16 districts; Jiribam,
+  Senapati, Tamenglong have none), of which **367 are in `db/manipur.db`**; the 70 records of Imphal West, Thoubal and Ukhrul are held out for evaluation (`Data/partitions/soil_P1+P2.json`).
 * Units are the standard SHC units (N/P/K kg/ha, micronutrients ppm, EC dS/m, OC %); the portal does not print them.
 * pH recorded as 0.0 (44 Churachandpur 2024-25 rows) is treated as missing; the original value stays in `extra`.
 * District codes are the portal's, not LGD. No PDF / scanned soil-health cards, no Manipuri text.

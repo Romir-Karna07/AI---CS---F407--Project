@@ -1,0 +1,681 @@
+{
+ "case_id": "pdf_02_production_unruled_caption_context",
+ "agent": "production",
+ "owner_agent": "document_agent",
+ "source_group": "pdf",
+ "file": "cases/pdf_02.pdf",
+ "description": "No ruling lines; district and year only in the caption above each table",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_pdf_data",
+  "production_extract",
+  "sqlite_load"
+ ],
+ "has_text_layer": true,
+ "records": [
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 131.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1090.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.32,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 2030.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1210.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 0.6,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Bottle Gourd",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 5.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 0.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 0.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 10.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 1.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Sweet Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 4.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 20.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Cauliflower",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 345.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3622.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 10.5,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Onion",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 50.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 110.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 2.2,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Other Fresh Fruits",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1140.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1437.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 1.26,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Carrot",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 55.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 548.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 9.96,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 360.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 4233.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 11.76,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Mango",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 12.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 61.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.08,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Tomato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 72.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 576.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Citrus Fruit",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 51.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 245.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 4.8,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Cauliflower",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 218.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1875.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.6,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 250.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3050.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.2,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Other Fresh Fruits",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 266.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1067.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 4.01,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Bitter Gourd",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 13.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 70.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.38,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 180.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 110.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 0.61,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Radish",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 22.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 196.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.91,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Sweet Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 15.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 99.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 6.6,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Okra",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 60.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 210.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 3.5,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Pineapple",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 195.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1365.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Other Vegetables",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 20.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 100.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Cassava",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 5.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 14.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 2.8,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Cauliflower",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 180.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 997.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.54,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Brinjal",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 45.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 225.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 10.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 1.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 370.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1940.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.24,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 180.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2232.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.4,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Other Fresh Fruits",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 210.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1470.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.0,
+     "unit": "t/ha"
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,113 @@
+{
+  "run_id": "run_20261101204548_9f281b",
+  "input": "S04_agri_stats_at_a_glance_2024-25_bilingual.pdf",
+  "status": "failed",
+  "source_type": "pdf",
+  "groups": [
+    {
+      "pattern": "pdf:p161.t1",
+      "domain": null,
+      "records": 17,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm_rejected_no_measurement_columns",
+      "mapped_headers": {},
+      "unmapped_headers": [
+        "State/UTs",
+        "2005-06 2006-07 2007-08 2008-09 2009-10 2010-11 2011-12 2012-13 2013-14 2014-15 2015-16 2016-17 2017-18 2018-19 2019-20 2020-21 2021-22",
+        "2022-23",
+        "2023-24",
+        "2024-25"
+      ]
+    }
+  ],
+  "result": {},
+  "notes": {
+    "error": "no recognised soil / rainfall / production records (unclassified: pdf:p161.t1)",
+    "agent_errors": [],
+    "unclassified_groups": [
+      "pdf:p161.t1"
+    ]
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "S04_agri_stats_at_a_glance_2024-25_bilingual.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 10689289,
+        "type": "pdf"
+      },
+      "ms": 107.7
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_data",
+      "args": {
+        "file_path": "S04_agri_stats_at_a_glance_2024-25_bilingual.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 17,
+        "groups": 1,
+        "notes": [
+          "pages=476",
+          "backend=auto",
+          "page range 161",
+          "tables by route: camelot_stream=1"
+        ]
+      },
+      "ms": 14672.3
+    },
+    {
+      "step": "classify",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "State/UTs",
+          "2005-06 2006-07 2007-08 2008-09 2009-10 2010-11 2011-12 2012-13 2013-14 2014-15 2015-16 2016-17 2017-18 2018-19 2019-20 2020-21 2021-22",
+          "2022-23",
+          "2023-24",
+          "2024-25"
+        ]
+      },
+      "status": "rejected",
+      "detail": {
+        "State/UTs": "state"
+      },
+      "ms": 2050.6
+    },
+    {
+      "step": "classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": "production",
+      "ms": 1173.3
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "pdf:p161.t1",
+            null,
+            17
+          ]
+        ],
+        "queue": []
+      },
+      "ms": 6314.6
+    }
+  ]
+}

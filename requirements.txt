@@ -6,3 +6,9 @@ langchain-groq
 python-dotenv
 # --- only for the scrapers (scrape_*.py), not for run.py ---
 # requests, pillow, numpy, scipy, shapely, imdlib, xarray, netcdf4, truststore
+# --- PDF input: pipeline/pdf_reader.py (document_agent) ---
+pdfplumber
+pymupdf
+camelot-py
+rapidocr   # OCR for scanned pages; rapidocr-onnxruntime 1.x also works but drops the spaces inside cells
+# --- only for docs/pdf_tool_tests and eval/build_pdf_cases.py: reportlab, pypdf; docling is optional (very slow on CPU) ---

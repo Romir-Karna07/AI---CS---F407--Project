@@ -1,0 +1,426 @@
+{
+ "case_id": "soil_h03_csv_long_headers",
+ "agent": "soil",
+ "source_group": "csv",
+ "file": "cases/soil_h03.csv",
+ "description": "Tidy CSV, descriptive headers with units",
+ "difficulty": "normal",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "soil_extract",
+  "sqlite_load"
+ ],
+ "n_source_records": 7,
+ "records": [
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Kangchup"
+   },
+   "fields": {
+    "n": {
+     "value": 299.8,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 23.23,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 97.52,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.85,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.33,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.01,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 27.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 1.48,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 32.9,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 25.6,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Lamsang",
+     "unit": "text"
+    },
+    "category": {
+     "value": "Non saline",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Icham Kunou"
+   },
+   "fields": {
+    "n": {
+     "value": 404.6,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 85.8,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 306.5,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.34,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.59,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.06,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 37.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 3.14,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 21.9,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 0.74,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 34.6,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.01,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Thoubal",
+     "unit": "text"
+    },
+    "category": {
+     "value": "Sufficient",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Nepra Company"
+   },
+   "fields": {
+    "n": {
+     "value": 418.9,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 129.5,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 446.3,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.41,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.68,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.11,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 7.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 0.92,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.0,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.77,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 15.7,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.65,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Thoubal",
+     "unit": "text"
+    },
+    "category": {
+     "value": "Sufficient",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Lamding"
+   },
+   "fields": {
+    "n": {
+     "value": 366.5,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 107.68,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 168.87,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.16,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.185,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.145,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 17.5,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 1.57,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.4,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.915,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 27.6,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.965,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Thoubal",
+     "unit": "text"
+    },
+    "category": {
+     "value": "Sufficient",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Utlou"
+   },
+   "fields": {
+    "n": {
+     "value": 237.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 35.58,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 227.715,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.29,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.32,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.03,
+     "unit": "dS/m"
+    },
+    "tehsil": {
+     "value": "Nambol",
+     "unit": "text"
+    },
+    "category": {
+     "value": "Non saline",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Hayel Labuk"
+   },
+   "fields": {
+    "n": {
+     "value": 438.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 85.8,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 352.1,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.5,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.23,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.28,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 25.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 3.88,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 3.33,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.87,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 27.4,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.84,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Thoubal",
+     "unit": "text"
+    },
+    "category": {
+     "value": "Sufficient",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Moijing"
+   },
+   "fields": {
+    "n": {
+     "value": 196.5,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 21.98,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 174.485,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.385,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.695,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.04,
+     "unit": "dS/m"
+    },
+    "tehsil": {
+     "value": "Lilong",
+     "unit": "text"
+    },
+    "category": {
+     "value": "Non saline",
+     "unit": "text"
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,813 @@
+{
+ "case_id": "pdf_01_production_ruled_multipage",
+ "agent": "production",
+ "owner_agent": "document_agent",
+ "source_group": "pdf",
+ "file": "cases/pdf_01.pdf",
+ "description": "Ruled grid, tidy columns, table continues on the next page with a repeated header",
+ "difficulty": "normal",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_pdf_data",
+  "production_extract",
+  "sqlite_load"
+ ],
+ "has_text_layer": true,
+ "records": [
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2018-19",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 75.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 506.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 6.75,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2008-09",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1130.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8490.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.51,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2003-04",
+    "crop": "Cassava",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 15.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 84.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.6,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Jackfruit",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 50.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 229.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 4.58,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Bottle Gourd",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 6.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 60.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 10.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2011-12",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 190.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2179.3,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 11.47,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2004-05",
+    "crop": "Onion",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 110.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 230.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 2.09,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2015-16",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 682.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 9280.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 13.61,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2012-13",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 810.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 48230.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 59.54,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2004-05",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 20.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 260.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 13.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2003-04",
+    "crop": "Radish",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 18.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 160.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.89,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2014-15",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 245.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2893.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 11.81,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Carrot",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 32.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 224.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2007-08",
+    "crop": "Sweet Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 450.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1580.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 3.51,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2013-14",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1239.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 9775.71,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.89,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2009-10",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 560.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 35750.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 63.84,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Cassava",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 15.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 84.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.6,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 202.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1586.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.85,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2001-02",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 100.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 60.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 0.6,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2013-14",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 890.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 51000.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 57.3,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2010-11",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1237.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 9468.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.65,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2004-05",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 130.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 4250.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 32.69,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2013-14",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 520.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7020.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 13.5,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2010-11",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1370.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 79500.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 58.03,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2003-04",
+    "crop": "Papaya",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 261.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1514.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.8,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-18",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 705.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7668.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 10.88,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2022-23",
+    "crop": "Wheat",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 400.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1000.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 2.5,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2009-10",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 920.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7780.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.46,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2013-14",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 2300.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 19750.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.59,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2011-12",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 150.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8470.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 56.47,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2016-17",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1290.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 11180.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.67,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2002-03",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 840.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 510.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 0.61,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2009-10",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 410.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 5330.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 13.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2012-13",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 178.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2082.6,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 11.7,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Papaya",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 90.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 630.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2003-04",
+    "crop": "Other Vegetables",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 59.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 428.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.25,
+     "unit": "t/ha"
+    }
+   }
+  }
+ ]
+}

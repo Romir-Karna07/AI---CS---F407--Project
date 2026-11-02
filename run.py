@@ -1,7 +1,7 @@
 """
-One-command entry point:   python run.py --input <file.json|file.csv> [--db db/manipur.db] [--json-out out.json]
+One-command entry point:   python run.py --input <file.json|file.csv|file.pdf> [--db db/manipur.db] [--json-out out.json]
 
-Reads any JSON or CSV, routes it through the LangGraph pipeline (inspect -> read -> classify -> domain agents ->
+Reads any JSON, CSV or PDF (tables; scans via OCR; AGRI_PDF_PAGES=53-60 limits the pages), routes it through the LangGraph pipeline (inspect -> read -> classify -> domain agents ->
 load -> finish) and stores validated rows with provenance in SQLite. Nothing here is specific to a file name.
 Demo options:  --inject-fault read|load|soil_agent|rainfall_agent|production_agent   (shows recovery / partial runs)
                --manual-note "text"   (declares a manual intervention; logged in logs/automation_log.csv)
@@ -15,7 +15,7 @@ from pipeline.graph import run_file
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="Manipur agri data pipeline (LangGraph)")
-    ap.add_argument("--input", required=True, help="path to a .json / .csv file")
+    ap.add_argument("--input", required=True, help="path to a .json / .csv / .pdf file")
     ap.add_argument("--db", default=None, help="SQLite path (default db/manipur.db)")
     ap.add_argument("--json-out", default=None, help="also write the run report here")
     ap.add_argument("--inject-fault", default=None)

@@ -1,0 +1,515 @@
+{
+ "case_id": "soil_04_csv_semicolon_decimal_comma",
+ "agent": "soil",
+ "source_group": "csv",
+ "file": "dev/cases/soil_04.csv",
+ "description": "';' delimiter with decimal commas",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "soil_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "KAKCHING",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Langmeidong"
+   },
+   "fields": {
+    "n": {
+     "value": 196.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 20.57,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 308.25,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.14,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.59,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.26,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 27.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 2.59,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 28.7,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.02,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 12.6,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.1,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Kakching",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Saiton"
+   },
+   "fields": {
+    "n": {
+     "value": 314.55,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 20.785,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 220.17,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.235,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.495,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.02,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 6.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 0.18,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.1,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 2.8,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 22.5,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.01,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Moirang",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Angtha"
+   },
+   "fields": {
+    "n": {
+     "value": 378.4,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 36.6,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 331.55,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.215,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.445,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.02,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 8.5,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 1.475,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.15,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 3.875,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 18.845,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.41,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Keirao Bitra",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Khoijuman Khullen"
+   },
+   "fields": {
+    "n": {
+     "value": 238.92,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 27.4434,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 213.415,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.094,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.175,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.025,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 47.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 1.29,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.3,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.4,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 6.6,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.82,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Bishnupur",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAKCHING",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Laphupat"
+   },
+   "fields": {
+    "n": {
+     "value": 404.6,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 136.7,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 401.2,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.34,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.17,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.11,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 16.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 2.77,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.9,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.02,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 51.7,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.64,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Kakching",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Bamon Kampu"
+   },
+   "fields": {
+    "n": {
+     "value": 366.45,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 34.856,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 262.55,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.16,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.19,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.035,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 8.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 0.555,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 32.85,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.31,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 43.55,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.78,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Keirao Bitra",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KANGPOKPI",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Leirongthel"
+   },
+   "fields": {
+    "n": {
+     "value": 392.75,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 41.555,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 92.645,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.285,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.195,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.055,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 18.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 1.29,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 31.4,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 0.325,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 16.4,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.825,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Thoubal",
+     "unit": "text"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Pukhao Ahallup"
+   },
+   "fields": {
+    "n": {
+     "value": 423.7,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 44.24,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 144.17,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.43,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.945,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.03,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 5.5,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 1.2,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.7,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.965,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 37.3,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.46,
+     "unit": "ppm"
+    },
+    "tehsil": {
+     "value": "Sawombung",
+     "unit": "text"
+    }
+   }
+  }
+ ]
+}

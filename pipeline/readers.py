@@ -224,6 +224,12 @@ def read_csv_file(path: Path) -> dict:
     raw = [r for r in csv.reader(text.splitlines(), delimiter=delim)]
     if delim == ";":  # ';' files use the decimal comma: '1,215' is 1.215, never one thousand two hundred fifteen
         raw = [[re.sub(r"^(-?\d+),(\d+)$", r"\1.\2", c.strip()) for c in r] for r in raw]
+    return parse_rows(raw, delim, enc)
+
+
+def parse_rows(raw, delim, enc, loc_prefix="") -> dict:
+    """Neutral-structure parser for any table given as a list of rows: a CSV file, or one table cut out of a PDF page
+    (then `loc_prefix` makes the locators read like 'p53 t1 line 7, cols B-F')."""
     ncols = max((len(r) for r in raw), default=0)
     rows = [[c.strip() for c in r] + [""] * (ncols - len(r)) for r in raw]
     keep = [(i, r) for i, r in enumerate(rows) if any(c for c in r)]  # remember original line numbers
@@ -284,7 +290,7 @@ def read_csv_file(path: Path) -> dict:
                 skipped_totals += 1
                 continue
             data = {rows[0][j]: r[j] for j in range(ncols) if rows[0][j].strip()}
-            out_rows.append({"locator": f"line {lines[ri]}", "pattern": "csv", "data": data, "labels": [], "units": {}})
+            out_rows.append({"locator": f"{loc_prefix}line {lines[ri]}", "pattern": "csv", "data": data, "labels": [], "units": {}})
             continue
         is_leaf = has_values or any(r[j].strip() for j in label_cols[1:])   # e.g. a Season value marks a data row
         if not has_values and is_leaf:   # a data row whose value cells are all blank: nothing to record, hierarchy unchanged
@@ -325,7 +331,7 @@ def read_csv_file(path: Path) -> dict:
                 data["period"] = period
             data.update(vals)
             units = {specs[j]["variable"]: specs[j]["unit"] for j in cols if specs[j]["unit"]}
-            out_rows.append({"locator": f"line {lines[ri]}, cols {col_letter(min(cols))}-{col_letter(max(cols))}"
+            out_rows.append({"locator": f"{loc_prefix}line {lines[ri]}, cols {col_letter(min(cols))}-{col_letter(max(cols))}"
                                         + (f", period {period}" if period else ""),
                              "pattern": "csv", "data": data, "labels": [], "units": units})
     if skipped_totals:

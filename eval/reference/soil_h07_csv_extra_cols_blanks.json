@@ -1,0 +1,386 @@
+{
+ "case_id": "soil_h07_csv_extra_cols_blanks",
+ "agent": "soil",
+ "source_group": "csv",
+ "file": "cases/soil_h07.csv",
+ "description": "Shuffled columns, irrelevant extra columns, NA / '-' for missing",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "soil_extract",
+  "sqlite_load"
+ ],
+ "n_source_records": 7,
+ "records": [
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Lourembam"
+   },
+   "fields": {
+    "n": {
+     "value": 258.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 21.22,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 300.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.74,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.28,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.04,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Thokchom"
+   },
+   "fields": {
+    "n": {
+     "value": 409.4,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 176.0,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 399.8,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.36,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.86,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.09,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 5.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 2.22,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 31.2,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 0.74,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 18.8,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.74,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Konthoujam"
+   },
+   "fields": {
+    "n": {
+     "value": 409.4,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 89.74,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 289.185,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.29,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.44,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.15,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 36.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 1.85,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.4,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 2.25,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 19.7,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.01,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Maibakhul"
+   },
+   "fields": {
+    "n": {
+     "value": 309.3,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 109.9,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 267.4,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.89,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.18,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.05,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 12.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 0.55,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.5,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 0.74,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 31.9,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Keingam"
+   },
+   "fields": {
+    "n": {
+     "value": 447.5,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 53.62,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 65.48,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.54,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.68,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.02,
+     "unit": "dS/m"
+    },
+    "zn": {
+     "value": 1.29,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 34.1,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 2.05,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 18.8,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Khurkhul"
+   },
+   "fields": {
+    "n": {
+     "value": 418.9,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 70.605,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 151.8,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.41,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.34,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.03,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 3.5,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 0.83,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.3,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 4.39,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 14.4,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Sapam"
+   },
+   "fields": {
+    "n": {
+     "value": 416.55,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 131.35,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 272.3,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.395,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.065,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.065,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 15.5,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 2.68,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 32.95,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 4.065,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 24.0,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.775,
+     "unit": "ppm"
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{
+ "case_id": "ops_02_not_agri_json",
+ "agent": "none",
+ "source_group": "json",
+ "file": "dev/cases/ops_02.json",
+ "description": "Valid JSON with no agricultural data must fail cleanly",
+ "difficulty": "error",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "failed",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_json_data"
+ ],
+ "records": []
+}

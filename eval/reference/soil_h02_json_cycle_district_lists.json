@@ -1,0 +1,370 @@
+{
+ "case_id": "soil_h02_json_cycle_district_lists",
+ "agent": "soil",
+ "source_group": "json",
+ "file": "cases/soil_h02.json",
+ "description": "cycle -> district -> records",
+ "difficulty": "normal",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_json_data",
+  "soil_extract",
+  "sqlite_load"
+ ],
+ "n_source_records": 7,
+ "records": [
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Ngariyambam"
+   },
+   "fields": {
+    "n": {
+     "value": 180.575,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 74.04,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 173.635,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.995,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.215,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.035,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Ningel"
+   },
+   "fields": {
+    "n": {
+     "value": 337.9,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 29.49,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 39.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.03,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.78,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.01,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 16.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 2.96,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 31.2,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 21.1,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.01,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Kairembikhok"
+   },
+   "fields": {
+    "n": {
+     "value": 366.5,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 75.96,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 196.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.16,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.11,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.06,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 5.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 2.4,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 32.8,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 2.52,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 17.9,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.46,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Langmeithel"
+   },
+   "fields": {
+    "n": {
+     "value": 236.81,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 26.0,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 175.34,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.05,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.1,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.025,
+     "unit": "dS/m"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Ishok"
+   },
+   "fields": {
+    "n": {
+     "value": 404.6,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 20.55,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 97.375,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.34,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.85,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.06,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 12.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 2.22,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 32.35,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 2.05,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 24.2,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.18,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Ikop Pat"
+   },
+   "fields": {
+    "n": {
+     "value": 366.5,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 48.26,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 133.7,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.61,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.41,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.02,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 31.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 2.59,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.3,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 3.46,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 22.5,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Khongjom"
+   },
+   "fields": {
+    "n": {
+     "value": 333.15,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 88.455,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 184.39,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.0,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.895,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.055,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 7.5,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 2.865,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 29.85,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 0.28,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 20.645,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.915,
+     "unit": "ppm"
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,96 @@
+{
+ "source": "slice",
+ "method": "slice",
+ "unit": "mm",
+ "districts": [
+  {
+   "district": "CHANDEL",
+   "monthly": [
+    {
+     "month": "2019-06",
+     "rainfall_mm": 91.3,
+     "rainy_days_ge_2.5mm": 12,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2019-01",
+     "rainfall_mm": 0.5,
+     "rainy_days_ge_2.5mm": 0,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2019-02",
+     "rainfall_mm": 14.2,
+     "rainy_days_ge_2.5mm": 2,
+     "days_with_data": 28,
+     "days_in_month": 28
+    },
+    {
+     "month": "2019-03",
+     "rainfall_mm": 19.2,
+     "rainy_days_ge_2.5mm": 4,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2019-10",
+     "rainfall_mm": 99.1,
+     "rainy_days_ge_2.5mm": 8,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2019-07",
+     "rainfall_mm": 136.3,
+     "rainy_days_ge_2.5mm": 10,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2019-04",
+     "rainfall_mm": 50.2,
+     "rainy_days_ge_2.5mm": 6,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2019-08",
+     "rainfall_mm": 87.3,
+     "rainy_days_ge_2.5mm": 8,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2019-11",
+     "rainfall_mm": 33.4,
+     "rainy_days_ge_2.5mm": 4,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2019-05",
+     "rainfall_mm": 91.5,
+     "rainy_days_ge_2.5mm": 9,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2019-09",
+     "rainfall_mm": 194.5,
+     "rainy_days_ge_2.5mm": 13,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2019-12",
+     "rainfall_mm": 8.9,
+     "rainy_days_ge_2.5mm": 1,
+     "days_with_data": 31,
+     "days_in_month": 31
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1532 @@
+{
+ "case_id": "rain_h01_json_original_shape_imd",
+ "agent": "rainfall",
+ "source_group": "json",
+ "file": "cases/rain_h01.json",
+ "description": "Same nesting as the monthly file [S22 IMD grid]",
+ "difficulty": "normal",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_json_data",
+  "rainfall_extract",
+  "sqlite_load"
+ ],
+ "n_source_records": 84,
+ "records": [
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 40.5,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 4,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 5.9,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 1,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 18.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 2,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 202.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 16,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 47.6,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 8,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 224.6,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 14,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 328.3,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 19,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 249.6,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 12,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 153.8,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 10,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 110.7,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 8,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 10.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 1,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.5,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 0,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2021-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 5.2,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 1,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2021-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 0,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2021-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 47.4,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 1,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2021-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 43.3,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 4,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2021-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 112.3,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 14,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2021-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 110.9,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 12,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2021-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 140.1,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 13,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2021-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 235.1,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 13,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2021-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 84.3,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 8,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2021-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 55.3,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 4,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2021-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.1,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 0,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2021-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 60.7,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 3,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2018-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.7,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 0,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2018-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 7.3,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 2,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2018-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 52.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 4,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2018-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 112.1,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 8,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2018-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 192.7,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 9,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2018-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 323.3,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 14,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2018-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 228.7,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 15,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2018-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 193.9,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 12,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2018-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 24.3,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 2,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2018-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 49.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 7,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2018-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.3,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 0,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2018-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 12.9,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 2,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2020-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 44.1,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 3,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2020-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 10.8,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 2,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2020-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 19.2,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 2,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2020-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 92.6,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 9,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2020-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 135.3,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 12,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2020-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 184.5,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 15,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2020-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 167.8,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 17,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2020-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 183.8,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 18,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2020-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 182.9,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 14,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2020-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 119.3,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 11,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2020-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 79.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 2,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2020-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 0,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 6.6,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 1,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 18.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 3,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 202.2,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 8,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 204.2,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 15,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 154.7,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 14,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 279.3,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 15,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 372.8,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 20,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 143.7,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 14,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 307.2,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 18,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 229.4,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 9,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 3.8,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 1,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 95.6,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 4,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2021-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 2.9,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 1,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2021-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 0,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2021-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 34.9,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 3,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2021-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 29.7,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 3,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2021-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 87.5,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 12,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2021-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 111.2,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 14,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2021-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 150.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 17,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2021-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 234.5,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 21,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2021-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 76.8,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 13,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2021-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 84.8,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 6,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2021-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 0,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2021-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 15.9,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 3,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 0,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 48.9,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 4,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 41.9,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 5,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 45.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 7,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 377.7,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 15,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 130.6,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 9,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 275.6,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 20,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 353.6,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 26,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 116.6,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 12,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 187.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 15,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 42.6,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 5,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.1,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 0,
+     "unit": "days"
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,110 @@
+{
+  "run_id": "run_20261101204327_810f16",
+  "input": "S06_nhb_horticulture_at_a_glance_2018.pdf",
+  "status": "failed",
+  "source_type": "pdf",
+  "groups": [
+    {
+      "pattern": "pdf:p53.t1",
+      "domain": null,
+      "records": 38,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm_rejected_no_measurement_columns",
+      "mapped_headers": {
+        "S.": "s"
+      },
+      "unmapped_headers": [
+        "Growth ",
+        "States/UTs"
+      ]
+    }
+  ],
+  "result": {},
+  "notes": {
+    "error": "no recognised soil / rainfall / production records (unclassified: pdf:p53.t1)",
+    "agent_errors": [],
+    "unclassified_groups": [
+      "pdf:p53.t1"
+    ]
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "S06_nhb_horticulture_at_a_glance_2018.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 3824825,
+        "type": "pdf"
+      },
+      "ms": 28.3
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_data",
+      "args": {
+        "file_path": "S06_nhb_horticulture_at_a_glance_2018.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 38,
+        "groups": 1,
+        "notes": [
+          "pages=490",
+          "backend=auto",
+          "page range 53",
+          "tables by route: camelot_stream=1"
+        ]
+      },
+      "ms": 13369.7
+    },
+    {
+      "step": "classify",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "Growth ",
+          "States/UTs"
+        ]
+      },
+      "status": "rejected",
+      "detail": {
+        "Growth ": "year_month",
+        "States/UTs": "state"
+      },
+      "ms": 2139.9
+    },
+    {
+      "step": "classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": null,
+      "ms": 1026.9
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "pdf:p53.t1",
+            null,
+            38
+          ]
+        ],
+        "queue": []
+      },
+      "ms": 6716.2
+    }
+  ]
+}

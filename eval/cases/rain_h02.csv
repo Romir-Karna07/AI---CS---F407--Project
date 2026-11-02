@@ -1,0 +1,85 @@
+District,YearMonth,Rainfall (mm),Rainy Days (>=2.5 mm)
+Imphal West,2024-01,0.0,0
+Imphal West,2024-02,53.9,4
+Imphal West,2024-03,59.7,9
+Imphal West,2024-04,101.5,13
+Imphal West,2024-05,300.2,17
+Imphal West,2024-06,227.0,22
+Imphal West,2024-07,325.8,24
+Imphal West,2024-08,320.2,25
+Imphal West,2024-09,155.8,15
+Imphal West,2024-10,157.2,18
+Imphal West,2024-11,24.9,4
+Imphal West,2024-12,0.0,0
+Ukhrul,2015-01,29.0,3
+Ukhrul,2015-02,12.7,1
+Ukhrul,2015-03,22.2,3
+Ukhrul,2015-04,184.8,19
+Ukhrul,2015-05,129.6,17
+Ukhrul,2015-06,289.6,30
+Ukhrul,2015-07,355.7,25
+Ukhrul,2015-08,300.8,27
+Ukhrul,2015-09,173.4,16
+Ukhrul,2015-10,92.3,12
+Ukhrul,2015-11,16.4,2
+Ukhrul,2015-12,11.5,2
+Ukhrul,2020-01,32.5,4
+Ukhrul,2020-02,10.2,2
+Ukhrul,2020-03,19.2,3
+Ukhrul,2020-04,107.4,15
+Ukhrul,2020-05,195.8,19
+Ukhrul,2020-06,286.2,28
+Ukhrul,2020-07,257.1,27
+Ukhrul,2020-08,209.6,21
+Ukhrul,2020-09,177.3,23
+Ukhrul,2020-10,188.8,17
+Ukhrul,2020-11,44.3,1
+Ukhrul,2020-12,0.1,0
+Imphal West,2017-01,6.7,2
+Imphal West,2017-02,29.9,4
+Imphal West,2017-03,170.7,9
+Imphal West,2017-04,228.9,17
+Imphal West,2017-05,183.4,17
+Imphal West,2017-06,313.6,24
+Imphal West,2017-07,324.7,29
+Imphal West,2017-08,204.4,26
+Imphal West,2017-09,278.0,24
+Imphal West,2017-10,240.3,17
+Imphal West,2017-11,5.5,0
+Imphal West,2017-12,68.2,5
+Imphal West,2018-01,7.5,1
+Imphal West,2018-02,10.0,1
+Imphal West,2018-03,63.4,9
+Imphal West,2018-04,109.9,13
+Imphal West,2018-05,195.1,20
+Imphal West,2018-06,414.3,23
+Imphal West,2018-07,268.6,26
+Imphal West,2018-08,233.7,25
+Imphal West,2018-09,86.2,13
+Imphal West,2018-10,58.2,7
+Imphal West,2018-11,5.7,0
+Imphal West,2018-12,34.0,3
+Ukhrul,2018-01,8.8,2
+Ukhrul,2018-02,8.8,1
+Ukhrul,2018-03,59.4,10
+Ukhrul,2018-04,112.4,14
+Ukhrul,2018-05,225.7,22
+Ukhrul,2018-06,369.1,25
+Ukhrul,2018-07,396.6,25
+Ukhrul,2018-08,327.9,28
+Ukhrul,2018-09,109.8,18
+Ukhrul,2018-10,57.1,5
+Ukhrul,2018-11,7.6,0
+Ukhrul,2018-12,25.8,2
+Thoubal,2017-01,7.7,1
+Thoubal,2017-02,28.1,3
+Thoubal,2017-03,182.5,9
+Thoubal,2017-04,243.4,19
+Thoubal,2017-05,167.7,17
+Thoubal,2017-06,336.2,23
+Thoubal,2017-07,313.8,29
+Thoubal,2017-08,200.7,24
+Thoubal,2017-09,258.9,23
+Thoubal,2017-10,254.5,16
+Thoubal,2017-11,5.9,1
+Thoubal,2017-12,77.0,4

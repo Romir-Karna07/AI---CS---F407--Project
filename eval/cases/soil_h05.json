@@ -1,0 +1,84 @@
+{
+ "THOUBAL": [
+  {
+   "cycle": "2017-19",
+   "village": "Chanam Sandrok",
+   "nitrogen": 335.5,
+   "phosphorus": 23.23,
+   "potassium": 229.5,
+   "ph": 5.62,
+   "organic_carbon": 1.34,
+   "ec": 0.02,
+   "sulphur": 11.0,
+   "iron": 33.2,
+   "copper": 6.08,
+   "manganese": 34.6
+  },
+  {
+   "cycle": "2017-19",
+   "village": "Oinam",
+   "nitrogen": 345.0,
+   "phosphorus": 11.75,
+   "potassium": 186.0,
+   "ph": 4.3,
+   "organic_carbon": 1.55,
+   "ec": 0.06
+  },
+  {
+   "cycle": "2017-19",
+   "village": "Lemba Khul",
+   "nitrogen": 211.87,
+   "phosphorus": 8.98,
+   "potassium": 107.5,
+   "ph": 5.66,
+   "organic_carbon": 1.2,
+   "ec": 0.04
+  },
+  {
+   "cycle": "2017-19",
+   "village": "Nungei",
+   "nitrogen": 276.0,
+   "phosphorus": 12.0,
+   "potassium": 156.0,
+   "ph": 6.02,
+   "organic_carbon": 0.84,
+   "ec": 0.02
+  }
+ ],
+ "IMPHAL WEST": [
+  {
+   "cycle": "2017-19",
+   "village": "Matai",
+   "nitrogen": 348.5,
+   "phosphorus": 23.23,
+   "potassium": 115.76,
+   "ph": 5.01,
+   "organic_carbon": 1.82,
+   "ec": 0.06,
+   "sulphur": 9.5,
+   "zinc": 0.09,
+   "iron": 31.65,
+   "manganese": 37.95
+  },
+  {
+   "cycle": "2017-19",
+   "village": "Haorang Keirel",
+   "nitrogen": 226.25,
+   "phosphorus": 74.04,
+   "potassium": 210.55,
+   "ph": 5.03,
+   "organic_carbon": 1.28,
+   "ec": 0.03
+  },
+  {
+   "cycle": "2017-19",
+   "village": "Lamshang Part",
+   "nitrogen": 304.08,
+   "phosphorus": 11.72,
+   "potassium": 142.76,
+   "ph": 5.28,
+   "organic_carbon": 1.11,
+   "ec": 0.06
+  }
+ ]
+}

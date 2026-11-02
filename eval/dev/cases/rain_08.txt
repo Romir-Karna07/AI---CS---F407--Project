@@ -1,0 +1,10 @@
+{"dist": "kakching", "ym": "2016-09", "rainfall_mm": 167.2}
+{"dist": "Imphal-East", "ym": "2021-01", "rainfall_mm": 5.0}
+{"dist": "Imphal-East", "ym": "2023-12", "rainfall_mm": 40.1}
+{"dist": "Noney", "ym": "2019-04", "rainfall_mm": 54.7}
+{"dist": "TENGNOUPAL", "ym": "2017-02", "rainfall_mm": 19.9}
+{"dist": "TENGNOUPAL", "ym": "2016-10", "rainfall_mm": 122.8}
+{"dist": "kakching", "ym": "2025-01", "rainfall_mm": 0.5}
+{"dist": "Imphal-East", "ym": "2016-01", "rainfall_mm": 8.7}
+{"dist": "Imphal-East", "ym": "2015-12", "rainfall_mm": 0.5}
+{"dist": "Jiribam", "ym": "2019-10", "rainfall_mm": 148.3}

@@ -4,3 +4,5 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 .env
+# real third-party PDFs used for the tool tests: not redistributed; URLs + SHA-256 are in Data/manifest.csv
+Data/pdf_samples/

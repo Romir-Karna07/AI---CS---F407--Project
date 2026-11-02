@@ -15,143 +15,18 @@
   "rainfall_extract",
   "sqlite_load"
  ],
+ "n_source_records": 0,
  "records": [
   {
    "key": {
-    "location": "KAMJONG",
-    "period": "2025-04",
+    "location": "IMPHAL WEST",
+    "period": "2024-01",
     "crop": "UNSPECIFIED",
     "entity": ""
    },
    "fields": {
     "rainfall_mm": {
-     "value": 81.4,
-     "unit": "mm"
-    },
-    "rainy_days_ge_2_5mm": {
-     "value": 7,
-     "unit": "days"
-    }
-   }
-  },
-  {
-   "key": {
-    "location": "SENAPATI",
-    "period": "2016-11",
-    "crop": "UNSPECIFIED",
-    "entity": ""
-   },
-   "fields": {
-    "rainfall_mm": {
-     "value": 81.4,
-     "unit": "mm"
-    },
-    "rainy_days_ge_2_5mm": {
-     "value": 4,
-     "unit": "days"
-    }
-   }
-  },
-  {
-   "key": {
-    "location": "KAMJONG",
-    "period": "2017-05",
-    "crop": "UNSPECIFIED",
-    "entity": ""
-   },
-   "fields": {
-    "rainfall_mm": {
-     "value": 162.7,
-     "unit": "mm"
-    },
-    "rainy_days_ge_2_5mm": {
-     "value": 14,
-     "unit": "days"
-    }
-   }
-  },
-  {
-   "key": {
-    "location": "SENAPATI",
-    "period": "2023-09",
-    "crop": "UNSPECIFIED",
-    "entity": ""
-   },
-   "fields": {
-    "rainfall_mm": {
-     "value": 138.3,
-     "unit": "mm"
-    },
-    "rainy_days_ge_2_5mm": {
-     "value": 15,
-     "unit": "days"
-    }
-   }
-  },
-  {
-   "key": {
-    "location": "SENAPATI",
-    "period": "2018-02",
-    "crop": "UNSPECIFIED",
-    "entity": ""
-   },
-   "fields": {
-    "rainfall_mm": {
-     "value": 3.6,
-     "unit": "mm"
-    },
-    "rainy_days_ge_2_5mm": {
-     "value": 1,
-     "unit": "days"
-    }
-   }
-  },
-  {
-   "key": {
-    "location": "BISHNUPUR",
-    "period": "2015-03",
-    "crop": "UNSPECIFIED",
-    "entity": ""
-   },
-   "fields": {
-    "rainfall_mm": {
-     "value": 17.7,
-     "unit": "mm"
-    },
-    "rainy_days_ge_2_5mm": {
-     "value": 2,
-     "unit": "days"
-    }
-   }
-  },
-  {
-   "key": {
-    "location": "BISHNUPUR",
-    "period": "2019-04",
-    "crop": "UNSPECIFIED",
-    "entity": ""
-   },
-   "fields": {
-    "rainfall_mm": {
-     "value": 51.8,
-     "unit": "mm"
-    },
-    "rainy_days_ge_2_5mm": {
-     "value": 6,
-     "unit": "days"
-    }
-   }
-  },
-  {
-   "key": {
-    "location": "SENAPATI",
-    "period": "2025-01",
-    "crop": "UNSPECIFIED",
-    "entity": ""
-   },
-   "fields": {
-    "rainfall_mm": {
-     "value": 1.6,
+     "value": 0.0,
      "unit": "mm"
     },
     "rainy_days_ge_2_5mm": {
@@ -162,14 +37,50 @@
   },
   {
    "key": {
-    "location": "BISHNUPUR",
-    "period": "2022-07",
+    "location": "IMPHAL WEST",
+    "period": "2024-02",
     "crop": "UNSPECIFIED",
     "entity": ""
    },
    "fields": {
     "rainfall_mm": {
-     "value": 159.9,
+     "value": 53.9,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 4,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 59.7,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 9,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 101.5,
      "unit": "mm"
     },
     "rainy_days_ge_2_5mm": {
@@ -180,32 +91,86 @@
   },
   {
    "key": {
-    "location": "BISHNUPUR",
-    "period": "2016-11",
+    "location": "IMPHAL WEST",
+    "period": "2024-05",
     "crop": "UNSPECIFIED",
     "entity": ""
    },
    "fields": {
     "rainfall_mm": {
-     "value": 58.8,
+     "value": 300.2,
      "unit": "mm"
     },
     "rainy_days_ge_2_5mm": {
-     "value": 5,
+     "value": 17,
      "unit": "days"
     }
    }
   },
   {
    "key": {
-    "location": "KAMJONG",
+    "location": "IMPHAL WEST",
     "period": "2024-06",
     "crop": "UNSPECIFIED",
     "entity": ""
    },
    "fields": {
     "rainfall_mm": {
-     "value": 163.4,
+     "value": 227.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 22,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 325.8,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 24,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 320.2,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 25,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 155.8,
      "unit": "mm"
     },
     "rainy_days_ge_2_5mm": {
@@ -216,18 +181,54 @@
   },
   {
    "key": {
-    "location": "KAMJONG",
-    "period": "2025-02",
+    "location": "IMPHAL WEST",
+    "period": "2024-10",
     "crop": "UNSPECIFIED",
     "entity": ""
    },
    "fields": {
     "rainfall_mm": {
-     "value": 5.2,
+     "value": 157.2,
      "unit": "mm"
     },
     "rainy_days_ge_2_5mm": {
-     "value": 1,
+     "value": 18,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 24.9,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 4,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2024-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.0,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 0,
      "unit": "days"
     }
    }

@@ -1,0 +1,106 @@
+{
+ "rule": "split by district",
+ "held_out_districts": [
+  "IMPHAL WEST",
+  "THOUBAL",
+  "UKHRUL"
+ ],
+ "files": {
+  "Data/partitions/prod_P1.csv": {
+   "role": "dev",
+   "sha256": "24cb4aea5926ff48eded3b7cd9e67e7b40cfba5a546004e27c5d0a675447e661",
+   "bytes": 16387
+  },
+  "Data/partitions/prod_P2.csv": {
+   "role": "dev",
+   "sha256": "1ed490630e43f71a0f25aee00214fa9760a2a83bbdfa4a98bab2509b9a288576",
+   "bytes": 16213
+  },
+  "Data/partitions/rain_P1_imd.json": {
+   "role": "dev",
+   "sha256": "55df299bb3b692f0efc440467b25d2c848c941ed68d5fbb71fab545d7c4465f7",
+   "bytes": 323565
+  },
+  "Data/partitions/rain_P2_nasa.json": {
+   "role": "dev",
+   "sha256": "412bc6d188e27aa96c42e220b176d47408fa4e6def86370a18527686d1d81de4",
+   "bytes": 324648
+  },
+  "Data/partitions/soil_P1.json": {
+   "role": "dev",
+   "sha256": "835b0a0a6876d24eddf90daea1bc85359f56f99f74a9c0f4c218f2a9f0043250",
+   "bytes": 146103
+  },
+  "Data/partitions/soil_P2.json": {
+   "role": "dev",
+   "sha256": "c9e65a73811bfb3bad406d715471aac60498f01907d91064c7a242dbc8931973",
+   "bytes": 61471
+  },
+  "eval/heldout_source/prod_P3.csv": {
+   "role": "held_out",
+   "sha256": "d4bb883009225c37232251ce6b676c7f63246a78364f98e108b9ea9243c7191a",
+   "bytes": 15796
+  },
+  "eval/heldout_source/rain_P3_imd.json": {
+   "role": "held_out",
+   "sha256": "a3c238a95730e580b6d33883e8557013b8c32e9166fde54531ade84276e414ab",
+   "bytes": 75010
+  },
+  "eval/heldout_source/rain_P3_nasa.json": {
+   "role": "held_out",
+   "sha256": "23b866e0f5973ba84a76e752dd7ff827ab42ac20575dc28ba05ea67caf758f27",
+   "bytes": 75340
+  },
+  "eval/heldout_source/soil_P3.json": {
+   "role": "held_out",
+   "sha256": "522589b59da0e902ada6269ca72c4670794e32a2e9babefe5280236b97c36962",
+   "bytes": 51515
+  }
+ },
+ "eval_cases": {
+  "ops_01.csv": "75a11da44c802486bc6f65640aa48a730f0f684c5c07a42ba3cd1735eb3fb070",
+  "ops_02.json": "9e078c7800b6dbf54fd8d412357052a37bb1c2c1ab0845a5018f37c601d6fc64",
+  "ops_03.csv": "acbec660036e7c7cbbcf63eefe288844fba756fe7da83541ff596ef20e605ced",
+  "ops_04.csv": "637f3e52aa3a182d933054609d88c8bedb6d9aac71f7c4502ba8336433514dd4",
+  "pdf_01.pdf": "b2236714d46627b6141608f985e97a1fefeecb60886442955161bef51a5b6361",
+  "pdf_02.pdf": "0e12eac4ef324fe6264198999f805c04ffdcd438560c7ebe9da51fefecd4044b",
+  "pdf_03.pdf": "16b45459a93dc9de2ff9209e83d00a218835864a674a513a2c55342a008f36c6",
+  "pdf_04.pdf": "20fdd8ce43431975bf400f576217c4707318e9d4d4cfb7a77949021ce1f46df3",
+  "pdf_05.pdf": "86fd0ebf3de87cb0ed7ebff2c30ad223f6fee500ed5d7f17777efdb5a3840996",
+  "pdf_06.pdf": "fb77c6f0fc57709050fd0eef0427ccb79f694f2bc3b117ed83c5970ead19bee9",
+  "pdf_07.pdf": "bfac8f2e337c929710874302b32afe59417b4de8afaf37bb5bc5d07ae674554b",
+  "pdf_08.pdf": "29a32991003944f60abee1a1214ef9a116d931844d3481f2304d59ccfcdf01f2",
+  "pdf_09.pdf": "c880f36c031cea9683191b81ad2f3dca7a5a6ae0744309e0e4e5b38b5d6a901c",
+  "pdf_10.pdf": "a10b9996dae9ef22a430452914ca87ef69cf5fab0773c1d0a58f44a5205d5259",
+  "prod_h01.csv": "afe9d8e2a9ccbd9ce6194c9bba85a51f1d26397323012435e1a199979b30c56f",
+  "prod_h02.csv": "4ec04ca72987237f74fad8b4772b21f1fd21d62a9813d79f0630ac262de789e5",
+  "prod_h03.csv": "2b9e0f2a5ae4c75f3f72b128b6c847136af5ffccb57bd908923a496741f64700",
+  "prod_h04.json": "689927288dfbdda787bd453a8cf0fa7d35d989bd1d54152fc4a08c07e6e2229c",
+  "prod_h05.csv": "1b72d2af0e52cae2a5af4ee58f0370861dbbcf1afee4dd5d90ff2b2e32f7aafd",
+  "prod_h06.csv": "90d7d27da80645f85020f183cfd8158290a3809240e3fa56ada88450088cf738",
+  "prod_h07.csv": "b77744f366e7266d9b5a2977871ac00c3c1c096e012e492f88d994eda6792003",
+  "prod_h08.csv": "6afce74cf98a01a62009a0a7e312f7da16f3bf46e476eb6974bd3a86a797b7a0",
+  "prod_h09.csv": "0c7cf7f2a4b6b07794c8119489bedaf73ece8878d90c0aac640adfe42bc422d0",
+  "prod_h10.csv": "a6f10fb81a6f23156761d65772e5692bf0272c0fb166155574f17266d6d2f39c",
+  "rain_h01.json": "dfe29150514884b8987c8f90a1a928fd951510289fd48f85773c88683a31f6fb",
+  "rain_h02.csv": "017005a639ee848a4aa1b830568eba871064c95526545f6f139764503801db05",
+  "rain_h03.csv": "785dbc515dfb30b8bcad6222d24852d8f0ea7e649fa6481eb95ec4e64d4f4882",
+  "rain_h04.csv": "d43fa2f61ad7dd6438d3720f6559e0c9f23b9cf12ca2c71ebf0ca5ac9c99c32d",
+  "rain_h05.csv": "89d17256673b882c5b95c5ef410df15e4533f16d5f74251485e9ec15afa28984",
+  "rain_h06.csv": "bc93bf976721c8becb7e2d8893cd312f18b6b1697cb1833f843954767e6955ee",
+  "rain_h07.json": "b5b0c648758df4c5e7379484e1a0e6797bca3c19773d8f3827f8891170464c8f",
+  "rain_h08.txt": "4d3f25d3e70ffc9e793698452b266d9599af75371d5f97bd59a90e76a3342228",
+  "rain_h09.csv": "370cb7ee88ae333d55a27de9a03a3fcfacf65f673a8b57b4a1124afe0799e09f",
+  "rain_h10.csv": "c16a3e300f511775f296ed8a31d487222cc5de721658ccfdfe84f9f34174b2d8",
+  "soil_h01.json": "cfb73edf6edfdc6f7d537c0a8d1d775af3b0540acde2a5be73b7c9ef55f89559",
+  "soil_h02.json": "4e628a7c1e4e53741aa9bf597c25dba9ac23814df26e3628e6d7470d7282c771",
+  "soil_h03.csv": "637f3e52aa3a182d933054609d88c8bedb6d9aac71f7c4502ba8336433514dd4",
+  "soil_h04.csv": "14dee53f63ebe39f8e2340b4a16a8509a75a1e13724bbdc623ff745d0fd7d56a",
+  "soil_h05.json": "9228f186a3b21ea605b28ebe91a65a7e1e9e6e25937824e64ed0c8a2b738f745",
+  "soil_h06.txt": "68bb499cd3096f058e53456cb4dfc79f1f6d1de2d94498458785aff1f6191353",
+  "soil_h07.csv": "6a26bdfcdaf3d8a06fc1944017c785779b1a2267ce2c800bc162aee60f2eafa4",
+  "soil_h08.json": "d20cbaa323e26dd9702e4d88eb3aec3895e7d90fd51ee5c907e144e4d710d75e",
+  "soil_h09.csv": "65740f55f52a9dbfaf6eb38b9ae338c6acb8e270c20c5ef76f701eefa25aa118",
+  "soil_h10.txt": "38f03072ff856cd8881d0618c9361efedb4e79ae1fce2401daae21ce20b84a1e"
+ }
+}

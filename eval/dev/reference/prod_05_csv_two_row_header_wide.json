@@ -1,0 +1,239 @@
+{
+ "case_id": "prod_05_csv_two_row_header_wide",
+ "agent": "production",
+ "source_group": "csv",
+ "file": "dev/cases/prod_05.csv",
+ "description": "Years row + Area/Production/Yield row, crop and district in label columns",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "production_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2002-03",
+    "crop": "Onion",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 80.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 170.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 2.13,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2006-07",
+    "crop": "Onion",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 60.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 130.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 2.17,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2002-03",
+    "crop": "Onion",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 10.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 20.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 2.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2002-03",
+    "crop": "Onion",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 20.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 40.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 2.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2002-03",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 15.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 190.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.67,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2002-03",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 30.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 396.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 13.2,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2000-01",
+    "crop": "Onion",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 60.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 130.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 2.17,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2003-04",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 241.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2940.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.2,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2003-04",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 271.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3306.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.2,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2002-03",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 213.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2641.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.4,
+     "unit": "t/ha"
+    }
+   }
+  }
+ ]
+}

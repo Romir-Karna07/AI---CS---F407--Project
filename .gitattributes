@@ -1,0 +1,14 @@
+# keep evaluation material byte-for-byte identical on every machine: the frozen SHA-256 hashes in eval/heldout/split_manifest.json
+# must still match after a clone, and the PDFs and the database are binary
+*.pdf binary
+*.db binary
+*.grd binary
+*.xlsx binary
+eval/cases/* -text
+eval/reference/* -text
+eval/dev/cases/* -text
+eval/dev/reference/* -text
+eval/heldout_source/* -text
+Data/partitions/* -text
+Data/CSV_Agent.csv -text
+manipur_*.json -text

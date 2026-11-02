@@ -1,0 +1,681 @@
+{
+ "case_id": "pdf_02_production_unruled_caption_context",
+ "agent": "production",
+ "owner_agent": "document_agent",
+ "source_group": "pdf",
+ "file": "dev/cases/pdf_02.pdf",
+ "description": "No ruling lines; district and year only in the caption above each table",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_pdf_data",
+  "production_extract",
+  "sqlite_load"
+ ],
+ "has_text_layer": true,
+ "records": [
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2002-03",
+    "crop": "Jackfruit",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 40.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 160.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 4.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2002-03",
+    "crop": "Radish",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 20.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 0.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 0.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2002-03",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 30.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 396.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 13.2,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2002-03",
+    "crop": "Pineapple",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1810.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 13000.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.18,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2002-03",
+    "crop": "Sweet Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 5.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 25.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2002-03",
+    "crop": "Mango",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 70.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 261.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 3.73,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2002-03",
+    "crop": "Papaya",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 250.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 826.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 3.3,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2002-03",
+    "crop": "Cassava",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 30.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 300.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 10.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2002-03",
+    "crop": "Okra",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 40.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 0.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 0.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2002-03",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 4830.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2900.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 0.6,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2002-03",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 15.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 190.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 12.67,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2002-03",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 90.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 40.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 0.44,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2002-03",
+    "crop": "Other Fresh Fruits",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1060.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1445.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 1.36,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2002-03",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 120.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3920.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 32.67,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2002-03",
+    "crop": "Radish",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 20.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 196.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 9.8,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2002-03",
+    "crop": "Cashew Nut",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 105.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 75.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 0.71,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2002-03",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 40.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 210.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.25,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2002-03",
+    "crop": "Mango",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 50.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 291.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.82,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2002-03",
+    "crop": "Cassava",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 100.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 575.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.75,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2002-03",
+    "crop": "Papaya",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 315.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1750.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.56,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2002-03",
+    "crop": "Other Fresh Fruits",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 296.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2072.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2002-03",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 54.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 378.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2002-03",
+    "crop": "Mango",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 12.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 84.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2002-03",
+    "crop": "Tomato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 83.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 664.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2002-03",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 750.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 450.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 0.6,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2002-03",
+    "crop": "Radish",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 20.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 200.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 10.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2002-03",
+    "crop": "Pineapple",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 675.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 4725.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2002-03",
+    "crop": "Bitter Gourd",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 5.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 40.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2002-03",
+    "crop": "Citrus Fruit",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 58.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 406.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2002-03",
+    "crop": "Papaya",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 230.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1610.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.0,
+     "unit": "t/ha"
+    }
+   }
+  }
+ ]
+}

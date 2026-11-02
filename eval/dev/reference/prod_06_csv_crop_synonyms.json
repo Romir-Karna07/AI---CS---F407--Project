@@ -1,0 +1,283 @@
+{
+ "case_id": "prod_06_csv_crop_synonyms",
+ "agent": "production",
+ "source_group": "csv",
+ "file": "dev/cases/prod_06.csv",
+ "description": "Crop names that need standardising (Redish->Radish, Tapioca->Cassava, ...)",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "production_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2003-04",
+    "crop": "Radish",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 32.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 285.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.91,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2003-04",
+    "crop": "Radish",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 25.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 223.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 8.92,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2003-04",
+    "crop": "Cassava",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 12.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 67.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 5.58,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2002-03",
+    "crop": "Cassava",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 30.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 300.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 10.0,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2003-04",
+    "crop": "Jackfruit",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 53.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 243.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 4.58,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2003-04",
+    "crop": "Jackfruit",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 5.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 23.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 4.6,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2002-03",
+    "crop": "Okra",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 40.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 145.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 3.63,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL EAST",
+    "period": "2002-03",
+    "crop": "Okra",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 97.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 340.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 3.51,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2009-10",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 780.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 6162.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 7.9,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2003-04",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 560.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 340.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 0.61,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2014-15",
+    "crop": "Cashew Nut",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 10.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 6.4,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 0.64,
+     "unit": "t/ha"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2003-04",
+    "crop": "Cashew Nut",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 125.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 50.0,
+     "unit": "t"
+    },
+    "yield_t_ha": {
+     "value": 0.4,
+     "unit": "t/ha"
+    }
+   }
+  }
+ ]
+}

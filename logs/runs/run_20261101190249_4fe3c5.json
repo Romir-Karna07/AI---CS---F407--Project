@@ -1,0 +1,138 @@
+{
+  "run_id": "run_20261101190249_4fe3c5",
+  "input": "rain_P2_nasa.json",
+  "status": "complete",
+  "source_type": "json",
+  "groups": [
+    {
+      "pattern": "$.districts[].monthly[]",
+      "domain": "rainfall",
+      "records": 1716,
+      "scores": {
+        "soil": 0,
+        "rainfall": 2,
+        "production": 0
+      },
+      "method": "rules",
+      "mapped_headers": {
+        "unit": "unit",
+        "district": "district",
+        "latitude": "latitude",
+        "longitude": "longitude",
+        "month": "year_month",
+        "rainfall_mm": "rainfall_mm",
+        "rainy_days_ge_2.5mm": "rainy_days",
+        "days_with_data": "days_with_data",
+        "days_in_month": "days_in_month"
+      },
+      "unmapped_headers": [
+        "source",
+        "method",
+        "caveat",
+        "partition"
+      ]
+    }
+  ],
+  "result": {
+    "by_agent": {
+      "rainfall_agent": {
+        "table": "rainfall_monthly",
+        "extracted": 1716,
+        "inserted": 1716,
+        "duplicates": 0,
+        "invalid": 0,
+        "rejected": 0
+      }
+    },
+    "rejected": [],
+    "totals": {
+      "extracted": 1716,
+      "inserted": 1716,
+      "duplicate": 0,
+      "invalid": 0,
+      "rejected": 0
+    }
+  },
+  "notes": {
+    "error": null,
+    "agent_errors": [],
+    "unclassified_groups": []
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "rain_P2_nasa.json"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 324648,
+        "type": "json"
+      },
+      "ms": 1.8
+    },
+    {
+      "step": "read",
+      "tool": "read_json_data",
+      "args": {
+        "file_path": "rain_P2_nasa.json"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 1716,
+        "groups": 1,
+        "notes": []
+      },
+      "ms": 20.6
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "$.districts[].monthly[]",
+            "rainfall",
+            1716
+          ]
+        ],
+        "queue": [
+          "rainfall"
+        ]
+      },
+      "ms": 2163.0
+    },
+    {
+      "step": "rainfall_agent",
+      "tool": "rainfall_extract",
+      "args": {
+        "records_in": 1716
+      },
+      "status": "ok",
+      "detail": {
+        "rows_out": 1716
+      },
+      "ms": 384.7
+    },
+    {
+      "step": "load",
+      "tool": "sqlite_load",
+      "args": {
+        "db": "manipur.db"
+      },
+      "status": "ok",
+      "detail": {
+        "extracted": 1716,
+        "inserted": 1716,
+        "duplicate": 0,
+        "invalid": 0,
+        "rejected": 0
+      },
+      "ms": 91.7
+    }
+  ]
+}

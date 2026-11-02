@@ -1,0 +1,7 @@
+{"district": "THOUBAL", "cycle": "2017-19", "village": "Heirok Part I Pt", "N": 177.81, "P": 24.115, "K": 230.67, "OC": 1.005, "pH": 5.39, "EC": 0.2}
+{"district": "THOUBAL", "cycle": "2017-19", "village": "Haoreibi", "N": 259.25, "P": 29.0, "K": 288.0, "OC": 1.25, "pH": 6.01, "EC": 0.04, "S": 26.0, "ZN": 1.94, "FE": 31.0, "CU": 0.46, "MN": 16.6, "B": 1.01}
+{"district": "IMPHAL WEST", "cycle": "2017-19", "village": "Nilakuthi", "N": 244.95, "P": 44.68, "K": 216.6, "OC": 0.59, "pH": 6.255, "EC": 0.015, "S": 8.0, "ZN": 0.37, "FE": 26.95, "CU": 0.56, "MN": 26.05}
+{"district": "THOUBAL", "cycle": "2017-19", "village": "Lilong Pt", "N": 168.0, "P": 14.675, "K": 171.0, "OC": 0.99, "pH": 6.035, "EC": 0.045}
+{"district": "UKHRUL", "cycle": "2017-19", "village": "Shangshak Khullen", "N": 395.1, "P": 62.56, "K": 310.6, "OC": 1.29, "pH": 5.47, "EC": 0.01, "FE": 29.5, "CU": 1.27, "MN": 15.3, "B": 2.11}
+{"district": "IMPHAL WEST", "cycle": "2017-19", "village": "Kiyamgei CT", "N": 200.7, "P": 34.85, "K": 111.4, "OC": 0.44, "pH": 6.05, "EC": 0.01, "S": 13.0, "ZN": 1.85, "FE": 31.4, "MN": 27.8, "B": 1.93}
+{"district": "THOUBAL", "cycle": "2017-19", "village": "Pechi", "N": 402.2, "P": 37.984, "K": 299.51, "OC": 1.33, "pH": 5.64, "EC": 0.655, "S": 16.5, "FE": 32.0, "CU": 3.225, "MN": 40.4, "B": 1.285}

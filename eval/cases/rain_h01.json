@@ -1,0 +1,609 @@
+{
+ "source": "slice",
+ "unit": "mm",
+ "districts": [
+  {
+   "district": "IMPHAL WEST",
+   "monthly": [
+    {
+     "month": "2015-01",
+     "rainfall_mm": 40.5,
+     "rainy_days_ge_2.5mm": 4,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2015-02",
+     "rainfall_mm": 5.9,
+     "rainy_days_ge_2.5mm": 1,
+     "days_with_data": 28,
+     "days_in_month": 28
+    },
+    {
+     "month": "2015-03",
+     "rainfall_mm": 18.0,
+     "rainy_days_ge_2.5mm": 2,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2015-04",
+     "rainfall_mm": 202.0,
+     "rainy_days_ge_2.5mm": 16,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2015-05",
+     "rainfall_mm": 47.6,
+     "rainy_days_ge_2.5mm": 8,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2015-06",
+     "rainfall_mm": 224.6,
+     "rainy_days_ge_2.5mm": 14,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2015-07",
+     "rainfall_mm": 328.3,
+     "rainy_days_ge_2.5mm": 19,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2015-08",
+     "rainfall_mm": 249.6,
+     "rainy_days_ge_2.5mm": 12,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2015-09",
+     "rainfall_mm": 153.8,
+     "rainy_days_ge_2.5mm": 10,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2015-10",
+     "rainfall_mm": 110.7,
+     "rainy_days_ge_2.5mm": 8,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2015-11",
+     "rainfall_mm": 10.0,
+     "rainy_days_ge_2.5mm": 1,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2015-12",
+     "rainfall_mm": 0.5,
+     "rainy_days_ge_2.5mm": 0,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2021-01",
+     "rainfall_mm": 5.2,
+     "rainy_days_ge_2.5mm": 1,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2021-02",
+     "rainfall_mm": 0.0,
+     "rainy_days_ge_2.5mm": 0,
+     "days_with_data": 28,
+     "days_in_month": 28
+    },
+    {
+     "month": "2021-03",
+     "rainfall_mm": 47.4,
+     "rainy_days_ge_2.5mm": 1,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2021-04",
+     "rainfall_mm": 43.3,
+     "rainy_days_ge_2.5mm": 4,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2021-05",
+     "rainfall_mm": 112.3,
+     "rainy_days_ge_2.5mm": 14,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2021-06",
+     "rainfall_mm": 110.9,
+     "rainy_days_ge_2.5mm": 12,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2021-07",
+     "rainfall_mm": 140.1,
+     "rainy_days_ge_2.5mm": 13,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2021-08",
+     "rainfall_mm": 235.1,
+     "rainy_days_ge_2.5mm": 13,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2021-09",
+     "rainfall_mm": 84.3,
+     "rainy_days_ge_2.5mm": 8,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2021-10",
+     "rainfall_mm": 55.3,
+     "rainy_days_ge_2.5mm": 4,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2021-11",
+     "rainfall_mm": 0.1,
+     "rainy_days_ge_2.5mm": 0,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2021-12",
+     "rainfall_mm": 60.7,
+     "rainy_days_ge_2.5mm": 3,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2020-01",
+     "rainfall_mm": 44.1,
+     "rainy_days_ge_2.5mm": 3,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2020-02",
+     "rainfall_mm": 10.8,
+     "rainy_days_ge_2.5mm": 2,
+     "days_with_data": 29,
+     "days_in_month": 29
+    },
+    {
+     "month": "2020-03",
+     "rainfall_mm": 19.2,
+     "rainy_days_ge_2.5mm": 2,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2020-04",
+     "rainfall_mm": 92.6,
+     "rainy_days_ge_2.5mm": 9,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2020-05",
+     "rainfall_mm": 135.3,
+     "rainy_days_ge_2.5mm": 12,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2020-06",
+     "rainfall_mm": 184.5,
+     "rainy_days_ge_2.5mm": 15,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2020-07",
+     "rainfall_mm": 167.8,
+     "rainy_days_ge_2.5mm": 17,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2020-08",
+     "rainfall_mm": 183.8,
+     "rainy_days_ge_2.5mm": 18,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2020-09",
+     "rainfall_mm": 182.9,
+     "rainy_days_ge_2.5mm": 14,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2020-10",
+     "rainfall_mm": 119.3,
+     "rainy_days_ge_2.5mm": 11,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2020-11",
+     "rainfall_mm": 79.0,
+     "rainy_days_ge_2.5mm": 2,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2020-12",
+     "rainfall_mm": 0.0,
+     "rainy_days_ge_2.5mm": 0,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2017-01",
+     "rainfall_mm": 6.6,
+     "rainy_days_ge_2.5mm": 1,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2017-02",
+     "rainfall_mm": 18.0,
+     "rainy_days_ge_2.5mm": 3,
+     "days_with_data": 28,
+     "days_in_month": 28
+    },
+    {
+     "month": "2017-03",
+     "rainfall_mm": 202.2,
+     "rainy_days_ge_2.5mm": 8,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2017-04",
+     "rainfall_mm": 204.2,
+     "rainy_days_ge_2.5mm": 15,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2017-05",
+     "rainfall_mm": 154.7,
+     "rainy_days_ge_2.5mm": 14,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2017-06",
+     "rainfall_mm": 279.3,
+     "rainy_days_ge_2.5mm": 15,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2017-07",
+     "rainfall_mm": 372.8,
+     "rainy_days_ge_2.5mm": 20,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2017-08",
+     "rainfall_mm": 143.7,
+     "rainy_days_ge_2.5mm": 14,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2017-09",
+     "rainfall_mm": 307.2,
+     "rainy_days_ge_2.5mm": 18,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2017-10",
+     "rainfall_mm": 229.4,
+     "rainy_days_ge_2.5mm": 9,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2017-11",
+     "rainfall_mm": 3.8,
+     "rainy_days_ge_2.5mm": 1,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2017-12",
+     "rainfall_mm": 95.6,
+     "rainy_days_ge_2.5mm": 4,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2024-01",
+     "rainfall_mm": 0.0,
+     "rainy_days_ge_2.5mm": 0,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2024-02",
+     "rainfall_mm": 48.9,
+     "rainy_days_ge_2.5mm": 4,
+     "days_with_data": 29,
+     "days_in_month": 29
+    },
+    {
+     "month": "2024-03",
+     "rainfall_mm": 41.9,
+     "rainy_days_ge_2.5mm": 5,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2024-04",
+     "rainfall_mm": 45.0,
+     "rainy_days_ge_2.5mm": 7,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2024-05",
+     "rainfall_mm": 377.7,
+     "rainy_days_ge_2.5mm": 15,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2024-06",
+     "rainfall_mm": 130.6,
+     "rainy_days_ge_2.5mm": 9,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2024-07",
+     "rainfall_mm": 275.6,
+     "rainy_days_ge_2.5mm": 20,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2024-08",
+     "rainfall_mm": 353.6,
+     "rainy_days_ge_2.5mm": 26,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2024-09",
+     "rainfall_mm": 116.6,
+     "rainy_days_ge_2.5mm": 12,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2024-10",
+     "rainfall_mm": 187.0,
+     "rainy_days_ge_2.5mm": 15,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2024-11",
+     "rainfall_mm": 42.6,
+     "rainy_days_ge_2.5mm": 5,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2024-12",
+     "rainfall_mm": 0.1,
+     "rainy_days_ge_2.5mm": 0,
+     "days_with_data": 31,
+     "days_in_month": 31
+    }
+   ]
+  },
+  {
+   "district": "THOUBAL",
+   "monthly": [
+    {
+     "month": "2018-01",
+     "rainfall_mm": 0.7,
+     "rainy_days_ge_2.5mm": 0,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2018-02",
+     "rainfall_mm": 7.3,
+     "rainy_days_ge_2.5mm": 2,
+     "days_with_data": 28,
+     "days_in_month": 28
+    },
+    {
+     "month": "2018-03",
+     "rainfall_mm": 52.0,
+     "rainy_days_ge_2.5mm": 4,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2018-04",
+     "rainfall_mm": 112.1,
+     "rainy_days_ge_2.5mm": 8,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2018-05",
+     "rainfall_mm": 192.7,
+     "rainy_days_ge_2.5mm": 9,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2018-06",
+     "rainfall_mm": 323.3,
+     "rainy_days_ge_2.5mm": 14,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2018-07",
+     "rainfall_mm": 228.7,
+     "rainy_days_ge_2.5mm": 15,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2018-08",
+     "rainfall_mm": 193.9,
+     "rainy_days_ge_2.5mm": 12,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2018-09",
+     "rainfall_mm": 24.3,
+     "rainy_days_ge_2.5mm": 2,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2018-10",
+     "rainfall_mm": 49.0,
+     "rainy_days_ge_2.5mm": 7,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2018-11",
+     "rainfall_mm": 0.3,
+     "rainy_days_ge_2.5mm": 0,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2018-12",
+     "rainfall_mm": 12.9,
+     "rainy_days_ge_2.5mm": 2,
+     "days_with_data": 31,
+     "days_in_month": 31
+    }
+   ]
+  },
+  {
+   "district": "UKHRUL",
+   "monthly": [
+    {
+     "month": "2021-01",
+     "rainfall_mm": 2.9,
+     "rainy_days_ge_2.5mm": 1,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2021-02",
+     "rainfall_mm": 0.0,
+     "rainy_days_ge_2.5mm": 0,
+     "days_with_data": 28,
+     "days_in_month": 28
+    },
+    {
+     "month": "2021-03",
+     "rainfall_mm": 34.9,
+     "rainy_days_ge_2.5mm": 3,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2021-04",
+     "rainfall_mm": 29.7,
+     "rainy_days_ge_2.5mm": 3,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2021-05",
+     "rainfall_mm": 87.5,
+     "rainy_days_ge_2.5mm": 12,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2021-06",
+     "rainfall_mm": 111.2,
+     "rainy_days_ge_2.5mm": 14,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2021-07",
+     "rainfall_mm": 150.0,
+     "rainy_days_ge_2.5mm": 17,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2021-08",
+     "rainfall_mm": 234.5,
+     "rainy_days_ge_2.5mm": 21,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2021-09",
+     "rainfall_mm": 76.8,
+     "rainy_days_ge_2.5mm": 13,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2021-10",
+     "rainfall_mm": 84.8,
+     "rainy_days_ge_2.5mm": 6,
+     "days_with_data": 31,
+     "days_in_month": 31
+    },
+    {
+     "month": "2021-11",
+     "rainfall_mm": 0.0,
+     "rainy_days_ge_2.5mm": 0,
+     "days_with_data": 30,
+     "days_in_month": 30
+    },
+    {
+     "month": "2021-12",
+     "rainfall_mm": 15.9,
+     "rainy_days_ge_2.5mm": 3,
+     "days_with_data": 31,
+     "days_in_month": 31
+    }
+   ]
+  }
+ ]
+}

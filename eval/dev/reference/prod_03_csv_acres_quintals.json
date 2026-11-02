@@ -1,0 +1,199 @@
+{
+ "case_id": "prod_03_csv_acres_quintals",
+ "agent": "production",
+ "source_group": "csv",
+ "file": "dev/cases/prod_03.csv",
+ "description": "Acres + quintals -> expected ha + tonnes",
+ "difficulty": "hard",
+ "needs_llm": false,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": [
+  "inspect_file",
+  "read_csv_data",
+  "production_extract",
+  "sqlite_load"
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2001-02",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 590.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1200.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2003-04",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 296.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2324.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2018-19",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 2500.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 18860.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2007-08",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 4400.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 56590.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2008-09",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 150.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10490.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2016-17",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 260.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3120.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2001-02",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 510.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 6560.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2022-23",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 300.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 13250.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "1999-00",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1430.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 860.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2008-09",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 415.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 5349.0,
+     "unit": "t"
+    }
+   }
+  }
+ ]
+}
