@@ -1,0 +1,20 @@
+metric_id,scope,numerator,denominator,value,n_cases,evaluator_or_script,notes
+M3,production,68,68,1.0,5,"eval/run_eval.py (exact match, unit converted)",AI layer on; P=1.000 R=1.000; 68 reference fields
+M3,rainfall,262,262,1.0,11,"eval/run_eval.py (exact match, unit converted)",AI layer on; P=1.000 R=1.000; 262 reference fields
+M3,soil,122,134,0.9104,1,"eval/run_eval.py (exact match, unit converted)",AI layer on; P=0.910 R=0.910; 134 reference fields
+M3,format:csv,250,250,1.0,9,eval/run_eval.py,AI layer on; source group = file format
+M3,format:html,16,16,1.0,1,eval/run_eval.py,AI layer on; source group = file format
+M3,format:image,122,134,0.9104,1,eval/run_eval.py,AI layer on; source group = file format
+M3,format:pdf,10,10,1.0,1,eval/run_eval.py,AI layer on; source group = file format
+M3,format:text,26,26,1.0,3,eval/run_eval.py,AI layer on; source group = file format
+M3,format:xlsx,28,28,1.0,2,eval/run_eval.py,AI layer on; source group = file format
+M3,all_cases,452,464,0.9741,17,eval/run_eval.py,AI layer on; micro F1 over every reference field of the cases that should succeed
+M9,cases_fully_correct,16,17,0.9412,17,eval/run_eval.py,AI layer on; status complete AND every reference field present and exact AND nothing extra
+AI1,must_fail_cleanly,3,3,1.0,3,eval/run_eval.py,AI layer on; unreadable / out-of-scope files: failed AND stored 0 rows (no invented data)
+AI2,impossible_values_set_aside,2,2,1.0,2,eval/run_eval.py + review_queue,AI layer on; injected impossible values found in review_queue and absent from the data tables
+AI2b,impossible_values_stored,0,2,0.0,2,eval/run_eval.py,AI layer on; impossible values that reached the data tables (lower is better)
+AI3,real_values_set_aside,0,464,0.0,17,eval/run_eval.py + review_queue,AI layer on; true source values the plausibility check set aside for review (false alarms; a person can accept them)
+AI4,model_calls_per_file,0,20,0.0,20,run report,AI layer on; new model calls (cached answers: 40); budget 16 per file
+AI5,retry_and_call_budget_respected,20,20,1.0,20,run report,AI layer on; at most 2 recoveries and 16 model calls per file
+INFO,median_seconds_per_file,,,0.4,20,eval/run_eval.py,"AI layer on; latency is reported, not scored"
+INFO,model_used,,,openai/gpt-oss-20b,20,run report,AI layer on; model-call errors (rate limits etc.): 0

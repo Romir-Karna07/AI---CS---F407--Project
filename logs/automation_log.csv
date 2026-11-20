@@ -17,3 +17,13 @@ run_20261101204548_9f281b,2026-11-01T20:46:09,S04_agri_stats_at_a_glance_2024-25
 run_20261101204617_a7feb2,2026-11-01T20:46:34,S12_nabard_state_focus_paper_manipur_2024-25.pdf,failed,yes,real-source PDF demo: page range 33 chosen by hand via AGRI_PDF_PAGES,0,0,0,no recognised soil / rainfall / production records (unclassified: pdf:p33.t1)
 run_20261101204642_80a104,2026-11-01T20:46:52,S05_desagri_final_estimates_2024-25.pdf,failed,yes,real-source PDF demo: page range 1-3 chosen by hand via AGRI_PDF_PAGES,0,0,0,"no recognised soil / rainfall / production records (unclassified: pdf:p1.t1, pdf:p2.t1, pdf:p3.t1)"
 run_20261101204701_1c9c97,2026-11-01T20:47:32,S31_dacp_chandel.pdf,complete,yes,real-source PDF demo: page range 1-6 chosen by hand via AGRI_PDF_PAGES,12,3,0,
+run_20261102142810_f88a96,2026-11-02T14:28:13,rain_wide.csv,complete,no,,24,24,0,
+run_20261102145712_3e0fea,2026-11-02T14:57:12,S05_desagri_3rd_advance_estimates_2025-26,failed,no,,0,0,0,cannot open input: [Errno 2] No such file or directory: 'Data\\pdf_samples\\S05_desagri_3rd_advance_estimates_2025-26'
+run_20261102150250_a5cf7d,2026-11-02T15:02:50,empty.csv,failed,no,,0,0,2,read failed (json): no record-like objects found in JSON
+run_20261102151139_e45e20,2026-11-02T15:12:00,S06_nhb_horticulture_at_a_glance_2018.pdf,failed,no,,0,0,0,no recognised soil / rainfall / production records (unclassified: pdf:p53.t1)
+run_20261102155038_4fe9cd,2026-11-02T15:51:10,SampleDocument.pdf,failed,no,,0,0,2,read failed (pdf_ocr): no tables with numeric data found in the PDF (no text layer; OCR found none)
+run_20261102160158_7e3163,2026-11-02T16:02:06,manipur_soil_health.json,complete,no,,438,438,0,
+run_20261102161514_b10ca5,2026-11-02T16:15:30,JSON_sample.json,failed,no,,0,0,0,no recognised soil / rainfall / production records (unclassified: $[])
+run_20261102162102_201278,2026-11-02T16:21:05,CSV_sample.csv,complete,no,,15,15,0,
+run_20261118194549_ff2518,2026-11-18T19:45:55,melt.csv,complete,no,,9,9,1,ai_calls=1
+run_20261120175801_a487c3,2026-11-20T17:58:36,SampleDocument.pdf,complete,no,,12,11,0,ai_calls=11

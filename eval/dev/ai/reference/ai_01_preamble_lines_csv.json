@@ -1,0 +1,156 @@
+{
+ "case_id": "ai_01_preamble_lines_csv",
+ "agent": "rainfall",
+ "source_group": "csv",
+ "file": "dev/ai/cases/ai_01.csv",
+ "description": "Title and source lines above the header, blank line, then the table",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": null,
+ "expected_quarantine": [],
+ "records": [
+  {
+   "key": {
+    "location": "TENGNOUPAL",
+    "period": "2019-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 195.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "PHERZAWL",
+    "period": "2015-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 6.5,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2025-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.4,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAKCHING",
+    "period": "2021-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 44.6,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHURACHANDPUR",
+    "period": "2021-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 6.4,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "JIRIBAM",
+    "period": "2025-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 26.4,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TENGNOUPAL",
+    "period": "2015-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 225.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2019-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 14.2,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2019-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 211.9,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KANGPOKPI",
+    "period": "2022-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 12.3,
+     "unit": "mm"
+    }
+   }
+  }
+ ],
+ "owner_agent": "ai_layer"
+}

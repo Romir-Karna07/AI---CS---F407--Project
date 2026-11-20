@@ -1,0 +1,160 @@
+{
+ "case_id": "ai_07_html_page_with_other_table_html",
+ "agent": "production",
+ "source_group": "html",
+ "file": "dev/ai/cases/ai_07.html",
+ "description": "Web page: navigation, an unrelated contact table, then the data table",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": null,
+ "expected_quarantine": [],
+ "records": [
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2022-23",
+    "crop": "Wheat",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 450.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1100.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2018-19",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 607.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8278.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2013-14",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 710.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 9585.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2008-09",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 570.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7347.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2022-23",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 300.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 13250.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2016-17",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 2470.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 20250.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2008-09",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 801.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10324.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2003-04",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 310.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 210.0,
+     "unit": "t"
+    }
+   }
+  }
+ ],
+ "owner_agent": "ai_layer"
+}

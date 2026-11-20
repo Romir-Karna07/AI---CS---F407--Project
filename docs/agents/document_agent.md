@@ -57,3 +57,8 @@ the physically rotated page scores 0.629 (December column lost, some district ce
 * **Manipuri script (Meitei Mayek / Bengali script) is not handled**; Hindi headers work only because the English word beside them is mapped. No handwriting, no skewed scans, no figures.
 * The 17 PDF-first inventory sources are mostly narrative text (reports, circulars, journals); extracting facts from prose needs an LLM extractor and an adapter comparison (M18), which does not exist.
 * Speed: OCR is about 25 s per page on this CPU; camelot about 1-4 s per page; the 400-page books are read only over a chosen page range.
+
+## Update 2026-11-18: AI-assisted reading (see `docs/ai_layer.md`)
+The document agent now also takes **Excel**, **HTML**, **images of tables** and **free text** (prose extraction with verified quotes), selects the relevant pages of **long PDFs** (a model reads one-line page digests;
+a deterministic score is the fallback) instead of reading the first 40, and reads units / district / period from captions. Verified on a constructed 60-page report (table on page 47) and run on the real
+476- and 490-page PDFs (4 model calls, about 80 s each; no answer key, so precision on those is not measured). Manipuri script (Meitei Mayek) and non-Latin OCR remain untested.

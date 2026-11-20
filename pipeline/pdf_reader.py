@@ -19,6 +19,7 @@ import os
 import re
 import unicodedata
 import warnings
+from contextlib import nullcontext
 from pathlib import Path
 
 from .normalize import _districts
@@ -159,6 +160,25 @@ def tables_from_boxes(words):
 
     def flush():
         nonlocal cur
+        if len(cur) >= 3:
+            # The OCR sometimes fuses two neighbouring NUMBERS into one box ("98.0 5.4"). Such a box, with only numeric tokens and spanning
+            # two or more header cells, is split by token position BEFORE the columns are built; text cells are never split.
+            hdr = [(c[0], c[2]) for c in cur[0]]
+            fixed = [cur[0]]
+            for row in cur[1:]:
+                new_row = []
+                for c in row:
+                    toks = c[4].split()
+                    if len(toks) >= 2 and sum(1 for x0, x1 in hdr if min(c[2], x1) - max(c[0], x0) > 0) >= 2 and all(to_number(t) is not None for t in toks):
+                        width, total, pos = c[2] - c[0], max(len(c[4]), 1), 0
+                        for t in toks:
+                            at = c[4].find(t, pos)
+                            pos = at + len(t)
+                            new_row.append((c[0] + width * at / total, c[1], c[0] + width * (at + len(t)) / total, c[3], t))
+                    else:
+                        new_row.append(c)
+                fixed.append(new_row)
+            cur = fixed
         if len(cur) >= 2:
             ivs = sorted((c[0], c[2]) for row in cur for c in row)
             cols = []
@@ -220,7 +240,7 @@ def _caption_for(table, page_lines):
 
 
 # ----------------------------------------------------------------------------- public reader
-def read_pdf_file(path, backend: str = "auto", max_pages: int | None = None, pages: str | None = None) -> dict:
+def read_pdf_file(path, backend: str = "auto", max_pages: int | None = None, pages=None) -> dict:
     import pdfplumber
     import pymupdf
     path = Path(path)
@@ -232,22 +252,33 @@ def read_pdf_file(path, backend: str = "auto", max_pages: int | None = None, pag
     if n_pages == 0:
         raise ValueError("PDF has no pages")
     notes = [f"pages={n_pages}", f"backend={backend}"]
-    spec = (pages or PAGE_RANGE).strip()
-    if spec:
-        m = re.fullmatch(r"(\d+)(?:\s*-\s*(\d+))?", spec)
-        if not m:
-            raise ValueError(f"bad page range {spec!r}; use '53-60' or '161'")
-        first, last = int(m.group(1)), int(m.group(2) or m.group(1))
-        page_list = [p for p in range(first, last + 1) if 1 <= p <= n_pages]
+    sel = pages if pages else PAGE_RANGE
+    if isinstance(sel, (list, tuple)):
+        page_list = sorted({int(p) for p in sel if 1 <= int(p) <= n_pages})
         if not page_list:
-            raise ValueError(f"page range {spec!r} is outside the document ({n_pages} pages)")
-        notes.append(f"page range {spec}")
+            raise ValueError("the selected pages are outside the document")
+        notes.append(f"{len(page_list)} selected page(s)")
+    elif str(sel).strip():
+        page_list = []
+        for part in re.split(r"\s*,\s*", str(sel).strip()):
+            m = re.fullmatch(r"(\d+)(?:\s*-\s*(\d+))?", part)
+            if not m:
+                raise ValueError(f"bad page range {part!r}; use '53-60', '161' or '1,4,9-12'")
+            page_list += [p for p in range(int(m.group(1)), int(m.group(2) or m.group(1)) + 1) if 1 <= p <= n_pages]
+        page_list = sorted(set(page_list))
+        if not page_list:
+            raise ValueError(f"page range {sel!r} is outside the document ({n_pages} pages)")
+        notes.append(f"page range {sel}")
     else:
         page_list = list(range(1, min(n_pages, limit) + 1))
         if n_pages > limit:
             notes.append(f"only the first {limit} of {n_pages} pages were read (AGRI_PDF_MAX_PAGES)")
     groups, route_counts, last_header = [], {}, None
-    with pdfplumber.open(str(path)) as pl:
+    try:
+        pl_cm = pdfplumber.open(str(path))
+    except Exception:                       # an image file: no text layer, no ruled-table detection, OCR only
+        pl_cm = nullcontext(None)
+    with pl_cm as pl:
         for pno in page_list:
             fpage = fdoc[pno - 1]
             has_text = len(fpage.get_text().strip()) >= 20
@@ -255,7 +286,7 @@ def read_pdf_file(path, backend: str = "auto", max_pages: int | None = None, pag
             if has_text and backend != "ocr":
                 lines = _page_lines_text(fpage)
                 try:
-                    cand = [t for t in _plumber_tables(pl.pages[pno - 1]) if _usable(t)]
+                    cand = [t for t in _plumber_tables(pl.pages[pno - 1]) if _usable(t)] if pl is not None else []
                     if cand:
                         route = "pdfplumber"
                 except Exception:
@@ -296,9 +327,24 @@ def read_pdf_file(path, backend: str = "auto", max_pages: int | None = None, pag
                 for r in rows:
                     r["pattern"] = f"pdf:p{pno}.t{k}"
                     r["labels"] = list(labels)
+                    r["context"] = [c for c in cap if c][:6]      # caption lines: the context-facts step reads units / district / period from them
                 groups.append({"pattern": f"pdf:p{pno}.t{k}", "rows": rows})
                 route_counts[route] = route_counts.get(route, 0) + 1
     if not groups:
         raise ValueError("no tables with numeric data found in the PDF" + (" (no text layer; OCR found none)" if backend == "ocr" else ""))
     notes.append("tables by route: " + ", ".join(f"{k}={v}" for k, v in route_counts.items()))
     return {"format": "pdf", "encoding": "pdf", "notes": notes, "groups": groups}
+
+
+def page_texts(path, pages):
+    """[(page number, text)] of the given pages' text layer (for prose extraction); pages without text are skipped"""
+    import pymupdf
+    doc = pymupdf.open(str(path))
+    out = []
+    for p in pages:
+        if 1 <= int(p) <= len(doc):
+            t = doc[int(p) - 1].get_text() or ""
+            if t.strip():
+                out.append((int(p), t))
+    doc.close()
+    return out

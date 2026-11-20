@@ -6,3 +6,5 @@ __pycache__/
 .env
 # real third-party PDFs used for the tool tests: not redistributed; URLs + SHA-256 are in Data/manifest.csv
 Data/pdf_samples/
+# cached model answers (re-created on demand; keyed by prompt hash)
+.llm_cache/

@@ -72,6 +72,28 @@ def _fill_from_labels(c, labels, crop=False):
     return c
 
 
+def _apply_ctx(c, row):
+    """facts read from the title / caption (context.py) fill only what the table itself leaves empty"""
+    ctx = row.get("ctx")
+    if not ctx:
+        return c
+    c = dict(c)
+    for k in ("district", "period", "crop"):
+        if is_missing(c.get(k)) and ctx.get(k):
+            c[k] = ctx[k]
+    return c
+
+
+def _ctx_extra(rec, row):
+    """record which context facts were used, so the stored row stays auditable"""
+    ctx = row.get("ctx")
+    if ctx and (ctx.get("evidence") or ctx.get("units")):
+        extra = json.loads(rec["extra"]) if rec.get("extra") else {}
+        extra["context_facts"] = {k: v for k, v in ctx.items() if v}
+        rec["extra"] = json.dumps(extra, ensure_ascii=False)
+    return rec
+
+
 def _location(c):
     name, code, how = normalize_district(c.get("district"), c.get("district_code"))
     if code != UNSPECIFIED:
@@ -105,7 +127,7 @@ def soil_agent(rows):
     out = []
     for row in rows:
         c, src_of, unmapped = _mapped(row)
-        c = _fill_from_labels(c, row["labels"])
+        c = _apply_ctx(_fill_from_labels(c, row["labels"]), row)
         name, code, state, scode, how = _location(c)
         period, year = _period(c, row["labels"])
         rec = dict(district=name, district_code=code, state=state, state_code=scode, crop=_text(c, "crop"),
@@ -122,7 +144,7 @@ def soil_agent(rows):
                 extra = json.loads(rec["extra"]) if rec["extra"] else {}
                 extra[f"{n}_source_value"] = rec[n]
                 rec["extra"], rec[n] = json.dumps(extra), None
-        out.append(rec)
+        out.append(_ctx_extra(rec, row))
     return out
 
 
@@ -131,12 +153,16 @@ def rainfall_agent(rows):
     out = []
     for row in rows:
         c, src_of, unmapped = _mapped(row)
-        c = _fill_from_labels(c, row["labels"])
+        c = _apply_ctx(_fill_from_labels(c, row["labels"]), row)
         name, code, state, scode, how = _location(c)
         unit_text = c.get("unit")
+        if is_missing(unit_text):  # a unit resolved for this column (e.g. translated from another language)
+            unit_text = row["units"].get(src_of.get("rainfall_mm", "")) or None
         if is_missing(unit_text):  # unit may be in the header: "Rainfall (inches)"
             m = re.search(r"\(([^)]*)\)", str(src_of.get("rainfall_mm", "")))
             unit_text = m.group(1) if m else None
+        if is_missing(unit_text):  # ... or in the title / caption (context facts)
+            unit_text = (row.get("ctx") or {}).get("units", {}).get("rainfall_mm")
         base = dict(district=name, district_code=code, state=state, state_code=scode, crop="UNSPECIFIED",
                     locator=row["locator"])
         mcols = month_columns(row["data"])
@@ -155,15 +181,21 @@ def rainfall_agent(rows):
                                 rainy_days_ge_2_5mm=None, days_with_data=None, days_in_month=None,
                                 extra=_extra({k: v for k, v in unmapped.items() if k not in mcols}, c)))
             continue
+        if is_missing(c.get("period")):
+            _, cap_year = _period(c, row["labels"])         # year printed in the caption above the table
+            if cap_year:
+                c = dict(c, period=cap_year)
         ym, y, m = parse_year_month(c.get("year_month"), c.get("period"), c.get("year_month"))
+        if ym is None and c.get("period"):                     # a month given only by the title ("January 2019") arrives as the period
+            ym, y, m = parse_year_month(c.get("period"))
         v = _num(c, "rainfall_mm")
         val, ustat = convert_unit("rainfall_mm", v, unit_text)
         rd = _num(c, "rainy_days")
-        out.append(dict(base, year_month=ym, year=y, month=m, rainfall_mm=val, unit="mm", unit_status=ustat,
+        out.append(_ctx_extra(dict(base, year_month=ym, year=y, month=m, rainfall_mm=val, unit="mm", unit_status=ustat,
                         rainy_days_ge_2_5mm=None if rd is None else int(rd),
                         days_with_data=None if _num(c, "days_with_data") is None else int(_num(c, "days_with_data")),
                         days_in_month=None if _num(c, "days_in_month") is None else int(_num(c, "days_in_month")),
-                        extra=_extra(unmapped, c)))
+                        extra=_extra(unmapped, c)), row))
     return out
 
 
@@ -172,9 +204,11 @@ def production_agent(rows):
     out = []
     for row in rows:
         c, src_of, unmapped = _mapped(row)
-        c = _fill_from_labels(c, row["labels"], crop=True)
+        c = _apply_ctx(_fill_from_labels(c, row["labels"], crop=True), row)
         name, code, state, scode, how = _location(c)
         period, year = _period(c, row["labels"])
+        if period is None and c.get("period"):
+            period, year = parse_period(c.get("period"))
         crop, crop_raw = normalize_crop(c.get("crop"))
         vals, statuses = {}, []
         for var in ("area", "production", "yield"):
@@ -183,6 +217,8 @@ def production_agent(rows):
             if not unit_text:  # unit may sit in a column ("Unit") or in the header text "Area (ha)"
                 m = re.search(r"\(([^)]*)\)", str(src_of.get(var, "")))
                 unit_text = m.group(1) if m else ""
+            if not unit_text:  # ... or in the title / caption (context facts): "Area in thousand hectares"
+                unit_text = (row.get("ctx") or {}).get("units", {}).get(var, "")
             vals[var], st = convert_unit(var, raw, unit_text)
             statuses.append(st)
         if vals["area"] is None and vals["production"] is None:
@@ -191,11 +227,11 @@ def production_agent(rows):
             continue
         bad = [s for s in statuses if s.startswith("unknown")]
         ustat = bad[0] if bad else ("declared" if "declared" in statuses else "assumed")
-        out.append(dict(district=name, district_code=code, state=state, state_code=scode, crop=crop, crop_raw=crop_raw,
+        out.append(_ctx_extra(dict(district=name, district_code=code, state=state, state_code=scode, crop=crop, crop_raw=crop_raw,
                         season=_text(c, "season"), period=period, year=year, area_ha=vals["area"],
                         production_t=vals["production"], yield_t_ha=vals["yield"],
                         unit=f"area:{CANONICAL_UNIT['area']};production:{CANONICAL_UNIT['production']};yield:{CANONICAL_UNIT['yield']}",
-                        unit_status=ustat, extra=_extra(unmapped, c), locator=row["locator"]))
+                        unit_status=ustat, extra=_extra(unmapped, c), locator=row["locator"]), row))
     return out
 
 

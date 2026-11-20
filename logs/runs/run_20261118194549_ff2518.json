@@ -1,0 +1,279 @@
+{
+  "run_id": "run_20261118194549_ff2518",
+  "input": "melt.csv",
+  "status": "complete",
+  "source_type": "csv",
+  "groups": [
+    {
+      "pattern": "csv",
+      "domain": "rainfall",
+      "records": 9,
+      "scores": {
+        "soil": 0,
+        "rainfall": 1,
+        "production": 0
+      },
+      "method": "rules",
+      "mapped_headers": {
+        "Month": "year_month",
+        "District": "district",
+        "Rainfall (mm)": "rainfall_mm"
+      },
+      "unmapped_headers": []
+    }
+  ],
+  "result": {
+    "by_agent": {
+      "rainfall_agent": {
+        "table": "rainfall_monthly",
+        "extracted": 9,
+        "inserted": 9,
+        "duplicates": 0,
+        "invalid": 0,
+        "rejected": 0,
+        "quarantined": 0
+      }
+    },
+    "rejected": [],
+    "review": 0,
+    "totals": {
+      "extracted": 9,
+      "inserted": 9,
+      "duplicate": 0,
+      "invalid": 0,
+      "rejected": 0,
+      "quarantined": 0
+    },
+    "plausibility": []
+  },
+  "notes": {
+    "error": null,
+    "agent_errors": [],
+    "unclassified_groups": [],
+    "retry_budget": {
+      "max": 2,
+      "used": 1,
+      "strategies": [
+        "structure_repair"
+      ]
+    },
+    "ai": {
+      "enabled": true,
+      "calls": 1,
+      "cached": 2,
+      "by_purpose": {
+        "headers": 1
+      },
+      "max_calls": 16
+    },
+    "quarantined_for_review": 0
+  },
+  "retries": 1,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "melt.csv"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 141,
+        "type": "csv",
+        "how": "content"
+      },
+      "ms": 3740.0
+    },
+    {
+      "step": "read",
+      "tool": "read_csv_data",
+      "args": {
+        "file_path": "melt.csv"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 4,
+        "groups": 1,
+        "notes": [
+          "csv: 1 grid(s), 1 table(s) read"
+        ]
+      },
+      "ms": 45.8
+    },
+    {
+      "step": "classify",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "Manipur 2020"
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "Manipur 2020": "district"
+      },
+      "ms": 2300.1
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "csv",
+            "rainfall",
+            4
+          ]
+        ],
+        "queue": [
+          "rainfall"
+        ],
+        "language": []
+      },
+      "ms": 2301.6
+    },
+    {
+      "step": "rainfall_agent",
+      "tool": "rainfall_extract",
+      "args": {
+        "records_in": 4
+      },
+      "status": "ok",
+      "detail": {
+        "rows_out": 4
+      },
+      "ms": 1.5
+    },
+    {
+      "step": "load",
+      "tool": "sqlite_load",
+      "args": {
+        "db": "manipur.db"
+      },
+      "status": "ok",
+      "detail": {
+        "extracted": 4,
+        "inserted": 0,
+        "duplicate": 0,
+        "invalid": 0,
+        "rejected": 4,
+        "quarantined": 0,
+        "plausibility": []
+      },
+      "ms": 88.7
+    },
+    {
+      "step": "ai:recover",
+      "tool": "llm_recover",
+      "args": {
+        "allowed": [
+          "structure_repair",
+          "as_prose"
+        ]
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"strategy\": \"structure_repair\", \"why\": \"Need clarification of column layout to map soil, rainfall, and production fields correctly.\"}"
+      },
+      "ms": 0.7
+    },
+    {
+      "step": "recover",
+      "tool": null,
+      "args": {
+        "attempt": 1,
+        "budget": 2,
+        "retry_with": "csv",
+        "strategy": "structure_repair"
+      },
+      "status": "ok",
+      "detail": {
+        "why": "Need clarification of column layout to map soil, rainfall, and production fields correctly."
+      },
+      "ms": 1.0
+    },
+    {
+      "step": "ai:structure",
+      "tool": "llm_structure",
+      "args": {
+        "rows": 5,
+        "runs": 3,
+        "reason": "no domain was recognised from the headers"
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"tables\": [{\"header\": [2], \"data\": [[3, 5]]}], \"context\": [1], \"drop\": [], \"transposed\": false, \"corner_label\": null, \"melt\": {\"id_cols\": [1], \"dimension\": \"District\", \"measure\": \"Rainfall (mm)\"}, \"confidence\": 0.98}"
+      },
+      "ms": 1.0
+    },
+    {
+      "step": "read",
+      "tool": "read_csv_data",
+      "args": {
+        "file_path": "melt.csv"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 9,
+        "groups": 1,
+        "notes": [
+          "csv: 1 grid(s), 1 table(s) read, 1 repaired",
+          "csv : structure repaired by model (no domain was recognised from the headers)"
+        ]
+      },
+      "ms": 6.0
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "csv",
+            "rainfall",
+            9
+          ]
+        ],
+        "queue": [
+          "rainfall"
+        ],
+        "language": []
+      },
+      "ms": 0.7
+    },
+    {
+      "step": "rainfall_agent",
+      "tool": "rainfall_extract",
+      "args": {
+        "records_in": 9
+      },
+      "status": "ok",
+      "detail": {
+        "rows_out": 9
+      },
+      "ms": 4.0
+    },
+    {
+      "step": "load",
+      "tool": "sqlite_load",
+      "args": {
+        "db": "manipur.db"
+      },
+      "status": "ok",
+      "detail": {
+        "extracted": 9,
+        "inserted": 9,
+        "duplicate": 0,
+        "invalid": 0,
+        "rejected": 0,
+        "quarantined": 0,
+        "plausibility": []
+      },
+      "ms": 17.2
+    }
+  ]
+}

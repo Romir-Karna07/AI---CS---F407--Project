@@ -63,6 +63,12 @@ check("JSON Lines saved as .txt", r["status"] == "complete" and r["result"]["tot
 r = run(U / "soil_dictkeyed.json")
 check("json keyed by district name", q("select district,n from soil_health where district='UKHRUL'") == [("UKHRUL", 280.0)])
 
+# --- the model proposes, the data decides (deterministic check of a header proposal; no model call)
+from pipeline.llm import verify_header_proposal  # noqa: E402
+_rows = [{"data": {"MONTH": m, "YEAR": y}} for m, y in (("x", "2019"), ("y", "\u09e8\u09e6\u09e7\u09ef"), ("z", "2020"))]
+_v = verify_header_proposal({"MONTH": "year_month", "YEAR": "year_month"}, _rows)
+check("header proposal: a column of plain years (any digit script) is the year, not the month", _v == {"MONTH": "year_month", "YEAR": "period"}, str(_v))
+
 # --- things that must fail cleanly -------------------------------------------------------------------
 check("empty file fails (no crash)", run(U / "empty.csv")["status"] == "failed")
 check("non-data json fails (no crash)", run(U / "notes.json")["status"] == "failed")
@@ -78,7 +84,8 @@ check("injected agent fault is isolated + reported", r["status"] == "failed" and
 
 # --- idempotence + real files (regression) ----------------------------------------------------------
 r1 = run(ROOT / "Data" / "CSV_Agent.csv"); r2 = run(ROOT / "Data" / "CSV_Agent.csv")
-check("re-ingesting a file adds 0 rows", r1["result"]["totals"]["inserted"] == 1217 and r2["result"]["totals"]["inserted"] == 0)
+check("re-ingesting a file adds 0 rows (1,217 rows = stored + set aside for review)",
+      r1["result"]["totals"]["inserted"] + r1["result"]["totals"].get("quarantined", 0) == 1217 and r2["result"]["totals"]["inserted"] == 0)
 r = run(ROOT / "manipur_soil_health.json")
 check("real soil json: 438 rows", r["result"]["totals"]["extracted"] == 438)
 check("  pH 0.0 treated as missing (44 NULL, none invalid, source value kept in extra)",
@@ -110,8 +117,49 @@ if get_llm() is not None:
     check("LLM fallback maps unknown headers (Azote->n, Acidite_pH->ph, Departement->district)",
           q("select district,n,ph from soil_health where village='Litan'") == [("UKHRUL", 290.0, 5.9)])
     # LLM must NOT turn a metadata-only table into data rows (regression: bbox-only district records)
-    check("LLM cannot invent a domain for metadata-only records",
-          q("select count(*) from soil_health where source_file='manipur_soil_health.json'")[0][0] == 438)
+    check("LLM cannot invent a domain for metadata-only records (438 data rows = stored + set aside for review)",
+          q("select count(*) from soil_health where source_file='manipur_soil_health.json'")[0][0]
+          + q("select count(*) from review_queue where source_file='manipur_soil_health.json'")[0][0] == 438)
+    # --- AI layer: files the rule-based reader cannot take (needs the model; answers are cached in .llm_cache)
+    U2 = ROOT / "tests" / "unseen_ai"
+
+    def stored(table, f):
+        return q(f"select count(*) from {table} where source_file=?", f)[0][0]
+
+    r = run(U2 / "preamble.csv")
+    check("AI: title + source lines above the header are repaired (3 rows)", r["status"] == "complete" and stored("rainfall_monthly", "preamble.csv") == 3)
+    r = run(U2 / "units_caption.csv")
+    check("AI: unit stated only in the title ('thousand hectares') -> 3500 ha",
+          q("select area_ha from crop_production where source_file='units_caption.csv' and district='THOUBAL'") == [(3500.0,)])
+    r = run(U2 / "late_anomaly.csv")
+    check("AI: repeated header (line 302) and note (line 453) inside 600 rows are dropped, all 600 rows kept",
+          r["status"] == "complete" and stored("rainfall_monthly", "late_anomaly.csv") == 600 and r["result"]["totals"]["rejected"] == 0)
+    r = run(U2 / "melt.csv")
+    check("AI: districts as columns -> 9 rows, provenance names the cell", stored("rainfall_monthly", "melt.csv") == 9
+          and q("select locator from rainfall_monthly where source_file='melt.csv' limit 1")[0][0].startswith("line 3 col"))
+    r = run(U2 / "transposed.csv")
+    check("AI: records across columns; the month comes from the title (2019-01)",
+          q("select year_month from rainfall_monthly where source_file='transposed.csv' and district='UKHRUL'") == [("2019-01",)])
+    r = run(U2 / "multi.xlsx")
+    check("AI: Excel workbook with cover / notes sheets and a title row -> 8 rows", stored("rainfall_monthly", "multi.xlsx") == 8)
+    r = run(U2 / "page.html")
+    check("AI: HTML page with an unrelated table -> 2 production rows", stored("crop_production", "page.html") == 2)
+    r = run(U2 / "prose.txt")
+    check("AI: figures inside sentences -> 3 verified facts, locator = character offsets",
+          stored("crop_production", "prose.txt") + stored("rainfall_monthly", "prose.txt") == 3
+          and q("select locator from crop_production where source_file='prose.txt' limit 1")[0][0].startswith("chars "))
+    r = run(U2 / "hindi.csv")
+    check("AI: Hindi headers, district names, month names and unit word -> valid rows",
+          q("select district, year_month, validation_status from rainfall_monthly where source_file='hindi.csv' and district='UKHRUL' order by year_month")
+          == [("UKHRUL", "2020-01", "valid"), ("UKHRUL", "2020-02", "valid")])
+    r = run(U2 / "implausible.csv")
+    check("AI: an impossible value (99,999 mm) is set aside for review, not stored",
+          q("select count(*) from review_queue where source_file='implausible.csv'")[0][0] == 1 and
+          q("select count(*) from rainfall_monthly where source_file='implausible.csv' and rainfall_mm>5000")[0][0] == 0)
+    junk = tmp / "junk.csv"
+    junk.write_bytes(bytes(range(256)) * 8)
+    r = run(junk)
+    check("AI: unreadable bytes fail cleanly within the retry budget (<= 2 recoveries)", r["status"] == "failed" and r["retries"] <= 2)
 else:
     print("SKIP LLM fallback tests (no GROQ_API_KEY)")
 

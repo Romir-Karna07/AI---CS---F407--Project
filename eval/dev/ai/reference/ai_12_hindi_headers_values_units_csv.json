@@ -1,0 +1,184 @@
+{
+ "case_id": "ai_12_hindi_headers_values_units_csv",
+ "agent": "rainfall",
+ "source_group": "csv",
+ "file": "dev/ai/cases/ai_12.csv",
+ "description": "Hindi: headers, district names, month names and the unit word (मिमी)",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": null,
+ "expected_quarantine": [],
+ "records": [
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2015-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 9.7,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2023-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 33.9,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2015-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 49.0,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2017-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 152.7,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2015-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 15.6,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2022-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 103.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2020-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 242.8,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2024-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.0,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2020-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 10.6,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2015-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 201.5,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2025-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 338.0,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2017-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 2.4,
+     "unit": "mm"
+    }
+   }
+  }
+ ],
+ "owner_agent": "ai_layer"
+}

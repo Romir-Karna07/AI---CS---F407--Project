@@ -1,0 +1,57 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	inspect(inspect)
+	plan(plan)
+	read(read)
+	recover(recover)
+	classify(classify)
+	soil_agent(soil_agent)
+	rainfall_agent(rainfall_agent)
+	production_agent(production_agent)
+	load(load)
+	finish(finish)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> inspect;
+	classify -.-> finish;
+	classify -.-> load;
+	classify -.-> production_agent;
+	classify -.-> rainfall_agent;
+	classify -.-> recover;
+	classify -.-> soil_agent;
+	inspect -.-> finish;
+	inspect -.-> plan;
+	load -.-> finish;
+	load -.-> recover;
+	plan --> read;
+	production_agent -.-> finish;
+	production_agent -.-> load;
+	production_agent -.-> rainfall_agent;
+	production_agent -.-> recover;
+	production_agent -.-> soil_agent;
+	rainfall_agent -.-> finish;
+	rainfall_agent -.-> load;
+	rainfall_agent -.-> production_agent;
+	rainfall_agent -.-> recover;
+	rainfall_agent -.-> soil_agent;
+	read -.-> classify;
+	read -.-> finish;
+	read -.-> recover;
+	recover --> read;
+	soil_agent -.-> finish;
+	soil_agent -.-> load;
+	soil_agent -.-> production_agent;
+	soil_agent -.-> rainfall_agent;
+	soil_agent -.-> recover;
+	finish --> __end__;
+	load -.-> load;
+	production_agent -.-> production_agent;
+	rainfall_agent -.-> rainfall_agent;
+	soil_agent -.-> soil_agent;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

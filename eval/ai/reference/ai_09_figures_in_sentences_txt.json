@@ -1,0 +1,124 @@
+{
+ "case_id": "ai_09_figures_in_sentences_txt",
+ "agent": "production",
+ "source_group": "text",
+ "file": "ai/cases/ai_09.txt",
+ "description": "Production figures inside English sentences, with two distractor sentences",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": null,
+ "expected_quarantine": [],
+ "records": [
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2010-11",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1237.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 9468.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2019-20",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 746.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10593.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2002-03",
+    "crop": "Jackfruit",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 50.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 0.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2002-03",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 610.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 370.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2011-12",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 2230.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 19260.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2014-15",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 258.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 3096.0,
+     "unit": "t"
+    }
+   }
+  }
+ ],
+ "owner_agent": "ai_layer"
+}

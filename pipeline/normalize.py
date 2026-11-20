@@ -139,6 +139,10 @@ def convert_unit(variable: str, value, unit_text):
         return None, "assumed"
     if not unit_text or not str(unit_text).strip():
         return value, "assumed"
+    m = re.fullmatch(r"\s*([\d.]+(?:e\d+)?)\s*\*\s*(.+)", str(unit_text))     # "1000*ha": multiplier * base unit
+    if m:
+        v, status = convert_unit(variable, value, m.group(2))
+        return (v * float(m.group(1)) if not status.startswith("unknown") else value), status
     k = re.sub(r"[^a-z0-9]", "", re.sub(r"[./]", "", str(unit_text).lower().replace("per", "")).replace("(", "").replace(")", ""))
     table = _TABLES.get(variable, {})
     if k in table:

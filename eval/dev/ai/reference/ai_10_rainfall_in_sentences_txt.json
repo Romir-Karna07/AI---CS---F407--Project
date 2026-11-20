@@ -1,0 +1,100 @@
+{
+ "case_id": "ai_10_rainfall_in_sentences_txt",
+ "agent": "rainfall",
+ "source_group": "text",
+ "file": "dev/ai/cases/ai_10.txt",
+ "description": "Monthly rainfall stated in English sentences",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": null,
+ "expected_quarantine": [],
+ "records": [
+  {
+   "key": {
+    "location": "TENGNOUPAL",
+    "period": "2024-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 293.6,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2016-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 6.6,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "KAKCHING",
+    "period": "2017-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 19.8,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "NONEY",
+    "period": "2017-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 20.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2025-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 224.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "TAMENGLONG",
+    "period": "2017-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 205.0,
+     "unit": "mm"
+    }
+   }
+  }
+ ],
+ "owner_agent": "ai_layer"
+}

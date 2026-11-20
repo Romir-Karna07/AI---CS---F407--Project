@@ -1,0 +1,15 @@
+{
+ "case_id": "ai_18_price_table_no_agent_csv",
+ "agent": "none",
+ "source_group": "csv",
+ "file": "ai/cases/ai_18.csv",
+ "description": "A mandi price table (no agent exists for it): must fail cleanly and store NOTHING (no invented rows)",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "failed",
+ "expected_trajectory": null,
+ "expected_quarantine": [],
+ "records": [],
+ "owner_agent": "ai_layer"
+}

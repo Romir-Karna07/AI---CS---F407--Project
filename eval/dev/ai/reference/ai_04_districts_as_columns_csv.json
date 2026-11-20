@@ -1,0 +1,520 @@
+{
+ "case_id": "ai_04_districts_as_columns_csv",
+ "agent": "rainfall",
+ "source_group": "csv",
+ "file": "dev/ai/cases/ai_04.csv",
+ "description": "Months in rows, one column per district (entities as columns)",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": null,
+ "expected_quarantine": [],
+ "records": [
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2015-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 40.4,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2015-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 5.4,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2015-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 17.7,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2015-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 207.7,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2015-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 49.0,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2015-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 227.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2015-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 331.6,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2015-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 253.2,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2015-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 154.5,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2015-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 111.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2015-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 9.7,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "BISHNUPUR",
+    "period": "2015-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.4,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2015-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 41.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2015-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 5.4,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2015-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 17.8,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2015-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 201.5,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2015-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 46.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2015-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 225.5,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2015-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 329.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2015-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 251.6,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2015-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 154.3,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2015-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 112.4,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2015-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 9.8,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "CHANDEL",
+    "period": "2015-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.2,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2015-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 30.7,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2015-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 15.6,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2015-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 25.5,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2015-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 193.5,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2015-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 77.0,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2015-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 193.4,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2015-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 285.0,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2015-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 202.9,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2015-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 145.7,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2015-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 86.3,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2015-11",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 14.7,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "SENAPATI",
+    "period": "2015-12",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 6.0,
+     "unit": "mm"
+    }
+   }
+  }
+ ],
+ "owner_agent": "ai_layer"
+}

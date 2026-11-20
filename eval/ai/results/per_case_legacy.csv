@@ -1,0 +1,21 @@
+case_id,format,expected_status,status,F1,tp,extracted,ref_fields,stored_nothing,quarantined,model_calls,cached,retries,seconds,tools
+ai_01_preamble_lines_csv,csv,complete,complete,0.0,0,0,10,True,0,0,0,0,1.5,inspect_file > read_csv_data > rainfall_extract > sqlite_load
+ai_02_units_only_in_caption_csv,csv,complete,failed,0.0,0,0,16,True,0,0,0,0,1.6,inspect_file > read_csv_data
+ai_03_anomaly_deep_in_table_csv,csv,complete,complete,1.0,132,132,132,False,0,0,0,0,1.6,inspect_file > read_csv_data > rainfall_extract > sqlite_load
+ai_04_districts_as_columns_csv,csv,complete,complete,0.0,0,0,36,True,0,0,0,0,2.7,inspect_file > read_csv_data > llm_map_headers > rainfall_extract > sqlite_load
+ai_05_records_across_columns_csv,csv,complete,complete,0.0,0,0,6,True,0,0,0,0,1.6,inspect_file > read_csv_data > rainfall_extract > sqlite_load
+ai_06_workbook_cover_title_merged_xlsx,xlsx,complete,failed,0.0,0,0,12,True,0,0,0,0,4.0,inspect_file > read_csv_data > llm_map_headers > llm_classify
+ai_07_html_page_with_other_table_html,html,complete,failed,0.0,0,0,16,True,0,0,0,2,0.1,inspect_file > read_csv_data > read_csv_data > read_json_data
+ai_08_image_of_a_table_png,image,complete,failed,0.0,0,0,134,True,0,0,0,0,5.2,inspect_file > read_csv_data
+ai_09_figures_in_sentences_txt,text,complete,failed,0.0,0,0,12,True,0,0,0,0,1.5,inspect_file > read_csv_data
+ai_10_rainfall_in_sentences_txt,text,complete,complete,0.0,0,0,6,True,0,0,0,0,1.5,inspect_file > read_csv_data > rainfall_extract > sqlite_load
+ai_11_tamil_prose_txt,text,complete,failed,0.0,0,0,8,True,0,0,0,0,1.6,inspect_file > read_csv_data
+ai_12_hindi_headers_values_units_csv,csv,complete,complete,0.0,0,0,12,True,0,0,0,0,3.2,inspect_file > read_csv_data > llm_map_headers > rainfall_extract > sqlite_load
+ai_13_bengali_script_native_digits_csv,csv,complete,complete,0.0,0,0,12,True,0,0,0,0,2.8,inspect_file > read_csv_data > llm_map_headers > rainfall_extract > sqlite_load
+ai_14_tamil_unseen_language_csv,csv,complete,complete,0.0,0,0,12,True,0,0,0,0,3.7,inspect_file > read_csv_data > llm_map_headers > rainfall_extract > sqlite_load
+ai_15_impossible_values_csv,csv,complete,complete,0.9333,14,16,14,False,0,0,0,0,1.8,inspect_file > read_csv_data > rainfall_extract > sqlite_load
+ai_16_table_on_page_47_of_60_pdf,pdf,complete,failed,0.0,0,0,10,True,0,0,0,0,20.3,inspect_file > read_pdf_data > llm_map_headers > llm_classify > llm_map_headers > llm_classify > llm_map_headers > llm_classify > llm_map_headers > llm_classify
+ai_17_binary_junk_named_csv,binary,failed,failed,,0,0,0,True,0,0,0,2,0.1,inspect_file > read_csv_data > read_csv_data > read_json_data
+ai_18_price_table_no_agent_csv,csv,failed,failed,,0,0,0,True,0,0,0,0,4.5,inspect_file > read_csv_data > llm_map_headers > llm_classify
+ai_19_headers_only_csv,csv,failed,failed,,0,0,0,True,0,0,0,0,1.4,inspect_file > read_csv_data
+ai_20_workbook_one_sheet_title_xlsx,xlsx,complete,failed,0.0,0,0,16,True,0,0,0,0,3.4,inspect_file > read_csv_data > llm_map_headers > llm_classify

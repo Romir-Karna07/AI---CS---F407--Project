@@ -1,0 +1,156 @@
+{
+ "case_id": "ai_16_table_on_page_47_of_60_pdf",
+ "agent": "rainfall",
+ "source_group": "pdf",
+ "file": "ai/cases/ai_16.pdf",
+ "description": "60-page report; the only rainfall table (district and year only in its caption) is on page 47, beyond the old 40-page limit",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": null,
+ "expected_quarantine": [],
+ "records": [
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 40.5,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 5.9,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 18.0,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 202.0,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-05",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 47.6,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-06",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 224.6,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 328.3,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 249.6,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 153.8,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 110.7,
+     "unit": "mm"
+    }
+   }
+  }
+ ],
+ "owner_agent": "ai_layer"
+}

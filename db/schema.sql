@@ -70,3 +70,17 @@ CREATE TABLE IF NOT EXISTS crop_production (
 CREATE INDEX IF NOT EXISTS ix_soil_nat  ON soil_health(district_code, village, period, record_id);
 CREATE INDEX IF NOT EXISTS ix_rain_nat  ON rainfall_monthly(district_code, year_month);
 CREATE INDEX IF NOT EXISTS ix_prod_nat  ON crop_production(district_code, crop, season, period);
+
+-- Rows a person must look at: the plausibility check found a value that cannot be real (e.g. 99,999 mm of rain in a month). They are NOT in the
+-- data tables above. review_status: pending_review | accepted | corrected | rejected. The model never edits a value; it only sets rows aside.
+CREATE TABLE IF NOT EXISTS review_queue (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    run_id TEXT NOT NULL REFERENCES runs(run_id),
+    agent TEXT NOT NULL, table_name TEXT NOT NULL,
+    source_file TEXT, source_hash TEXT, locator TEXT, district TEXT,
+    field TEXT NOT NULL, value REAL, reason TEXT NOT NULL, flagged_by TEXT NOT NULL,
+    row_json TEXT NOT NULL,
+    review_status TEXT NOT NULL DEFAULT 'pending_review',
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    UNIQUE (source_hash, locator, field)
+);

@@ -1,0 +1,225 @@
+{
+ "case_id": "ai_15_impossible_values_csv",
+ "agent": "rainfall",
+ "source_group": "csv",
+ "file": "ai/cases/ai_15.csv",
+ "description": "Two impossible rainfall values (99,999 and 45,000 mm in a month): must be set aside for review, not stored",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": null,
+ "expected_quarantine": [
+  {
+   "location": "IMPHAL WEST",
+   "period": "2025-06",
+   "field": "rainfall_mm",
+   "value": 99999.0
+  },
+  {
+   "location": "IMPHAL WEST",
+   "period": "2018-12",
+   "field": "rainfall_mm",
+   "value": 45000.0
+  }
+ ],
+ "records": [
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2019-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 232.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2018-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 52.0,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2025-04",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 65.3,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2023-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 36.8,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2021-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 5.2,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2025-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 1.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2022-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 14.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2021-09",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 80.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 232.3,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2023-02",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 0.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2019-08",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 114.2,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2023-03",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 44.8,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2020-01",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 44.1,
+     "unit": "mm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2016-10",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 110.8,
+     "unit": "mm"
+    }
+   }
+  }
+ ],
+ "owner_agent": "ai_layer"
+}

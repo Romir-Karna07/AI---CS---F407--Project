@@ -38,9 +38,10 @@ def keys(ref_dir):
 
 def check(db_path=ROOT / "db" / "manipur.db"):
     res = {}
-    test_files = [p for p in (EVAL / "cases").glob("*") if p.is_file()]
+    test_files = [p for p in (EVAL / "cases").glob("*") if p.is_file()] + [p for p in (EVAL / "ai" / "cases").glob("*") if p.is_file()]
     test_hash = {sha(p): p.name for p in test_files}
-    dev_files = [p for p in (ROOT / "Data" / "partitions").glob("*")] + [p for p in (EVAL / "dev" / "cases").glob("*") if p.is_file()]
+    dev_files = ([p for p in (ROOT / "Data" / "partitions").glob("*")] + [p for p in (EVAL / "dev" / "cases").glob("*") if p.is_file()]
+                 + [p for p in (EVAL / "dev" / "ai" / "cases").glob("*") if p.is_file()])
     dev_hash = {sha(p) for p in dev_files}
     held_hash = {sha(p) for p in (EVAL / "heldout_source").glob("*")}
     res["eval_files"] = len(test_files)
@@ -54,7 +55,7 @@ def check(db_path=ROOT / "db" / "manipur.db"):
             bad_district += con.execute(f"SELECT COUNT(*) FROM {t} WHERE UPPER(district) IN ({','.join('?' * len(HELD))})", tuple(HELD)).fetchone()[0]
             for (h,) in con.execute(f"SELECT DISTINCT source_hash FROM {t}"):
                 bad_hash += int(h in test_hash or h in held_hash)
-            bad_rows += con.execute(f"SELECT COUNT(*) FROM {t} WHERE source_file LIKE 'soil_h%' OR source_file LIKE 'rain_h%' OR source_file LIKE 'prod_h%' OR source_file LIKE 'pdf_%' OR source_file LIKE 'ops_%' OR source_file LIKE '%P3%'").fetchone()[0]
+            bad_rows += con.execute(f"SELECT COUNT(*) FROM {t} WHERE source_file LIKE 'soil_h%' OR source_file LIKE 'rain_h%' OR source_file LIKE 'prod_h%' OR source_file LIKE 'pdf_%' OR source_file LIKE 'ai_%' OR source_file LIKE 'ops_%' OR source_file LIKE '%P3%'").fetchone()[0]
         con.close()
     res["db_rows_from_eval_or_heldout_files"] = bad_rows
     res["db_source_hashes_equal_to_eval_or_heldout"] = bad_hash
@@ -62,11 +63,15 @@ def check(db_path=ROOT / "db" / "manipur.db"):
 
     dev_ref = EVAL / "dev" / "reference"
     res["record_key_overlap_dev_vs_eval"] = len(keys(dev_ref) & keys(EVAL / "reference")) if dev_ref.exists() else 0
+    ai_dev, ai_off = EVAL / "dev" / "ai" / "reference", EVAL / "ai" / "reference"
+    res["record_key_overlap_ai_dev_vs_ai_eval"] = len(keys(ai_dev) & keys(ai_off)) if ai_dev.exists() and ai_off.exists() else 0
 
     man = json.loads((EVAL / "heldout" / "split_manifest.json").read_text(encoding="utf-8"))
     changed = [k for k, v in man["files"].items() if (ROOT / k).exists() and sha(ROOT / k) != v["sha256"]]
     missing = [k for k in man["files"] if not (ROOT / k).exists()]
     res["frozen_files_changed_or_missing"] = len(changed) + len(missing)
+    if "eval_cases_ai" in man:
+        res["frozen_ai_eval_files_changed"] = sum(sha(EVAL / "ai" / "cases" / n) != h for n, h in man["eval_cases_ai"].items() if (EVAL / "ai" / "cases" / n).exists())
     if "eval_cases" in man:
         res["frozen_eval_files_changed"] = sum(sha(EVAL / "cases" / n) != h for n, h in man["eval_cases"].items() if (EVAL / "cases" / n).exists())
     res["overlap_total"] = sum(v for k, v in res.items() if k != "eval_files")

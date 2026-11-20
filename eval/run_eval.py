@@ -33,16 +33,23 @@ sys.path.insert(0, str(ROOT))
 ap = argparse.ArgumentParser()
 ap.add_argument("--skip-llm-cases", action="store_true", help="drop cases that need the Groq header mapper")
 ap.add_argument("--no-official-db", action="store_true", help="skip the M14-M17 SQL checks on db/manipur.db")
-ap.add_argument("--set", choices=["official", "dev"], default="official",
-                help="official = held-out evaluation set (eval/cases); dev = development regression set (eval/dev)")
+ap.add_argument("--set", choices=["official", "dev", "ai", "ai-dev"], default="official",
+                help="official = held-out evaluation set (eval/cases); dev = development regression set (eval/dev); "
+                     "ai = held-out set of AI-capability cases (eval/ai); ai-dev = its development twin (eval/dev/ai)")
+ap.add_argument("--no-ai", action="store_true", help="run the pipeline in its rule-based baseline mode (no model calls except none) for A/B comparison")
+ap.add_argument("--legacy-root", default=None, help="run the pipeline code found in this folder (e.g. an extract of an earlier commit) instead of this one: "
+                "the 'before' arm of the A/B comparison; the cases and references stay the current ones")
 ap.add_argument("--db", default=str(ROOT / "db" / "manipur.db"))
 args = ap.parse_args()
-DEV = args.set == "dev"
-OUTDIR = EVAL / "dev" if DEV else EVAL                       # official results live in eval/, dev regression results in eval/dev/
+AI_SET = args.set in ("ai", "ai-dev")
+DEV = args.set in ("dev", "ai-dev")
+OUTDIR = (EVAL / "dev" if DEV else EVAL) / ("ai" if AI_SET else "")      # official results live in eval/, dev regression results in eval/dev/
 REFDIR = OUTDIR / "reference"
 RESDIR = OUTDIR / "results"
-METRICS_FILE = OUTDIR / ("dev_phase2_metrics.csv" if DEV else "phase2_metrics.csv")
+METRICS_FILE = OUTDIR / (("ai_metrics_legacy.csv" if args.legacy_root else "ai_metrics_baseline.csv" if args.no_ai else "ai_metrics.csv") if AI_SET else ("dev_phase2_metrics.csv" if DEV else "phase2_metrics.csv"))
 
+if args.legacy_root:
+    sys.path.insert(0, str(Path(args.legacy_root).resolve()))        # import the OLD pipeline package
 WORK = Path(tempfile.mkdtemp(prefix="agri_eval_"))
 os.environ["AGRI_LOG_DIR"] = str(WORK / "logs")
 from pipeline.graph import run_file  # noqa: E402  (after AGRI_LOG_DIR is set)
@@ -246,14 +253,21 @@ for ref in refs:
     db = WORK / f"{cid}.db"
     case_path = EVAL / ref["file"]
     t0 = time.perf_counter()
-    out = run_file(case_path, db_path=db, inject_fault=ref["inject_fault"])
+    out = run_file(case_path, db_path=db, inject_fault=ref["inject_fault"], **({} if args.legacy_root else {"ai": False if args.no_ai else None}))
     secs = time.perf_counter() - t0
     traj = out["trajectory"] or []
     tools = [t["tool"] for t in traj if t["tool"]]
     retries = sum(1 for t in traj if t["step"] == "recover")
     res = {"case": ref, "id": cid, "agent": agent, "owner": ref.get("owner_agent", agent), "group": ref["source_group"], "ops": is_ops, "status": out["status"],
            "tools": tools, "retries": retries, "seconds": secs, "tp": 0, "extracted": 0, "ref_fields": 0,
-           "complete": None, "traced_rows": 0, "ok_rows": 0, "sup_fields": 0, "tot_fields": 0, "wrong": [], "missing": []}
+           "complete": None, "traced_rows": 0, "ok_rows": 0, "sup_fields": 0, "tot_fields": 0, "wrong": [], "missing": [],
+           "trajectory_steps": traj, "ai": out.get("ai"), "inserted": ((out.get("result") or {}).get("totals") or {}).get("inserted", 0), "quarantined": [], "flagged_true": 0, "stored_values": []}
+    try:                       # rows the plausibility check set aside for human review in THIS run
+        _qc = sqlite3.connect(db)
+        res["quarantined"] = [(f, v, loc) for f, v, loc in _qc.execute("SELECT field, value, locator FROM review_queue WHERE run_id=?", (out["run_id"],))]
+        _qc.close()
+    except Exception:
+        pass
     if agent in TABLES and out["status"] in ("complete", "partial"):
         recs, info = predicted_records(db, agent, out["run_id"])
         expected = {}
@@ -273,6 +287,10 @@ for ref in refs:
             for f, exp in fields.items():
                 if f not in recs.get(k, {}):
                     res["missing"].append((k, f, exp))
+                    if any(qf == f and isinstance(exp["value"], (int, float)) and abs(qv - exp["value"]) <= 0.01 * abs(exp["value"]) + 1e-9
+                           for qf, qv, _ in res["quarantined"]):
+                        res["flagged_true"] += 1          # a true source value the plausibility check set aside for a human
+        res["stored_values"] = [(f, got[0]) for fields in recs.values() for f, got in fields.items()]
         required_ok = True
         for k in expected:
             row = recs.get(k)
@@ -297,7 +315,7 @@ for ref in refs:
         res["ref_fields"] = sum(len(r["fields"]) for r in ref["records"])
         res["complete"] = False
     # trajectory scoring (strict, positional)
-    exp_t = ref["expected_trajectory"]
+    exp_t = ref["expected_trajectory"] or []
     res["traj_match"] = tools == exp_t
     res["tool_correct"] = sum(1 for a, b in zip(tools, exp_t) if a == b)
     res["tool_calls"] = len(tools)
@@ -305,7 +323,8 @@ for ref in refs:
     for t in traj:
         if not t["tool"]:
             continue
-        if t["tool"] in ("inspect_file", "read_json_data", "read_csv_data", "read_pdf_data", "read_pdf_ocr"):
+        if t["tool"] in ("inspect_file", "read_json_data", "read_csv_data", "read_pdf_data", "read_pdf_ocr", "read_xlsx_data", "read_html_data",
+                         "read_text_data", "read_image_data"):
             if (t["args"].get("file") or t["args"].get("file_path")) != case_path.name:
                 bad_in += 1
         elif t["tool"].endswith("_extract"):
@@ -319,6 +338,87 @@ for ref in refs:
     f1 = (2 * res["tp"] / (res["extracted"] + res["ref_fields"])) if (res["extracted"] + res["ref_fields"]) else float("nan")
     print(f"  {flag} {cid:<42} status={out['status']:<8} F1={f1:.3f} fields {res['tp']}/{res['extracted']} ext, {res['ref_fields']} ref  "
           f"traj={'=' if res['traj_match'] else '!='} {secs:.1f}s")
+
+
+# ------------------------------------------------------------------------------------------------ AI-capability sets (--set ai / ai-dev)
+if AI_SET:
+    from collections import defaultdict
+    TEMPLATE = ["metric_id", "scope", "numerator", "denominator", "value", "n_cases", "evaluator_or_script", "notes"]
+    rows_ai, per_agent, per_group = [], defaultdict(lambda: [0, 0, 0, 0]), defaultdict(lambda: [0, 0, 0, 0])
+    exp_ok = [r for r in results if r["case"]["expected_status"] == "complete"]
+    exp_fail = [r for r in results if r["case"]["expected_status"] == "failed"]
+    for r in exp_ok:
+        for d, key in ((per_agent, r["agent"]), (per_group, r["group"])):
+            d[key][0] += r["tp"]; d[key][1] += r["extracted"]; d[key][2] += r["ref_fields"]; d[key][3] += 1
+
+    def f1(tp, ex, rf):
+        p, q = (tp / ex if ex else 0.0), (tp / rf if rf else 0.0)
+        return round(2 * p * q / (p + q), 4) if p + q else 0.0
+
+    def row(mid, scope, num, den, value, n, ev, notes=""):
+        rows_ai.append({"metric_id": mid, "scope": scope, "numerator": num, "denominator": den, "value": value, "n_cases": n,
+                        "evaluator_or_script": ev, "notes": notes})
+
+    mode = "legacy pipeline (code of the previous commit)" if args.legacy_root else "no model calls (--no-ai: new deterministic readers only)" if args.no_ai else "AI layer on"
+    for k, (tp, ex, rf, n) in sorted(per_agent.items()):
+        row("M3", k, tp, ex, f1(tp, ex, rf), n, "eval/run_eval.py (exact match, unit converted)", f"{mode}; P={tp / ex if ex else 0:.3f} R={tp / rf if rf else 0:.3f}; {rf} reference fields")
+    for k, (tp, ex, rf, n) in sorted(per_group.items()):
+        row("M3", f"format:{k}", tp, ex, f1(tp, ex, rf), n, "eval/run_eval.py", f"{mode}; source group = file format")
+    TP, EX, RF = (sum(v[i] for v in per_agent.values()) for i in (0, 1, 2))
+    row("M3", "all_cases", TP, EX, f1(TP, EX, RF), len(exp_ok), "eval/run_eval.py", f"{mode}; micro F1 over every reference field of the cases that should succeed")
+    solved = [r for r in exp_ok if r["status"] == "complete" and r["ref_fields"] and r["tp"] == r["ref_fields"] == r["extracted"]]
+    row("M9", "cases_fully_correct", len(solved), len(exp_ok), round(len(solved) / max(len(exp_ok), 1), 4), len(exp_ok), "eval/run_eval.py",
+        f"{mode}; status complete AND every reference field present and exact AND nothing extra")
+    clean = [r for r in exp_fail if r["status"] == "failed" and r["inserted"] == 0]
+    row("AI1", "must_fail_cleanly", len(clean), len(exp_fail), round(len(clean) / max(len(exp_fail), 1), 4), len(exp_fail), "eval/run_eval.py",
+        f"{mode}; unreadable / out-of-scope files: failed AND stored 0 rows (no invented data)")
+    exp_q = [(r, q) for r in results for q in r["case"].get("expected_quarantine", [])]
+    caught = sum(1 for r, q in exp_q if any(abs(v - q["value"]) <= 0.01 * abs(q["value"]) and f == q["field"] for f, v, *_ in r["quarantined"]))
+    if exp_q:
+        row("AI2", "impossible_values_set_aside", caught, len(exp_q), round(caught / max(len(exp_q), 1), 4), len(exp_q), "eval/run_eval.py + review_queue",
+            f"{mode}; injected impossible values found in review_queue and absent from the data tables")
+    stored_bad = sum(1 for r, q in exp_q if any(abs(v - q["value"]) <= 0.01 * abs(q["value"]) for f, v in r["stored_values"]))
+    row("AI2b", "impossible_values_stored", stored_bad, len(exp_q), round(stored_bad / max(len(exp_q), 1), 4), len(exp_q), "eval/run_eval.py",
+        f"{mode}; impossible values that reached the data tables (lower is better)")
+    false_q = sum(r["flagged_true"] for r in results)
+    row("AI3", "real_values_set_aside", false_q, RF, round(false_q / max(RF, 1), 4), len(exp_ok), "eval/run_eval.py + review_queue",
+        f"{mode}; true source values the plausibility check set aside for review (false alarms; a person can accept them)")
+    ai_used = [r["ai"] or {} for r in results]
+    row("AI4", "model_calls_per_file", sum(a.get("calls", 0) for a in ai_used), len(results), round(sum(a.get("calls", 0) for a in ai_used) / max(len(results), 1), 2),
+        len(results), "run report", f"{mode}; new model calls (cached answers: {sum(a.get('cached', 0) for a in ai_used)}); budget 16 per file")
+    ok_budget = [r for r in results if r["retries"] <= 2 and (r["ai"] or {}).get("calls", 0) <= (r["ai"] or {}).get("max_calls", 16)]
+    row("AI5", "retry_and_call_budget_respected", len(ok_budget), len(results), round(len(ok_budget) / max(len(results), 1), 4), len(results), "run report",
+        f"{mode}; at most 2 recoveries and 16 model calls per file")
+    sec = sorted(r["seconds"] for r in results)
+    row("INFO", "median_seconds_per_file", "", "", round(sec[len(sec) // 2], 1), len(results), "eval/run_eval.py", f"{mode}; latency is reported, not scored")
+    models = sorted({a.get("model") for a in ai_used if a.get("model")})
+    errs = sum(1 for r in results for s in r["trajectory_steps"] if s.get("status") == "error" and str(s.get("step", "")).startswith("ai:"))
+    row("INFO", "model_used", "", "", ",".join(models) or "none", len(results), "run report", f"{mode}; model-call errors (rate limits etc.): {errs}")
+    (RESDIR / "history").mkdir(parents=True, exist_ok=True)
+    stamp = f"{datetime.now():%Y%m%d_%H%M%S}"
+    for dest in (METRICS_FILE, RESDIR / "history" / f"{METRICS_FILE.stem}_{stamp}.csv"):
+        with dest.open("w", newline="", encoding="utf-8") as fh:
+            w = csv.DictWriter(fh, fieldnames=TEMPLATE)
+            w.writeheader()
+            w.writerows(rows_ai)
+    first = RESDIR / f"first_run_{METRICS_FILE.stem}.csv"
+    if not first.exists():
+        shutil.copy(METRICS_FILE, first)
+    pc = RESDIR / ("per_case_legacy.csv" if args.legacy_root else "per_case_baseline.csv" if args.no_ai else "per_case.csv")
+    with pc.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["case_id", "format", "expected_status", "status", "F1", "tp", "extracted", "ref_fields", "stored_nothing", "quarantined", "model_calls", "cached",
+                    "retries", "seconds", "tools"])
+        for r in results:
+            a = r["ai"] or {}
+            w.writerow([r["id"], r["group"], r["case"]["expected_status"], r["status"], round(2 * r["tp"] / (r["extracted"] + r["ref_fields"]), 4) if (r["extracted"] + r["ref_fields"]) else "",
+                        r["tp"], r["extracted"], r["ref_fields"], r["inserted"] == 0, len(r["quarantined"]), a.get("calls", 0), a.get("cached", 0), r["retries"],
+                        round(r["seconds"], 1), " > ".join(r["tools"])])
+    print(f"\n=== AI-capability set '{args.set}' - {mode} ===")
+    for m in rows_ai:
+        print(f"  {m['metric_id']:<5}{m['scope']:<32}{str(m['numerator']):>6} /{str(m['denominator']):>6}  = {m['value']}")
+    shutil.rmtree(WORK, ignore_errors=True)
+    sys.exit(0)
 
 
 # ------------------------------------------------------------------------------------------------ aggregate

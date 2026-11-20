@@ -1,0 +1,15 @@
+{
+ "case_id": "ai_19_headers_only_csv",
+ "agent": "none",
+ "source_group": "csv",
+ "file": "dev/ai/cases/ai_19.csv",
+ "description": "Title lines and a header but no data rows: must fail cleanly",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "failed",
+ "expected_trajectory": null,
+ "expected_quarantine": [],
+ "records": [],
+ "owner_agent": "ai_layer"
+}

@@ -1,0 +1,20 @@
+metric_id,scope,numerator,denominator,value,n_cases,evaluator_or_script,notes
+M3,production,0,0,0.0,5,"eval/run_eval.py (exact match, unit converted)",legacy pipeline (code of the previous commit); P=0.000 R=0.000; 68 reference fields
+M3,rainfall,146,148,0.7122,11,"eval/run_eval.py (exact match, unit converted)",legacy pipeline (code of the previous commit); P=0.986 R=0.557; 262 reference fields
+M3,soil,0,0,0.0,1,"eval/run_eval.py (exact match, unit converted)",legacy pipeline (code of the previous commit); P=0.000 R=0.000; 134 reference fields
+M3,format:csv,146,148,0.7337,9,eval/run_eval.py,legacy pipeline (code of the previous commit); source group = file format
+M3,format:html,0,0,0.0,1,eval/run_eval.py,legacy pipeline (code of the previous commit); source group = file format
+M3,format:image,0,0,0.0,1,eval/run_eval.py,legacy pipeline (code of the previous commit); source group = file format
+M3,format:pdf,0,0,0.0,1,eval/run_eval.py,legacy pipeline (code of the previous commit); source group = file format
+M3,format:text,0,0,0.0,3,eval/run_eval.py,legacy pipeline (code of the previous commit); source group = file format
+M3,format:xlsx,0,0,0.0,2,eval/run_eval.py,legacy pipeline (code of the previous commit); source group = file format
+M3,all_cases,146,148,0.4771,17,eval/run_eval.py,legacy pipeline (code of the previous commit); micro F1 over every reference field of the cases that should succeed
+M9,cases_fully_correct,1,17,0.0588,17,eval/run_eval.py,legacy pipeline (code of the previous commit); status complete AND every reference field present and exact AND nothing extra
+AI1,must_fail_cleanly,3,3,1.0,3,eval/run_eval.py,legacy pipeline (code of the previous commit); unreadable / out-of-scope files: failed AND stored 0 rows (no invented data)
+AI2,impossible_values_set_aside,0,2,0.0,2,eval/run_eval.py + review_queue,legacy pipeline (code of the previous commit); injected impossible values found in review_queue and absent from the data tables
+AI2b,impossible_values_stored,2,2,1.0,2,eval/run_eval.py,legacy pipeline (code of the previous commit); impossible values that reached the data tables (lower is better)
+AI3,real_values_set_aside,0,464,0.0,17,eval/run_eval.py + review_queue,legacy pipeline (code of the previous commit); true source values the plausibility check set aside for review (false alarms; a person can accept them)
+AI4,model_calls_per_file,0,20,0.0,20,run report,legacy pipeline (code of the previous commit); new model calls (cached answers: 0); budget 16 per file
+AI5,retry_and_call_budget_respected,20,20,1.0,20,run report,legacy pipeline (code of the previous commit); at most 2 recoveries and 16 model calls per file
+INFO,median_seconds_per_file,,,1.8,20,eval/run_eval.py,"legacy pipeline (code of the previous commit); latency is reported, not scored"
+INFO,model_used,,,none,20,run report,legacy pipeline (code of the previous commit); model-call errors (rate limits etc.): 0

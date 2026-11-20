@@ -17,6 +17,7 @@ import codecs
 import csv
 import json
 import re
+import unicodedata
 from pathlib import Path
 
 YEAR_RE = re.compile(r"(?<!\d)(1[89]\d{2}|20\d{2})(?!\d)")
@@ -38,7 +39,8 @@ def to_number(v):
         return float(v)
     if not isinstance(v, str):
         return None
-    s = v.strip().rstrip("%").strip()
+    s = unicodedata.normalize("NFKC", v).strip().rstrip("%").strip()
+    s = s.replace("\u066b", ".").replace("\u066c", ",")           # Arabic decimal / thousands separators
     if not s:
         return None
     if re.fullmatch(r"-?\d{1,3}(,\d{3})+(\.\d+)?", s):      # thousands separators
@@ -55,7 +57,21 @@ def to_number(v):
 
 def read_text(path: Path) -> tuple[str, str]:
     raw = path.read_bytes()
-    for enc in ENCODINGS:
+    if raw[:2] in (b"\xff\xfe", b"\xfe\xff"):                        # UTF-16 with a byte-order mark
+        return raw.decode("utf-16"), "utf-16"
+    for enc in ("utf-8-sig", "utf-8"):
+        try:
+            return raw.decode(enc), enc
+        except UnicodeDecodeError:
+            pass
+    try:                                                             # not UTF-8: let a detector choose (Arabic, Cyrillic, legacy Indic sets ...)
+        from charset_normalizer import from_bytes
+        best = from_bytes(raw).best()
+        if best is not None and best.encoding:
+            return str(best), best.encoding
+    except Exception:
+        pass
+    for enc in ENCODINGS[2:]:
         try:
             return raw.decode(enc), enc
         except UnicodeDecodeError:
@@ -227,7 +243,7 @@ def read_csv_file(path: Path) -> dict:
     return parse_rows(raw, delim, enc)
 
 
-def parse_rows(raw, delim, enc, loc_prefix="") -> dict:
+def parse_rows(raw, delim, enc, loc_prefix="", line_numbers=None, line_word="line") -> dict:
     """Neutral-structure parser for any table given as a list of rows: a CSV file, or one table cut out of a PDF page
     (then `loc_prefix` makes the locators read like 'p53 t1 line 7, cols B-F')."""
     ncols = max((len(r) for r in raw), default=0)
@@ -235,7 +251,7 @@ def parse_rows(raw, delim, enc, loc_prefix="") -> dict:
     keep = [(i, r) for i, r in enumerate(rows) if any(c for c in r)]  # remember original line numbers
     if len(keep) < 2:
         raise ValueError("CSV has no data rows")
-    lines = [i + 1 for i, _ in keep]
+    lines = [(line_numbers[i] if line_numbers else i + 1) for i, _ in keep]   # original row numbers survive cutting / reshaping
     rows = [r for _, r in keep]
 
     h = _header_block(rows)
@@ -290,7 +306,7 @@ def parse_rows(raw, delim, enc, loc_prefix="") -> dict:
                 skipped_totals += 1
                 continue
             data = {rows[0][j]: r[j] for j in range(ncols) if rows[0][j].strip()}
-            out_rows.append({"locator": f"{loc_prefix}line {lines[ri]}", "pattern": "csv", "data": data, "labels": [], "units": {}})
+            out_rows.append({"locator": f"{loc_prefix}{line_word} {lines[ri]}", "pattern": "csv", "data": data, "labels": [], "units": {}})
             continue
         is_leaf = has_values or any(r[j].strip() for j in label_cols[1:])   # e.g. a Season value marks a data row
         if not has_values and is_leaf:   # a data row whose value cells are all blank: nothing to record, hierarchy unchanged
@@ -331,7 +347,7 @@ def parse_rows(raw, delim, enc, loc_prefix="") -> dict:
                 data["period"] = period
             data.update(vals)
             units = {specs[j]["variable"]: specs[j]["unit"] for j in cols if specs[j]["unit"]}
-            out_rows.append({"locator": f"{loc_prefix}line {lines[ri]}, cols {col_letter(min(cols))}-{col_letter(max(cols))}"
+            out_rows.append({"locator": f"{loc_prefix}{line_word} {lines[ri]}, cols {col_letter(min(cols))}-{col_letter(max(cols))}"
                                         + (f", period {period}" if period else ""),
                              "pattern": "csv", "data": data, "labels": [], "units": units})
     if skipped_totals:

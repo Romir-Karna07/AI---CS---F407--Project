@@ -29,3 +29,12 @@ def insert_rows(con, agent: str, rows: list[dict]) -> tuple[int, int]:
     con.executemany(sql, [tuple(r.get(c) for c in cols) for r in rows])
     inserted = con.total_changes - before
     return inserted, len(rows) - inserted
+
+
+def insert_review(con, run_id: str, items: list[dict]) -> int:
+    """rows set aside for human review (plausibility check); idempotent per (source_hash, locator, field)"""
+    cols = ["run_id", "agent", "table_name", "source_file", "source_hash", "locator", "district", "field", "value", "reason", "flagged_by", "row_json"]
+    before = con.total_changes
+    con.executemany(f"INSERT OR IGNORE INTO review_queue ({','.join(cols)}) VALUES ({','.join('?' * len(cols))})",
+                    [tuple(({**it, 'run_id': run_id}).get(c) for c in cols) for it in items])
+    return con.total_changes - before

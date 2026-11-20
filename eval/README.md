@@ -7,6 +7,9 @@ python eval/build_pdf_cases.py --set official   # + the 10 official PDF cases (d
 python eval/run_eval.py            # runs the pipeline on the official set -> eval/phase2_metrics.csv
 python eval/contamination_check.py # overlap between the evaluation set and everything the agents ran on / were tuned on
 python eval/build_cases.py         # (dev) rebuilds the development regression set in eval/dev/
+python eval/build_ai_cases.py --set official   # the 20 AI-capability cases (held-out districts) -> eval/ai/
+python eval/build_ai_cases.py --set dev        # their dev twins (dev districts) -> eval/dev/ai/
+python eval/run_eval.py --set ai               # AI arm; add --no-ai (no model calls) or --legacy-root <extract of the old commit> for the other arms
 python eval/build_pdf_cases.py --set dev        # (dev) + 10 dev PDF cases the PDF reader was developed on
 python eval/run_eval.py --set dev  # (dev) runs it -> eval/dev/dev_phase2_metrics.csv
 ```
@@ -102,6 +105,7 @@ group** beyond one French-header file, and no Manipuri documents.
 | M18 overlap | 0 | contamination check, 44 evaluation files |
 | M1 / M2 | 54/54 = 1.000 / 4/54 = 0.074 | all inventory sources are mapped; only 4 have data loaded, **below the 0.20 floor (0 of 2 points)**. Within the 6 sources in scope now it is 4/6 (row `M2 / in_scope_sources`, information only) |
 | M5, M18 adapter | pending | no instructor key; no adapter trained |
+| (current numbers, final code) | M3 0.985 · M4 / M10 1.000 · M6 0.888 · M7 1.000 · M8 0.818 · M9 0.881 · M11 / M12 1.000 · M13 0.054 | the table above is the first cold run; these are the latest run after the AI layer |
 
 **PDF cases, per file (cold run):** 7 of 10 at F1 1.000 (ruled multi-page, unruled with caption context, Hindi headers, wide months with caption, tidy
 multi-page, ruled landscape soil, unruled soil with caption). The three that lost points:
@@ -115,6 +119,37 @@ multi-page, ruled landscape soil, unruled soil with caption). The three that los
 `first_run_with_pdf_per_case.csv` are the first run that includes the PDFs. Neither is ever overwritten. The earlier all-1.0 CSV / JSON result stands as it was:
 those 30 files scored F1 = 1.0 on the first try, which says the agents generalise across districts and layouts, not that they would read an arbitrary
 document. The PDF files are the first held-out cases that did not.
+
+## AI-capability evaluation (`eval/ai/`, `eval/dev/ai/`)
+20 cases per set, built by `build_ai_cases.py` from real records in layouts the rule-based pipeline cannot read: a title / source lines above the header, a unit stated only in the title
+("thousand hectares"), a repeated header **and** a note deep inside 150 rows, districts as columns, records across columns, an Excel workbook (cover sheet, title row, merged cells), an HTML page with an
+unrelated table, an image of a table, figures in English and in Tamil sentences, Hindi / Bengali-script (native digits) / Tamil tables (headers, district names, month names, unit words), two impossible
+values (99,999 and 45,000 mm), a 60-page PDF whose only rainfall table is on page 47, and three files that **must fail cleanly** (random bytes, a price table, a header with no data). 464 reference fields
+(official) / 465 (dev). The official set uses the held-out districts only; the dev twin uses dev districts and is what prompts and thresholds were tuned on. `contamination_check.py` covers both
+(64 evaluation files, 0 overlaps; the three must-fail files were first byte-identical between the two sets, which the check caught, and were regenerated).
+
+Three arms, same files, same scorer (`ai_metrics*.csv`, `per_case*.csv`):
+
+| Arm | cases fully correct (17 that should succeed) | field F1 (micro) | impossible values reaching the tables | must-fail files failed cleanly |
+|---|---|---|---|---|
+| **before**: the committed pipeline (extract of commit `3bc5c73`, `--legacy-root`) | 1 | 0.477 | 2 of 2 | 3 of 3 |
+| new code, **no model calls** (`--no-ai`; includes the new deterministic Excel / HTML / image readers) | 2 | 0.745 | 2 of 2 | 3 of 3 |
+| **AI layer, first cold run** (`first_run_ai_metrics.csv`, model gpt-oss-20b) | **16** | **0.974** | **0 of 2** | 3 of 3 |
+| AI layer, second run, same code and files | 15 | 0.961 | 0 of 2 | 3 of 3 |
+| AI layer, third run, **after a fix informed by the second run (not cold)** | 16 | 0.974 | 0 of 2 | 3 of 3 |
+| dev twin, final code | 17 | 1.000 | 0 of 2 | 3 of 3 |
+
+**Disclosure, in order.** (1) The AI layer was developed on the dev twin; the official AI set was then run once, cold (16 / 17). (2) The original 44-case official set was re-run on the new code; the
+French-header case failed because the old header mapper swallowed a model error, so the header mapper and the classifier were moved onto the shared wrapper (budget, cache, rate-limit wait, trace);
+the AI set was re-run (15 / 17: the model labelled both the month and the year column `year_month`). (3) A check was added that a column of plain years is the year, whatever the model called it
+(unit-tested without the model, `tests/smoke_unseen.py`), and the AI set was run a third time (16 / 17). Runs 2 and 3 therefore followed failures seen on the official set: only run 1 is a cold number.
+**Model:** all runs used `gpt-oss-20b` with low reasoning effort, because the 200,000-token daily free-tier quota of `gpt-oss-120b` was exhausted by development; 120b was not re-evaluated.
+**The remaining miss** is the image case: one village name read by OCR as "Part Il" instead of "Part II" (one record of 12). **Run-to-run variation is real** (temperature 0 does not make the model deterministic);
+cached answers hide it, so clear `.llm_cache/` for a fresh measurement.
+
+**Original official set on the final code:** field F1 **0.985** (was 0.987): the plausibility check set aside one genuine record in each of `prod_h01` and `prod_h06`; soil, rainfall and json are 1.000, production 0.995,
+the PDF cases are unchanged (0.947; scans 0.93 / 0.96, rotated page 0.63). Tool-selection metrics fell slightly (M6 0.888, M8 0.818) because model steps (`llm_plausibility`, `llm_page_select` ...)
+are tool calls the reference trajectories do not list; they are reported, not hidden.
 
 ## Metric status
 | Metric | Status |

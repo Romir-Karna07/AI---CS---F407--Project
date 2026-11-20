@@ -5,6 +5,7 @@ so "Organic Carbon", "organic_carbon" and "OC" all resolve to `oc`. Unknown keys
 dropped - they are kept in each row's `extra` JSON and can be mapped by the LLM fallback.
 """
 import re
+import unicodedata
 
 SOIL_NUTRIENTS = ["n", "p", "k", "oc", "ph", "ec", "s", "zn", "fe", "cu", "mn", "b"]
 
@@ -74,7 +75,11 @@ def norm_key(k) -> str:
     """'Organic Carbon (%)' -> 'organiccarbon'  ;  'rainy_days_ge_2.5mm' -> 'rainydaysge25mm'."""
     s = str(k).lower()
     s = re.sub(r"\([^)]*\)", "", s) if re.sub(r"\([^)]*\)", "", s).strip() else s  # drop "(Hectare)" style suffixes
-    return re.sub(r"[^a-z0-9]", "", s)
+    ascii_part = re.sub(r"[^a-z0-9]", "", s)
+    if len(ascii_part) >= 2 or not any(ch.isalpha() and ord(ch) > 127 for ch in s):   # English (or bilingual 'फसल Crop'): the original behaviour
+        return ascii_part
+    s = unicodedata.normalize("NFC", s)                               # purely non-Latin header: keep letters, digits and combining marks
+    return "".join(ch for ch in s if ch.isalnum() or unicodedata.category(ch).startswith("M"))
 
 
 # Fallback when a header is not an exact synonym: substring rules, in priority order.
@@ -127,5 +132,6 @@ def score_domains(canon_fields) -> dict:
 
 def register_synonym(key, canonical: str) -> None:
     """Teach the mapper a header it did not know (used with LLM-proposed mappings, per run)."""
-    if canonical in SYNONYMS:
-        _LOOKUP[norm_key(key)] = canonical
+    nk = norm_key(key)
+    if canonical in SYNONYMS and nk:
+        _LOOKUP[nk] = canonical

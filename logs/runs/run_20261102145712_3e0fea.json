@@ -1,0 +1,26 @@
+{
+  "run_id": "run_20261102145712_3e0fea",
+  "input": "S05_desagri_3rd_advance_estimates_2025-26",
+  "status": "failed",
+  "source_type": null,
+  "groups": null,
+  "result": {},
+  "notes": {
+    "error": "cannot open input: [Errno 2] No such file or directory: 'Data\\\\pdf_samples\\\\S05_desagri_3rd_advance_estimates_2025-26'",
+    "agent_errors": [],
+    "unclassified_groups": []
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "S05_desagri_3rd_advance_estimates_2025-26"
+      },
+      "status": "error",
+      "detail": "[Errno 2] No such file or directory: 'Data\\\\pdf_samples\\\\S05_desagri_3rd_advance_estimates_2025-26'",
+      "ms": 0.4
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "run_id": "run_20261102161514_b10ca5",
+  "input": "JSON_sample.json",
+  "status": "failed",
+  "source_type": "json",
+  "groups": [
+    {
+      "pattern": "$[]",
+      "domain": null,
+      "records": 10,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm_rejected_no_measurement_columns",
+      "mapped_headers": {
+        "state": "state",
+        "district": "district",
+        "commodity": "crop"
+      },
+      "unmapped_headers": [
+        "market",
+        "variety",
+        "grade",
+        "arrival_date",
+        "min_price",
+        "max_price",
+        "modal_price"
+      ]
+    }
+  ],
+  "result": {},
+  "notes": {
+    "error": "no recognised soil / rainfall / production records (unclassified: $[])",
+    "agent_errors": [],
+    "unclassified_groups": [
+      "$[]"
+    ]
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "JSON_sample.json"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 2841,
+        "type": "json"
+      },
+      "ms": 0.7
+    },
+    {
+      "step": "read",
+      "tool": "read_json_data",
+      "args": {
+        "file_path": "JSON_sample.json"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 10,
+        "groups": 1,
+        "notes": []
+      },
+      "ms": 0.9
+    },
+    {
+      "step": "classify",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "market",
+          "variety",
+          "grade",
+          "arrival_date",
+          "min_price",
+          "max_price",
+          "modal_price"
+        ]
+      },
+      "status": "rejected",
+      "detail": {},
+      "ms": 12334.7
+    },
+    {
+      "step": "classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": null,
+      "ms": 701.0
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "$[]",
+            null,
+            10
+          ]
+        ],
+        "queue": []
+      },
+      "ms": 16191.1
+    }
+  ]
+}

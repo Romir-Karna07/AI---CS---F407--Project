@@ -1,0 +1,160 @@
+{
+ "case_id": "ai_20_workbook_one_sheet_title_xlsx",
+ "agent": "production",
+ "source_group": "xlsx",
+ "file": "ai/cases/ai_20.xlsx",
+ "description": "Excel workbook, one sheet, a title row above the header",
+ "difficulty": "normal",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": null,
+ "expected_quarantine": [],
+ "records": [
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2012-13",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 311.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2456.9,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2010-11",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 790.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 43500.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2002-03",
+    "crop": "Brinjal",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 26.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 110.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Sweet Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 4.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 20.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2011-12",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 598.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 7768.02,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2009-10",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1100.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 8320.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Tomato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 152.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1216.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2011-12",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1140.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10150.0,
+     "unit": "t"
+    }
+   }
+  }
+ ],
+ "owner_agent": "ai_layer"
+}

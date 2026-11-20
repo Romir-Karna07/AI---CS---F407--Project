@@ -24,6 +24,8 @@ INV = {r[0]: dict(zip(head, r)) for r in ws.iter_rows(min_row=2, values_only=Tru
 
 
 def inv(sid, col):
+    if sid not in INV:                      # a file that is not from the Phase 1 inventory (e.g. a sample added by hand)
+        return "not in the Phase 1 inventory"
     return str(INV[sid][col]).replace("\n", " ").strip()
 
 
@@ -96,7 +98,8 @@ for pf in sorted((ROOT / "Data" / "pdf_samples").glob("*.pdf")):
 
 # evaluation cases: synthetic re-shapings of the corpus above (not independent data)
 AGENT_SRC = {"soil": "S24", "rainfall": "S22", "production": "S02"}
-for ref in sorted((ROOT / "eval" / "reference").glob("*.json")) + sorted((ROOT / "eval" / "dev" / "reference").glob("*.json")):
+for ref in (sorted((ROOT / "eval" / "reference").glob("*.json")) + sorted((ROOT / "eval" / "dev" / "reference").glob("*.json"))
+            + sorted((ROOT / "eval" / "ai" / "reference").glob("*.json")) + sorted((ROOT / "eval" / "dev" / "ai" / "reference").glob("*.json"))):
     r = json.loads(ref.read_text(encoding="utf-8"))
     p = ROOT / "eval" / r["file"]
     official = not r["file"].startswith("dev/")

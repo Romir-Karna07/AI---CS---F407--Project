@@ -1,0 +1,70 @@
+{
+ "case_id": "ai_05_records_across_columns_csv",
+ "agent": "rainfall",
+ "source_group": "csv",
+ "file": "ai/cases/ai_05.csv",
+ "description": "Transposed: variables in rows, districts across; the month is only in the title",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": null,
+ "expected_quarantine": [],
+ "records": [
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2015-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 328.3,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 19,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2015-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 328.5,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 19,
+     "unit": "days"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2015-07",
+    "crop": "UNSPECIFIED",
+    "entity": ""
+   },
+   "fields": {
+    "rainfall_mm": {
+     "value": 310.6,
+     "unit": "mm"
+    },
+    "rainy_days_ge_2_5mm": {
+     "value": 21,
+     "unit": "days"
+    }
+   }
+  }
+ ],
+ "owner_agent": "ai_layer"
+}

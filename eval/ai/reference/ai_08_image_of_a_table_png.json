@@ -1,0 +1,672 @@
+{
+ "case_id": "ai_08_image_of_a_table_png",
+ "agent": "soil",
+ "source_group": "image",
+ "file": "ai/cases/ai_08.png",
+ "description": "A photographed / scanned table saved as a PNG (no PDF, no text layer)",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": null,
+ "expected_quarantine": [],
+ "records": [
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Ikop Pat"
+   },
+   "fields": {
+    "n": {
+     "value": 366.5,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 48.26,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 133.7,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.61,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.41,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.02,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 31.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 2.59,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.3,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 3.46,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 22.5,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Heirok Part Ii Pt"
+   },
+   "fields": {
+    "n": {
+     "value": 299.8,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 14.3,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 152.8,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.85,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.05,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.02,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 26.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 1.015,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 31.5,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 0.23,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 23.75,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.685,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Phundrei"
+   },
+   "fields": {
+    "n": {
+     "value": 409.4,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 92.95,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 295.3,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.36,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.56,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.02,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 6.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 3.88,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.3,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 2.71,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 30.55,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.27,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Shangshak Khullen"
+   },
+   "fields": {
+    "n": {
+     "value": 395.1,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 62.56,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 310.6,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.29,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.47,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.01,
+     "unit": "dS/m"
+    },
+    "fe": {
+     "value": 29.5,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.27,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 15.3,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 2.11,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Khonghampat"
+   },
+   "fields": {
+    "n": {
+     "value": 259.25,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 28.15,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 241.65,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.655,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.005,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.015,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 8.5,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 1.845,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 34.3,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 6.6,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 28.3,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Matai"
+   },
+   "fields": {
+    "n": {
+     "value": 348.5,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 23.23,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 115.76,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.82,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.01,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.06,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 9.5,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 0.09,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 31.65,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 37.95,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Ningel"
+   },
+   "fields": {
+    "n": {
+     "value": 337.9,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 29.49,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 39.0,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.03,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.78,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.01,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 16.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 2.96,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 31.2,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 21.1,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.01,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Wangbal"
+   },
+   "fields": {
+    "n": {
+     "value": 376.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 134.9,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 269.6,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.2,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.59,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.04,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 5.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 3.14,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 33.2,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.21,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 16.6,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.01,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Pechi"
+   },
+   "fields": {
+    "n": {
+     "value": 402.2,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 37.984,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 299.51,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.33,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.64,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.655,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 16.5,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 32.0,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 3.225,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 40.4,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.285,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Wangjing"
+   },
+   "fields": {
+    "n": {
+     "value": 330.75,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 95.18,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 121.45,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 0.995,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.655,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.09,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 37.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 3.05,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 32.35,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 1.87,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 31.85,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 0.595,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Thokchom"
+   },
+   "fields": {
+    "n": {
+     "value": 409.4,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 176.0,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 399.8,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.36,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 6.86,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.09,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 5.0,
+     "unit": "ppm"
+    },
+    "zn": {
+     "value": 2.22,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 31.2,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 0.74,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 18.8,
+     "unit": "ppm"
+    },
+    "b": {
+     "value": 1.74,
+     "unit": "ppm"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-19",
+    "crop": "UNSPECIFIED",
+    "entity": "Khanarok"
+   },
+   "fields": {
+    "n": {
+     "value": 407.0,
+     "unit": "kg/ha"
+    },
+    "p": {
+     "value": 22.339,
+     "unit": "kg/ha"
+    },
+    "k": {
+     "value": 57.115,
+     "unit": "kg/ha"
+    },
+    "oc": {
+     "value": 1.35,
+     "unit": "%"
+    },
+    "ph": {
+     "value": 5.865,
+     "unit": "pH units"
+    },
+    "ec": {
+     "value": 0.035,
+     "unit": "dS/m"
+    },
+    "s": {
+     "value": 8.5,
+     "unit": "ppm"
+    },
+    "fe": {
+     "value": 32.4,
+     "unit": "ppm"
+    },
+    "cu": {
+     "value": 2.755,
+     "unit": "ppm"
+    },
+    "mn": {
+     "value": 44.7,
+     "unit": "ppm"
+    }
+   }
+  }
+ ],
+ "owner_agent": "ai_layer"
+}

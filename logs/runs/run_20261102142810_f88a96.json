@@ -1,0 +1,143 @@
+{
+  "run_id": "run_20261102142810_f88a96",
+  "input": "rain_wide.csv",
+  "status": "complete",
+  "source_type": "csv",
+  "groups": [
+    {
+      "pattern": "csv",
+      "domain": "rainfall",
+      "records": 2,
+      "scores": {
+        "soil": 0,
+        "rainfall": 3,
+        "production": 0
+      },
+      "method": "rules",
+      "mapped_headers": {
+        "District": "district",
+        "Year": "period"
+      },
+      "unmapped_headers": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ]
+    }
+  ],
+  "result": {
+    "by_agent": {
+      "rainfall_agent": {
+        "table": "rainfall_monthly",
+        "extracted": 24,
+        "inserted": 24,
+        "duplicates": 0,
+        "invalid": 0,
+        "rejected": 0
+      }
+    },
+    "rejected": [],
+    "totals": {
+      "extracted": 24,
+      "inserted": 24,
+      "duplicate": 0,
+      "invalid": 0,
+      "rejected": 0
+    }
+  },
+  "notes": {
+    "error": null,
+    "agent_errors": [],
+    "unclassified_groups": []
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "rain_wide.csv"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 166,
+        "type": "csv"
+      },
+      "ms": 0.6
+    },
+    {
+      "step": "read",
+      "tool": "read_csv_data",
+      "args": {
+        "file_path": "rain_wide.csv"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 2,
+        "groups": 1,
+        "notes": [
+          "delimiter=','",
+          "header_rows=1",
+          "label_columns=[0]"
+        ]
+      },
+      "ms": 6.4
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "csv",
+            "rainfall",
+            2
+          ]
+        ],
+        "queue": [
+          "rainfall"
+        ]
+      },
+      "ms": 2631.8
+    },
+    {
+      "step": "rainfall_agent",
+      "tool": "rainfall_extract",
+      "args": {
+        "records_in": 2
+      },
+      "status": "ok",
+      "detail": {
+        "rows_out": 24
+      },
+      "ms": 1.0
+    },
+    {
+      "step": "load",
+      "tool": "sqlite_load",
+      "args": {
+        "db": "manipur.db"
+      },
+      "status": "ok",
+      "detail": {
+        "extracted": 24,
+        "inserted": 24,
+        "duplicate": 0,
+        "invalid": 0,
+        "rejected": 0
+      },
+      "ms": 74.2
+    }
+  ]
+}

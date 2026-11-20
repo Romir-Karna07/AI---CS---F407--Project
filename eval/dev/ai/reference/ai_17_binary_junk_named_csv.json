@@ -1,0 +1,15 @@
+{
+ "case_id": "ai_17_binary_junk_named_csv",
+ "agent": "none",
+ "source_group": "binary",
+ "file": "dev/ai/cases/ai_17.csv",
+ "description": "Random bytes named .csv: must fail cleanly, within the retry budget, storing nothing",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "failed",
+ "expected_trajectory": null,
+ "expected_quarantine": [],
+ "records": [],
+ "owner_agent": "ai_layer"
+}

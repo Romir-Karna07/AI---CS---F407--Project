@@ -12,3 +12,7 @@ pymupdf
 camelot-py
 rapidocr   # OCR for scanned pages; rapidocr-onnxruntime 1.x also works but drops the spaces inside cells
 # --- only for docs/pdf_tool_tests and eval/build_pdf_cases.py: reportlab, pypdf; docling is optional (very slow on CPU) ---
+# --- AI layer (pipeline/ai.py, triage, structure repair, prose, ...) ---
+openpyxl            # Excel workbooks (.xlsx)
+charset-normalizer  # encoding detection for non-UTF-8 text in any language
+langsmith           # optional visual traces: set LANGSMITH_TRACING=true and LANGSMITH_API_KEY in .env (see docs/ai_layer.md)

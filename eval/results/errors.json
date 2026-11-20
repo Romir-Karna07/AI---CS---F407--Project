@@ -730,5 +730,171 @@
     }
    ]
   ]
+ },
+ "prod_h01_csv_original_layout": {
+  "wrong": [],
+  "missing": [
+   [
+    [
+     "thoubal",
+     "2002-03",
+     "pineapple",
+     "whole year"
+    ],
+    "area_ha",
+    {
+     "value": 2020.0,
+     "unit": "ha"
+    }
+   ],
+   [
+    [
+     "thoubal",
+     "2002-03",
+     "pineapple",
+     "whole year"
+    ],
+    "production_t",
+    {
+     "value": 16160.0,
+     "unit": "t"
+    }
+   ],
+   [
+    [
+     "thoubal",
+     "2002-03",
+     "pineapple",
+     "whole year"
+    ],
+    "yield_t_ha",
+    {
+     "value": 8.0,
+     "unit": "t/ha"
+    }
+   ],
+   [
+    [
+     "thoubal",
+     "2003-04",
+     "pineapple",
+     "whole year"
+    ],
+    "area_ha",
+    {
+     "value": 2050.0,
+     "unit": "ha"
+    }
+   ],
+   [
+    [
+     "thoubal",
+     "2003-04",
+     "pineapple",
+     "whole year"
+    ],
+    "production_t",
+    {
+     "value": 15375.0,
+     "unit": "t"
+    }
+   ],
+   [
+    [
+     "thoubal",
+     "2003-04",
+     "pineapple",
+     "whole year"
+    ],
+    "yield_t_ha",
+    {
+     "value": 7.5,
+     "unit": "t/ha"
+    }
+   ]
+  ]
+ },
+ "prod_h06_csv_crop_synonyms": {
+  "wrong": [],
+  "missing": [
+   [
+    [
+     "thoubal",
+     "2013-14",
+     "chilli (dry)",
+     "unspecified"
+    ],
+    "area_ha",
+    {
+     "value": 1350.0,
+     "unit": "ha"
+    }
+   ],
+   [
+    [
+     "thoubal",
+     "2013-14",
+     "chilli (dry)",
+     "unspecified"
+    ],
+    "production_t",
+    {
+     "value": 10651.5,
+     "unit": "t"
+    }
+   ],
+   [
+    [
+     "thoubal",
+     "2013-14",
+     "chilli (dry)",
+     "unspecified"
+    ],
+    "yield_t_ha",
+    {
+     "value": 7.89,
+     "unit": "t/ha"
+    }
+   ],
+   [
+    [
+     "thoubal",
+     "2014-15",
+     "chilli (dry)",
+     "unspecified"
+    ],
+    "area_ha",
+    {
+     "value": 1502.0,
+     "unit": "ha"
+    }
+   ],
+   [
+    [
+     "thoubal",
+     "2014-15",
+     "chilli (dry)",
+     "unspecified"
+    ],
+    "production_t",
+    {
+     "value": 11820.74,
+     "unit": "t"
+    }
+   ],
+   [
+    [
+     "thoubal",
+     "2014-15",
+     "chilli (dry)",
+     "unspecified"
+    ],
+    "yield_t_ha",
+    {
+     "value": 7.87,
+     "unit": "t/ha"
+    }
+   ]
+  ]
  }
 }

@@ -15,15 +15,16 @@ from pipeline.graph import run_file
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="Manipur agri data pipeline (LangGraph)")
-    ap.add_argument("--input", required=True, help="path to a .json / .csv / .pdf file")
+    ap.add_argument("--input", required=True, help="path to a .json / .csv / .xlsx / .html / .pdf / .txt file (or an image of a table)")
     ap.add_argument("--db", default=None, help="SQLite path (default db/manipur.db)")
     ap.add_argument("--json-out", default=None, help="also write the run report here")
     ap.add_argument("--inject-fault", default=None)
     ap.add_argument("--manual-note", default="")
     ap.add_argument("--verbose", action="store_true", help="print the full tool trajectory")
+    ap.add_argument("--no-ai", action="store_true", help="rule-based baseline: no model calls, no page selection / structure repair / prose")
     a = ap.parse_args(argv)
 
-    out = run_file(a.input, db_path=a.db, inject_fault=a.inject_fault, manual_note=a.manual_note)
+    out = run_file(a.input, db_path=a.db, inject_fault=a.inject_fault, manual_note=a.manual_note, ai=False if a.no_ai else None)
     print(f"run {out['run_id']}  status={out['status']}  type={out['source_type']}  retries={out['retries']}")
     for g in out.get("groups") or []:
         print(f"  group {g['pattern']:<40} -> {str(g['domain']):<11} records={g['records']:<5} "
@@ -34,6 +35,17 @@ def main(argv=None) -> int:
               f"duplicates={s['duplicates']} invalid={s['invalid']} rejected={s['rejected']}")
     for r in (res.get("rejected") or [])[:5]:
         print("  rejected:", r)
+    notes = res.get("notes") or {}
+    if notes.get("error"):
+        print("  reason:", notes["error"])
+    ai = out.get("ai") or {}
+    if ai.get("calls") or ai.get("cached"):
+        print(f"  AI: {ai['calls']} model call(s) + {ai['cached']} cached  {ai['by_purpose']}  (budget {ai['max_calls']})")
+    rb = notes.get("retry_budget") or {}
+    if rb.get("used"):
+        print(f"  recoveries: {rb['used']}/{rb['max']}  strategies: {rb['strategies']}")
+    if notes.get("quarantined_for_review"):
+        print(f"  set aside for human review (table review_queue): {notes['quarantined_for_review']} row(s)")
     if (res.get("notes") or {}).get("agent_errors"):
         print("  agent errors:", res["notes"]["agent_errors"])
     if a.verbose:

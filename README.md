@@ -1,10 +1,10 @@
 # Manipur AgriAgent - ingestion pipeline (LangGraph)
 
-One command, any JSON, CSV or PDF file:
+One command, any JSON, CSV, Excel, HTML, PDF, image or text file, in any language:
 
 ```
 pip install -r requirements.txt
-python run.py --input <file.json|file.csv|file.pdf> [--db db/manipur.db] [--verbose]
+python run.py --input <file> [--db db/manipur.db] [--verbose] [--no-ai]
 ```
 
 Rows land in SQLite (`db/manipur.db`, DDL in `db/schema.sql`) with provenance on every row
@@ -14,12 +14,14 @@ source fields that matched no column kept in `extra` (nothing is dropped).
 ## Orchestration
 
 ```
-inspect -> read --error--> recover (retry same parser, then the other one; max 2) --> read
-             |                  (PDF: retry the text-layer route, then force OCR)  \-> finish (failed)
-             v
-          classify -> soil_agent -> rainfall_agent -> production_agent -> load -> finish
-                      (only agents that have a matching record group are visited)
+inspect (triage) -> plan (pages / sheets) -> read --error--> recover (max 2) --> read
+                                              |
+                                              v
+   classify -> soil_agent -> rainfall_agent -> production_agent -> load (+ plausibility) -> finish
+      |               (only agents that have a matching record group are visited)
+      +--(nothing recognised or stored, budget left)--> recover (structure repair / read as prose / OCR) --> read
 ```
+A static diagram of the real graph is `docs/orchestration.mmd`; with LangSmith on, every run is drawn live (see **AI layer** below).
 
 | Step | Decided by | What |
 |---|---|---|
@@ -37,7 +39,7 @@ Failures are isolated: a failing agent is logged and the others still load (`sta
 `soil_health`, `rainfall_monthly`, `crop_production`, plus `districts` and `runs`. Column meanings: `data_headers.txt`.
 
 ## Tests
-`python tests/smoke_unseen.py` - 27 checks (22 CSV / JSON + 5 PDF) on files the code was not written around (`tests/unseen/`), fault
+`python tests/smoke_unseen.py` - 39 checks (22 CSV / JSON, 5 PDF, 11 AI-layer, 1 header-proposal) on files the code was not written around (`tests/unseen/`), fault
 injection, idempotent re-ingest, and the three real files. These are developer fixtures, **not** the Phase 2 eval set.
 
 ## Known limits
@@ -79,3 +81,18 @@ The old 34 cases are a dev regression set in `eval/dev/` (`python eval/run_eval.
 Measured on the held-out set, first cold run: field F1 0.987 macro over four agents (soil, rainfall, production 1.000; document agent 0.947); source mapping 54/54; implementation coverage
 **4/54** (below the 0.20 floor); surprise-item F1 and adapter comparison **pending**. Missing deliverables: `db/dictionary.md`, a database dump, `eval/adapter_comparison.csv`. See `eval/README.md`
 for every metric and its limits.
+
+## AI layer (new)
+The model is used at eleven points of a file's journey (triage, page selection, structure repair, recovery, context facts, language, prose extraction, plausibility check, header mapping ...),
+always **deterministic first, model only where the code is uncertain, every answer verified by code, strict budgets** (16 model calls and 2 recoveries per file). A clean file costs zero model calls.
+Full design, per-stage table, evidence and limits: **`docs/ai_layer.md`**.
+
+| Switch | Effect |
+|---|---|
+| `python run.py --no-ai` or `AGRI_AI=0` | rule-based behaviour (no model calls) |
+| `GROQ_API_KEY` in `.env` | the model (default `openai/gpt-oss-120b`; `AGRI_LLM_MODEL=openai/gpt-oss-20b` has its own free-tier daily quota) |
+| `LANGSMITH_TRACING=true`, `LANGSMITH_API_KEY=...` in `.env` | a visual trace of every run in LangSmith (see `.env.example`; prompts are uploaded) |
+| `AGRI_PDF_PAGES=53-60` | read exactly these pages (otherwise the model / a deterministic score selects them) |
+
+Values the plausibility check judges impossible are **not** stored in the data tables: they go to the `review_queue` table (`review_status = pending_review`) for a person.
+Results on 20 files the old pipeline cannot read (held-out districts): fully correct 1/17 before, **16/17 with the AI layer** (`eval/README.md`).

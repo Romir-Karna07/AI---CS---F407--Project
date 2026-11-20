@@ -1,0 +1,160 @@
+{
+ "case_id": "ai_07_html_page_with_other_table_html",
+ "agent": "production",
+ "source_group": "html",
+ "file": "ai/cases/ai_07.html",
+ "description": "Web page: navigation, an unrelated contact table, then the data table",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": null,
+ "expected_quarantine": [],
+ "records": [
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2017-18",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 75.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 507.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2003-04",
+    "crop": "Cabbage",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 402.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 4904.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2006-07",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 20.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 110.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2000-01",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 240.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 150.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2000-01",
+    "crop": "Sugarcane",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 280.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 9150.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2016-17",
+    "crop": "Potato",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1290.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 11180.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2011-12",
+    "crop": "Chilli (dry)",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 297.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2257.2,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "THOUBAL",
+    "period": "2002-03",
+    "crop": "Other Fresh Fruits",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 1140.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 1437.0,
+     "unit": "t"
+    }
+   }
+  }
+ ],
+ "owner_agent": "ai_layer"
+}

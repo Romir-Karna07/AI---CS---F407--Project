@@ -1,0 +1,122 @@
+[
+  {
+    "state": "Manipur",
+    "district": "Thoubal",
+    "market": "Thoubal APMC",
+    "commodity": "Paddy(Common)",
+    "variety": "Other",
+    "grade": "Local",
+    "arrival_date": "27/10/2026",
+    "min_price": 3000,
+    "max_price": 3000,
+    "modal_price": 3000
+  },
+  {
+    "state": "Manipur",
+    "district": "Thoubal",
+    "market": "Thoubal APMC",
+    "commodity": "Bengal Gram Dal(Chana Dal)",
+    "variety": "Bengal Gram Dal",
+    "grade": "FAQ",
+    "arrival_date": "27/10/2026",
+    "min_price": 11500,
+    "max_price": 12000,
+    "modal_price": 11750
+  },
+  {
+    "state": "Manipur",
+    "district": "Thoubal",
+    "market": "Thoubal APMC",
+    "commodity": "Onion",
+    "variety": "Other",
+    "grade": "FAQ",
+    "arrival_date": "27/10/2026",
+    "min_price": 6500,
+    "max_price": 7000,
+    "modal_price": 6750
+  },
+  {
+    "state": "Manipur",
+    "district": "Imphal West",
+    "market": "Imphal APMC",
+    "commodity": "Green Gram Dal(Moong Dal)",
+    "variety": "Green Gram Dal",
+    "grade": "FAQ",
+    "arrival_date": "27/10/2026",
+    "min_price": 14000,
+    "max_price": 15000,
+    "modal_price": 14500
+  },
+  {
+    "state": "Manipur",
+    "district": "Imphal West",
+    "market": "Imphal APMC",
+    "commodity": "Rice",
+    "variety": "Other",
+    "grade": "Local",
+    "arrival_date": "27/10/2026",
+    "min_price": 5100,
+    "max_price": 5100,
+    "modal_price": 5100
+  },
+  {
+    "state": "Manipur",
+    "district": "Imphal West",
+    "market": "Imphal APMC",
+    "commodity": "Masur Dal",
+    "variety": "Masur Dal",
+    "grade": "FAQ",
+    "arrival_date": "27/10/2026",
+    "min_price": 10000,
+    "max_price": 11000,
+    "modal_price": 10500
+  },
+  {
+    "state": "Manipur",
+    "district": "Imphal East",
+    "market": "Lamlong Bazaar APMC",
+    "commodity": "Banana",
+    "variety": "Other",
+    "grade": "Local",
+    "arrival_date": "27/10/2026",
+    "min_price": 5500,
+    "max_price": 6000,
+    "modal_price": 5750
+  },
+  {
+    "state": "Manipur",
+    "district": "Imphal West",
+    "market": "Imphal APMC",
+    "commodity": "Black Gram Dal(Urd Dal)",
+    "variety": "Other",
+    "grade": "FAQ",
+    "arrival_date": "27/10/2026",
+    "min_price": 13000,
+    "max_price": 14000,
+    "modal_price": 13500
+  },
+  {
+    "state": "Manipur",
+    "district": "Imphal East",
+    "market": "Lamlong Bazaar APMC",
+    "commodity": "Green Gram Dal(Moong Dal)",
+    "variety": "Green Gram Dal",
+    "grade": "FAQ",
+    "arrival_date": "27/10/2026",
+    "min_price": 13000,
+    "max_price": 14000,
+    "modal_price": 13500
+  },
+  {
+    "state": "Manipur",
+    "district": "Imphal East",
+    "market": "Lamlong Bazaar APMC",
+    "commodity": "Masur Dal",
+    "variety": "Masur Dal",
+    "grade": "FAQ",
+    "arrival_date": "27/10/2026",
+    "min_price": 9000,
+    "max_price": 10000,
+    "modal_price": 9500
+  }
+]

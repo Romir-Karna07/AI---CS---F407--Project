@@ -1,0 +1,81 @@
+{
+  "run_id": "run_20261102150250_a5cf7d",
+  "input": "empty.csv",
+  "status": "failed",
+  "source_type": "csv",
+  "groups": null,
+  "result": {},
+  "notes": {
+    "error": "read failed (json): no record-like objects found in JSON",
+    "agent_errors": [],
+    "unclassified_groups": []
+  },
+  "retries": 2,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "empty.csv"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 0,
+        "type": "csv"
+      },
+      "ms": 0.6
+    },
+    {
+      "step": "read",
+      "tool": "read_csv_data",
+      "args": {
+        "file_path": "empty.csv"
+      },
+      "status": "error",
+      "detail": "CSV has no data rows",
+      "ms": 2.3
+    },
+    {
+      "step": "recover",
+      "tool": null,
+      "args": {
+        "attempt": 1,
+        "retry_with": "csv"
+      },
+      "status": "ok",
+      "detail": null,
+      "ms": 0.0
+    },
+    {
+      "step": "read",
+      "tool": "read_csv_data",
+      "args": {
+        "file_path": "empty.csv"
+      },
+      "status": "error",
+      "detail": "CSV has no data rows",
+      "ms": 0.5
+    },
+    {
+      "step": "recover",
+      "tool": null,
+      "args": {
+        "attempt": 2,
+        "retry_with": "json"
+      },
+      "status": "ok",
+      "detail": null,
+      "ms": 0.0
+    },
+    {
+      "step": "read",
+      "tool": "read_json_data",
+      "args": {
+        "file_path": "empty.csv"
+      },
+      "status": "error",
+      "detail": "no record-like objects found in JSON",
+      "ms": 0.4
+    }
+  ]
+}

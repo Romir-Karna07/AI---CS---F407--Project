@@ -1,0 +1,88 @@
+{
+ "case_id": "ai_11_tamil_prose_txt",
+ "agent": "production",
+ "source_group": "text",
+ "file": "ai/cases/ai_11.txt",
+ "description": "Production figures inside Tamil sentences (a language no code or prompt mentions)",
+ "difficulty": "hard",
+ "needs_llm": true,
+ "inject_fault": null,
+ "expected_status": "complete",
+ "expected_trajectory": null,
+ "expected_quarantine": [],
+ "records": [
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "1999-00",
+    "crop": "Onion",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 110.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 240.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2006-07",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 20.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 20.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "UKHRUL",
+    "period": "2018-19",
+    "crop": "Banana",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 235.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 2849.0,
+     "unit": "t"
+    }
+   }
+  },
+  {
+   "key": {
+    "location": "IMPHAL WEST",
+    "period": "2007-08",
+    "crop": "Turmeric",
+    "entity": "UNSPECIFIED"
+   },
+   "fields": {
+    "area_ha": {
+     "value": 10.0,
+     "unit": "ha"
+    },
+    "production_t": {
+     "value": 10.0,
+     "unit": "t"
+    }
+   }
+  }
+ ],
+ "owner_agent": "ai_layer"
+}
