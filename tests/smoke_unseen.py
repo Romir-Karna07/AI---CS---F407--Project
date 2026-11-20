@@ -57,6 +57,21 @@ r = run(U / "prod_nested.json")
 check("nested production json: Paddy->Rice, acres->ha, quintal->t",
       q("select crop,round(area_ha,3),production_t from crop_production where district='THOUBAL'") == [("Rice", 404.686, 2500.0)])
 
+# --- crops only, and the state from the document (no model needed) -----------------------------
+from pipeline.concepts import concept_for  # noqa: E402
+from pipeline.llm import parse_headers, verify_header_proposal  # noqa: E402
+check("header 'Milk production' / 'Fish (lakh MT)' are not crop production",
+      concept_for("Milk production (thousand MT)") is None and concept_for("Fish production") is None and concept_for("Rice production") == "production")
+check("model proposals are checked against the data (urea is not soil nitrogen; a crop column holds no numbers; 'year' means period)",
+      verify_header_proposal({"Urea": "n"}, [{"data": {"Urea": "2860.1"}}]) == {}
+      and verify_header_proposal({"Item": "crop"}, [{"data": {"Item": "123"}}]) == {}
+      and parse_headers({"ஆண்டு": "year"}, ["ஆண்டு"]) == {"ஆண்டு": "period"})
+r = run(U / "manipur_state_profile.csv")
+check("livestock rows (milk, fish, egg) never enter crop production; crops do",
+      sorted(x[0] for x in q("select crop from crop_production where source_file='manipur_state_profile.csv'")) == ["Banana", "Potato", "Rice"])
+check("  state MANIPUR is taken from the file name when the table has no district / state column",
+      q("select distinct state,state_code from crop_production where source_file='manipur_state_profile.csv'") == [("MANIPUR", "14")])
+
 r = run(U / "rain_lines.txt")
 check("JSON Lines saved as .txt", r["status"] == "complete" and r["result"]["totals"]["extracted"] == 2)
 
@@ -120,7 +135,7 @@ if get_llm() is not None:
     check("LLM cannot invent a domain for metadata-only records (438 data rows = stored + set aside for review)",
           q("select count(*) from soil_health where source_file='manipur_soil_health.json'")[0][0]
           + q("select count(*) from review_queue where source_file='manipur_soil_health.json'")[0][0] == 438)
-    # --- AI layer: files the rule-based reader cannot take (needs the model; answers are cached in .llm_cache)
+    # --- AI layer: files the rule-based reader cannot take (needs the model;)
     U2 = ROOT / "tests" / "unseen_ai"
 
     def stored(table, f):

@@ -1,0 +1,398 @@
+{
+  "run_id": "run_20261120191154_746a03",
+  "input": "SampleDocument2.pdf",
+  "status": "complete",
+  "source_type": "pdf",
+  "groups": [
+    {
+      "pattern": "pdf:p9.t1",
+      "domain": null,
+      "records": 11,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm_rejected_no_measurement_columns",
+      "mapped_headers": {
+        "District": "district"
+      },
+      "unmapped_headers": [
+        "Sl. No.",
+        "HYV Paddy",
+        "Black Gram",
+        "Soyabean",
+        "Mustard",
+        "Field Pea",
+        "Lentil"
+      ]
+    },
+    {
+      "pattern": "pdf:p10.t1",
+      "domain": "soil",
+      "records": 10,
+      "scores": {
+        "soil": 3,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "rules+llm_headers",
+      "mapped_headers": {
+        "Sl. No.": "record_id",
+        "District": "district",
+        "Urea": "n",
+        "MOP": "k",
+        "SSP": "p"
+      },
+      "unmapped_headers": [
+        "DAP",
+        "NPKs"
+      ]
+    },
+    {
+      "pattern": "pdf:p16.t1",
+      "domain": null,
+      "records": 17,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm_rejected_no_measurement_columns",
+      "mapped_headers": {
+        "Sl. No.": "record_id"
+      },
+      "unmapped_headers": [
+        "Central Share",
+        "State Share",
+        "Total"
+      ]
+    }
+  ],
+  "result": {
+    "by_agent": {
+      "soil_agent": {
+        "table": "soil_health",
+        "extracted": 10,
+        "inserted": 6,
+        "duplicates": 0,
+        "invalid": 5,
+        "rejected": 0,
+        "quarantined": 4
+      }
+    },
+    "rejected": [],
+    "review": 4,
+    "totals": {
+      "extracted": 10,
+      "inserted": 6,
+      "duplicate": 0,
+      "invalid": 5,
+      "rejected": 0,
+      "quarantined": 4
+    },
+    "plausibility": [
+      "plausibility: 5 candidate(s), 4 judged implausible and set aside for review"
+    ]
+  },
+  "notes": {
+    "error": null,
+    "agent_errors": [],
+    "unclassified_groups": [
+      "pdf:p9.t1",
+      "pdf:p16.t1"
+    ],
+    "retry_budget": {
+      "max": 2,
+      "used": 0,
+      "strategies": []
+    },
+    "ai": {
+      "enabled": true,
+      "model": "openai/gpt-oss-120b",
+      "calls": 7,
+      "cached": 0,
+      "by_purpose": {
+        "page_select": 1,
+        "headers": 3,
+        "classify": 2,
+        "plausibility": 1
+      },
+      "max_calls": 16
+    },
+    "quarantined_for_review": 4
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "SampleDocument2.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 1109558,
+        "type": "pdf",
+        "how": "magic"
+      },
+      "ms": 2704.6
+    },
+    {
+      "step": "ai:page_select",
+      "tool": "llm_page_select",
+      "args": {
+        "batch": 1,
+        "pages": 26
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"pages\": [{\"page\": 6, \"kind\": \"table\", \"reason\": \"contains yield figure (kg/ha)\"}, {\"page\": 9, \"kind\": \"table\", \"reason\": \"lists area and crop quantities\"}, {\"page\": 10, \"kind\": \"table\", \"reason\": \"numeric values for district‑level area\"}, {\"page\": 16, \"kind\": \"table\", \"reason\": \"numeric figures for crop premiums and prices\"}]}",
+        "chars_in": 3588
+      },
+      "ms": 2581.2
+    },
+    {
+      "step": "plan",
+      "tool": "plan_read",
+      "args": {
+        "type": "pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "total_pages": 28,
+        "selected": 4,
+        "method": "model over page digests",
+        "pages": [
+          6,
+          9,
+          10,
+          16
+        ],
+        "prose_pages": [],
+        "notes": []
+      },
+      "ms": 6079.8
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_data",
+      "args": {
+        "file_path": "SampleDocument2.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 38,
+        "groups": 3,
+        "notes": [
+          "pages=28",
+          "backend=auto",
+          "4 selected page(s)",
+          "tables by route: pdfplumber=3"
+        ]
+      },
+      "ms": 4705.7
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "Sl. No.",
+          "HYV Paddy",
+          "Black Gram",
+          "Soyabean",
+          "Mustard",
+          "Field Pea",
+          "Lentil"
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"Sl. No.\": \"record_id\", \"HYV Paddy\": \"production\", \"Black Gram\": \"production\", \"Soyabean\": \"production\", \"Mustard\": \"production\", \"Field Pea\": \"production\", \"Lentil\": \"production\"}",
+        "chars_in": 1703
+      },
+      "ms": 1120.3
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {
+          "Sl. No.": "record_id",
+          "HYV Paddy": "production",
+          "Black Gram": "production",
+          "Soyabean": "production",
+          "Mustard": "production",
+          "Field Pea": "production",
+          "Lentil": "production"
+        },
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "answer": "{\"domain\": \"production\"}",
+        "chars_in": 527
+      },
+      "ms": 700.7
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "Sl. No.",
+          "Urea",
+          "DAP",
+          "MOP",
+          "SSP",
+          "NPKs"
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"Sl. No.\": \"record_id\", \"Urea\": \"n\", \"MOP\": \"k\", \"SSP\": \"p\"}",
+        "chars_in": 1625
+      },
+      "ms": 1182.6
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "header_proposal": {
+          "Sl. No.": "record_id",
+          "Urea": "n",
+          "MOP": "k",
+          "SSP": "p"
+        },
+        "accepted": true
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "Central Share",
+          "State Share",
+          "Total"
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{}",
+        "chars_in": 1576
+      },
+      "ms": 997.8
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "answer": "{\"domain\": \"none\"}",
+        "chars_in": 399
+      },
+      "ms": 493.6
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "pdf:p9.t1",
+            null,
+            11
+          ],
+          [
+            "pdf:p10.t1",
+            "soil",
+            10
+          ],
+          [
+            "pdf:p16.t1",
+            null,
+            17
+          ]
+        ],
+        "queue": [
+          "soil"
+        ],
+        "language": []
+      },
+      "ms": 4520.2
+    },
+    {
+      "step": "soil_agent",
+      "tool": "soil_extract",
+      "args": {
+        "records_in": 10
+      },
+      "status": "ok",
+      "detail": {
+        "rows_out": 10
+      },
+      "ms": 9.9
+    },
+    {
+      "step": "ai:plausibility",
+      "tool": "llm_plausibility",
+      "args": {
+        "candidates": 5
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"verdicts\": [{\"id\": 1, \"verdict\": \"implausible\", \"reason\": \"Nitrogen application of 4004 kg/ha is orders of magnitude above typical agricultural rates (tens to a few hundred kg/ha) and exceeds realistic limits.\"}, {\"id\": 2, \"verdict\": \"implausible\", \"reason\": \"Nitrogen of 3904 kg/ha is far beyond any realistic field application; such a value would be physically impossible.\"}, {\"id\": 3, \"verdict\": \"implausible\", \"reason\": \"Nitrogen of 4260 kg/ha is far beyond plausible fertilizer use and cannot occur in real-world practice.\"}, {\"id\": 4, \"verdict\": \"implausible\", \"reason\": \"A total nitrogen val...(clipped)",
+        "chars_in": 2005
+      },
+      "ms": 1521.1
+    },
+    {
+      "step": "load",
+      "tool": "sqlite_load",
+      "args": {
+        "db": "manipur.db"
+      },
+      "status": "ok",
+      "detail": {
+        "extracted": 10,
+        "inserted": 6,
+        "duplicate": 0,
+        "invalid": 5,
+        "rejected": 0,
+        "quarantined": 4,
+        "plausibility": [
+          "plausibility: 5 candidate(s), 4 judged implausible and set aside for review"
+        ]
+      },
+      "ms": 1552.1
+    }
+  ]
+}

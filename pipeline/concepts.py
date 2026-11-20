@@ -93,7 +93,31 @@ _CONTAINS = [("rainydays", "rainy_days"), ("raindays", "rainy_days"), ("rainfall
 _DERIVED = ("normal", "departure", "deviation", "percent", "pct", "cumulative", "storage", "code", "distribution", "yearmonth")
 
 
+# Words that make a header / row label NOT crop data. The dictionary maps any header containing "production" to `production`, so
+# "Milk production" or "Fish (lakh MT)" used to be stored as crop production. Livestock, dairy, fisheries and inputs are not crops.
+NON_CROP_TERMS = {"milk", "dairy", "livestock", "poultry", "meat", "egg", "eggs", "fish", "fishes", "fishery", "fisheries", "fishing",
+                  "aquaculture", "cattle", "cow", "cows", "buffalo", "buffaloes", "goat", "goats", "sheep", "pig", "pigs", "pork", "mutton",
+                  "beef", "chicken", "duck", "ducks", "wool", "honey", "silk"}
+FERTILIZER_TERMS = {"urea", "dap", "mop", "ssp", "npk", "npks", "fertilizer", "fertiliser", "fertilizers", "fertilisers", "manure", "compost"}
+
+
+def words_of(text) -> list:
+    return re.findall(r"[a-z]+", str(text).lower())
+
+
+def non_crop_term(text) -> str | None:
+    """the livestock / fishery word in a header or label, if any"""
+    return next((w for w in words_of(text) if w in NON_CROP_TERMS), None)
+
+
 def concept_for(key) -> str | None:
+    c = _concept_for(key)
+    if c in ("production", "area", "yield") and non_crop_term(key):
+        return None          # "Milk production" is dairy output, not crop production
+    return c
+
+
+def _concept_for(key) -> str | None:
     k = norm_key(key)
     if k in _LOOKUP:
         return _LOOKUP[k]

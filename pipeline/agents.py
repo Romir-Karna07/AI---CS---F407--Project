@@ -37,6 +37,10 @@ def _mapped(row):
     """-> (canonical field -> value, canonical field -> source key, unmapped {key: value})"""
     data = row["data"]
     mapping, unmapped = map_columns(list(data))
+    for src, canon in (row.get("hmap") or {}).items():     # meanings the model proposed for THIS table and the data confirmed (graph.classify)
+        if src in data and canon not in mapping.values():
+            mapping[src] = canon
+            unmapped = [u for u in unmapped if u != src]
     c = {canon: data[src] for src, canon in mapping.items()}
     src_of = {canon: src for src, canon in mapping.items()}
     return c, src_of, {k: data[k] for k in unmapped}
@@ -78,7 +82,7 @@ def _apply_ctx(c, row):
     if not ctx:
         return c
     c = dict(c)
-    for k in ("district", "period", "crop"):
+    for k in ("district", "period", "crop", "state"):
         if is_missing(c.get(k)) and ctx.get(k):
             c[k] = ctx[k]
     return c
@@ -100,6 +104,8 @@ def _location(c):
         return name, code, STATE_NAME, STATE_CODE, how
     state = str(c["state"]).strip().upper() if not is_missing(c.get("state")) else UNSPECIFIED
     scode = str(c["state_code"]).strip() if not is_missing(c.get("state_code")) else UNSPECIFIED
+    if state == STATE_NAME and scode == UNSPECIFIED:
+        scode = STATE_CODE
     return name, code, state, scode, how
 
 

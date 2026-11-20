@@ -39,8 +39,8 @@ def main(argv=None) -> int:
     if notes.get("error"):
         print("  reason:", notes["error"])
     ai = out.get("ai") or {}
-    if ai.get("calls") or ai.get("cached"):
-        print(f"  AI: {ai['calls']} model call(s) + {ai['cached']} cached  {ai['by_purpose']}  (budget {ai['max_calls']})")
+    if ai.get("calls"):
+        print(f"  AI: {ai['calls']} model call(s)  {ai['by_purpose']}  (budget {ai['max_calls']})")
     rb = notes.get("retry_budget") or {}
     if rb.get("used"):
         print(f"  recoveries: {rb['used']}/{rb['max']}  strategies: {rb['strategies']}")

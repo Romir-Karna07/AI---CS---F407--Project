@@ -16,7 +16,7 @@ The model is now used at **eleven** points of a file's journey, but always under
 3. **Strict budgets.** At most **16 model calls per file** (`AGRI_LLM_MAX_CALLS`), a per-purpose cap, and at most **2 recoveries per file**. When the budget is
    spent the run fails with the reason; it does not loop.
 4. **Everything is traced.** Every call is a step in the run trajectory (purpose, cached or fresh, seconds, the answer) and, with LangSmith on, a child run with the full prompt.
-5. **Cached and switchable.** Answers are cached by prompt hash (`.llm_cache/`), so a repeated file is deterministic and free. `python run.py --no-ai` (or `AGRI_AI=0`) switches the layer off.
+5. **Switchable.** There is no cross-run cache: every run asks the model afresh (inside one run, tables with identical columns share an answer). `python run.py --no-ai` (or `AGRI_AI=0`) switches the layer off.
 
 ## 2. Stage by stage
 

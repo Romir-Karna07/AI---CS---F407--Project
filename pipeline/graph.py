@@ -38,6 +38,7 @@ from . import context as context_mod
 from . import lang, plausibility
 from . import triage as triage_mod
 from .ai import AIContext, ai_on
+from . import crops as crops_mod
 from .concepts import DOMAIN_CORE, map_columns, register_synonym, score_domains
 from .db import connect, insert_review, insert_rows
 from .llm import classify_prompt, headers_prompt, parse_domain, parse_headers, verify_header_proposal
@@ -193,6 +194,21 @@ def _prose_text(path, orig_type):
     return read_text(path)[0]
 
 
+def _cover_lines(path, n=25) -> list:
+    """the first lines of page 1 (title / cover): where a document says which state it is about. Never fails a read."""
+    try:
+        from .pdf_reader import page_texts
+        lines = []
+        for _, text in page_texts(path, [1]):
+            for l in text.splitlines():
+                l = re.sub(r"\s+", " ", l).strip()
+                if l and l not in lines:
+                    lines.append(l[:120])
+        return lines[:n]
+    except Exception:
+        return []
+
+
 def read_node(state: State) -> State:
     t0 = time.perf_counter()
     ai = _ai(state)
@@ -227,7 +243,7 @@ def read_node(state: State) -> State:
                     notes += n
             if not groups:
                 raise ValueError("no tables or verifiable facts found in the PDF")
-            parsed = {"format": "pdf", "encoding": "pdf", "notes": notes, "groups": groups}
+            parsed = {"format": "pdf", "encoding": "pdf", "notes": notes, "groups": groups, "doc_context": _cover_lines(path)}
         elif stype == "json":
             parsed = read_json(path)
         elif stype in ("csv", "xlsx", "html"):
@@ -316,6 +332,13 @@ def recover_node(state: State) -> State:
 
 
 # ----------------------------------------------------------------------------- classify
+# what a model-proposed column meaning may be, once the table's domain is known (the data check already ran in verify_header_proposal)
+_COMMON_OK = {"district", "district_code", "state", "state_code", "period", "record_id", "latitude", "longitude"}
+_DEFERRED_OK = {"production": _COMMON_OK | {"crop", "season", "area", "production", "yield", "unit"},
+                "soil": _COMMON_OK | {"crop", "village", "tehsil", "block", "category", "n", "p", "k", "oc", "ph", "ec", "s", "zn", "fe", "cu", "mn", "b"},
+                "rainfall": _COMMON_OK | {"rainfall_mm", "rainy_days", "unit"}}
+
+
 def _context_needs(domain, rows, mapping, mcount, has_district_label, has_year_label):
     vals = set(mapping.values())
     src_for = {c: s for s, c in mapping.items()}
@@ -339,9 +362,12 @@ def classify_node(state: State) -> State:
     llm = ai.llm if state.get("ai_enabled", True) else None
     traj = list(state.get("trajectory", []))
     groups, recognised = [], []
+    doc_lines = list(state["parsed"].get("doc_context") or []) + [Path(state["input_path"]).name]   # cover / title lines + file name
     for g in state["parsed"]["groups"]:
         rows = g["rows"]
         sample = rows[:300]
+        ctx_lines = list(rows[0].get("context") or []) if rows else []
+        prompt_ctx = [l for l in ctx_lines if not l.startswith("sheet name:")][:4] + doc_lines[:6]   # what the model is told about the table
         keys = list(dict.fromkeys(k for r in sample for k in r["data"]))
         mapping, unmapped = map_columns(keys)
         mcount = len(agent_mod.month_columns(keys))
@@ -367,10 +393,18 @@ def classify_node(state: State) -> State:
             return need
 
         gaps = missing_identity(mapping.values(), scores)
+        proposal, deferred, extra_map = {}, {}, {}
         if llm and numeric_unmapped and (max(scores.values()) < 3 or gaps):
-            sysm, usr = headers_prompt(numeric_unmapped, sample[0]["data"])
-            proposal = verify_header_proposal(parse_headers(ai.ask("headers", sysm, usr, {"columns": numeric_unmapped[:10]}, tool="llm_map_headers"),
-                                                            numeric_unmapped), sample)
+            sysm, usr = headers_prompt(numeric_unmapped, sample[0]["data"], [r["data"] for r in sample[:4]], prompt_ctx)
+            memo_key = ("headers", tuple(numeric_unmapped))
+            if memo_key in ai.memo:     # an earlier table in this file has exactly these columns: reuse the answer (the data check below still runs)
+                raw_map = ai.memo[memo_key]
+                ai.note("headers", "llm_map_headers", {"columns": numeric_unmapped[:10]}, "reused", {"answer": "same columns as an earlier table"})
+            else:
+                raw_map = ai.ask("headers", sysm, usr, {"columns": numeric_unmapped[:10]}, tool="llm_map_headers")
+                if raw_map is not None:
+                    ai.memo[memo_key] = raw_map
+            proposal = verify_header_proposal(parse_headers(raw_map, numeric_unmapped), sample)
             trial = {**mapping, **{k: v for k, v in proposal.items() if v not in mapping.values()}}
             trial_scores = score_domains(trial.values())
             if mcount >= 6:
@@ -387,22 +421,64 @@ def classify_node(state: State) -> State:
                 if mcount >= 6:
                     scores["rainfall"] += 3
                 method = "rules+llm_headers"
+            else:
+                deferred = proposal      # not enough to change the domain by itself: kept until the domain is known (see below)
+
+        def ask_domain(extra_args):
+            """one classification per distinct set of columns in this file (tables repeated across pages share the answer)"""
+            mkey = ("classify", tuple(keys), tuple(extra_args.get("tie", ())))
+            if mkey in ai.memo:
+                ai.note("classify", "llm_classify", extra_args, "reused", {"answer": "same columns as an earlier table"})
+                return ai.memo[mkey]
+            s_, u_ = classify_prompt(keys, sample[0]["data"], [r["data"] for r in sample[:4]], prompt_ctx)
+            ans = ai.ask("classify", s_, u_, extra_args, tool="llm_classify")
+            if ans is not None:
+                ai.memo[mkey] = ans
+            return ans
+
         best = max(scores.values())
         domain = None
         if best > 0:
             tops = [d for d in AGENT_ORDER if scores[d] == best]
             domain = tops[0]
             if len(tops) > 1 and llm:
-                sysm, usr = classify_prompt(keys, sample[0]["data"])
-                d = parse_domain(ai.ask("classify", sysm, usr, {"tie": tops}, tool="llm_classify"))
+                d = parse_domain(ask_domain({"tie": tops}))
                 traj += ai.drain()
                 domain, method = (d if d in tops else domain), "rules+llm_tiebreak"
         elif llm and has_numeric:   # nothing numeric -> nothing to extract; do not spend an LLM call
-            sysm, usr = classify_prompt(keys, sample[0]["data"])
-            d = parse_domain(ai.ask("classify", sysm, usr, {}, tool="llm_classify"))
+            d = parse_domain(ask_domain({}))
             traj += ai.drain()
             has_core = d in DOMAIN_CORE and (set(mapping.values()) & DOMAIN_CORE[d])
             domain, method = (d if has_core else None), ("llm" if has_core else "llm_rejected_no_measurement_columns")
+        # ---- the domain is known: now the model's other column meanings (crop name, state, season ...) can be judged. They need no "score" -
+        # a crop-name column does not make a table a production table - they only need to fit the domain and the data (checked above).
+        if domain and deferred:
+            allowed = _DEFERRED_OK[domain] | ({"year_month"} if domain == "rainfall" and mcount < 6 else set())
+            have = set(mapping.values())
+            extra_map = {k: v for k, v in deferred.items() if v in allowed and v not in have and k in keys}
+            if extra_map:
+                for r in rows:
+                    r["hmap"] = {**(r.get("hmap") or {}), **extra_map}
+                mapping = {**mapping, **extra_map}
+                unmapped = [u for u in unmapped if u not in extra_map]
+                method += "+llm_dims"
+        # ---- crops only: livestock, dairy, fishery (and other non-crop) rows never enter the crop-production table
+        excluded = []
+        if domain == "production" and rows:
+            crop_src = {c: s for s, c in mapping.items()}.get("crop")
+            model_named = (crop_src is not None and crop_src in extra_map) or method.startswith("llm")
+            kept, excluded, unverified = crops_mod.filter_rows(ai, rows, crop_src, prompt_ctx, bool(llm) and model_named)
+            traj += ai.drain()
+            if excluded:
+                rows[:] = kept       # in place: the agent reads this same list
+                method += "+crops_only"
+                traj.append({"step": "classify", "tool": None, "args": {"pattern": g["pattern"]}, "status": "ok",
+                             "detail": {"excluded_non_crop": excluded, "kept": len(kept)}, "ms": None})
+                if not kept:
+                    domain = None
+                    method = "no_crop_rows_after_filter"
+            if unverified:
+                method += "+crops_unverified"
         # ---- context facts: units / district / period stated in the title or caption, only where the table itself gives none
         if domain and llm:
             ctx_lines = rows[0].get("context") or []
@@ -413,11 +489,20 @@ def classify_node(state: State) -> State:
                 if facts:
                     context_mod.apply_to_rows(rows, facts)
                     method += "+context"
+        # ---- state: nothing in a table says "Manipur" - the cover, title or file name does. Looked up only when the table has no district /
+        # state column (a district already implies the state); fixed code searches first, the model is asked at most once per document.
+        if domain and rows and not ({"state", "district", "district_code"} & set(mapping.values())) and not has_district_label \
+                and not (rows[0].get("ctx") or {}).get("district"):
+            found = context_mod.find_state(ai if llm else None, doc_lines, ctx_lines)
+            traj += ai.drain()
+            if found:
+                context_mod.apply_state(rows, found)
+                method += "+state"
         if domain:
             recognised.append((rows, mapping))
         groups.append({"pattern": g["pattern"], "domain": domain, "records": len(rows), "scores": scores,
                        "method": method, "mapped_headers": {k: v for k, v in mapping.items()},
-                       "unmapped_headers": [k for k in unmapped][:30]})
+                       "unmapped_headers": [k for k in unmapped][:30], **({"excluded_non_crop": excluded} if excluded else {})})
     # ---- language: translate non-English district / month / crop / season values (model proposes, closed lists verify)
     lang_notes = lang.localize(ai, recognised) if (recognised and llm) else []
     queue = [d for d in AGENT_ORDER if any(g["domain"] == d for g in groups)]
@@ -425,7 +510,7 @@ def classify_node(state: State) -> State:
     traj.append({"step": "classify", "tool": None, "args": {}, "status": "ok",
                  "detail": {"groups": [(g["pattern"], g["domain"], g["records"]) for g in groups], "queue": queue, "language": lang_notes},
                  "ms": round((time.perf_counter() - t0) * 1000, 1)})
-    return {"groups": groups, "queue": queue, "trajectory": traj}
+    return {"groups": groups, "queue": queue, "parsed": state["parsed"], "trajectory": traj}
 
 
 def _make_agent_node(domain):
@@ -540,7 +625,8 @@ def finish_node(state: State) -> State:
     notes = {"error": error, "agent_errors": state.get("agent_errors"),
              "unclassified_groups": [g["pattern"] for g in queue_unprocessed],
              "retry_budget": {"max": MAX_RECOVERIES, "used": state.get("retries", 0), "strategies": state.get("tried", [])},
-             "ai": ai.summary() if ai else None, "quarantined_for_review": tot.get("quarantined", 0)}
+             "ai": ai.summary() if ai else None, "quarantined_for_review": tot.get("quarantined", 0),
+             "excluded_non_crop": [x for g in state.get("groups", []) for x in g.get("excluded_non_crop", [])][:60]}
     try:
         con = connect(state.get("db_path") or ROOT / "db" / "manipur.db")
         con.execute("INSERT OR IGNORE INTO runs (run_id,input_file,source_hash,started_at,status) VALUES (?,?,?,?,?)",

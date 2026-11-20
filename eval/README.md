@@ -145,7 +145,7 @@ the AI set was re-run (15 / 17: the model labelled both the month and the year c
 (unit-tested without the model, `tests/smoke_unseen.py`), and the AI set was run a third time (16 / 17). Runs 2 and 3 therefore followed failures seen on the official set: only run 1 is a cold number.
 **Model:** all runs used `gpt-oss-20b` with low reasoning effort, because the 200,000-token daily free-tier quota of `gpt-oss-120b` was exhausted by development; 120b was not re-evaluated.
 **The remaining miss** is the image case: one village name read by OCR as "Part Il" instead of "Part II" (one record of 12). **Run-to-run variation is real** (temperature 0 does not make the model deterministic);
-cached answers hide it, so clear `.llm_cache/` for a fresh measurement.
+there is no answer cache, so every run measures the model afresh.
 
 **Original official set on the final code:** field F1 **0.985** (was 0.987): the plausibility check set aside one genuine record in each of `prod_h01` and `prod_h06`; soil, rainfall and json are 1.000, production 0.995,
 the PDF cases are unchanged (0.947; scans 0.93 / 0.96, rotated page 0.63). Tool-selection metrics fell slightly (M6 0.888, M8 0.818) because model steps (`llm_plausibility`, `llm_page_select` ...)

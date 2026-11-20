@@ -27,3 +27,10 @@ run_20261102161514_b10ca5,2026-11-02T16:15:30,JSON_sample.json,failed,no,,0,0,0,
 run_20261102162102_201278,2026-11-02T16:21:05,CSV_sample.csv,complete,no,,15,15,0,
 run_20261118194549_ff2518,2026-11-18T19:45:55,melt.csv,complete,no,,9,9,1,ai_calls=1
 run_20261120175801_a487c3,2026-11-20T17:58:36,SampleDocument.pdf,complete,no,,12,11,0,ai_calls=11
+run_20261120182529_f81a7c,2026-11-20T18:26:02,SampleDocument.pdf,complete,no,,20,19,0,ai_calls=5
+run_20261120190550_892dfa,2026-11-20T19:06:06,SampleDocument.pdf,complete,no,,20,19,0,
+run_20261120191154_746a03,2026-11-20T19:12:14,SampleDocument2.pdf,complete,no,,10,6,0,ai_calls=7
+run_20261120192500_studio,2026-11-20T19:26:11,SampleDocument.pdf,complete,no,,16,0,0,ai_calls=1
+run_20261120193852_6df618,2026-11-20T19:47:59,SampleDocument2.pdf,failed,no,,0,0,2,"read failed (text): no verifiable agricultural facts found in the text (prose: stopped after 7 chunk(s), model budget exhausted; prose: 8 chunk(s), 0 verified fact(s), 0 rejected); ai_calls=16"
+run_20261120192540_ee5bc0,2026-11-20T20:02:23,SampleDocument2.pdf,failed,no,,0,0,2,"read failed (text): no verifiable agricultural facts found in the text (prose: stopped after 21 chunk(s), model budget exhausted; prose: 22 chunk(s), 0 verified fact(s), 0 rejected); ai_calls=14"
+run_20261120201528_94f931,2026-11-20T20:22:50,SampleDocument2.pdf,failed,no,,0,0,2,"read failed (text): no verifiable agricultural facts found in the text (prose: stopped after 7 chunk(s), model budget exhausted; prose: 8 chunk(s), 0 verified fact(s), 0 rejected); ai_calls=16"

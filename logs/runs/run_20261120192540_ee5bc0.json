@@ -1,0 +1,1271 @@
+{
+  "run_id": "run_20261120192540_ee5bc0",
+  "input": "SampleDocument2.pdf",
+  "status": "failed",
+  "source_type": "pdf",
+  "groups": [],
+  "result": {},
+  "notes": {
+    "error": "read failed (text): no verifiable agricultural facts found in the text (prose: stopped after 21 chunk(s), model budget exhausted; prose: 22 chunk(s), 0 verified fact(s), 0 rejected)",
+    "agent_errors": [],
+    "unclassified_groups": [],
+    "retry_budget": {
+      "max": 2,
+      "used": 2,
+      "strategies": [
+        "force_ocr",
+        "as_prose"
+      ]
+    },
+    "ai": {
+      "enabled": true,
+      "model": "openai/gpt-oss-120b",
+      "calls": 14,
+      "cached": 14,
+      "by_purpose": {
+        "headers": 3,
+        "classify": 3,
+        "prose": 8
+      },
+      "max_calls": 16
+    },
+    "quarantined_for_review": 0,
+    "excluded_non_crop": []
+  },
+  "retries": 2,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "SampleDocument2.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 1109558,
+        "type": "pdf",
+        "how": "magic"
+      },
+      "ms": 5642.4
+    },
+    {
+      "step": "ai:page_select",
+      "tool": "llm_page_select",
+      "args": {
+        "batch": 1,
+        "pages": 26
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"pages\": [{\"page\": 7, \"kind\": \"table\", \"reason\": \"area crop hectares listed\"}, {\"page\": 8, \"kind\": \"table\", \"reason\": \"district hectare figures\"}, {\"page\": 15, \"kind\": \"table\", \"reason\": \"area crop district production\"}, {\"page\": 17, \"kind\": \"table\", \"reason\": \"area crop district production\"}, {\"page\": 21, \"kind\": \"table\", \"reason\": \"crop district production\"}, {\"page\": 24, \"kind\": \"table\", \"reason\": \"area crop district hectare\"}]}"
+      },
+      "ms": 14.6
+    },
+    {
+      "step": "plan",
+      "tool": "plan_read",
+      "args": {
+        "type": "pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "total_pages": 28,
+        "selected": 5,
+        "method": "model over page digests",
+        "pages": [
+          7,
+          15,
+          17,
+          21,
+          24
+        ],
+        "prose_pages": [],
+        "notes": []
+      },
+      "ms": 8661.3
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_data",
+      "args": {
+        "file_path": "SampleDocument2.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 33,
+        "groups": 6,
+        "notes": [
+          "pages=28",
+          "backend=auto",
+          "5 selected page(s)",
+          "tables by route: pdfplumber=6"
+        ]
+      },
+      "ms": 7965.2
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "5",
+          "Promotion & distribution of Micronutrients.",
+          "4820 Ha.",
+          "24.10",
+          "Waiting for Micronutrient packets to be delivered. The payment process will be conducted and completed after the delivery is made."
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"4820 Ha.\": \"area\", \"24.10\": \"rainfall_mm\"}",
+        "chars_in": 3629
+      },
+      "ms": 1870.2
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "header_proposal": {
+          "4820 Ha.": "area",
+          "24.10": "rainfall_mm"
+        },
+        "accepted": true
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:context",
+      "tool": "llm_context",
+      "args": {
+        "lines": 2
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"units\": null, \"district\": null, \"period\": null, \"crop\": null}",
+        "chars_in": 1444
+      },
+      "ms": 889.0
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "Sl. No.",
+          "Activity",
+          "Physical",
+          "Financial"
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{}",
+        "chars_in": 3160
+      },
+      "ms": 783.2
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "cached",
+      "detail": {
+        "answer": "{\"domain\": \"none\"}"
+      },
+      "ms": 5.8
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "entity",
+          "Activity",
+          "Approve d Target ",
+          "Achiev e ment ",
+          "Achievement Central Share",
+          "Achievement State Share",
+          "Achievement Total",
+          "Incu r red cost per unit "
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{}",
+        "chars_in": 3584
+      },
+      "ms": 981.5
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "cached",
+      "detail": {
+        "answer": "{\"domain\": \"none\"}"
+      },
+      "ms": 2.6
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "Sl. No.",
+          "Component",
+          "Achievement"
+        ]
+      },
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (4/16 calls, 3/3 for headers)"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "answer": "{\"domain\": \"soil\"}",
+        "chars_in": 946
+      },
+      "ms": 699.6
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "22",
+          "Paddy Thresher (Operated by engine/electric motor below 5 bhp and by power tiller, and tractor of below 35 BHP tractor)",
+          "10",
+          "3.6",
+          "3.24",
+          "0.36"
+        ]
+      },
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (5/16 calls, 3/3 for headers)"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "answer": "{\"domain\": \"none\"}",
+        "chars_in": 1519
+      },
+      "ms": 524.7
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "Sl. No.",
+          "Achievement",
+          "Detail"
+        ]
+      },
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (6/16 calls, 3/3 for headers)"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "answer": "{\"domain\": \"production\"}",
+        "chars_in": 1369
+      },
+      "ms": 816.4
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "pdf:p15.t1",
+            "rainfall",
+            3
+          ],
+          [
+            "pdf:p15.t2",
+            null,
+            4
+          ],
+          [
+            "pdf:p17.t1",
+            null,
+            4
+          ],
+          [
+            "pdf:p21.t1",
+            null,
+            5
+          ],
+          [
+            "pdf:p24.t1",
+            null,
+            11
+          ],
+          [
+            "pdf:p24.t2",
+            null,
+            6
+          ]
+        ],
+        "queue": [
+          "rainfall"
+        ],
+        "language": []
+      },
+      "ms": 6600.6
+    },
+    {
+      "step": "rainfall_agent",
+      "tool": "rainfall_extract",
+      "args": {
+        "records_in": 3
+      },
+      "status": "ok",
+      "detail": {
+        "rows_out": 3
+      },
+      "ms": 1.3
+    },
+    {
+      "step": "load",
+      "tool": "sqlite_load",
+      "args": {
+        "db": "manipur.db"
+      },
+      "status": "ok",
+      "detail": {
+        "extracted": 3,
+        "inserted": 0,
+        "duplicate": 0,
+        "invalid": 0,
+        "rejected": 3,
+        "quarantined": 0,
+        "plausibility": []
+      },
+      "ms": 18.2
+    },
+    {
+      "step": "ai:recover",
+      "tool": "llm_recover",
+      "args": {
+        "allowed": [
+          "as_prose",
+          "force_ocr"
+        ]
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"strategy\": \"force_ocr\", \"why\": \"OCR can extract hidden table data that the parser missed\"}"
+      },
+      "ms": 0.8
+    },
+    {
+      "step": "recover",
+      "tool": null,
+      "args": {
+        "attempt": 1,
+        "budget": 2,
+        "retry_with": "pdf_ocr",
+        "strategy": "force_ocr"
+      },
+      "status": "ok",
+      "detail": {
+        "why": "OCR can extract hidden table data that the parser missed"
+      },
+      "ms": 1.2
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_ocr",
+      "args": {
+        "file_path": "SampleDocument2.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 23,
+        "groups": 11,
+        "notes": [
+          "pages=28",
+          "backend=ocr",
+          "5 selected page(s)",
+          "tables by route: ocr=11"
+        ]
+      },
+      "ms": 126838.0
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "Promotion &",
+          "Waiting for Micronutrient packets to be"
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{}",
+        "chars_in": 2788
+      },
+      "ms": 868.9
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "answer": "{\"domain\": \"none\"}",
+        "chars_in": 902
+      },
+      "ms": 614.8
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "Gypsum/lime",
+          "Tender process started."
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{}",
+        "chars_in": 2537
+      },
+      "ms": 711.1
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "answer": "{\"domain\": \"none\"}",
+        "chars_in": 651
+      },
+      "ms": 615.9
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "Sl.",
+          "Physical",
+          "Financial"
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{}",
+        "chars_in": 2794
+      },
+      "ms": 797.4
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "answer": "{\"domain\": \"none\"}",
+        "chars_in": 908
+      },
+      "ms": 503.0
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "C",
+          "Admin Cost",
+          "81.8",
+          "6.67809",
+          "0.74201",
+          "7.4201"
+        ]
+      },
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (6/16 calls, 3/3 for headers)"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (6/16 calls, 3/3 for classify)"
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "26",
+          "horticulture/food grain/oilseed"
+        ]
+      },
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (6/16 calls, 3/3 for headers)"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (6/16 calls, 3/3 for classify)"
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "27",
+          "Horticulture Hand Tool- Fruit",
+          "0.36"
+        ]
+      },
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (6/16 calls, 3/3 for headers)"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (6/16 calls, 3/3 for classify)"
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "28",
+          "Solar Dryer",
+          "2",
+          "6.66",
+          "5.994",
+          "0.666"
+        ]
+      },
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (6/16 calls, 3/3 for headers)"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (6/16 calls, 3/3 for classify)"
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "26",
+          "horticulture/food grain/oilseed"
+        ]
+      },
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (6/16 calls, 3/3 for headers)"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (6/16 calls, 3/3 for classify)"
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "Sl.",
+          "Detail"
+        ]
+      },
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (6/16 calls, 3/3 for headers)"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (6/16 calls, 3/3 for classify)"
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "Sl.",
+          "Detail"
+        ]
+      },
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (6/16 calls, 3/3 for headers)"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (6/16 calls, 3/3 for classify)"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "pdf:p15.t1",
+            null,
+            3
+          ],
+          [
+            "pdf:p15.t2",
+            null,
+            1
+          ],
+          [
+            "pdf:p15.t3",
+            null,
+            3
+          ],
+          [
+            "pdf:p17.t1",
+            null,
+            1
+          ],
+          [
+            "pdf:p17.t2",
+            null,
+            2
+          ],
+          [
+            "pdf:p24.t1",
+            null,
+            1
+          ],
+          [
+            "pdf:p24.t2",
+            null,
+            1
+          ],
+          [
+            "pdf:p24.t3",
+            null,
+            3
+          ],
+          [
+            "pdf:p24.t4",
+            null,
+            2
+          ],
+          [
+            "pdf:p24.t5",
+            null,
+            3
+          ],
+          [
+            "pdf:p24.t6",
+            null,
+            3
+          ]
+        ],
+        "queue": [],
+        "language": []
+      },
+      "ms": 4143.0
+    },
+    {
+      "step": "ai:recover",
+      "tool": "llm_recover",
+      "args": {
+        "allowed": [
+          "as_prose"
+        ]
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"strategy\": \"as_prose\", \"why\": \"Only prose extraction remains; it can capture missing columns as narrative text.\"}"
+      },
+      "ms": 2.6
+    },
+    {
+      "step": "recover",
+      "tool": null,
+      "args": {
+        "attempt": 2,
+        "budget": 2,
+        "retry_with": "text",
+        "strategy": "as_prose"
+      },
+      "status": "ok",
+      "detail": {
+        "why": "Only prose extraction remains; it can capture missing columns as narrative text."
+      },
+      "ms": 2.9
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 1,
+        "chars": 2974,
+        "at": "0"
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"facts\": []}"
+      },
+      "ms": 2.8
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 2,
+        "chars": 2881,
+        "at": "2974"
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"facts\": []}"
+      },
+      "ms": 2.6
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 3,
+        "chars": 2715,
+        "at": "5855"
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"facts\": []}"
+      },
+      "ms": 2.6
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 4,
+        "chars": 2948,
+        "at": "8570"
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"facts\": []}"
+      },
+      "ms": 3.3
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 5,
+        "chars": 2953,
+        "at": "11518"
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"facts\": []}"
+      },
+      "ms": 2.4
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 6,
+        "chars": 2695,
+        "at": "14471"
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"facts\": []}"
+      },
+      "ms": 2.3
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 7,
+        "chars": 2899,
+        "at": "17166"
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"facts\": []}"
+      },
+      "ms": 2.3
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 8,
+        "chars": 2649,
+        "at": "20065"
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"facts\": []}",
+        "chars_in": 4490
+      },
+      "ms": 1136.2
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 9,
+        "chars": 2966,
+        "at": "22714"
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"facts\": []}"
+      },
+      "ms": 3.2
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 10,
+        "chars": 2997,
+        "at": "25680"
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"facts\": []}"
+      },
+      "ms": 3.5
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 11,
+        "chars": 2358,
+        "at": "28677"
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"facts\": []}"
+      },
+      "ms": 3.2
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 12,
+        "chars": 2304,
+        "at": "31035"
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"facts\": []}"
+      },
+      "ms": 3.4
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 13,
+        "chars": 2682,
+        "at": "33339"
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"facts\": []}"
+      },
+      "ms": 3.6
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 14,
+        "chars": 2794,
+        "at": "36021"
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"facts\": []}"
+      },
+      "ms": 4.1
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 15,
+        "chars": 2691,
+        "at": "38815"
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"facts\": []}",
+        "chars_in": 4532
+      },
+      "ms": 14467.8
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 16,
+        "chars": 2878,
+        "at": "41506"
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"facts\": []}",
+        "chars_in": 4719
+      },
+      "ms": 26225.7
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 17,
+        "chars": 2184,
+        "at": "44384"
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"facts\": []}",
+        "chars_in": 4025
+      },
+      "ms": 19727.3
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 18,
+        "chars": 2528,
+        "at": "46568"
+      },
+      "status": "error",
+      "detail": {
+        "error": "model rate limit reached (daily token quota); continuing without the model"
+      },
+      "ms": 233.3
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 19,
+        "chars": 2956,
+        "at": "49096"
+      },
+      "status": "error",
+      "detail": {
+        "error": "model rate limit reached (daily token quota); continuing without the model"
+      },
+      "ms": 230.3
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 20,
+        "chars": 2554,
+        "at": "52052"
+      },
+      "status": "error",
+      "detail": {
+        "error": "model rate limit reached (daily token quota); continuing without the model"
+      },
+      "ms": 254.5
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 21,
+        "chars": 2995,
+        "at": "54606"
+      },
+      "status": "error",
+      "detail": {
+        "error": "model rate limit reached (daily token quota); continuing without the model"
+      },
+      "ms": 230.8
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 22,
+        "chars": 2570,
+        "at": "57601"
+      },
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (14/16 calls, 8/8 for prose)"
+      },
+      "ms": null
+    },
+    {
+      "step": "read",
+      "tool": "read_text_data",
+      "args": {
+        "file_path": "SampleDocument2.pdf"
+      },
+      "status": "error",
+      "detail": "no verifiable agricultural facts found in the text (prose: stopped after 21 chunk(s), model budget exhausted; prose: 22 chunk(s), 0 verified fact(s), 0 rejected)",
+      "ms": 63660.2
+    }
+  ]
+}

@@ -12,7 +12,7 @@ import re
 import unicodedata
 from pathlib import Path
 
-from .concepts import SYNONYMS
+from .concepts import FERTILIZER_TERMS, SYNONYMS, non_crop_term, words_of
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_MODEL = "openai/gpt-oss-120b"
@@ -20,11 +20,11 @@ DEFAULT_MODEL = "openai/gpt-oss-120b"
 CANONICAL_FIELDS = sorted(SYNONYMS)
 FIELD_HELP = {
     "year_month": "calendar month of the record (month name, month number or YYYY-MM)", "period": "year, agricultural year (2019-20) or survey cycle",
-    "district": "district name", "district_code": "district code", "state": "state name", "crop": "crop name", "season": "crop season (Kharif / Rabi ...)",
+    "district": "district name", "district_code": "district code", "state": "state name", "crop": "name of the CROP on each row (a column such as Particulars / Item / Commodity that lists crops); not animals, fish or money items", "season": "crop season (Kharif / Rabi ...)",
     "rainfall_mm": "amount of rainfall / precipitation", "rainy_days": "number of rainy days", "area": "cultivated / sown area",
-    "production": "crop production (quantity harvested)", "yield": "crop yield per unit area", "village": "village name", "tehsil": "tehsil / sub-district",
+    "production": "CROP production: quantity of a harvested plant crop (never milk, eggs, meat, fish or other livestock / fishery output)", "yield": "crop yield per unit area", "village": "village name", "tehsil": "tehsil / sub-district",
     "block": "block name", "category": "fertility rating (Low / Medium / High, Sufficient / Deficient)", "latitude": "latitude", "longitude": "longitude",
-    "n": "available nitrogen", "p": "available phosphorus", "k": "available potassium", "oc": "organic carbon", "ph": "soil pH", "ec": "electrical conductivity",
+    "n": "available nitrogen measured IN THE SOIL (a soil test; NOT a fertiliser product such as urea)", "p": "available phosphorus in the soil (not DAP / SSP)", "k": "available potassium in the soil (not MOP)", "oc": "organic carbon", "ph": "soil pH", "ec": "electrical conductivity",
     "s": "sulphur", "zn": "zinc", "fe": "iron", "cu": "copper", "mn": "manganese", "b": "boron", "unit": "unit of measurement", "record_id": "record / sample identifier"}
 DOMAINS = ["soil", "rainfall", "production"]
 
@@ -71,21 +71,40 @@ def llm_classify(llm, keys, sample_row) -> str | None:
     return d if d in DOMAINS else None
 
 
-def headers_prompt(unmapped_keys, sample_row):
+def headers_prompt(unmapped_keys, sample_row, sample_rows=None, context=None):
     system = ("Map source column names to canonical fields. Column names and cell values may be in ANY language or script: first work out what "
-              "each column means, then map it. Only map a column if you are confident; omit the rest.")
-    user = ("Canonical fields (name: meaning):\n" + "\n".join(f"- {f}: {FIELD_HELP.get(f, '')}" for f in CANONICAL_FIELDS) +
+              "each column means, then map it. Only map a column if you are confident; omit the rest.\n"
+              "The database holds three kinds of data: SOIL TEST results, monthly RAINFALL, and CROP area / production / yield. Do NOT map a column "
+              "that is about something else: livestock, milk, eggs, meat, fish, fertiliser or seed quantities, money, schemes, people. "
+              "A column that names the crop of each row (Particulars, Item, Commodity ...) is `crop`; a state name is `state`. "
+              "Use ONLY the canonical field names listed below, written exactly (a column of years is `period`, a column of months is `year_month`).")
+    ctx = ("Text printed around the table / on the cover:\n" + "\n".join(context)[:500] + "\n") if context else ""
+    rows = sample_rows or [sample_row]
+    user = (ctx + "Canonical fields (name: meaning):\n" + "\n".join(f"- {f}: {FIELD_HELP.get(f, '')}" for f in CANONICAL_FIELDS) +
             "\nMap EVERY column whose meaning matches a canonical field, including month and year columns.\n"
             f"Source columns: {list(unmapped_keys)[:40]}\n"
-            f"One sample row: {json.dumps(sample_row, default=str, ensure_ascii=False)[:600]}\n"
+            f"Sample rows: {json.dumps(rows[:4], default=str, ensure_ascii=False)[:900]}\n"
             'Answer only JSON like {"Nitrogen_avail": "n", "Dist": "district"}.')
     return system, user
+
+
+# names the model often uses for a canonical field (it answered "year" for a year column when the field is called `period`):
+# accepted and translated here, so the pipeline does not depend on the model's exact wording
+FIELD_ALIASES = {"year": "period", "years": "period", "month": "year_month", "date": "year_month", "rainfall": "rainfall_mm",
+                 "precipitation": "rainfall_mm", "rain": "rainfall_mm", "crop_name": "crop", "district_name": "district",
+                 "village_name": "village", "state_name": "state", "id": "record_id", "sample_id": "record_id"}
 
 
 def parse_headers(raw, unmapped_keys) -> dict:
     if not isinstance(raw, dict):
         return {}
-    return {k: v for k, v in raw.items() if k in set(unmapped_keys) and v in SYNONYMS}
+    keys = set(unmapped_keys)
+    out = {}
+    for k, v in raw.items():
+        v = FIELD_ALIASES.get(str(v).strip().lower(), v) if isinstance(v, str) else v
+        if k in keys and v in SYNONYMS:
+            out[k] = v
+    return out
 
 
 def _ascii_digits(s):
@@ -100,14 +119,49 @@ def verify_header_proposal(proposal, rows):
         vals = [str(r["data"].get(key)).strip() for r in rows[:50] if r["data"].get(key) not in (None, "")]
         if canon == "year_month" and vals and all(re.fullmatch(r"(1[89]|20)\d{2}", _ascii_digits(v)) for v in vals):
             canon = "period"
+        if not _fits_data(key, canon, vals):
+            continue
         out[key] = canon
     return out
 
 
-def classify_prompt(keys, sample_row):
-    system = ("Classify an agricultural data table into exactly one of: soil (soil-health card / nutrient tests), "
-              "rainfall (precipitation by period), production (crop area / production / yield), or none.")
-    user = (f"Column names: {list(keys)[:40]}\nOne sample row: {json.dumps(sample_row, default=str, ensure_ascii=False)[:600]}\n"
+_NUMERIC = {"n", "p", "k", "oc", "ph", "ec", "s", "zn", "fe", "cu", "mn", "b", "rainfall_mm", "rainy_days", "area", "production", "yield",
+            "latitude", "longitude"}
+_TEXT = {"crop", "season", "village", "tehsil", "block", "state", "district", "category"}
+
+
+def _is_num(v) -> bool:
+    try:
+        float(re.sub(r"[,\s]", "", _ascii_digits(v)))
+        return True
+    except ValueError:
+        return False
+
+
+def _fits_data(key, canon, vals) -> bool:
+    """The model proposes, the data decides. A column is not what the model says if its header or its cells contradict it:
+    a fertiliser product is not a soil nutrient, a milk / fish column is not crop production, a `crop` column does not hold numbers."""
+    if canon in ("n", "p", "k", "s", "zn", "fe", "cu", "mn", "b", "oc", "ec", "ph") and FERTILIZER_TERMS & set(words_of(key)):
+        return False
+    if canon in ("production", "area", "yield") and non_crop_term(key):
+        return False
+    if not vals:
+        return True
+    share_num = sum(_is_num(v) for v in vals) / len(vals)
+    if canon in _NUMERIC and share_num < 0.6:
+        return False
+    if canon in _TEXT and share_num > 0.6:
+        return False
+    return True
+
+
+def classify_prompt(keys, sample_row, sample_rows=None, context=None):
+    system = ("Classify an agricultural data table into exactly one of: soil (soil-health card / soil nutrient TEST results; not fertiliser sales "
+              "or consumption), rainfall (precipitation by period), production (CROP area / production / yield; not livestock, dairy, fish, "
+              "money, schemes or seed / fertiliser distribution), or none.")
+    ctx = ("Text printed around the table / on the cover:\n" + "\n".join(context)[:500] + "\n") if context else ""
+    rows = sample_rows or [sample_row]
+    user = (ctx + f"Column names: {list(keys)[:40]}\nSample rows: {json.dumps(rows[:4], default=str, ensure_ascii=False)[:800]}\n"
             'Answer only JSON like {"domain": "soil"}.')
     return system, user
 

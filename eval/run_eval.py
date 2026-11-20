@@ -385,7 +385,7 @@ if AI_SET:
         f"{mode}; true source values the plausibility check set aside for review (false alarms; a person can accept them)")
     ai_used = [r["ai"] or {} for r in results]
     row("AI4", "model_calls_per_file", sum(a.get("calls", 0) for a in ai_used), len(results), round(sum(a.get("calls", 0) for a in ai_used) / max(len(results), 1), 2),
-        len(results), "run report", f"{mode}; new model calls (cached answers: {sum(a.get('cached', 0) for a in ai_used)}); budget 16 per file")
+        len(results), "run report", f"{mode}; model calls; budget 16 per file")
     ok_budget = [r for r in results if r["retries"] <= 2 and (r["ai"] or {}).get("calls", 0) <= (r["ai"] or {}).get("max_calls", 16)]
     row("AI5", "retry_and_call_budget_respected", len(ok_budget), len(results), round(len(ok_budget) / max(len(results), 1), 4), len(results), "run report",
         f"{mode}; at most 2 recoveries and 16 model calls per file")
@@ -407,12 +407,12 @@ if AI_SET:
     pc = RESDIR / ("per_case_legacy.csv" if args.legacy_root else "per_case_baseline.csv" if args.no_ai else "per_case.csv")
     with pc.open("w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
-        w.writerow(["case_id", "format", "expected_status", "status", "F1", "tp", "extracted", "ref_fields", "stored_nothing", "quarantined", "model_calls", "cached",
+        w.writerow(["case_id", "format", "expected_status", "status", "F1", "tp", "extracted", "ref_fields", "stored_nothing", "quarantined", "model_calls",
                     "retries", "seconds", "tools"])
         for r in results:
             a = r["ai"] or {}
             w.writerow([r["id"], r["group"], r["case"]["expected_status"], r["status"], round(2 * r["tp"] / (r["extracted"] + r["ref_fields"]), 4) if (r["extracted"] + r["ref_fields"]) else "",
-                        r["tp"], r["extracted"], r["ref_fields"], r["inserted"] == 0, len(r["quarantined"]), a.get("calls", 0), a.get("cached", 0), r["retries"],
+                        r["tp"], r["extracted"], r["ref_fields"], r["inserted"] == 0, len(r["quarantined"]), a.get("calls", 0), r["retries"],
                         round(r["seconds"], 1), " > ".join(r["tools"])])
     print(f"\n=== AI-capability set '{args.set}' - {mode} ===")
     for m in rows_ai:

@@ -1,0 +1,591 @@
+{
+  "run_id": "run_20261120182529_f81a7c",
+  "input": "SampleDocument.pdf",
+  "status": "complete",
+  "source_type": "pdf",
+  "groups": [
+    {
+      "pattern": "pdf:p7.t1",
+      "domain": "production",
+      "records": 4,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm+context",
+      "mapped_headers": {
+        "Production": "production"
+      },
+      "unmapped_headers": [
+        "S.No.",
+        "Particulars"
+      ]
+    },
+    {
+      "pattern": "pdf:p7.t2",
+      "domain": "production",
+      "records": 4,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm+context",
+      "mapped_headers": {
+        "Production": "production"
+      },
+      "unmapped_headers": [
+        "S.No.",
+        "Particulars"
+      ]
+    },
+    {
+      "pattern": "pdf:p7.t3",
+      "domain": "production",
+      "records": 4,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm+context",
+      "mapped_headers": {
+        "Production": "production"
+      },
+      "unmapped_headers": [
+        "S.No.",
+        "Particulars"
+      ]
+    },
+    {
+      "pattern": "pdf:p7.t4",
+      "domain": "production",
+      "records": 4,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm+context",
+      "mapped_headers": {
+        "Production": "production"
+      },
+      "unmapped_headers": [
+        "S.No.",
+        "Particulars"
+      ]
+    },
+    {
+      "pattern": "pdf:p7.t5",
+      "domain": "production",
+      "records": 4,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm+context",
+      "mapped_headers": {
+        "Production": "production"
+      },
+      "unmapped_headers": [
+        "S.No.",
+        "Particulars"
+      ]
+    }
+  ],
+  "result": {
+    "by_agent": {
+      "production_agent": {
+        "table": "crop_production",
+        "extracted": 20,
+        "inserted": 19,
+        "duplicates": 0,
+        "invalid": 19,
+        "rejected": 0,
+        "quarantined": 1
+      }
+    },
+    "rejected": [],
+    "review": 1,
+    "totals": {
+      "extracted": 20,
+      "inserted": 19,
+      "duplicate": 0,
+      "invalid": 19,
+      "rejected": 0,
+      "quarantined": 1
+    },
+    "plausibility": [
+      "plausibility: 1 candidate(s), 1 judged implausible and set aside for review"
+    ]
+  },
+  "notes": {
+    "error": null,
+    "agent_errors": [],
+    "unclassified_groups": [],
+    "retry_budget": {
+      "max": 2,
+      "used": 0,
+      "strategies": []
+    },
+    "ai": {
+      "enabled": true,
+      "model": "openai/gpt-oss-120b",
+      "calls": 5,
+      "cached": 14,
+      "by_purpose": {
+        "headers": 2,
+        "classify": 2,
+        "plausibility": 1
+      },
+      "max_calls": 16
+    },
+    "quarantined_for_review": 1
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "SampleDocument.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 1099863,
+        "type": "pdf",
+        "how": "magic"
+      },
+      "ms": 3684.7
+    },
+    {
+      "step": "ai:page_select",
+      "tool": "llm_page_select",
+      "args": {
+        "batch": 1,
+        "pages": 14
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"pages\": [{\"page\": 4, \"kind\": \"table\", \"reason\": \"contains area data for districts\"}, {\"page\": 5, \"kind\": \"prose\", \"reason\": \"mentions crop area/hectare in text\"}, {\"page\": 6, \"kind\": \"prose\", \"reason\": \"mentions crop area in text\"}, {\"page\": 7, \"kind\": \"table\", \"reason\": \"provides crop production figures\"}]}"
+      },
+      "ms": 50.5
+    },
+    {
+      "step": "plan",
+      "tool": "plan_read",
+      "args": {
+        "type": "pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "total_pages": 22,
+        "selected": 4,
+        "method": "model over page digests",
+        "pages": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "prose_pages": [
+          5,
+          6
+        ],
+        "notes": []
+      },
+      "ms": 7862.2
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 1,
+        "chars": 2405,
+        "at": "p5 0"
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"facts\": []}"
+      },
+      "ms": 103.6
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 1,
+        "chars": 2499,
+        "at": "p6 0"
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"facts\": []}"
+      },
+      "ms": 2.6
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_data",
+      "args": {
+        "file_path": "SampleDocument.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 20,
+        "groups": 5,
+        "notes": [
+          "pages=22",
+          "backend=auto",
+          "4 selected page(s)",
+          "tables by route: pdfplumber=5",
+          "prose: 1 chunk(s), 0 verified fact(s), 0 rejected",
+          "prose: 1 chunk(s), 0 verified fact(s), 0 rejected"
+        ]
+      },
+      "ms": 9265.2
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "S.No.",
+          "Particulars"
+        ]
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"S.No.\": \"record_id\", \"Particulars\": \"crop\", \"Production\": \"production\"}"
+      },
+      "ms": 25.2
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {
+          "S.No.": "record_id",
+          "Particulars": "crop"
+        },
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "cached",
+      "detail": {
+        "answer": "{\"domain\": \"production\"}"
+      },
+      "ms": 22.2
+    },
+    {
+      "step": "ai:context",
+      "tool": "llm_context",
+      "args": {
+        "lines": 2
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"units\": {\"production\": {\"multiplier\": 1000, \"unit\": \"t\", \"quote\": \"‘000 MT\"}}, \"district\": null, \"period\": null, \"crop\": null}"
+      },
+      "ms": 1.2
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "S.No.",
+          "Particulars"
+        ]
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{}"
+      },
+      "ms": 32.7
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {},
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "cached",
+      "detail": {
+        "answer": "{\"domain\": \"production\"}"
+      },
+      "ms": 3.6
+    },
+    {
+      "step": "ai:context",
+      "tool": "llm_context",
+      "args": {
+        "lines": 2
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"units\": {\"production\": {\"multiplier\": 1000, \"unit\": \"t\", \"quote\": \"‘000 MT\"}}, \"district\": null, \"period\": null, \"crop\": null}"
+      },
+      "ms": 0.9
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "S.No.",
+          "Particulars"
+        ]
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"S.No.\": \"record_id\", \"Particulars\": \"crop\"}"
+      },
+      "ms": 17.3
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {
+          "S.No.": "record_id",
+          "Particulars": "crop"
+        },
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "cached",
+      "detail": {
+        "answer": "{\"domain\": \"production\"}"
+      },
+      "ms": 3.2
+    },
+    {
+      "step": "ai:context",
+      "tool": "llm_context",
+      "args": {
+        "lines": 2
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"units\": {\"production\": {\"multiplier\": 1000, \"unit\": \"t\", \"quote\": \"‘000 MT\"}}, \"district\": null, \"period\": null, \"crop\": null}"
+      },
+      "ms": 0.9
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "S.No.",
+          "Particulars"
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"S.No.\": \"record_id\", \"Particulars\": \"crop\"}",
+        "chars_in": 1536
+      },
+      "ms": 2808.4
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {
+          "S.No.": "record_id",
+          "Particulars": "crop"
+        },
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "answer": "{\"domain\": \"production\"}",
+        "chars_in": 362
+      },
+      "ms": 674.0
+    },
+    {
+      "step": "ai:context",
+      "tool": "llm_context",
+      "args": {
+        "lines": 2
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"units\": {\"production\": {\"multiplier\": 1000, \"unit\": \"t\", \"quote\": \"‘000 MT\"}}, \"district\": null, \"period\": null, \"crop\": null}"
+      },
+      "ms": 0.7
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "S.No.",
+          "Particulars"
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"Particulars\": \"crop\", \"Production\": \"production\"}",
+        "chars_in": 1536
+      },
+      "ms": 1088.9
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {
+          "Particulars": "crop"
+        },
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "answer": "{\"domain\": \"production\"}",
+        "chars_in": 362
+      },
+      "ms": 611.2
+    },
+    {
+      "step": "ai:context",
+      "tool": "llm_context",
+      "args": {
+        "lines": 2
+      },
+      "status": "cached",
+      "detail": {
+        "answer": "{\"units\": {\"production\": {\"multiplier\": 1000, \"unit\": \"t\", \"quote\": \"‘000 MT\"}}, \"district\": null, \"period\": null, \"crop\": null}"
+      },
+      "ms": 0.9
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "pdf:p7.t1",
+            "production",
+            4
+          ],
+          [
+            "pdf:p7.t2",
+            "production",
+            4
+          ],
+          [
+            "pdf:p7.t3",
+            "production",
+            4
+          ],
+          [
+            "pdf:p7.t4",
+            "production",
+            4
+          ],
+          [
+            "pdf:p7.t5",
+            "production",
+            4
+          ]
+        ],
+        "queue": [
+          "production"
+        ],
+        "language": []
+      },
+      "ms": 5323.5
+    },
+    {
+      "step": "production_agent",
+      "tool": "production_extract",
+      "args": {
+        "records_in": 20
+      },
+      "status": "ok",
+      "detail": {
+        "rows_out": 20
+      },
+      "ms": 7.4
+    },
+    {
+      "step": "ai:plausibility",
+      "tool": "llm_plausibility",
+      "args": {
+        "candidates": 1
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"verdicts\": [{\"id\": 1, \"verdict\": \"implausible\", \"reason\": \"The production value of 1,627,030 t is orders of magnitude larger than the median (29,100 t) and typical district‑level outputs for Manipur, exceeding realistic state‑wide totals and indicating a likely data or parsing error.\"}]}",
+        "chars_in": 1268
+      },
+      "ms": 1530.1
+    },
+    {
+      "step": "load",
+      "tool": "sqlite_load",
+      "args": {
+        "db": "manipur.db"
+      },
+      "status": "ok",
+      "detail": {
+        "extracted": 20,
+        "inserted": 19,
+        "duplicate": 0,
+        "invalid": 19,
+        "rejected": 0,
+        "quarantined": 1,
+        "plausibility": [
+          "plausibility: 1 candidate(s), 1 judged implausible and set aside for review"
+        ]
+      },
+      "ms": 6285.1
+    }
+  ]
+}

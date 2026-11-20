@@ -1,5 +1,5 @@
 """
-The AI layer: one budgeted, cached, traced way for every pipeline stage to ask the language model.
+The AI layer: one budgeted, traced way for every pipeline stage to ask the language model.
 
 Principles (what makes this safe to put in a data pipeline)
   * Deterministic first. A stage asks the model only when its own code is uncertain (an irregular table, an unknown file type, a long PDF, a
@@ -8,9 +8,9 @@ Principles (what makes this safe to put in a data pipeline)
     vocabulary, districts come from the reference list ...) and is dropped if it fails the check.
   * Strict budgets. At most AGRI_LLM_MAX_CALLS (default 16) model calls per file, and a per-purpose cap; recoveries are capped separately in
     the graph. Rate-limit errors are waited out briefly, never retried forever.
-  * Everything is logged: each call becomes a step in the run trajectory (purpose, cached or not, seconds, answer) and, with LangSmith on, a
+  * Everything is logged: each call becomes a step in the run trajectory (purpose, seconds, answer) and, with LangSmith on, a
     child run with the full prompt and answer.
-  * Cached by prompt hash (.llm_cache/, AGRI_LLM_CACHE=0 to disable) so a repeated file is deterministic and cheap.
+  * No cross-run cache: every run asks the model afresh (within one run, identical tables reuse an answer via `memo`).
   * Switch off with AGRI_AI=0 or `python run.py --no-ai`: the pipeline then behaves like the rule-based version (used for A/B evaluation).
 """
 import hashlib
@@ -24,9 +24,8 @@ from . import trace  # noqa: F401  (loads .env before anything reads the environ
 from .llm import get_llm
 
 ROOT = Path(__file__).resolve().parent.parent
-CACHE_DIR = ROOT / ".llm_cache"
 CAPS = {"triage": 1, "plan": 2, "page_select": 4, "structure": 3, "recover": 2, "context": 3, "language": 2, "prose": 8,
-        "plausibility": 2, "headers": 3, "classify": 3}
+        "plausibility": 2, "headers": 3, "classify": 3, "crops": 5, "state": 1}
 
 
 def ai_on() -> bool:
@@ -67,10 +66,10 @@ class AIContext:
         self.llm = get_llm() if (enabled and ai_on()) else None
         self.max_calls = int(os.getenv("AGRI_LLM_MAX_CALLS", "16"))
         self.calls = 0
-        self.cached = 0
         self.by = {}
         self.steps = []
         self.last_error = None
+        self.memo = {}      # answers reused within this run: tables with the same columns need one header / classification call, not one each
 
     @property
     def available(self) -> bool:
@@ -90,7 +89,7 @@ class AIContext:
 
     def summary(self) -> dict:
         return {"enabled": self.available, "model": getattr(self.llm, "model_name", None) if self.llm else None, "calls": self.calls,
-                "cached": self.cached, "by_purpose": dict(self.by), "max_calls": self.max_calls}
+                "by_purpose": dict(self.by), "max_calls": self.max_calls}
 
     def ask(self, purpose: str, system: str, user: str, args: dict | None = None, tool: str | None = None):
         """-> parsed JSON (dict / list) or None. Never raises."""
@@ -100,18 +99,6 @@ class AIContext:
         if not self.available:
             self.last_error = "no model available"
             return None
-        model = f"{getattr(self.llm, 'model_name', 'model')}|{getattr(self.llm, 'reasoning_effort', '')}"
-        key = hashlib.sha256(f"{model}\n{system}\n{user}".encode("utf-8")).hexdigest()
-        cpath = CACHE_DIR / f"{key}.json"
-        use_cache = os.getenv("AGRI_LLM_CACHE", "1") not in ("0", "false", "off")
-        if use_cache and cpath.exists():
-            try:
-                obj = json.loads(cpath.read_text(encoding="utf-8"))["answer"]
-                self.cached += 1
-                self.note(purpose, tool, args, "cached", {"answer": _clip(obj)}, round((time.perf_counter() - t0) * 1000, 1))
-                return obj
-            except Exception:
-                pass
         if self.calls >= self.max_calls or self.by.get(purpose, 0) >= CAPS.get(purpose, 3):
             self.last_error = "budget exhausted"
             self.note(purpose, tool, args, "skipped", {"reason": f"LLM budget exhausted ({self.calls}/{self.max_calls} calls, "
@@ -133,12 +120,6 @@ class AIContext:
             self.last_error = "model answer was not JSON"
             self.note(purpose, tool, args, "error", {"error": self.last_error, "raw": (raw or "")[:200]}, ms)
             return None
-        if use_cache:
-            try:
-                CACHE_DIR.mkdir(exist_ok=True)
-                cpath.write_text(json.dumps({"purpose": purpose, "answer": obj}, ensure_ascii=False), encoding="utf-8")
-            except Exception:
-                pass
         self.note(purpose, tool, args, "ok", {"answer": _clip(obj), "chars_in": len(system) + len(user)}, ms)
         return obj
 
