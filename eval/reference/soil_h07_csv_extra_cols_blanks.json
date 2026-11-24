@@ -2,7 +2,7 @@
  "case_id": "soil_h07_csv_extra_cols_blanks",
  "agent": "soil",
  "source_group": "csv",
- "file": "cases/soil_h07.csv",
+ "file": "cases/soil_h07_csv_extra_cols_blanks.csv",
  "description": "Shuffled columns, irrelevant extra columns, NA / '-' for missing",
  "difficulty": "hard",
  "needs_llm": false,

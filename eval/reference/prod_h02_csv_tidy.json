@@ -2,7 +2,7 @@
  "case_id": "prod_h02_csv_tidy",
  "agent": "production",
  "source_group": "csv",
- "file": "cases/prod_h02.csv",
+ "file": "cases/prod_h02_csv_tidy.csv",
  "description": "Tidy CSV, units in headers",
  "difficulty": "normal",
  "needs_llm": false,

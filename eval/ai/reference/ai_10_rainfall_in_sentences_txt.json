@@ -2,7 +2,7 @@
  "case_id": "ai_10_rainfall_in_sentences_txt",
  "agent": "rainfall",
  "source_group": "text",
- "file": "ai/cases/ai_10.txt",
+ "file": "ai/cases/ai_10_ENGLISH_PROSE_RAINFALL.txt",
  "description": "Monthly rainfall stated in English sentences",
  "difficulty": "hard",
  "needs_llm": true,

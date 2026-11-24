@@ -2,7 +2,7 @@
  "case_id": "rain_09_csv_cm_unit_column",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "dev/cases/rain_09.csv",
+ "file": "dev/cases/rain_09_csv_cm_unit_column.csv",
  "description": "Unit column says cm -> expected mm",
  "difficulty": "hard",
  "needs_llm": false,

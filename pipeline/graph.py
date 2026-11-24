@@ -370,13 +370,30 @@ def classify_node(state: State) -> State:
         prompt_ctx = [l for l in ctx_lines if not l.startswith("sheet name:")][:4] + doc_lines[:6]   # what the model is told about the table
         keys = list(dict.fromkeys(k for r in sample for k in r["data"]))
         mapping, unmapped = map_columns(keys)
+        crop_by_vocab = False
+        if "crop" not in mapping.values() and set(mapping.values()) & DOMAIN_CORE["production"]:
+            # a crop measure but no crop column named: an unknown text column whose cells fixed code recognises as crop / livestock names IS the
+            # crop column ("Particulars": Rice, Pulses, Milk ...). Otherwise the rows would be stored with crop UNSPECIFIED and never filtered.
+            for col in unmapped:
+                vals = [str(r["data"].get(col) or "").strip() for r in rows[:60]]
+                vals = [v for v in vals if v and to_number(v) is None]
+                if len(vals) >= 2 and sum(crops_mod.deterministic_verdict(v) is not None for v in vals) / len(vals) >= 0.5:
+                    for r in rows:
+                        r["hmap"] = {**(r.get("hmap") or {}), col: "crop"}
+                    mapping = {**mapping, col: "crop"}
+                    unmapped = [u for u in unmapped if u != col]
+                    crop_by_vocab = True
+                    break
         mcount = len(agent_mod.month_columns(keys))
         scores = score_domains(mapping.values())
         if mcount >= 6:
             scores["rainfall"] += 3
-        method = "rules"
+        method = "rules" + ("+crop_column_by_vocabulary" if crop_by_vocab else "")
         has_numeric = any(to_number(r["data"].get(k)) is not None for k in unmapped for r in sample[:50])
         numeric_unmapped = unmapped[:40] if has_numeric else []   # text columns too: district / year names vary as well
+        has_measure = bool(set(mapping.values()) & set().union(*DOMAIN_CORE.values()))
+        if not numeric_unmapped and has_measure and unmapped and max(scores.values()) == 0:
+            numeric_unmapped = unmapped[:40]   # a measure column is known but nothing says what the rows are: ask about the text columns ("Particulars")
         label_texts = [str(lab) for r in sample[:30] for _, lab in r["labels"]]
         has_district_label = any(normalize_district(t)[2] in ("exact", "alias", "fuzzy") for t in label_texts)
         has_year_label = any(YEAR_RE.search(t) for t in label_texts)
@@ -445,7 +462,7 @@ def classify_node(state: State) -> State:
                 d = parse_domain(ask_domain({"tie": tops}))
                 traj += ai.drain()
                 domain, method = (d if d in tops else domain), "rules+llm_tiebreak"
-        elif llm and has_numeric:   # nothing numeric -> nothing to extract; do not spend an LLM call
+        elif llm and (has_numeric or has_measure):   # nothing numeric -> nothing to extract; do not spend an LLM call
             d = parse_domain(ask_domain({}))
             traj += ai.drain()
             has_core = d in DOMAIN_CORE and (set(mapping.values()) & DOMAIN_CORE[d])
@@ -480,12 +497,16 @@ def classify_node(state: State) -> State:
             if unverified:
                 method += "+crops_unverified"
         # ---- context facts: units / district / period stated in the title or caption, only where the table itself gives none
-        if domain and llm:
+        # (fixed code reads the plain cases - "('000 MT)", "2023-24", "of Fruit Crops" - even without a model; the model is asked for the rest)
+        if domain:
             ctx_lines = rows[0].get("context") or []
             units, want_d, want_p = _context_needs(domain, rows, mapping, mcount, has_district_label, has_year_label)
             meaningful = [l for l in ctx_lines if not l.startswith("sheet name:")] or (ctx_lines if (want_d or want_p) else [])
-            if meaningful and (units or want_d or want_p):
-                facts = context_mod.facts_for(ai, ctx_lines, keys, units, want_d, want_p)
+            # the crop of a table that names none (a state-wise "Fruit Crops" table): only from the caption, with its quote
+            want_c = (domain == "production" and "crop" not in set(mapping.values()) and
+                      not any(crops_mod.row_label(r, None) for r in rows[:20]))
+            if meaningful and (units or want_d or want_p or want_c):
+                facts = context_mod.facts_for(ai, ctx_lines, keys, units, want_d, want_p, want_c)
                 if facts:
                     context_mod.apply_to_rows(rows, facts)
                     method += "+context"
@@ -525,12 +546,15 @@ def _make_agent_node(domain):
             if state.get("inject_fault") == agent_name:
                 raise RuntimeError(f"injected fault in {agent_name}")
             rows = fn(rows_in)
+            other = sorted({r["_out_of_state"] for r in rows if "_out_of_state" in r})   # rows about other states / All India: not stored
+            n_other = sum("_out_of_state" in r for r in rows)
+            rows = [r for r in rows if "_out_of_state" not in r]
             for r in rows:
                 r.update(source_file=Path(state["input_path"]).name, source_hash=state["source_hash"],
                          source_type=state["source_type"], agent=agent_name, run_id=state["run_id"])
             return {"rows": {**state.get("rows", {}), agent_name: rows}, "queue": queue,
                     "trajectory": _trace(state, agent_name, f"{domain}_extract", {"records_in": len(rows_in)}, "ok",
-                                         {"rows_out": len(rows)}, t0)}
+                                         {"rows_out": len(rows), **({"other_states_not_stored": n_other, "states": other[:20]} if n_other else {})}, t0)}
         except Exception as e:  # one agent failing must not stop the others
             return {"queue": queue, "agent_errors": state.get("agent_errors", []) + [f"{agent_name}: {e}"],
                     "trajectory": _trace(state, agent_name, f"{domain}_extract", {"records_in": len(rows_in)},

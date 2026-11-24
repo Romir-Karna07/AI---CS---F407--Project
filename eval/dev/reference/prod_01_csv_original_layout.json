@@ -2,7 +2,7 @@
  "case_id": "prod_01_csv_original_layout",
  "agent": "production",
  "source_group": "csv",
- "file": "dev/cases/prod_01.csv",
+ "file": "dev/cases/prod_01_csv_original_layout.csv",
  "description": "Original 3-row header, hierarchy rows, year blocks, Total rows (skipped)",
  "difficulty": "normal",
  "needs_llm": false,

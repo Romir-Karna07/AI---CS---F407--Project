@@ -26,6 +26,30 @@ for d in _districts["districts"]:
 _NAME_TO_CODE = {d["name"]: d["code"] for d in _districts["districts"]}
 STATE_NAME = _districts["state"]
 STATE_CODE = _districts["state_code"]
+# a figure for the whole state (a state profile, a state-wise national table): stored under this pseudo-district, never under a real district
+STATE_LEVEL_NAME = f"{STATE_NAME} (STATE)"
+STATE_LEVEL_CODE = f"{STATE_CODE}-STATE"
+# the states and union territories of India, plus the "all India" rows of national tables: lets a state-wise table be read as such
+# (the Manipur row is kept as a state-level figure, the others are not Manipur data). Spelling variants seen in Indian statistics.
+_INDIAN_STATES = {
+    "ANDHRA PRADESH", "ARUNACHAL PRADESH", "ASSAM", "BIHAR", "CHHATTISGARH", "GOA", "GUJARAT", "HARYANA", "HIMACHAL PRADESH", "JHARKHAND",
+    "KARNATAKA", "KERALA", "MADHYA PRADESH", "MAHARASHTRA", "MANIPUR", "MEGHALAYA", "MIZORAM", "NAGALAND", "ODISHA", "PUNJAB", "RAJASTHAN",
+    "SIKKIM", "TAMIL NADU", "TELANGANA", "TRIPURA", "UTTAR PRADESH", "UTTARAKHAND", "WEST BENGAL", "ANDAMAN AND NICOBAR ISLANDS",
+    "CHANDIGARH", "DADRA AND NAGAR HAVELI AND DAMAN AND DIU", "DADRA AND NAGAR HAVELI", "DAMAN AND DIU", "DELHI", "JAMMU AND KASHMIR",
+    "LADAKH", "LAKSHADWEEP", "PUDUCHERRY", "ALL INDIA", "INDIA"}
+_STATE_ALIASES = {"ORISSA": "ODISHA", "TAMILNADU": "TAMIL NADU", "UTTARANCHAL": "UTTARAKHAND", "PONDICHERRY": "PUDUCHERRY",
+                  "NCT OF DELHI": "DELHI", "A AND N ISLANDS": "ANDAMAN AND NICOBAR ISLANDS", "J AND K": "JAMMU AND KASHMIR", "TOTAL INDIA": "ALL INDIA"}
+
+
+def indian_state(name):
+    """canonical upper-case state / UT name, 'ALL INDIA', or None (not a state name)"""
+    if name is None:
+        return None
+    k = re.sub(r"\s+", " ", re.sub(r"[&]", " AND ", re.sub(r"[^A-Za-z&\s]", " ", str(name)))).strip().upper()
+    if not k:
+        return None
+    k = _STATE_ALIASES.get(k, k)
+    return k if k in _INDIAN_STATES else None
 VALID_DISTRICT_CODES = set(_BY_CODE)
 
 
@@ -123,9 +147,10 @@ def parse_year_month(value, year=None, month=None) -> tuple[str | None, int | No
 _AREA = {"ha": 1.0, "hectare": 1.0, "hectares": 1.0, "acre": 0.404686, "acres": 0.404686, "sqkm": 100.0,
          "000ha": 1000.0, "lakhha": 100000.0, "lakhhectare": 100000.0, "000hectare": 1000.0}
 _PROD = {"t": 1.0, "tonne": 1.0, "tonnes": 1.0, "ton": 1.0, "tons": 1.0, "mt": 1.0, "kg": 0.001, "quintal": 0.1,
-         "quintals": 0.1, "q": 0.1, "000t": 1000.0, "000tonnes": 1000.0, "lakht": 100000.0, "lakhtonnes": 100000.0}
+         "quintals": 0.1, "q": 0.1, "000t": 1000.0, "000tonnes": 1000.0, "lakht": 100000.0, "lakhtonnes": 100000.0,
+         "000mt": 1000.0, "000tonne": 1000.0, "000metrictonnes": 1000.0, "lakhmt": 100000.0, "metrictonnes": 1.0, "metrictonne": 1.0}
 _YIELD = {"tha": 1.0, "tonha": 1.0, "tonsha": 1.0, "tonnesha": 1.0, "tonneperha": 1.0, "kgha": 0.001, "qha": 0.1,
-          "quintalha": 0.1}
+          "quintalha": 0.1, "mtha": 1.0}
 _RAIN = {"mm": 1.0, "millimetre": 1.0, "millimeter": 1.0, "millimetres": 1.0, "millimeters": 1.0, "cm": 10.0,
          "centimetre": 10.0, "centimeter": 10.0, "centimetres": 10.0, "centimeters": 10.0,
          "inch": 25.4, "inches": 25.4, "in": 25.4}
@@ -142,9 +167,9 @@ def convert_unit(variable: str, value, unit_text):
     m = re.fullmatch(r"\s*([\d.]+(?:e\d+)?)\s*\*\s*(.+)", str(unit_text))     # "1000*ha": multiplier * base unit
     if m:
         v, status = convert_unit(variable, value, m.group(2))
-        return (v * float(m.group(1)) if not status.startswith("unknown") else value), status
+        return (round(v * float(m.group(1)), 6) if not status.startswith("unknown") else value), status
     k = re.sub(r"[^a-z0-9]", "", re.sub(r"[./]", "", str(unit_text).lower().replace("per", "")).replace("(", "").replace(")", ""))
     table = _TABLES.get(variable, {})
     if k in table:
-        return value * table[k], "declared"
+        return round(value * table[k], 6), "declared"     # 515.69 * 1000 -> 515690.0, not 515690.00000000006
     return value, f"unknown:{str(unit_text).strip()}"

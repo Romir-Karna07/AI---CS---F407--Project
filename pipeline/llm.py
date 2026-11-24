@@ -119,10 +119,26 @@ def verify_header_proposal(proposal, rows):
         vals = [str(r["data"].get(key)).strip() for r in rows[:50] if r["data"].get(key) not in (None, "")]
         if canon == "year_month" and vals and all(re.fullmatch(r"(1[89]|20)\d{2}", _ascii_digits(v)) for v in vals):
             canon = "period"
+        canon = _place_level(canon, vals)
         if not _fits_data(key, canon, vals):
             continue
         out[key] = canon
     return out
+
+
+def _place_level(canon, vals):
+    """A column the model calls `state` whose cells are district names is the DISTRICT (French 'Departement', Hindi 'zila' ...): the cells decide,
+    whatever the model called the column. The reverse holds too: cells that all say Manipur make a `district` column the state."""
+    if canon not in ("state", "district") or not vals:
+        return canon
+    from .normalize import STATE_NAME, normalize_district
+    districts = sum(normalize_district(v)[2] in ("exact", "alias", "fuzzy") for v in vals) / len(vals)
+    is_state = sum(v.strip().lower() == STATE_NAME.lower() for v in vals) / len(vals)
+    if canon == "state" and districts >= 0.6:
+        return "district"
+    if canon == "district" and is_state >= 0.9:
+        return "state"
+    return canon
 
 
 _NUMERIC = {"n", "p", "k", "oc", "ph", "ec", "s", "zn", "fe", "cu", "mn", "b", "rainfall_mm", "rainy_days", "area", "production", "yield",

@@ -2,7 +2,7 @@
  "case_id": "soil_h10_tsv_full_names",
  "agent": "soil",
  "source_group": "csv",
- "file": "cases/soil_h10.txt",
+ "file": "cases/soil_h10_tsv_full_names.txt",
  "description": "Tab-delimited text file, full nutrient names",
  "difficulty": "normal",
  "needs_llm": false,

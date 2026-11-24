@@ -2,7 +2,7 @@
  "case_id": "ai_14_tamil_unseen_language_csv",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "ai/cases/ai_14.csv",
+ "file": "ai/cases/ai_14_TAMIL.csv",
  "description": "Tamil: a language unrelated to Manipur and unknown to the pipeline",
  "difficulty": "hard",
  "needs_llm": true,

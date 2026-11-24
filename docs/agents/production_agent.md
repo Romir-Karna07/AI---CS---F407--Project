@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | **Table** | `crop_production` |
-| **Sources** | S02 APY district/season-wise (**partial**); S01, S03, S04, S06, S07, S13 declared **pending** - see `docs/source_agent_map.csv` |
+| **Sources** | S02 APY district/season-wise (**partial**); S06 NHB horticulture statistics (**partial**: Manipur's fruit and spice area / production 2013-14..2017-18 from the PDF, state level); S01, S03, S04, S07, S13 declared **pending** - see `docs/source_agent_map.csv` |
 | **Source group** | structured files (CSV/XLSX-style tables, nested JSON) |
 | **Code** | `pipeline/agents.py::production_agent`, CSV layout detection in `pipeline/readers.py` |
 
@@ -37,4 +37,5 @@ within 5% or the source's rounding) are **fixed code**. The LLM only maps unknow
   1997-2023 with missing years (no 1998-99, 2020-21). Its origin is **assumed** to be S02 and must be confirmed.
 * The 7 districts created in 2016 are absent from that file; no field crops (rice, maize ...) either.
 * `season` is "Whole Year" in the corpus; Kharif / Rabi series are supported by the code but untested on real files.
-* PDF / scanned crop reports (S04, S05, S10, S12 ...) are not readable yet - that is `document_agent` (pending).
+* PDF crop reports go through `document_agent`'s reader; S04 (crop groups across the columns) and S12 (contradictory unit labels) are not loaded.
+* Only crops are stored: livestock, dairy, fishery rows are left out (`pipeline/crops.py`). Whole-state figures are stored under `MANIPUR (STATE)`; rows of other states are not stored.

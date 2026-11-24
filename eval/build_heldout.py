@@ -478,7 +478,7 @@ chunks = {}
 chunks["soil"] = divide(SOIL, 10)
 for i, ((name, fn), rs) in enumerate(zip(SOIL_LAYOUTS, chunks["soil"]), 1):
     ext, content, refs, desc, diff, llm = fn(rs)
-    add(f"soil_h{i:02d}_{name}", "soil", f"soil_h{i:02d}.{ext}", content, desc, refs, diff, llm)
+    add(f"soil_h{i:02d}_{name}", "soil", f"soil_h{i:02d}_{name}.{ext}", content, desc, refs, diff, llm)
     cases[-1]["n_source_records"] = len(rs)
 
 # rainfall: whole (district, year) blocks; layouts alternate IMD (S22) / NASA POWER (S21) so neither source is a single case type
@@ -496,7 +496,7 @@ for i, (name, fn) in enumerate(RAIN_LAYOUTS, 1):
     src = "imd" if i % 2 else "nasa"
     chunks["rainfall"].append(rs)
     ext, content, refs, desc, diff = fn(rs)
-    add(f"rain_h{i:02d}_{name}_{src}", "rainfall", f"rain_h{i:02d}.{ext}", content, f"{desc} [{'S22 IMD grid' if src == 'imd' else 'S21 NASA POWER'}]", refs, diff)
+    add(f"rain_h{i:02d}_{name}_{src}", "rainfall", f"rain_h{i:02d}_{name}_{src}.{ext}", content, f"{desc} [{'S22 IMD grid' if src == 'imd' else 'S21 NASA POWER'}]", refs, diff)
     cases[-1]["n_source_records"] = len(rs)
 
 # production: divide whole (crop, district) pairs; the synonym-crop pairs are kept together for the synonyms layout
@@ -511,19 +511,19 @@ for i, ((name, fn), prs) in enumerate(zip(PROD_LAYOUTS, pair_chunks), 1):
     rs = [p for p in PROD if (p["crop"], p["district"]) in prs]
     chunks["production"].append(rs)
     ext, content, refs, desc, diff = fn(rs)
-    add(f"prod_h{i:02d}_{name}", "production", f"prod_h{i:02d}.{ext}", content, desc, refs, diff)
+    add(f"prod_h{i:02d}_{name}", "production", f"prod_h{i:02d}_{name}.{ext}", content, desc, refs, diff)
     cases[-1]["n_source_records"] = len(rs)
 
 # operations cases (robustness / fault injection; slices of held-out chunks)
-add("ops_01_empty_file", "none", "ops_01.csv", "\n\n", "Blank file (only newlines) must fail cleanly", [], "error", expected_status="failed",
+add("ops_01_empty_file", "none", "ops_01_empty_file.csv", "\n\n", "Blank file (only newlines) must fail cleanly", [], "error", expected_status="failed",
     traj=["inspect_file", "read_csv_data", "read_csv_data", "read_json_data"])
-add("ops_02_not_agri_json", "none", "ops_02.json", json.dumps({"title": "committee agenda", "items": ["budget", "travel"], "room": 4}),
+add("ops_02_not_agri_json", "none", "ops_02_not_agri_json.json", json.dumps({"title": "committee agenda", "items": ["budget", "travel"], "room": 4}),
     "Valid JSON with no agricultural data must fail cleanly", [], "error", expected_status="failed", traj=["inspect_file", "read_json_data"])
 ext, content, refs, desc, diff = rain_l1(chunks["rainfall"][1][:12])
-add("ops_03_fault_read", "rainfall", "ops_03.csv", content, "Injected read fault -> retry -> complete", refs, "fault", fault="read",
+add("ops_03_fault_read", "rainfall", "ops_03_fault_read.csv", content, "Injected read fault -> retry -> complete", refs, "fault", fault="read",
     traj=["inspect_file", "read_csv_data", "read_csv_data", "rainfall_extract", "sqlite_load"])
 ext, content, refs, desc, diff, _ = soil_l2(chunks["soil"][2][:8])
-add("ops_04_fault_load", "soil", "ops_04.csv", content, "Injected load fault -> retry -> complete", refs, "fault", fault="load",
+add("ops_04_fault_load", "soil", "ops_04_fault_load.csv", content, "Injected load fault -> retry -> complete", refs, "fault", fault="load",
     traj=["inspect_file", "read_csv_data", "soil_extract", "sqlite_load", "sqlite_load"])
 
 # ================================================================== write + self-check

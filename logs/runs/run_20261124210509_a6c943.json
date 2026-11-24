@@ -1,0 +1,246 @@
+{
+  "run_id": "run_20261124210509_a6c943",
+  "input": "S06_nhb_horticulture_at_a_glance_2018.pdf",
+  "status": "complete",
+  "source_type": "pdf",
+  "groups": [
+    {
+      "pattern": "pdf:p187.t1",
+      "domain": "production",
+      "records": 96,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 2
+      },
+      "method": "rules+context",
+      "mapped_headers": {
+        "period": "period",
+        "Area ('000 Ha)": "area",
+        "Production ('000 MT)": "production"
+      },
+      "unmapped_headers": [
+        "entity",
+        "level1"
+      ]
+    },
+    {
+      "pattern": "pdf:p192.t1",
+      "domain": "production",
+      "records": 95,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 2
+      },
+      "method": "rules+context",
+      "mapped_headers": {
+        "period": "period",
+        "Area ('000 Ha)": "area",
+        "Production ('000 MT)": "production"
+      },
+      "unmapped_headers": [
+        "entity"
+      ]
+    }
+  ],
+  "result": {
+    "by_agent": {
+      "production_agent": {
+        "table": "crop_production",
+        "extracted": 10,
+        "inserted": 10,
+        "duplicates": 0,
+        "invalid": 0,
+        "rejected": 0,
+        "quarantined": 0
+      }
+    },
+    "rejected": [],
+    "review": 0,
+    "totals": {
+      "extracted": 10,
+      "inserted": 10,
+      "duplicate": 0,
+      "invalid": 0,
+      "rejected": 0,
+      "quarantined": 0
+    },
+    "plausibility": []
+  },
+  "notes": {
+    "error": null,
+    "agent_errors": [],
+    "unclassified_groups": [],
+    "retry_budget": {
+      "max": 2,
+      "used": 0,
+      "strategies": []
+    },
+    "ai": {
+      "enabled": true,
+      "model": "openai/gpt-oss-120b",
+      "calls": 3,
+      "by_purpose": {
+        "context": 2,
+        "state": 1
+      },
+      "max_calls": 16
+    },
+    "quarantined_for_review": 0,
+    "excluded_non_crop": []
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "S06_nhb_horticulture_at_a_glance_2018.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 3824825,
+        "type": "pdf",
+        "how": "magic"
+      },
+      "ms": 47.2
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_data",
+      "args": {
+        "file_path": "S06_nhb_horticulture_at_a_glance_2018.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 191,
+        "groups": 2,
+        "notes": [
+          "pages=490",
+          "backend=auto",
+          "page range 187,192",
+          "tables by route: camelot_upright=2"
+        ]
+      },
+      "ms": 6493.5
+    },
+    {
+      "step": "ai:context",
+      "tool": "llm_context",
+      "args": {
+        "lines": 5
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"units\": {}, \"district\": null, \"period\": null, \"crop\": null}",
+        "chars_in": 1591
+      },
+      "ms": 1960.8
+    },
+    {
+      "step": "ai:state",
+      "tool": "llm_state",
+      "args": {
+        "lines": 12
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"state\": null}",
+        "chars_in": 803
+      },
+      "ms": 431.1
+    },
+    {
+      "step": "ai:context",
+      "tool": "llm_context",
+      "args": {
+        "lines": 5
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"units\": {}, \"district\": null, \"period\": null, \"crop\": {\"value\": \"Spice crops\", \"quote\": \"Spice Crops\"}}",
+        "chars_in": 1588
+      },
+      "ms": 904.6
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "pdf:p187.t1",
+            "production",
+            96
+          ],
+          [
+            "pdf:p192.t1",
+            "production",
+            95
+          ]
+        ],
+        "queue": [
+          "production"
+        ],
+        "language": []
+      },
+      "ms": 3315.3
+    },
+    {
+      "step": "production_agent",
+      "tool": "production_extract",
+      "args": {
+        "records_in": 191
+      },
+      "status": "ok",
+      "detail": {
+        "rows_out": 10,
+        "other_states_not_stored": 181,
+        "states": [
+          "ANDHRA PRADESH",
+          "ARUNACHAL PRADESH",
+          "ASSAM",
+          "BIHAR",
+          "CHHATTISGARH",
+          "GUJARAT",
+          "HARYANA",
+          "HIMACHAL PRADESH",
+          "JAMMU AND KASHMIR",
+          "JHARKHAND",
+          "KARNATAKA",
+          "KERALA",
+          "MADHYA PRADESH",
+          "MAHARASHTRA",
+          "MEGHALAYA",
+          "MIZORAM",
+          "NAGALAND",
+          "ODISHA",
+          "PUNJAB",
+          "unrecognised row of a state-wise table"
+        ]
+      },
+      "ms": 39.5
+    },
+    {
+      "step": "load",
+      "tool": "sqlite_load",
+      "args": {
+        "db": "manipur.db"
+      },
+      "status": "ok",
+      "detail": {
+        "extracted": 10,
+        "inserted": 10,
+        "duplicate": 0,
+        "invalid": 0,
+        "rejected": 0,
+        "quarantined": 0,
+        "plausibility": []
+      },
+      "ms": 30.1
+    }
+  ]
+}

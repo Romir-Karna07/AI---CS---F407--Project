@@ -2,7 +2,7 @@
  "case_id": "rain_08_jsonl_district_aliases",
  "agent": "rainfall",
  "source_group": "json",
- "file": "dev/cases/rain_08.txt",
+ "file": "dev/cases/rain_08_jsonl_district_aliases.txt",
  "description": "JSON Lines, district spellings (Imphal-East, Noney, kakching)",
  "difficulty": "hard",
  "needs_llm": false,

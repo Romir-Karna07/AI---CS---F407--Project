@@ -2,7 +2,7 @@
  "case_id": "rain_h10_csv_summary_footer_nasa",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "cases/rain_h10.csv",
+ "file": "cases/rain_h10_csv_summary_footer_nasa.csv",
  "description": "Trailing Total / Average rows must not become data [S21 NASA POWER]",
  "difficulty": "hard",
  "needs_llm": false,

@@ -2,7 +2,7 @@
  "case_id": "ai_20_workbook_one_sheet_title_xlsx",
  "agent": "production",
  "source_group": "xlsx",
- "file": "ai/cases/ai_20.xlsx",
+ "file": "ai/cases/ai_20_EXCEL_ONE_SHEET.xlsx",
  "description": "Excel workbook, one sheet, a title row above the header",
  "difficulty": "normal",
  "needs_llm": true,

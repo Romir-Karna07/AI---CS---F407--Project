@@ -2,7 +2,7 @@
  "case_id": "rain_h09_csv_cm_unit_column_imd",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "cases/rain_h09.csv",
+ "file": "cases/rain_h09_csv_cm_unit_column_imd.csv",
  "description": "Unit column says cm -> expected mm [S22 IMD grid]",
  "difficulty": "hard",
  "needs_llm": false,

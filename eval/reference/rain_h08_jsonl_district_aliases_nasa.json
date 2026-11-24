@@ -2,7 +2,7 @@
  "case_id": "rain_h08_jsonl_district_aliases_nasa",
  "agent": "rainfall",
  "source_group": "json",
- "file": "cases/rain_h08.txt",
+ "file": "cases/rain_h08_jsonl_district_aliases_nasa.txt",
  "description": "JSON Lines, district spellings (Imphal-West, thoubal) [S21 NASA POWER]",
  "difficulty": "hard",
  "needs_llm": false,

@@ -2,7 +2,7 @@
  "case_id": "ai_19_headers_only_csv",
  "agent": "none",
  "source_group": "csv",
- "file": "ai/cases/ai_19.csv",
+ "file": "ai/cases/ai_19_MUST_FAIL_HEADERS_ONLY.csv",
  "description": "Title lines and a header but no data rows: must fail cleanly",
  "difficulty": "hard",
  "needs_llm": true,

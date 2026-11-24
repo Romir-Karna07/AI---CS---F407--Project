@@ -2,7 +2,7 @@
  "case_id": "rain_01_json_original_shape",
  "agent": "rainfall",
  "source_group": "json",
- "file": "dev/cases/rain_01.json",
+ "file": "dev/cases/rain_01_json_original_shape.json",
  "description": "Same nesting as the monthly file",
  "difficulty": "normal",
  "needs_llm": false,

@@ -2,7 +2,7 @@
  "case_id": "ai_18_price_table_no_agent_csv",
  "agent": "none",
  "source_group": "csv",
- "file": "dev/ai/cases/ai_18.csv",
+ "file": "dev/ai/cases/ai_18_MUST_FAIL_PRICE_TABLE.csv",
  "description": "A mandi price table (no agent exists for it): must fail cleanly and store NOTHING (no invented rows)",
  "difficulty": "hard",
  "needs_llm": true,

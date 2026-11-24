@@ -2,7 +2,7 @@
  "case_id": "soil_h05_json_keyed_by_district",
  "agent": "soil",
  "source_group": "json",
- "file": "cases/soil_h05.json",
+ "file": "cases/soil_h05_json_keyed_by_district.json",
  "description": "Object keyed by district, spelled-out nutrient names",
  "difficulty": "normal",
  "needs_llm": false,

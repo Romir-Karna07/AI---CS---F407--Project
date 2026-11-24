@@ -2,7 +2,7 @@
  "case_id": "soil_h06_jsonl_as_txt",
  "agent": "soil",
  "source_group": "json",
- "file": "cases/soil_h06.txt",
+ "file": "cases/soil_h06_jsonl_as_txt.txt",
  "description": "JSON Lines in a .txt file",
  "difficulty": "hard",
  "needs_llm": false,

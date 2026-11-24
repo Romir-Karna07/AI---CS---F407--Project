@@ -2,7 +2,7 @@
  "case_id": "prod_h08_csv_kg",
  "agent": "production",
  "source_group": "csv",
- "file": "cases/prod_h08.csv",
+ "file": "cases/prod_h08_csv_kg.csv",
  "description": "Production in kg -> expected tonnes",
  "difficulty": "hard",
  "needs_llm": false,

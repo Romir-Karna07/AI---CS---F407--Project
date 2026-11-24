@@ -2,7 +2,7 @@
  "case_id": "rain_h04_csv_year_month_columns_nasa",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "cases/rain_h04.csv",
+ "file": "cases/rain_h04_csv_year_month_columns_nasa.csv",
  "description": "Separate Year and full month name columns [S21 NASA POWER]",
  "difficulty": "normal",
  "needs_llm": false,

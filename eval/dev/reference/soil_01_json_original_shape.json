@@ -2,7 +2,7 @@
  "case_id": "soil_01_json_original_shape",
  "agent": "soil",
  "source_group": "json",
- "file": "dev/cases/soil_01.json",
+ "file": "dev/cases/soil_01_json_original_shape.json",
  "description": "Same nesting as the scraped SHC file, 6 records from 3 districts",
  "difficulty": "normal",
  "needs_llm": false,

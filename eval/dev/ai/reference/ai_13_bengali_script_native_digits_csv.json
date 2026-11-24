@@ -2,7 +2,7 @@
  "case_id": "ai_13_bengali_script_native_digits_csv",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "dev/ai/cases/ai_13.csv",
+ "file": "dev/ai/cases/ai_13_BENGALI_SCRIPT.csv",
  "description": "Bengali script (used for Manipuri): headers, names, months, unit word and native digits",
  "difficulty": "hard",
  "needs_llm": true,

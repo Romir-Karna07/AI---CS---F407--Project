@@ -201,7 +201,10 @@ def _numeric_count(row, start=1):
 def _header_block(rows) -> int:
     """number of header rows: row 0, plus following rows whose first cell is blank."""
     n = 1
-    while n < len(rows) and not rows[n][0].strip() and _numeric_count(rows[n]) == 0:
+    while n < len(rows) and _numeric_count(rows[n]) == 0 and (
+            not rows[n][0].strip()
+            # the label column's own header on a row of its own ("STATE/UT'S" between a years row and an A / P row): the next row continues the header
+            or (not any(c.strip() for c in rows[n][1:]) and n + 1 < len(rows) and not rows[n + 1][0].strip() and _numeric_count(rows[n + 1]) == 0)):
         n += 1
     return n
 
@@ -225,7 +228,7 @@ def _level_role(values) -> str:
         return "empty"
     if sum(bool(YEAR_RE.search(v)) for v in vals) / len(vals) >= 0.5:
         return "period"
-    if sum(bool(re.search(r"\(.*\)", v)) for v in vals) / len(vals) >= 0.5:
+    if sum(bool(re.fullmatch(r"\s*\(.*\)\s*", v)) for v in vals) / len(vals) >= 0.5:    # "(Hectare)"; "Area (ha)" names a variable
         return "unit"
     return "variable"
 

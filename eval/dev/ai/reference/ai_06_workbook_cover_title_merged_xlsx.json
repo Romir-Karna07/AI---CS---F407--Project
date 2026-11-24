@@ -2,7 +2,7 @@
  "case_id": "ai_06_workbook_cover_title_merged_xlsx",
  "agent": "rainfall",
  "source_group": "xlsx",
- "file": "dev/ai/cases/ai_06.xlsx",
+ "file": "dev/ai/cases/ai_06_EXCEL_COVER_SHEET.xlsx",
  "description": "Excel workbook: cover sheet, notes sheet, title row, district cells merged vertically",
  "difficulty": "hard",
  "needs_llm": true,

@@ -3,7 +3,7 @@
  "agent": "soil",
  "owner_agent": "document_agent",
  "source_group": "pdf",
- "file": "cases/pdf_09.pdf",
+ "file": "cases/pdf_09_soil_unruled_caption_cycle_district.pdf",
  "description": "No ruling lines; district and SHC cycle only in the caption",
  "difficulty": "hard",
  "needs_llm": false,

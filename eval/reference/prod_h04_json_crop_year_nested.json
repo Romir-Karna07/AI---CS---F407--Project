@@ -2,7 +2,7 @@
  "case_id": "prod_h04_json_crop_year_nested",
  "agent": "production",
  "source_group": "json",
- "file": "cases/prod_h04.json",
+ "file": "cases/prod_h04_json_crop_year_nested.json",
  "description": "crop -> year -> district records",
  "difficulty": "normal",
  "needs_llm": false,

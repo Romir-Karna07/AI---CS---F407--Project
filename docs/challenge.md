@@ -105,7 +105,7 @@ What the table shows:
 Docling's first call also downloaded and loaded its models (the very first page took 197 s against a 48 s median). No tool crashed on any of the ten files (the 490-page and 476-page books were only read over a 5-page window). The cascade used by the agent costs roughly the sum of
 the first two rows it needs: about 0.3-1 s per text page; OCR (about 25 s per page here) only runs on pages without a text layer or after a failed read.
 
-### Result 3: the two OCR engines on scans (measured on the dev PDFs `eval/dev/cases/pdf_04.pdf`, `pdf_10.pdf`: image-only, light noise, JPEG)
+### Result 3: the two OCR engines on scans (measured on the dev PDFs `eval/dev/cases/pdf_04_production_scanned_ocr.pdf`, `pdf_10_soil_scanned_ocr.pdf`: image-only, light noise, JPEG)
 
 | Engine | Dev scan production F1 | Dev scan soil F1 | What went wrong |
 |---|---|---|---|
@@ -158,3 +158,46 @@ built and scored like the CSV / JSON cases (`eval/README.md`), reader developed 
 **Honest limits:** the PDF tables our inventory actually holds are mostly **outside the three tables**, so no inventory source is marked done or partial for the document agent; the two `complete` runs show the
 status can say "complete" while storing nothing or only invalid rows (a weakness in the shared loader, not fixed); the page-level provenance check for scans re-reads the page with the same OCR (partly circular);
 no Manipuri-script text; the ground truth is small (119 numbers, six pages). Evidence for each: `docs/pdf_tool_tests/`, `docs/agents/document_agent.md`, `eval/results/first_run_with_pdf_metrics.csv`.
+
+## 6. Update 2026-11-24: what the document agent does with a real PDF table now
+
+Two things the real-PDF runs in section 5 showed were wrong in a different way: a table can be read perfectly and still be the **wrong data** for the database.
+`Data/pdf_samples/SampleDocument.pdf` (a "key production statistics" table) lists rice and pineapple next to milk, eggs, meat and fish, all under one "Production" header, and
+`SampleDocument2.pdf` page 10 is a fertiliser-consumption table whose columns look like soil nutrients (Urea, DAP, MOP). Changes, all verified by running the files:
+
+| Change | Effect on the real files |
+|---|---|
+| The production table stores **crops only** (`pipeline/crops.py`): fixed vocabulary of crops and of livestock / dairy / fishery words first, the model only for labels code cannot place, closed category list | SampleDocument.pdf: milk, egg, meat and fish rows are excluded and listed in the run notes (`excluded_non_crop`); the 16 crop rows are stored |
+| A header for milk / fish / meat output is never production, area or yield (`pipeline/concepts.py`); a model header proposal is checked against the cells (`verify_header_proposal`) | a fertiliser column cannot become a soil nutrient |
+| The model-proposed meaning of a crop-name column ("Particulars", "Item") is applied once the table's domain is known | the crop column is filled, not `UNSPECIFIED` |
+| The state is read from the cover page, file name or title (`context.find_state`, quote verified) when the table has no state / district column | rows carry `MANIPUR`, code 14, with the evidence in `extra.context_facts` |
+| Cover-page lines (first page) are given to the header, classification and context prompts | the model sees what the table is about, not just its columns |
+
+SampleDocument2.pdf page 10 (fertiliser) is no longer stored as soil: that file now **fails cleanly** (all 16 model calls and 2 recoveries used, nothing stored). The PDF evaluation numbers in section 5
+are unchanged by these changes (document agent F1 0.947, 7 of 10 files at 1.000). Still open: state-level rows have district `UNSPECIFIED`, which the schema flags `invalid`, so a state profile loads
+as invalid rows (the 16 SampleDocument rows are an example); single-column tables need the model to be recognised at all; Meitei Mayek is untested.
+
+## 7. Update 2026-11-24 (later): three real PDF sources now load
+
+To raise implementation coverage honestly, real tables from the inventory were made readable and loaded into `db/manipur.db` (`python db/load_inventory_pdfs.py`):
+
+| Source | What the reader had to learn | Rows |
+|---|---|---|
+| S54 MoFPI state profile, p7 | whole-state figures (stored under `MANIPUR (STATE)`); caption units "('000 MT)" read by fixed code, because the model's per-file cap left one caption unread and a value came out 1,000x too small | 16 |
+| S06 NHB Horticultural Statistics at a Glance 2018, p187 / p192 | the tables are printed sideways: the page is turned upright in memory and read by camelot "stream" (the ruled lattice only caught the shaded bands); `A` / `P` under each year are expanded from the caption legend; Indian state names recognised so only the Manipur row is stored; the crop group comes from the table title ("of Fruit Crops"), not the running page header | 10 |
+| S08 Agriculture Department Manipur, 2018-19 and 2019-20 sheets | crops in rows coded A / P / Y with districts across (`melt_coded_blocks`); digits letter-spaced in the text layer ("0 . 7 0"); the legend is a page footnote | 158 |
+
+Rows of the held-out districts (Imphal West, Thoubal, Ukhrul) in S08 are not stored. Still not loaded: S04 (crop groups across the columns with Area / Production under each), S12
+(unit labels that contradict the values), S31 (no year stated), S53 (forecasts, not data). M2 is now 7 / 54 = 0.130, below the 0.20 floor.
+
+**Addendum (same day): S10.** The Economic Survey, Manipur 2024-25 (369 pages) was added by the team. Only its agriculture chapter was examined; Table 5.12 (area under 12 fruits and
+vegetables, 2022-23..2024-25, p90) needed three more general reader rules: drop the "(1) (2) (3)" column-number row, drop a leading "Sl. No." column, and take the measure of a
+years-only header from the caption ("Area in hectares"). 36 state-level rows. Not loaded: its monthly rainfall table is one ICAR station at Lamphelpat (in the held-out Imphal West
+district), and the land-use and crop-share tables are not crop area / production. M2 is now 8 / 54 = 0.148.
+
+**Tool benchmark re-run (2026-11-24).** `run_pdf_tool_tests.py`'s cascade now mirrors the agent's current reader (sideways pages turned upright, caption legends expanded). Re-run on the
+same six ground-truth pages: **cascade 0.958** (18 / 23 rows exact, 5 / 6 pages fully correct) and **RapidOCR 3.x 0.6555** (20 / 23 rows): both identical to the 1 Nov results, because
+none of the six pages has a sideways table or a legend (`results_*_cascade.csv`, `results_*_ocr3.csv`). The full run over all ten tools was stopped before it finished, so
+`results_accuracy.csv`, `results_per_file.csv` and `results_summary.csv` are still the 1 Nov run; those tools and pages did not change, so their accuracy figures stand.
+The ground truth was not extended to the newly loaded pages (S08, S06 p187 / 192, S54 p7, S10 p90): their values were checked against the pages' text, not read from page images by a person,
+so they are not independent ground truth.

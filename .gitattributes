@@ -12,3 +12,7 @@ eval/heldout_source/* -text
 Data/partitions/* -text
 Data/CSV_Agent.csv -text
 manipur_*.json -text
+eval/ai/cases/* -text
+eval/ai/reference/* -text
+eval/dev/ai/cases/* -text
+eval/dev/ai/reference/* -text

@@ -2,7 +2,7 @@
  "case_id": "ai_03_anomaly_deep_in_table_csv",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "ai/cases/ai_03.csv",
+ "file": "ai/cases/ai_03_ANOMALY_DEEP_IN_TABLE.csv",
  "description": "150 data rows; a repeated header at line 82 and a note at line 123",
  "difficulty": "hard",
  "needs_llm": true,

@@ -2,7 +2,7 @@
  "case_id": "ai_04_districts_as_columns_csv",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "dev/ai/cases/ai_04.csv",
+ "file": "dev/ai/cases/ai_04_DISTRICTS_AS_COLUMNS.csv",
  "description": "Months in rows, one column per district (entities as columns)",
  "difficulty": "hard",
  "needs_llm": true,

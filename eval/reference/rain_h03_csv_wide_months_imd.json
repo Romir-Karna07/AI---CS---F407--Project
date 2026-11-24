@@ -2,7 +2,7 @@
  "case_id": "rain_h03_csv_wide_months_imd",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "cases/rain_h03.csv",
+ "file": "cases/rain_h03_csv_wide_months_imd.csv",
  "description": "One column per month (Jan..Dec) [S22 IMD grid]",
  "difficulty": "hard",
  "needs_llm": false,

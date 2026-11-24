@@ -2,7 +2,7 @@
  "case_id": "ai_01_preamble_lines_csv",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "dev/ai/cases/ai_01.csv",
+ "file": "dev/ai/cases/ai_01_PREAMBLE_LINES.csv",
  "description": "Title and source lines above the header, blank line, then the table",
  "difficulty": "hard",
  "needs_llm": true,

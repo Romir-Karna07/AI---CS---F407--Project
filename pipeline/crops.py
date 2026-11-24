@@ -14,7 +14,20 @@ from .concepts import NON_CROP_TERMS, words_of
 from .normalize import _crop_syn
 
 CATEGORIES = ["crop", "livestock", "fishery", "forestry", "other"]
-_KNOWN = set(_crop_syn) | {v.lower() for v in _crop_syn.values()}
+# common crops and crop groups of Indian statistics (as printed); with the synonym file this is the fixed vocabulary
+COMMON_CROPS = [
+    "rice", "paddy", "wheat", "maize", "jowar", "bajra", "ragi", "barley", "millets", "small millets", "coarse cereals", "cereals", "foodgrains",
+    "food grains", "total foodgrains", "pulses", "tur", "arhar", "gram", "urad", "moong", "masoor", "lentil", "pea", "peas", "rajma", "cowpea",
+    "rice bean", "rice beans", "bean", "beans", "french bean", "oilseed", "oilseeds", "groundnut", "mustard", "rapeseed", "rapeseed and mustard",
+    "rapeseed mustard", "sesamum", "sesame", "soybean", "soyabean", "linseed", "niger", "sunflower", "castorseed", "sugarcane", "sugar cane", "cotton",
+    "jute", "mesta", "potato", "potatoes", "sweet potato", "tapioca", "cassava", "colocasia", "arum", "yam", "onion", "garlic", "ginger", "turmeric",
+    "chilli", "chillies", "dry chillies", "red chillies", "coriander", "cardamom", "large cardamom", "black pepper", "king chilli", "tomato",
+    "tomatoes", "cabbage", "cauliflower", "brinjal", "okra", "bhindi", "radish", "carrot", "pumpkin", "squash", "cucumber", "bottle gourd",
+    "bitter gourd", "knol khol", "broccoli", "lettuce", "spinach", "mushroom", "fruit", "fruits", "vegetable", "vegetables", "spice", "spices",
+    "banana", "pineapple", "orange", "oranges", "lemon", "lemons", "citrus", "papaya", "passion fruit", "mango", "litchi", "guava", "jackfruit",
+    "plum", "peach", "pear", "kiwi", "apple", "grapes", "strawberry", "areca nut", "arecanut", "coconut", "tea", "coffee", "rubber", "cashew",
+    "cashewnut", "flowers", "plantation crops", "horticulture crops"]
+_KNOWN = set(_crop_syn) | {v.lower() for v in _crop_syn.values()} | set(COMMON_CROPS)
 MAX_LABELS = 60
 
 SYSTEM = (
@@ -42,8 +55,9 @@ def row_label(row, crop_src):
         return row["data"].get(crop_src)
     from .normalize import normalize_district
     from .readers import YEAR_RE
+    from .normalize import indian_state
     for _, lab in row["labels"]:
-        if not YEAR_RE.search(str(lab)) and normalize_district(lab)[2] not in ("exact", "alias", "fuzzy"):
+        if not YEAR_RE.search(str(lab)) and normalize_district(lab)[2] not in ("exact", "alias", "fuzzy") and not indian_state(lab):
             return lab
     return None
 

@@ -14,7 +14,7 @@ AI1,must_fail_cleanly,3,3,1.0,3,eval/run_eval.py,no model calls (--no-ai: new de
 AI2,impossible_values_set_aside,0,2,0.0,2,eval/run_eval.py + review_queue,no model calls (--no-ai: new deterministic readers only); injected impossible values found in review_queue and absent from the data tables
 AI2b,impossible_values_stored,2,2,1.0,2,eval/run_eval.py,no model calls (--no-ai: new deterministic readers only); impossible values that reached the data tables (lower is better)
 AI3,real_values_set_aside,0,464,0.0,17,eval/run_eval.py + review_queue,no model calls (--no-ai: new deterministic readers only); true source values the plausibility check set aside for review (false alarms; a person can accept them)
-AI4,model_calls_per_file,0,20,0.0,20,run report,no model calls (--no-ai: new deterministic readers only); new model calls (cached answers: 0); budget 16 per file
+AI4,model_calls_per_file,0,20,0.0,20,run report,no model calls (--no-ai: new deterministic readers only); model calls; budget 16 per file
 AI5,retry_and_call_budget_respected,20,20,1.0,20,run report,no model calls (--no-ai: new deterministic readers only); at most 2 recoveries and 16 model calls per file
-INFO,median_seconds_per_file,,,0.1,20,eval/run_eval.py,"no model calls (--no-ai: new deterministic readers only); latency is reported, not scored"
+INFO,median_seconds_per_file,,,0.3,20,eval/run_eval.py,"no model calls (--no-ai: new deterministic readers only); latency is reported, not scored"
 INFO,model_used,,,none,20,run report,no model calls (--no-ai: new deterministic readers only); model-call errors (rate limits etc.): 0

@@ -70,6 +70,160 @@ def caption_labels(lines) -> list:
     return labels
 
 
+_LEGEND_RE = re.compile(r"(?<![A-Za-z])([A-Z])\s*[:=]\s*([A-Za-z][^,;|]*?)(?=\s*(?:[,;|]|\s[A-Z]\s*[:=]|$))")
+
+
+def legend_of(lines) -> dict:
+    """abbreviations a caption defines for the table's cells: "A: Area in '000 Ha  P: Production in '000 MT" -> {'A': "Area ('000 Ha)", ...}.
+    Only single capital letters defined as a word are taken, so ordinary captions are untouched."""
+    out = {}
+    for l in lines or []:
+        for m in _LEGEND_RE.finditer(str(l)):
+            text = re.sub(r"\s+", " ", m.group(2)).strip(" .")
+            text = re.sub(r"\s+in\s+(.+)$", r" (\1)", text)          # "Area in '000 Ha" -> "Area ('000 Ha)": the unit where the reader looks for it
+            if len(text) >= 3:
+                out[m.group(1)] = text
+    return out
+
+
+def expand_legend(table, legend):
+    """replace cells that are exactly a defined abbreviation (a header 'A' under a year, a row code 'P') by what the caption says it means"""
+    if not legend:
+        return table
+    return [[legend.get(c.strip(), c) if isinstance(c, str) else c for c in row] for row in table]
+
+
+_COLNO_RE = re.compile(r"\(\s*\d{1,2}\s*\)")
+_MEASURE_RE = re.compile(r"\b(Area|Production|Yield)\s+in\s*([^)\n,;]+)", re.I)
+
+
+def drop_column_numbers(table):
+    """drop the '(1) (2) (3) ...' row that numbers the columns under the header in Indian statistical tables (it is not data)"""
+    out = []
+    for r in table:
+        cells = [str(c or "").strip() for c in r]
+        filled = [c for c in cells if c]
+        if len(filled) >= 2 and all(_COLNO_RE.fullmatch(c) for c in filled):
+            continue
+        out.append(r)
+    return out
+
+
+_SERIAL_HEAD = re.compile(r"(s\.?\s*l\.?|sr\.?|s\.?)\s*no\.?", re.I)
+
+
+def drop_serial_column(table):
+    """drop a leading 'Sl. No.' / 'S.No.' column whose cells are just 1, 2, 3 ... (a row counter, not data; it hides the label column)"""
+    if len(table) < 3 or not table[0]:
+        return table
+    j = next((k for k, c in enumerate(table[0][:2]) if _SERIAL_HEAD.fullmatch(str(c or "").strip())), None)
+    if j is None:
+        return table
+    cells = [str(r[j] or "").strip() for r in table[1:] if j < len(r)]
+    filled = [c for c in cells if c]
+    if not filled or not all(re.fullmatch(r"\d{1,3}\.?|[ivx]+\.?|\(\d+\)", c, re.I) for c in filled):
+        return table
+    return [r[:j] + r[j + 1:] for r in table]
+
+
+def add_caption_measure(table, cap):
+    """a table whose column headers are only years ('2022-23 | 2023-24 | 2024-25') takes its measure from the caption
+    ('(Area in hectares)'): a second header row is added under the years, so the years stay the period and the caption names the
+    variable and its unit. Only when the caption states exactly one measure."""
+    if len(table) < 2:
+        return table
+    found = {m.group(1).title(): m.group(2).strip(" .'’") for m in _MEASURE_RE.finditer(" ".join(cap or []))}
+    if len(found) != 1:
+        return table
+    head = [str(c or "").strip() for c in table[0]]
+    years = [j for j, c in enumerate(head) if re.fullmatch(r"(19|20)\d{2}(\s*-\s*\d{2,4})?", c)]
+    if len(years) < 2 or len(years) < len([c for c in head if c]) - 3:
+        return table
+    measure, unit = next(iter(found.items()))
+    second = ["" for _ in head]
+    for j in years:
+        second[j] = f"{measure} ({unit})"
+    return [table[0], second] + table[1:]
+
+
+def _digits_only(v):
+    """'0 . 7 0' (letter-spaced text layer) -> '0.70'; text is left alone"""
+    s = str(v or "").strip()
+    return re.sub(r"\s+", "", s) if re.fullmatch(r"[\d\s.,-]+", s) else s
+
+
+def _col(j):
+    from .readers import col_letter
+    return col_letter(j)
+
+
+_SEASON_RE = re.compile(r"\b(pre[\s-]*kharif|kharif|rabi|summer|zaid|autumn|winter|whole\s+year)\b", re.I)
+
+
+def melt_coded_blocks(table, legend):
+    """A table whose rows are coded by a legend and whose columns are districts:
+
+        District        <blank>  Imphal East  Chandel ... Total State
+        Kharif Maize    A          0.45        2.85   ...   14.42        (A = Area in 000 ha, P = Production in 000 Mt, Y = Yield)
+                        P          0.70        5.38   ...   28.69
+                        Y          1.56        1.89   ...    1.99
+
+    becomes one row per (crop label, district column) with the coded variables as columns, so the ordinary reader takes it:
+        Crop | Season | District | Area (000 ha) | Production (000 Mt) | Yield (MT/ha)
+    -> (new table, original row number of each new row) or None when the table is not of this shape (nothing is guessed:
+    the code column must hold only legend entries and most column headers must be district names)."""
+    if not legend or len(table) < 3:
+        return None
+    from .normalize import STATE_NAME, normalize_district
+    names = set(legend.values())
+    head = [str(c or "").strip() for c in table[0]]
+    ncol = len(head)
+    code_col = next((j for j in range(min(3, ncol)) if
+                     sum(str(r[j] or "").strip() in names for r in table[1:]) >= max(3, (len(table) - 1) // 2) and
+                     all(str(r[j] or "").strip() in names or not str(r[j] or "").strip() for r in table[1:])), None)
+    if code_col is None or code_col == 0:
+        return None
+    first = table[1]                       # a header word wrapped into the first data row ("Churachand" / "pur")
+    for j in range(code_col + 1, ncol):
+        cell = str(first[j] or "").strip()
+        if head[j] and re.fullmatch(r"[a-z]+", cell):
+            head[j], first[j] = head[j] + cell, ""
+    places = {}
+    for j in range(code_col + 1, ncol):
+        if normalize_district(head[j])[2] in ("exact", "alias", "fuzzy"):
+            places[j] = head[j]
+        elif re.search(r"\btotal\b|\bstate\b", head[j], re.I):
+            places[j] = STATE_NAME
+    if len(places) < max(2, (ncol - code_col - 1) // 2):
+        return None
+    order = list(dict.fromkeys(legend.values()))
+    out, lines, label, label_line, block = [], [], "", 0, {}
+
+    def flush():
+        if label and block and not re.match(r"^\s*total", label, re.I):       # "Total paddy", "TotalPulses": derived sums
+            m = _SEASON_RE.search(label)
+            season = m.group(1).title() if m else ""
+            crop = re.sub(r"\s+", " ", _SEASON_RE.sub(" ", label)).strip() or label
+            for j, place in places.items():
+                vals = [_digits_only(block.get(v, {}).get(j, "")) for v in order]
+                if any(str(x).strip() for x in vals):
+                    out.append([crop, season, place] + vals)
+                    lines.append(f"{label_line}, col {_col(j)} ({head[j]})")     # one source cell block per record: the locator stays unique
+
+    for i, r in enumerate(table[1:], 2):
+        lab, code = str(r[0] or "").strip(), str(r[code_col] or "").strip()
+        if code not in names:
+            flush(); label, block = "", {}
+            continue                                                            # a row without a code ("Net Area"): not part of a block
+        if lab:
+            flush(); label, label_line, block = lab, i, {}
+        block[code] = {j: str(r[j] or "").strip() for j in places}
+    flush()
+    if not out:
+        return None
+    return [["Crop", "Season", "District"] + order] + out, [1] + lines
+
+
 def split_title_rows(table):
     """Whitespace-table detectors often return the printed title as the first row(s) (one filled cell, the rest empty).
     -> (table without them, their text); the text still feeds the caption labels."""
@@ -222,6 +376,43 @@ def _plumber_tables(pdf_page):
     return [[[_clean(c) for c in row] for row in t] for t in pdf_page.extract_tables()]
 
 
+def _sideways(fitz_page):
+    """90 or 270 when most text lines run vertically (a landscape table printed on a portrait page), else 0"""
+    dirs = {}
+    for b in fitz_page.get_text("dict").get("blocks", []):
+        for l in b.get("lines", []):
+            d = tuple(round(x) for x in l.get("dir", (1, 0)))
+            dirs[d] = dirs.get(d, 0) + 1
+    total = sum(dirs.values()) or 1
+    if dirs.get((0, -1), 0) / total > 0.6:
+        return 90
+    if dirs.get((0, 1), 0) / total > 0.6:
+        return 270
+    return 0
+
+
+def _upright_tables(fdoc, pno, rot):
+    """turn a sideways page upright (a one-page copy in a temporary file) and read it with camelot "stream", which also takes the rows that
+    have no ruling of their own (tables shaded in bands). -> (tables, text lines of the original page: title and legend in reading order)"""
+    import os
+    import tempfile
+    one = fdoc.__class__()
+    one.insert_pdf(fdoc, from_page=pno - 1, to_page=pno - 1)
+    one[0].set_rotation((one[0].rotation + rot) % 360)
+    fd, tmp = tempfile.mkstemp(suffix=".pdf")
+    os.close(fd)
+    try:
+        one.save(tmp)
+        tables = _camelot_tables(tmp, 1)
+    finally:
+        try:
+            os.remove(tmp)
+        except OSError:
+            pass
+    lines = [l.strip() for l in fdoc[pno - 1].get_text().splitlines() if l.strip()]
+    return tables, lines
+
+
 def _camelot_tables(path, page_no):
     import camelot
     return [[[_clean(c) for c in row] for row in t.df.values.tolist()] for t in camelot.read_pdf(str(path), pages=str(page_no), flavor="stream")]
@@ -252,7 +443,7 @@ def read_pdf_file(path, backend: str = "auto", max_pages: int | None = None, pag
     if n_pages == 0:
         raise ValueError("PDF has no pages")
     notes = [f"pages={n_pages}", f"backend={backend}"]
-    sel = pages if pages else PAGE_RANGE
+    sel = pages if pages else os.getenv("AGRI_PDF_PAGES", "")     # read per call: several files in one process
     if isinstance(sel, (list, tuple)):
         page_list = sorted({int(p) for p in sel if 1 <= int(p) <= n_pages})
         if not page_list:
@@ -282,7 +473,7 @@ def read_pdf_file(path, backend: str = "auto", max_pages: int | None = None, pag
         for pno in page_list:
             fpage = fdoc[pno - 1]
             has_text = len(fpage.get_text().strip()) >= 20
-            found, route, captions = [], None, []
+            found, route, captions, lines = [], None, [], []
             if has_text and backend != "ocr":
                 lines = _page_lines_text(fpage)
                 try:
@@ -291,6 +482,15 @@ def read_pdf_file(path, backend: str = "auto", max_pages: int | None = None, pag
                         route = "pdfplumber"
                 except Exception:
                     cand = []
+                rot = _sideways(fpage) if not cand else 0
+                if rot:                                   # a sideways table (landscape on a portrait page): read it upright
+                    try:
+                        up, up_lines = _upright_tables(fdoc, pno, rot)
+                        up = [t for t in up if _usable(t)]
+                        if up:
+                            cand, lines, route = up, up_lines, "camelot_upright"
+                    except Exception:
+                        pass
                 if not cand:
                     try:
                         cand = [t for t in _camelot_tables(path, pno) if _usable(t)]
@@ -310,9 +510,27 @@ def read_pdf_file(path, backend: str = "auto", max_pages: int | None = None, pag
                 route = "ocr" if found else route
             for k, (table, cap) in enumerate(zip(found, captions), 1):
                 table, title = split_title_rows(table)
-                if route != "pdfplumber":
+                if not str(route).startswith("pdfplumber"):
                     table = merge_shifted_columns(table)
                 cap = title + list(cap)
+                legend = legend_of(cap + lines[-4:])                             # a legend is printed in the caption or as a page footnote
+                table = expand_legend(drop_serial_column(drop_column_numbers(table)), legend)
+                table = add_caption_measure(table, cap)
+                melted = melt_coded_blocks(table, legend)
+                if melted:
+                    try:
+                        parsed = parse_rows(melted[0], "pdf-table", "pdf", loc_prefix=f"p{pno} t{k} ", line_numbers=melted[1])
+                    except ValueError:
+                        continue
+                    labels = caption_labels(cap)
+                    rows = parsed["groups"][0]["rows"]
+                    for r in rows:
+                        r["pattern"] = f"pdf:p{pno}.t{k}"
+                        r["labels"] = list(labels)
+                        r["context"] = [c for c in cap if c][:6]
+                    groups.append({"pattern": f"pdf:p{pno}.t{k}", "rows": rows})
+                    route_counts[route + "+coded_blocks"] = route_counts.get(route + "+coded_blocks", 0) + 1
+                    continue
                 if _n_numeric(table[:1]) >= max(1, len(table[0]) // 2):          # first row is data, not a header
                     if last_header and len(last_header) == len(table[0]):
                         table = [last_header] + table                      # continuation page without a repeated header row

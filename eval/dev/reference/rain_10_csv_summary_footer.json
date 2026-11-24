@@ -2,7 +2,7 @@
  "case_id": "rain_10_csv_summary_footer",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "dev/cases/rain_10.csv",
+ "file": "dev/cases/rain_10_csv_summary_footer.csv",
  "description": "Trailing Total / Average rows must not become data",
  "difficulty": "hard",
  "needs_llm": false,

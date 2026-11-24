@@ -1,0 +1,20 @@
+metric_id,scope,numerator,denominator,value,n_cases,evaluator_or_script,notes
+M3,production,16,16,0.381,5,"eval/run_eval.py (exact match, unit converted)",no model calls (--no-ai: new deterministic readers only); P=1.000 R=0.235; 68 reference fields
+M3,rainfall,146,148,0.7122,11,"eval/run_eval.py (exact match, unit converted)",no model calls (--no-ai: new deterministic readers only); P=0.986 R=0.557; 262 reference fields
+M3,soil,122,134,0.9104,1,"eval/run_eval.py (exact match, unit converted)",no model calls (--no-ai: new deterministic readers only); P=0.910 R=0.910; 134 reference fields
+M3,format:csv,146,148,0.7337,9,eval/run_eval.py,no model calls (--no-ai: new deterministic readers only); source group = file format
+M3,format:html,16,16,1.0,1,eval/run_eval.py,no model calls (--no-ai: new deterministic readers only); source group = file format
+M3,format:image,122,134,0.9104,1,eval/run_eval.py,no model calls (--no-ai: new deterministic readers only); source group = file format
+M3,format:pdf,0,0,0.0,1,eval/run_eval.py,no model calls (--no-ai: new deterministic readers only); source group = file format
+M3,format:text,0,0,0.0,3,eval/run_eval.py,no model calls (--no-ai: new deterministic readers only); source group = file format
+M3,format:xlsx,0,0,0.0,2,eval/run_eval.py,no model calls (--no-ai: new deterministic readers only); source group = file format
+M3,all_cases,284,298,0.7454,17,eval/run_eval.py,no model calls (--no-ai: new deterministic readers only); micro F1 over every reference field of the cases that should succeed
+M9,cases_fully_correct,2,17,0.1176,17,eval/run_eval.py,no model calls (--no-ai: new deterministic readers only); status complete AND every reference field present and exact AND nothing extra
+AI1,must_fail_cleanly,3,3,1.0,3,eval/run_eval.py,no model calls (--no-ai: new deterministic readers only); unreadable / out-of-scope files: failed AND stored 0 rows (no invented data)
+AI2,impossible_values_set_aside,0,2,0.0,2,eval/run_eval.py + review_queue,no model calls (--no-ai: new deterministic readers only); injected impossible values found in review_queue and absent from the data tables
+AI2b,impossible_values_stored,2,2,1.0,2,eval/run_eval.py,no model calls (--no-ai: new deterministic readers only); impossible values that reached the data tables (lower is better)
+AI3,real_values_set_aside,0,464,0.0,17,eval/run_eval.py + review_queue,no model calls (--no-ai: new deterministic readers only); true source values the plausibility check set aside for review (false alarms; a person can accept them)
+AI4,model_calls_per_file,0,20,0.0,20,run report,no model calls (--no-ai: new deterministic readers only); model calls; budget 16 per file
+AI5,retry_and_call_budget_respected,20,20,1.0,20,run report,no model calls (--no-ai: new deterministic readers only); at most 2 recoveries and 16 model calls per file
+INFO,median_seconds_per_file,,,0.2,20,eval/run_eval.py,"no model calls (--no-ai: new deterministic readers only); latency is reported, not scored"
+INFO,model_used,,,none,20,run report,no model calls (--no-ai: new deterministic readers only); model-call errors (rate limits etc.): 0

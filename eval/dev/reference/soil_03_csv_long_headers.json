@@ -2,7 +2,7 @@
  "case_id": "soil_03_csv_long_headers",
  "agent": "soil",
  "source_group": "csv",
- "file": "dev/cases/soil_03.csv",
+ "file": "dev/cases/soil_03_csv_long_headers.csv",
  "description": "Tidy CSV, descriptive headers with units",
  "difficulty": "normal",
  "needs_llm": false,

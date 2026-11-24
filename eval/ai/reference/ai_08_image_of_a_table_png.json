@@ -2,7 +2,7 @@
  "case_id": "ai_08_image_of_a_table_png",
  "agent": "soil",
  "source_group": "image",
- "file": "ai/cases/ai_08.png",
+ "file": "ai/cases/ai_08_IMAGE_OCR.png",
  "description": "A photographed / scanned table saved as a PNG (no PDF, no text layer)",
  "difficulty": "hard",
  "needs_llm": true,

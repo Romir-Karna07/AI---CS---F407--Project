@@ -2,7 +2,7 @@
  "case_id": "ops_02_not_agri_json",
  "agent": "none",
  "source_group": "json",
- "file": "cases/ops_02.json",
+ "file": "cases/ops_02_not_agri_json.json",
  "description": "Valid JSON with no agricultural data must fail cleanly",
  "difficulty": "error",
  "needs_llm": false,

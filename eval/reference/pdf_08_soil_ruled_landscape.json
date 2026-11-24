@@ -3,7 +3,7 @@
  "agent": "soil",
  "owner_agent": "document_agent",
  "source_group": "pdf",
- "file": "cases/pdf_08.pdf",
+ "file": "cases/pdf_08_soil_ruled_landscape.pdf",
  "description": "Ruled landscape table, 12 nutrient columns",
  "difficulty": "normal",
  "needs_llm": false,

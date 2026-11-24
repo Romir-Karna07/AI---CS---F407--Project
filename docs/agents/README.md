@@ -8,8 +8,8 @@ Grouping follows **how a source has to be read**, because that decides the tools
 |---|---|---|---|
 | [soil_agent](soil_agent.md) | soil-test tables | 1 (S24) | implemented, **partial** |
 | [rainfall_agent](rainfall_agent.md) | weather / rainfall tables | 3 (S21, S22, S23) | implemented, S21 + S22 **partial** |
-| [production_agent](production_agent.md) | crop area / production / yield tables | 7 (S01-S04, S06, S07, S13) | implemented, S02 **partial** |
-| [document_agent](document_agent.md) | PDF tables: text layer, scans (OCR), rotated pages, English + Hindi headers | 17 | reader **implemented** (`pipeline/pdf_reader.py`), 10 + 10 PDF cases; **no inventory source is marked partial yet**: none of the real PDF tables tried loads into soil / rainfall / production. Manipuri script not covered |
+| [production_agent](production_agent.md) | crop area / production / yield tables | 7 (S01-S04, S06, S07, S13) | implemented, S02 + S06 **partial** |
+| [document_agent](document_agent.md) | PDF tables: text layer, scans (OCR), rotated pages, English + Hindi headers | 17 | reader **implemented** (`pipeline/pdf_reader.py`), 10 + 10 PDF cases; S08 + S54 + S10 **partial** (real PDFs loaded by `db/load_inventory_pdfs.py`). Manipuri script not covered |
 | price_agent | mandi / retail / MSP feeds (HTML, API) | 4 | **pending** |
 | advisory_agent | free-text advisories, KCC, news (multilingual) | 5 | **pending** |
 | web_registry_agent | HTML dashboards and registries (warehouses, schemes, trade) | 12 | **pending** |
@@ -20,7 +20,7 @@ validated by rules; a PDF needs layout / OCR extraction first and an LLM for the
 errors and different evaluation. Why they are not one agent per source: the three implemented agents share one reader,
 one normaliser and one database loader (`pipeline/`), and differ only in what the columns mean.
 
-Coverage today: 4 of 54 sources partial (S24, S22, S02, S21), 50 pending: `M1 = 54/54` mapped, `M2 = 4/54 = 0.074` implemented (below the 0.20 floor). Within the 6 sources in scope now it is 4/6. Pending sources are declared, not hidden; real PDFs of S04, S05, S06, S12, S31, S53, S54 were downloaded and run through the document agent (evidence in the map and in `docs/challenge.md`).
+Coverage today (2026-11-24): 8 of 54 sources partial (S24, S22, S02, S21, S06, S08, S54, S10), 46 pending: `M1 = 54/54` mapped, `M2 = 8/54 = 0.148` implemented (**still below the 0.20 floor**, which needs 11). The four new ones are real PDFs: S54, S06 and S10 as state-level rows, S08 by district (held-out districts not stored). Pending sources are declared, not hidden; real PDFs of S04, S05, S06, S12, S31, S53, S54 were downloaded and run through the document agent (evidence in the map and in `docs/challenge.md`).
 declared, not hidden.
 
 All agents run inside one LangGraph graph (`pipeline/graph.py`): `inspect -> read -> classify -> {soil | rainfall |

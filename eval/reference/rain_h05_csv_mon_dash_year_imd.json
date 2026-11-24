@@ -2,7 +2,7 @@
  "case_id": "rain_h05_csv_mon_dash_year_imd",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "cases/rain_h05.csv",
+ "file": "cases/rain_h05_csv_mon_dash_year_imd.csv",
  "description": "Month as 'Jan-2019' [S22 IMD grid]",
  "difficulty": "normal",
  "needs_llm": false,

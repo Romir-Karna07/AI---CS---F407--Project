@@ -37,16 +37,81 @@ def _in_text(quote, text):
     return bool(toks) and re.search(r"\s+".join(re.escape(t) for t in toks), text) is not None
 
 
+_SCALE = r"(?P<scale>['‘’`]\s*000|thousand|th\.|lakh|lakhs|crore)"
+_BASE_WORDS = {"production": r"(?P<base>mt|metric\s+tonnes?|tonnes?|tons?|t)", "area": r"(?P<base>ha|hectares?|hect\.?)"}
+_SCALE_MULT = {"000": 1000, "thousand": 1000, "th.": 1000, "lakh": 100000, "lakhs": 100000, "crore": 10000000}
+_PERIOD_RE = re.compile(r"\b((?:19|20)\d{2})\s*[-–/]\s*(\d{2}|\d{4})\b")
+
+
+_CROP_GROUP_RE = re.compile(r"\b(?:of|for)\s+([A-Z][a-z]+)\s+Crops\b")      # "Area and Production of Fruit Crops", "... of Spice Crops"
+
+
+def _fixed_crop(text):
+    """a table about one named group of crops, read from its title: 'Fruit Crops' -> 'Fruits' (quote kept)"""
+    titles = [l for l in text.splitlines() if re.match(r"\s*Table\s+[\w.]+\s*[:.-]", l, re.I)]     # the table's own title first,
+    m = next((x for x in (_CROP_GROUP_RE.search(t) for t in titles) if x), None) or _CROP_GROUP_RE.search(text)   # not a running page header
+    if not m or m.group(1).lower() in ("major", "all", "other", "principal", "food", "field", "selected", "horticulture", "agricultural"):
+        return None, None
+    word = m.group(1)
+    return (word if word.endswith("s") else word + "s"), m.group(0)
+
+
+def _fixed_facts(text, want_units, want_period):
+    """facts plain code can read from a caption, before any model is asked: "Crops ('000 MT), 2023-24", "Area in thousand hectares".
+    Exactly what the model would have to quote, so the same evidence rule holds; the model is asked only for what is left."""
+    units, evidence, period = {}, {}, None
+    for var in want_units:
+        if var not in _BASE_WORDS:
+            continue
+        m = re.search(_SCALE + r"\s*\(?\s*" + _BASE_WORDS[var] + r"\b", text, re.I)
+        if m:
+            scale = re.sub(r"['‘’`\s]", "", m.group("scale").lower())
+            mult = _SCALE_MULT.get(scale)
+            if mult:
+                units[var] = f"{mult}*{'t' if var == 'production' else 'ha'}"
+                evidence[f"unit:{var}"] = m.group(0)
+    if want_period:
+        found = {(m.group(1), m.group(2)) for m in _PERIOD_RE.finditer(text)}
+        if len(found) == 1:
+            y, e = found.pop()
+            period = f"{y}-{e[-2:]}"
+            evidence["period"] = next(_PERIOD_RE.finditer(text)).group(0)
+    return units, period, evidence
+
+
 @traceable("context_facts", "chain")
 def facts_for(ai, context_lines, columns, want_units, want_district, want_period, want_crop=False):
     """-> verified {units: {var: '1000*ha'}, district, period, crop, evidence} or None"""
     text = "\n".join(l for l in context_lines if l and l.strip())
     if not text.strip() or not (want_units or want_district or want_period or want_crop):
         return None
+    f_units, f_period, f_ev = _fixed_facts(text, want_units, want_period)
+    f_crop, crop_quote = _fixed_crop(text) if want_crop else (None, None)
+    if crop_quote:
+        f_ev["crop"] = crop_quote
+    if (set(want_units) <= set(f_units)) and (f_period or not want_period) and not want_district and (f_crop or not want_crop):
+        out = {"units": f_units, "evidence": f_ev, "how": "fixed code"}
+        if f_period:
+            out["period"] = f_period
+        if f_crop:
+            out["crop"] = f_crop
+        return out if (f_units or f_period or f_crop) else None
+    ans = _model_facts(ai, text, columns, want_units, want_district, want_period, want_crop)
+    out = ans or {"units": {}, "evidence": {}}
+    out["units"] = {**out.get("units", {}), **f_units}          # what code read wins
+    out["evidence"] = {**out.get("evidence", {}), **f_ev}
+    if f_period:
+        out["period"] = f_period
+    if f_crop:
+        out["crop"] = f_crop
+    return out if (out["units"] or any(k in out for k in ("district", "period", "crop"))) else None
+
+
+def _model_facts(ai, text, columns, want_units, want_district, want_period, want_crop):
     allowed = {v: BASES[v] for v in want_units if v in BASES}
     user = (f"Context lines:\n{text[:1500]}\n\nTable columns: {columns[:12]}\n"
             f"Requested: units for {allowed or 'none'}; district: {want_district}; period: {want_period}; crop: {want_crop}")
-    ans = ai.ask("context", SYSTEM, user, {"lines": len(context_lines)})
+    ans = ai.ask("context", SYSTEM, user, {"lines": text.count(chr(10)) + 1})
     if not isinstance(ans, dict):
         return None
     out, evidence = {"units": {}}, {}

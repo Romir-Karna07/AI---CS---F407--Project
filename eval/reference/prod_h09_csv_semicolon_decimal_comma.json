@@ -2,7 +2,7 @@
  "case_id": "prod_h09_csv_semicolon_decimal_comma",
  "agent": "production",
  "source_group": "csv",
- "file": "cases/prod_h09.csv",
+ "file": "cases/prod_h09_csv_semicolon_decimal_comma.csv",
  "description": "';' delimiter, decimal commas in every number column",
  "difficulty": "hard",
  "needs_llm": false,

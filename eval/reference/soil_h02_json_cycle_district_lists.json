@@ -2,7 +2,7 @@
  "case_id": "soil_h02_json_cycle_district_lists",
  "agent": "soil",
  "source_group": "json",
- "file": "cases/soil_h02.json",
+ "file": "cases/soil_h02_json_cycle_district_lists.json",
  "description": "cycle -> district -> records",
  "difficulty": "normal",
  "needs_llm": false,

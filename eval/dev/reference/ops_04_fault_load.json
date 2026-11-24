@@ -2,7 +2,7 @@
  "case_id": "ops_04_fault_load",
  "agent": "soil",
  "source_group": "csv",
- "file": "dev/cases/ops_04.csv",
+ "file": "dev/cases/ops_04_fault_load.csv",
  "description": "Injected load fault -> retry -> complete",
  "difficulty": "fault",
  "needs_llm": false,

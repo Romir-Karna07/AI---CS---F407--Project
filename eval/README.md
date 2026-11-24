@@ -12,7 +12,11 @@ python eval/build_ai_cases.py --set dev        # their dev twins (dev districts)
 python eval/run_eval.py --set ai               # AI arm; add --no-ai (no model calls) or --legacy-root <extract of the old commit> for the other arms
 python eval/build_pdf_cases.py --set dev        # (dev) + 10 dev PDF cases the PDF reader was developed on
 python eval/run_eval.py --set dev  # (dev) runs it -> eval/dev/dev_phase2_metrics.csv
+python eval/build_case_index.py    # eval/CASE_INDEX.md: every case file, its agent, format and purpose
+python db/sample_queries.py        # 10 sample queries on db/manipur.db with expected results
 ```
+
+**File names.** Case files are named `<group>_<nn>_<layout / language / failure mode>.<ext>` (e.g. `ai_14_TAMIL.csv`, `ai_17_MUST_FAIL_BINARY_JUNK.csv`, `soil_h09_csv_french_headers_llm.csv`); the reference with the expected output is `reference/<case_id>.json` in the same set. See `eval/CASE_INDEX.md`. Files were renamed on 2026-11-24; contents (and so every frozen SHA-256) are unchanged and the contamination check still passes.
 
 ## The split (held-out evaluation)
 The corpus is split **by district**. Imphal West, Thoubal and Ukhrul (present in all four data files) are **held out**.
@@ -104,8 +108,8 @@ group** beyond one French-header file, and no Manipuri documents.
 | M14-M17 on `db/manipur.db` | 1.0 / 1.0 / 0.0 / 3 of 3 | 4,610 dev rows (no PDF rows: no real PDF table loads into the three tables yet) |
 | M18 overlap | 0 | contamination check, 44 evaluation files |
 | M1 / M2 | 54/54 = 1.000 / 4/54 = 0.074 | all inventory sources are mapped; only 4 have data loaded, **below the 0.20 floor (0 of 2 points)**. Within the 6 sources in scope now it is 4/6 (row `M2 / in_scope_sources`, information only) |
-| M5, M18 adapter | pending | no instructor key; no adapter trained |
-| (current numbers, final code) | M3 0.985 · M4 / M10 1.000 · M6 0.888 · M7 1.000 · M8 0.818 · M9 0.881 · M11 / M12 1.000 · M13 0.054 | the table above is the first cold run; these are the latest run after the AI layer |
+| M5, M18 adapter | pending | no instructor key; no adapter trained (`eval/adapter_comparison.csv`) |
+| (current numbers, final code, run 2026-11-24, gpt-oss-20b) | **M3 0.9868** (soil / rainfall / production / json / csv 1.000, document_agent 0.9471) · M4 / M10 1.000 · M6 0.883 · M7 1.000 · M8 0.8182 · M9 0.9286 · M11 / M12 1.000 · M13 0.0585 · M14 / M15 1.0 · M16 0.0 · M17 3/3 · M18 overlap 0 (64 files) | the table above is the first cold run; these are the latest run after the AI layer and the later changes below |
 
 **PDF cases, per file (cold run):** 7 of 10 at F1 1.000 (ruled multi-page, unruled with caption context, Hindi headers, wide months with caption, tidy
 multi-page, ruled landscape soil, unruled soil with caption). The three that lost points:
@@ -140,16 +144,65 @@ Three arms, same files, same scorer (`ai_metrics*.csv`, `per_case*.csv`):
 | dev twin, final code | 17 | 1.000 | 0 of 2 | 3 of 3 |
 
 **Disclosure, in order.** (1) The AI layer was developed on the dev twin; the official AI set was then run once, cold (16 / 17). (2) The original 44-case official set was re-run on the new code; the
-French-header case failed because the old header mapper swallowed a model error, so the header mapper and the classifier were moved onto the shared wrapper (budget, cache, rate-limit wait, trace);
+French-header case failed because the old header mapper swallowed a model error, so the header mapper and the classifier were moved onto the shared wrapper (budget, rate-limit wait, trace);
 the AI set was re-run (15 / 17: the model labelled both the month and the year column `year_month`). (3) A check was added that a column of plain years is the year, whatever the model called it
 (unit-tested without the model, `tests/smoke_unseen.py`), and the AI set was run a third time (16 / 17). Runs 2 and 3 therefore followed failures seen on the official set: only run 1 is a cold number.
 **Model:** all runs used `gpt-oss-20b` with low reasoning effort, because the 200,000-token daily free-tier quota of `gpt-oss-120b` was exhausted by development; 120b was not re-evaluated.
 **The remaining miss** is the image case: one village name read by OCR as "Part Il" instead of "Part II" (one record of 12). **Run-to-run variation is real** (temperature 0 does not make the model deterministic);
 there is no answer cache, so every run measures the model afresh.
 
-**Original official set on the final code:** field F1 **0.985** (was 0.987): the plausibility check set aside one genuine record in each of `prod_h01` and `prod_h06`; soil, rainfall and json are 1.000, production 0.995,
+**Original official set on the final code (earlier run):** field F1 **0.985** (was 0.987): the plausibility check set aside one genuine record in each of `prod_h01` and `prod_h06`; soil, rainfall and json are 1.000, production 0.995,
 the PDF cases are unchanged (0.947; scans 0.93 / 0.96, rotated page 0.63). Tool-selection metrics fell slightly (M6 0.888, M8 0.818) because model steps (`llm_plausibility`, `llm_page_select` ...)
 are tool calls the reference trajectories do not list; they are reported, not hidden.
+
+### Run of 2026-11-24 (final code, `gpt-oss-20b`) and the changes that preceded it
+Results of this run, all on the renamed files:
+
+| Set | Result |
+|---|---|
+| Official, 44 cases | M3 **0.9868** (document_agent 0.9471; the three PDF cases below 1.000 are the same `pdf_04` 0.933, `pdf_07` 0.629, `pdf_10` 0.957), M9 39 / 42 = 0.9286, 3 of 3 live trace-backs, M16 0 duplicates, contamination check 0 overlaps over 64 files |
+| Official AI set, 17 should succeed + 3 must fail | **16 / 17 fully correct, field F1 0.9741 (452 / 464)**, 3 / 3 must-fail failed cleanly, 2 / 2 impossible values set aside and 0 stored, 40 model calls in 20 files (2.0 per file, budget 16). The same result came out of two runs the same day. The one miss is the image case (`ai_08`, OCR: 122 / 134 fields) |
+| AI set, no model (`--no-ai`) | 2 / 17, F1 0.7454, 3 / 3 must-fail clean, 2 of 2 impossible values **stored** (nothing to judge them) |
+| Dev regression set (44) | M3 0.9968: `pdf_09` dev twin 0.935 and `prod_06` 0.957 (a genuine record set aside by the plausibility check, as in the official set) |
+| Dev twin of the AI set | 17 / 17, F1 1.000 |
+| `tests/smoke_unseen.py` | 44 / 44 checks pass |
+| `gpt-oss-120b` (code default) | **not re-run** on the final code; the last measurement this session was 14 / 17, F1 0.9588 (three misses, among them a districts-as-columns table and the English prose case), see `eval/adapter_comparison.csv` |
+
+**Changes made after the first official runs, and what prompted each (disclosure).** After the AI set was frozen, the AI layer was extended (crop-only production table, state detection from the cover / file name,
+cover text and sample rows in the prompts, model column meanings applied per table, one shared answer for tables with identical columns, removal of the answer cache). The official sets were then
+re-run, and two regressions seen **on the official cases** were fixed in code:
+1. the new header prompt made the model call a year column `year` (not a canonical field, silently dropped) in the Tamil table `ai_14` (that run of the official AI set failed it): fixed by accepting aliases (`FIELD_ALIASES`) and stricter prompt wording;
+2. the same prompt made the model call the French `Departement` column of `soil_h09` the `state`, so every row lost its district (F1 0.000): fixed by letting the cells decide (`_place_level`: a `state` column whose values are districts is the district); unit-tested without the model.
+
+Both fixes followed failures seen on the official cases, so the numbers above are **not cold** for those cases (the cold figure for the AI set remains the first run of 2026-11-20, 16 / 17, F1 0.974). A third fix, a context prompt that
+now asks for an entry for every requested variable (a missing production unit with the 120b model), was found on the AI set as well.
+
+### Implementation coverage (M2) and the real-PDF loads of 2026-11-24
+`docs/source_agent_map.csv` now marks **8 of 54** sources `partial` (M2 = **0.148**, still **below the 0.20 floor**, which needs 11): S24, S22, S21, S02 as before, plus four real
+inventory PDFs loaded into `db/manipur.db` by `python db/load_inventory_pdfs.py`:
+
+| Source | File (Data/pdf_samples, git-ignored; URL + SHA-256 in Data/manifest.csv) | Rows stored | Checked |
+|---|---|---|---|
+| S54 MoFPI state profile | p7, Tables 2, 4, 5, 6 (production 2023-24, '000 MT) | 16 state-level | every value against the page |
+| S06 NHB Horticultural Statistics at a Glance 2018 | p187, p192: Manipur row of the state-wise fruit / spice area and production tables, 2013-14..2017-18 | 10 state-level | every value |
+| S10 Economic Survey, Manipur 2024-25 (369 pp; only the agriculture chapter examined) | p90, Table 5.12: area under 12 fruits and vegetables, 2022-23..2024-25 | 36 state-level | every value against the page |
+| S08 Agriculture Department Manipur | area / production / yield sheets 2018-19 and 2019-20 (by district, A / P / Y coded rows) | 158 (6 districts + state total), 157 valid | spot checks against the sheets (maize, sugarcane, potato rows, district and state columns); one row invalid because the source's rounded figures do not give its own yield |
+
+What was **not** done to raise M2, on purpose: the 54-row inventory was not reduced (the rubric divides by the Phase 1 inventory and the TA checks that the row count equals it), and
+evaluation or held-out files were not loaded as "sources" (they come from the four sources already counted and would break the contamination check). Tables were loaded only where the
+source states the year and the units consistently: S12 (NABARD, contradictory unit labels), S31 (district plans, no year), S53 (forecasts) and S04 (a header layout the reader does
+not take yet) stay `pending`. The held-out districts' rows in the S08 sheets were not stored (`AGRI_EXCLUDE_DISTRICTS`); the contamination check still reports 0 overlaps.
+
+**Pipeline changes this needed (made after the official results above were known; disclosed here):** a whole-state figure is stored under the pseudo-district `MANIPUR (STATE)` instead
+of being `invalid`; rows of other states in state-wise tables are not stored; caption units ("'000 MT") and a single year are read by fixed code before the model (this fixed a real bug:
+a fourth caption exceeded the model's per-file cap and a value was stored 1,000x too small); `MT` unit spellings; caption legends (`A = Area`) are expanded; crops coded A / P / Y in rows
+with districts across are turned into records; a sideways page is turned upright before camelot reads it; a header row holding only the label column's name is part of the header;
+a header cell such as "Area (ha)" names a variable, not just a unit. After these changes, on `gpt-oss-120b`: official 44 cases **M3 0.9868** (unchanged), M15 0.9998 (the one S08 row),
+M17 3 / 3; AI set 14 / 17, F1 0.957 (the last 120b measurement before them was 14 / 17, 0.959). The `gpt-oss-20b` AI set could not be re-run after these changes: its daily token quota
+was used up the same day (that run continued without the model and is not counted). `tests/smoke_unseen.py`: 43 / 44 on 120b; the failing check is the plausibility judge, which in
+2 of 3 repeated runs also set aside a real 1,450 mm month next to the impossible 99,999 mm value (the impossible value was set aside every time).
+
+**Which files hold which run:** `eval/phase2_metrics.csv` and `eval/results/` = the official set on the final code with `gpt-oss-120b`; `eval/ai/ai_metrics.csv` and `eval/ai/results/per_case.csv` = the AI set on `gpt-oss-120b` (14 / 17); the `gpt-oss-20b` AI runs (16 / 17, before the reader changes) are kept in `eval/ai/results/history/`. `eval/dev/dev_phase2_metrics.csv` (M3 0.995) comes from a run during which the `gpt-oss-20b` quota ran out, so its model-dependent cases may be understated; re-run it when the quota resets.
 
 ## Metric status
 | Metric | Status |
@@ -158,9 +211,9 @@ are tool calls the reference trajectories do not list; they are reported, not hi
 | M4, M10 | **automated proxies**: the locator in each stored row is opened in the case file and every numeric field must appear there (after unit conversion). No LLM judge is used, so there is no judge to calibrate. The evaluator's live check is the scored one |
 | M6 / M7 / M8 | compared with reference trajectories **we wrote from our own design** (strict match, positional); they show the agent behaves as designed, not that the design is optimal |
 | M14-M17 | SQL on `db/manipur.db` (dev partitions only; no PDF rows); M17 uses a seeded sample of 3 rows traced automatically |
-| M1, M2 | measured from `docs/source_agent_map.csv` (54 rows, one per Phase 1 source, ids checked against `TEAM_28_Sources.xlsx`). M1 = 54/54. **M2 = 4/54 = 0.074**: S24, S22, S02, S21 are `partial`, the other 50 are declared pending (48 of them not started, `phase2_scope = on_hold`). Real PDFs for 7 sources were run through the document agent and are recorded in the map. The 6-source working set (S24, S22, S02, S21 + S01, S03 waiting for a manual download) is reported on its own row |
+| M1, M2 | measured from `docs/source_agent_map.csv` (54 rows, one per Phase 1 source, ids checked against `TEAM_28_Sources.xlsx`). M1 = 54/54. **M2 = 8/54 = 0.148** (2026-11-24; was 4/54 = 0.074): S24, S22, S02, S21, S06, S08, S54, S10 are `partial`, the other 46 are declared pending (48 of them not started, `phase2_scope = on_hold`). Real PDFs for 7 sources were run through the document agent and are recorded in the map. The 6-source working set (S24, S22, S02, S21 + S01, S03 waiting for a manual download) is reported on its own row |
 | M5 | **pending**: needs the instructor's unseen items and answer key |
-| M18 | **pending**: no adapter trained. The overlap-by-hash part is reported (0) |
+| M18 | **pending**: no adapter trained, so no adapter weights exist and there is no weights link; `eval/adapter_comparison.csv` records the base-model arms and an adapter row marked NOT RUN. The overlap-by-hash part is reported (0) |
 
 `eval/phase2_metrics.csv` follows the instructor's template (`Eval.xlsx`) exactly: `metric_id, scope, numerator, denominator, value, n_cases, evaluator_or_script, notes`, one row per metric per scope. Floor, target, points and status are in the `notes` column; the full table (metric name, floor, target, points, max points, status) is `eval/results/phase2_metrics_detailed.csv`.
 
@@ -168,3 +221,32 @@ are tool calls the reference trajectories do not list; they are reported, not hi
 34 cases built by `build_cases.py` from the dev districts only. The pipeline was tuned against an earlier version of these cases; their
 first run scored macro F1 0.60 (`eval/dev/results/first_run_metrics.csv`) and the failures drove real fixes in `readers.py` / `concepts.py`.
 They are a regression suite, **not** part of the headline numbers.
+
+**Later on 2026-11-24 (S10 and the files the team added).** `Data/pdf_samples/` gained `S10_economic_survey_manipur_2024-25.pdf` (renamed from `EcoSurveyManipur.pdf`) and
+`S05_desagri_3rd_advance_estimates_2025-26.xlsx` (renamed). The spreadsheet holds all-India estimates only, no Manipur row, so nothing from it is stored and S05 stays `pending`.
+From the Economic Survey only chapter 5 (agriculture and allied) was examined; Table 5.12 loads (S10 `partial`, M2 8 / 54 = 0.148). Reader changes this needed, again made after the
+official results were known: the "(1) (2) (3)" column-number row and a leading "Sl. No." column are dropped; a table whose column headers are only years takes its measure from the
+caption ("Area in hectares"); "Name of the crop" is a crop header; one measure next to a crop column is a production table; a text column whose cells are known crop / livestock names is
+the crop column even without the model (the crop vocabulary in `pipeline/crops.py` was extended with common crop names); caption units / years / crop groups are read by fixed code even
+when no model is available. With these, all five real files load the same rows **without any model call**. Both models' daily quotas were exhausted by then, so the model-dependent
+sets could only be re-run in `--no-ai` mode that day (results below); the with-model numbers above are from before these last changes and must be re-measured when the quota resets.
+
+| `--no-ai` run after these last changes | Result |
+|---|---|
+| Official 44 cases | M3 0.9803: every case identical to the with-model run except `soil_h09` (French headers, needs the model by design, 0 / 35); stored in `eval/results/no_model_phase2_metrics.csv`, `no_model_per_case.csv` |
+| AI set | 2 / 17, F1 0.7454: identical to the earlier no-model arm (`eval/ai/ai_metrics_baseline.csv`) |
+| Dev set | M3 0.995 (`eval/dev/dev_phase2_metrics.csv` is now this no-model run) |
+
+`eval/phase2_metrics.csv` stays the with-model run (gpt-oss-120b); only its M1 / M2 rows were recomputed, because they come from `docs/source_agent_map.csv`, not from the model.
+
+### Final state at the end of 2026-11-24 (what the result files hold)
+| File | Run | Headline |
+|---|---|---|
+| `eval/phase2_metrics.csv`, `eval/results/per_case.csv` | official 44 cases, **final code and database**, `gpt-oss-20b`, no quota errors | M3 **0.9868**, M4 / M10 1.0, M1 1.0, **M2 0.1481 (8 / 54)**, M6 0.883, M7 1.0, M8 0.8182, M9 0.9286, M11 / M12 1.0, M13 0.0585, M14 1.0, M15 0.9998, M16 0, M17 3 / 3 |
+| `eval/results/no_model_*` | official 44 cases, final code, `--no-ai` | M3 0.9803 (only `soil_h09` differs) |
+| `eval/ai/ai_metrics.csv` | AI set, `gpt-oss-120b`, after the state-level / legend / sideways-page changes but **before** the last S10-related reader rules | 14 / 17, F1 0.9565 |
+| `eval/ai/ai_metrics_baseline.csv` | AI set, final code, `--no-ai` | 2 / 17, F1 0.7454 |
+| `eval/dev/dev_phase2_metrics.csv` | dev set, final code, `--no-ai` | M3 0.995 |
+
+**Not measured on the final code:** the AI set and `tests/smoke_unseen.py` with a model. A run started at 23:07 hit the `gpt-oss-20b` daily token quota within minutes (6 / 17 and 11 smoke failures, every
+failure a model call refused); those runs were discarded and are not in the history folders. Re-run `python eval/run_eval.py --set ai` and `python tests/smoke_unseen.py` once the quota resets.

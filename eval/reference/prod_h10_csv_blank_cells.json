@@ -2,7 +2,7 @@
  "case_id": "prod_h10_csv_blank_cells",
  "agent": "production",
  "source_group": "csv",
- "file": "cases/prod_h10.csv",
+ "file": "cases/prod_h10_csv_blank_cells.csv",
  "description": "Blank area cells: those fields must be absent, not 0",
  "difficulty": "hard",
  "needs_llm": false,

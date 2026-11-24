@@ -194,14 +194,14 @@ for s in recs:
     by.setdefault((s["district"], s["code"]), []).append(s["raw"])
 doc = {"source": "slice", "state": "MANIPUR", "state_code": "14", "districts": [
     {"district": d, "district_code": c, "shc_cycles": {"2017-19": rows}} for (d, c), rows in by.items()]}
-add("soil_01_json_original_shape", "soil", "soil_01.json", json.dumps(doc, indent=1),
+add("soil_01_json_original_shape", "soil", "soil_01_json_original_shape.json", json.dumps(doc, indent=1),
     "Same nesting as the scraped SHC file, 6 records from 3 districts", [soil_record(s) for s in recs])
 
 # s02 2024-25 slice (no tehsil/category, lowercase 'village')
 recs = pick(SOIL, 8, lambda s: s["cycle"] == "2024-25" and s["vals"]["ph"], uniq_village)
 doc = {"districts": [{"district": "CHURACHANDPUR", "district_code": "254",
                       "shc_cycles": {"2024-25": [s["raw"] for s in recs]}}]}
-add("soil_02_json_2024_25", "soil", "soil_02.json", json.dumps(doc), "2024-25 cycle layout (lowercase village, no tehsil)",
+add("soil_02_json_2024_25", "soil", "soil_02_json_2024_25.json", json.dumps(doc), "2024-25 cycle layout (lowercase village, no tehsil)",
     [soil_record(s, text=()) for s in recs])
 
 # s03 tidy CSV, long header names with units in brackets
@@ -211,7 +211,7 @@ hdr = ["District", "Tehsil", "Village", "Category", "Cycle", "Available Nitrogen
        "Iron (ppm)", "Copper (ppm)", "Manganese (ppm)", "Boron (ppm)"]
 rows = [hdr] + [[s["district"].title(), s["tehsil"], s["village"], s["category"], s["cycle"]] +
                 [fmt(s["vals"][k]) for k in ("n", "p", "k", "ph", "oc", "ec", "s", "zn", "fe", "cu", "mn", "b")] for s in recs]
-add("soil_03_csv_long_headers", "soil", "soil_03.csv", csv_text(rows), "Tidy CSV, descriptive headers with units",
+add("soil_03_csv_long_headers", "soil", "soil_03_csv_long_headers.csv", csv_text(rows), "Tidy CSV, descriptive headers with units",
     [soil_record(s) for s in recs])
 
 # s04 semicolon + decimal comma, short headers
@@ -220,7 +220,7 @@ hdr = ["Dist", "Taluk", "Village", "Cycle", "N", "P", "K", "pH", "OC", "EC", "S"
 rows = [hdr] + [[s["district"], s["tehsil"], s["village"], s["cycle"]] +
                 [fmt(s["vals"][k], comma=True) for k in ("n", "p", "k", "ph", "oc", "ec", "s", "zn", "fe", "cu", "mn", "b")]
                 for s in recs]
-add("soil_04_csv_semicolon_decimal_comma", "soil", "soil_04.csv", csv_text(rows, ";"),
+add("soil_04_csv_semicolon_decimal_comma", "soil", "soil_04_csv_semicolon_decimal_comma.csv", csv_text(rows, ";"),
     "';' delimiter with decimal commas", [soil_record(s, text=("tehsil",)) for s in recs], difficulty="hard")
 
 # s05 JSON keyed by district name
@@ -231,7 +231,7 @@ doc = {s["district"]: {"cycle": s["cycle"], "village": s["village"], "nitrogen":
                        "organic_carbon": s["vals"]["oc"], "ec": s["vals"]["ec"], "sulphur": s["vals"]["s"],
                        "zinc": s["vals"]["zn"], "iron": s["vals"]["fe"], "copper": s["vals"]["cu"],
                        "manganese": s["vals"]["mn"], "boron": s["vals"]["b"]} for s in recs}
-add("soil_05_json_keyed_by_district", "soil", "soil_05.json", json.dumps(doc, indent=1),
+add("soil_05_json_keyed_by_district", "soil", "soil_05_json_keyed_by_district.json", json.dumps(doc, indent=1),
     "Object keyed by district name, spelled-out nutrient names", [soil_record(s, text=()) for s in recs])
 
 # s06 cycle -> district -> list
@@ -240,14 +240,14 @@ doc = {"by_cycle": {"2017-19": {}}}
 for s in recs:
     doc["by_cycle"]["2017-19"].setdefault(s["district"], []).append(
         {"Village": s["village"], **{k.upper() if k != "ph" else "pH": v for k, v in s["vals"].items() if v is not None}})
-add("soil_06_json_cycle_district_lists", "soil", "soil_06.json", json.dumps(doc), "cycle -> district -> records",
+add("soil_06_json_cycle_district_lists", "soil", "soil_06_json_cycle_district_lists.json", json.dumps(doc), "cycle -> district -> records",
     [soil_record(s, text=()) for s in recs])
 
 # s07 JSON Lines saved as .txt
 recs = pick(SOIL, 8, lambda s: s["cycle"] == "2017-19", uniq_village)
 lines = [json.dumps({"district": s["district"], "cycle": s["cycle"], "village": s["village"],
                      **{k.upper() if k != "ph" else "pH": v for k, v in s["vals"].items() if v is not None}}) for s in recs]
-add("soil_07_jsonl_as_txt", "soil", "soil_07.txt", "\n".join(lines) + "\n", "JSON Lines in a .txt file",
+add("soil_07_jsonl_as_txt", "soil", "soil_07_jsonl_as_txt.txt", "\n".join(lines) + "\n", "JSON Lines in a .txt file",
     [soil_record(s, text=()) for s in recs], difficulty="hard")
 
 # s08 CSV: extra columns, shuffled order, NA / - blanks
@@ -259,7 +259,7 @@ for i, s in enumerate(recs):
     rows.append([f"X{i:03d}", s["cycle"], "Imphal Lab", s["district"], s["village"]] +
                 [("NA" if v[k] is None else fmt(v[k])) if i % 2 else ("-" if v[k] is None else fmt(v[k]))
                  for k in ("b", "zn", "n", "p", "k", "ph", "oc", "ec", "s", "fe", "cu", "mn")] + ["ok"])
-add("soil_08_csv_extra_cols_blanks", "soil", "soil_08.csv", csv_text(rows),
+add("soil_08_csv_extra_cols_blanks", "soil", "soil_08_csv_extra_cols_blanks.csv", csv_text(rows),
     "Shuffled columns, irrelevant extra columns, NA / '-' for missing", [soil_record(s, text=()) for s in recs],
     difficulty="hard")
 
@@ -267,7 +267,7 @@ add("soil_08_csv_extra_cols_blanks", "soil", "soil_08.csv", csv_text(rows),
 recs = pick(SOIL, 6, lambda s: s["cycle"] == "2024-25" and s["vals"]["ph"] == 0, uniq_village)
 doc = {"districts": [{"district": "CHURACHANDPUR", "district_code": "254",
                       "shc_cycles": {"2024-25": [s["raw"] for s in recs]}}]}
-add("soil_09_ph_zero_is_missing", "soil", "soil_09.json", json.dumps(doc),
+add("soil_09_ph_zero_is_missing", "soil", "soil_09_ph_zero_is_missing.json", json.dumps(doc),
     "pH = 0.0 in the source means 'not measured': expected ph absent", [soil_record(s, text=(), skip=("ph",)) for s in recs],
     difficulty="hard")
 
@@ -280,7 +280,7 @@ rows = [hdr] + [[s["district"], s["village"], fmt(s["vals"]["n"]), fmt(s["vals"]
 r10 = [soil_record(s, text=()) for s in recs]
 for r in r10:
     r["fields"] = {k: v for k, v in r["fields"].items() if k in ("n", "p", "k", "ph", "oc")}
-add("soil_10_csv_french_headers_llm", "soil", "soil_10.csv", csv_text(rows),
+add("soil_10_csv_french_headers_llm", "soil", "soil_10_csv_french_headers_llm.csv", csv_text(rows),
     "Non-English headers; rules cannot map them, the Groq header mapper must", r10, difficulty="hard", llm=True)
 
 # ================================================================== RAINFALL (10)
@@ -294,14 +294,14 @@ by = {}
 for m in recs:
     by.setdefault(m["district"], []).append({k: v for k, v in m.items() if k != "district"})
 doc = {"source": "slice", "method": "slice", "unit": "mm", "districts": [{"district": d, "monthly": ms} for d, ms in by.items()]}
-add("rain_01_json_original_shape", "rainfall", "rain_01.json", json.dumps(doc, indent=1), "Same nesting as the monthly file",
+add("rain_01_json_original_shape", "rainfall", "rain_01_json_original_shape.json", json.dumps(doc, indent=1), "Same nesting as the monthly file",
     [rain_record(m) for m in recs])
 
 # r02 tidy CSV YYYY-MM
 recs = rain_pick(12, pred=lambda m: m["district"] in ("BISHNUPUR", "SENAPATI", "KAMJONG"))
 rows = [["District", "YearMonth", "Rainfall (mm)", "Rainy Days (>=2.5 mm)"]] + \
        [[m["district"].title(), m["month"], fmt(m["rainfall_mm"]), m["rainy_days_ge_2.5mm"]] for m in recs]
-add("rain_02_csv_tidy", "rainfall", "rain_02.csv", csv_text(rows), "Tidy CSV with YYYY-MM", [rain_record(m) for m in recs])
+add("rain_02_csv_tidy", "rainfall", "rain_02_csv_tidy.csv", csv_text(rows), "Tidy CSV with YYYY-MM", [rain_record(m) for m in recs])
 
 # r03 wide months
 pairs = [("CHANDEL", "2018"), ("TAMENGLONG", "2021"), ("PHERZAWL", "2016")]
@@ -312,28 +312,28 @@ for d, y in pairs:
     assert len(ms) == 12
     rows.append([d.title(), y] + [fmt(m["rainfall_mm"]) for m in ms])
     recs += [rain_record(m, days=False) for m in ms]
-add("rain_03_csv_wide_months", "rainfall", "rain_03.csv", csv_text(rows), "One column per month (Jan..Dec)", recs,
+add("rain_03_csv_wide_months", "rainfall", "rain_03_csv_wide_months.csv", csv_text(rows), "One column per month (Jan..Dec)", recs,
     difficulty="hard")
 
 # r04 separate Year / Month-name columns
 recs = rain_pick(12, pred=lambda m: m["district"] in ("CHURACHANDPUR", "JIRIBAM"))
 rows = [["District Name", "Year", "Month", "Rainfall"]] + \
        [[m["district"].title(), m["month"][:4], MONTHS[int(m["month"][5:]) - 1], fmt(m["rainfall_mm"])] for m in recs]
-add("rain_04_csv_year_month_columns", "rainfall", "rain_04.csv", csv_text(rows), "Separate Year and full month name columns",
+add("rain_04_csv_year_month_columns", "rainfall", "rain_04_csv_year_month_columns.csv", csv_text(rows), "Separate Year and full month name columns",
     [rain_record(m, days=False) for m in recs])
 
 # r05 'Jan-2019'
 recs = rain_pick(12, pred=lambda m: m["district"] in ("IMPHAL WEST", "KANGPOKPI"))
 rows = [["District", "Month", "Rain (mm)"]] + \
        [[m["district"], f"{MONTHS[int(m['month'][5:]) - 1][:3]}-{m['month'][:4]}", fmt(m["rainfall_mm"])] for m in recs]
-add("rain_05_csv_mon_dash_year", "rainfall", "rain_05.csv", csv_text(rows), "Month as 'Jan-2019'",
+add("rain_05_csv_mon_dash_year", "rainfall", "rain_05_csv_mon_dash_year.csv", csv_text(rows), "Month as 'Jan-2019'",
     [rain_record(m, days=False) for m in recs])
 
 # r06 inches (expected mm)
 recs = rain_pick(10, pred=lambda m: m["district"] in ("CHANDEL", "THOUBAL") and m["rainfall_mm"] > 0)
 rows = [["District", "YearMonth", "Rainfall (inches)"]] + \
        [[m["district"], m["month"], fmt(round(m["rainfall_mm"] / 25.4, 4))] for m in recs]
-add("rain_06_csv_inches", "rainfall", "rain_06.csv", csv_text(rows), "Rainfall in inches (unit in header) -> expected mm",
+add("rain_06_csv_inches", "rainfall", "rain_06_csv_inches.csv", csv_text(rows), "Rainfall in inches (unit in header) -> expected mm",
     [rain_record(m, days=False) for m in recs], difficulty="hard")
 
 # r07 nested json: district -> list of records
@@ -341,7 +341,7 @@ recs = rain_pick(12, pred=lambda m: m["district"] in ("KAKCHING", "SENAPATI", "N
 doc = {}
 for m in recs:
     doc.setdefault(m["district"], []).append({"month": m["month"], "rain_mm": m["rainfall_mm"]})
-add("rain_07_json_district_keyed", "rainfall", "rain_07.json", json.dumps(doc), "Object keyed by district, list of {month, rain_mm}",
+add("rain_07_json_district_keyed", "rainfall", "rain_07_json_district_keyed.json", json.dumps(doc), "Object keyed by district, list of {month, rain_mm}",
     [rain_record(m, days=False) for m in recs])
 
 # r08 JSONL with district spelling variants
@@ -349,20 +349,20 @@ alias = {"IMPHAL EAST": "Imphal-East", "NONEI": "Noney", "JIRIBAM": "Jiribam", "
          "TENGNOUPAL": "TENGNOUPAL"}
 recs = rain_pick(10, pred=lambda m: m["district"] in alias)
 lines = [json.dumps({"dist": alias[m["district"]], "ym": m["month"], "rainfall_mm": m["rainfall_mm"]}) for m in recs]
-add("rain_08_jsonl_district_aliases", "rainfall", "rain_08.txt", "\n".join(lines) + "\n",
+add("rain_08_jsonl_district_aliases", "rainfall", "rain_08_jsonl_district_aliases.txt", "\n".join(lines) + "\n",
     "JSON Lines, district spellings (Imphal-East, Noney, kakching)", [rain_record(m, days=False) for m in recs], difficulty="hard")
 
 # r09 centimetres via a Unit column
 recs = rain_pick(10, pred=lambda m: m["district"] in ("UKHRUL", "BISHNUPUR") and m["rainfall_mm"] > 0)
 rows = [["District", "Month", "Rainfall", "Unit"]] + [[m["district"], m["month"], fmt(round(m["rainfall_mm"] / 10, 3)), "cm"] for m in recs]
-add("rain_09_csv_cm_unit_column", "rainfall", "rain_09.csv", csv_text(rows), "Unit column says cm -> expected mm",
+add("rain_09_csv_cm_unit_column", "rainfall", "rain_09_csv_cm_unit_column.csv", csv_text(rows), "Unit column says cm -> expected mm",
     [rain_record(m, days=False) for m in recs], difficulty="hard")
 
 # r10 footer rows that are not data
 recs = rain_pick(8, pred=lambda m: m["district"] in ("THOUBAL", "KAMJONG") and m["month"].startswith("2020"))
 rows = [["District", "YearMonth", "Rainfall (mm)"]] + [[m["district"], m["month"], fmt(m["rainfall_mm"])] for m in recs]
 rows += [["Total", "", fmt(round(sum(m["rainfall_mm"] for m in recs), 1))], ["Average", "", fmt(round(sum(m["rainfall_mm"] for m in recs) / 8, 1))]]
-add("rain_10_csv_summary_footer", "rainfall", "rain_10.csv", csv_text(rows), "Trailing Total / Average rows must not become data",
+add("rain_10_csv_summary_footer", "rainfall", "rain_10_csv_summary_footer.csv", csv_text(rows), "Trailing Total / Average rows must not become data",
     [rain_record(m, days=False) for m in recs], difficulty="hard")
 
 # ================================================================== PRODUCTION (10)
@@ -421,20 +421,20 @@ sel = {"Banana": {"Bishnupur", "Chandel", "Churachandpur"}, "Potato": {"Imphal e
 
 # p01 original multi-row-header layout
 rows = orig_layout(sel, YEARS4)
-add("prod_01_csv_original_layout", "production", "prod_01.csv", csv_text(rows),
+add("prod_01_csv_original_layout", "production", "prod_01_csv_original_layout.csv", csv_text(rows),
     "Original 3-row header, hierarchy rows, year blocks, Total rows (skipped)", refs_from_orig(rows, YEARS4))
 
 # p02 tidy
 recs = prod_pick(12, pred=lambda p: p["area"] and p["prod"] and p["yield"])
 rows = [["Crop", "District", "Year", "Area (ha)", "Production (t)", "Yield (t/ha)"]] + \
        [[p["crop"], p["district"].title(), p["period"], p["area"], p["prod"], p["yield"]] for p in recs]
-add("prod_02_csv_tidy", "production", "prod_02.csv", csv_text(rows), "Tidy CSV, units in headers", [prod_record(p) for p in recs])
+add("prod_02_csv_tidy", "production", "prod_02_csv_tidy.csv", csv_text(rows), "Tidy CSV, units in headers", [prod_record(p) for p in recs])
 
 # p03 acres / quintals
 recs = prod_pick(10, pred=lambda p: p["area"] and p["prod"] and float(p["area"]) >= 20)
 rows = [["Crop", "District", "Period", "Area (acres)", "Production (quintals)"]] + \
        [[p["crop"], p["district"], p["period"], fmt(round(float(p["area"]) / 0.404686, 2)), fmt(float(p["prod"]) * 10)] for p in recs]
-add("prod_03_csv_acres_quintals", "production", "prod_03.csv", csv_text(rows), "Acres + quintals -> expected ha + tonnes",
+add("prod_03_csv_acres_quintals", "production", "prod_03_csv_acres_quintals.csv", csv_text(rows), "Acres + quintals -> expected ha + tonnes",
     [prod_record(p, yld=False) for p in recs], difficulty="hard")
 
 # p04 nested JSON crop -> year -> list
@@ -443,7 +443,7 @@ doc = {"crops": {}}
 for p in recs:
     doc["crops"].setdefault(p["crop"], {}).setdefault(p["period"], []).append(
         {"district": p["district"].title(), "area_ha": float(p["area"]), "production_t": float(p["prod"])})
-add("prod_04_json_crop_year_nested", "production", "prod_04.json", json.dumps(doc, indent=1), "crop -> year -> district records",
+add("prod_04_json_crop_year_nested", "production", "prod_04_json_crop_year_nested.json", json.dumps(doc, indent=1), "crop -> year -> district records",
     [prod_record(p, yld=False) for p in recs])
 
 # p05 two-row header: years row + variable row, crop and district as label columns
@@ -455,7 +455,7 @@ periods = sorted({p["period"] for p in recs})
 rows = [["Crop", "District"] + [c for y in periods for c in (y, "", "")], ["", ""] + ["Area", "Production", "Yield"] * len(periods)]
 for (c, d), ps in byk.items():
     rows.append([c, d.title()] + [x for y in periods for x in ((ps[y]["area"], ps[y]["prod"], ps[y]["yield"]) if y in ps else ("", "", ""))])
-add("prod_05_csv_two_row_header_wide", "production", "prod_05.csv", csv_text(rows),
+add("prod_05_csv_two_row_header_wide", "production", "prod_05_csv_two_row_header_wide.csv", csv_text(rows),
     "Years row + Area/Production/Yield row, crop and district in label columns", [prod_record(p) for p in recs], difficulty="hard")
 
 # p06 crop synonyms
@@ -465,28 +465,28 @@ for c in want:
     recs += prod_pick(2, pred=lambda p, c=c: p["crop"] == c and p["area"] and p["prod"] and p["yield"])
 rows = [["Crop", "District", "Year", "Area (Hectare)", "Production (Tonnes)", "Yield (t/ha)"]] + \
        [[p["crop"], p["district"], p["period"], p["area"], p["prod"], p["yield"]] for p in recs]
-add("prod_06_csv_crop_synonyms", "production", "prod_06.csv", csv_text(rows),
+add("prod_06_csv_crop_synonyms", "production", "prod_06_csv_crop_synonyms.csv", csv_text(rows),
     "Crop names that need standardising (Redish->Radish, Tapioca->Cassava, ...)", [prod_record(p) for p in recs], difficulty="hard")
 
 # p07 original layout with Total rows and a Grand Total footer
 sel7 = {"Wheat": {"Imphal east", "Senapati"}, "Tomato": {"Bishnupur", "Chandel"}}
 y7 = ["2019 - 2020", "2021 - 2022", "2022 - 2023"]
 rows = orig_layout(sel7, y7, grand=True)
-add("prod_07_csv_totals_and_grand_total", "production", "prod_07.csv", csv_text(rows),
+add("prod_07_csv_totals_and_grand_total", "production", "prod_07_csv_totals_and_grand_total.csv", csv_text(rows),
     "Original layout + Total rows + a Grand Total row that must all be skipped", refs_from_orig(rows, y7), difficulty="hard")
 
 # p08 kg + hectares
 recs = prod_pick(10, pred=lambda p: p["area"] and p["prod"])
 rows = [["Crop", "District", "Year", "Area (Hectare)", "Production (Kg)"]] + \
        [[p["crop"], p["district"], p["period"], p["area"], fmt(float(p["prod"]) * 1000)] for p in recs]
-add("prod_08_csv_kg", "production", "prod_08.csv", csv_text(rows), "Production in kg -> expected tonnes",
+add("prod_08_csv_kg", "production", "prod_08_csv_kg.csv", csv_text(rows), "Production in kg -> expected tonnes",
     [prod_record(p, yld=False) for p in recs], difficulty="hard")
 
 # p09 semicolon + decimal comma
 recs = prod_pick(10, pred=lambda p: p["area"] and p["prod"] and p["yield"] and "." in p["yield"])
 rows = [["Crop", "Distr.", "Agri Year", "Area (ha)", "Production (t)", "Yield (t/ha)"]] + \
        [[p["crop"], p["district"], p["period"], p["area"], p["prod"], p["yield"].replace(".", ",")] for p in recs]
-add("prod_09_csv_semicolon_decimal_comma", "production", "prod_09.csv", csv_text(rows, ";"), "';' delimiter, decimal commas in yield",
+add("prod_09_csv_semicolon_decimal_comma", "production", "prod_09_csv_semicolon_decimal_comma.csv", csv_text(rows, ";"), "';' delimiter, decimal commas in yield",
     [prod_record(p) for p in recs], difficulty="hard")
 
 # p10 blank area cells (only production + yield known)
@@ -494,21 +494,21 @@ recs = prod_pick(10, pred=lambda p: p["area"] and p["prod"] and p["yield"])
 rows = [["Crop", "District", "Year", "Area (ha)", "Production (t)", "Yield (t/ha)"]] + \
        [[p["crop"], p["district"], p["period"], "" if i % 2 else p["area"], p["prod"], p["yield"]] for i, p in enumerate(recs)]
 r10 = [prod_record(p) if i % 2 == 0 else prod_record(p, area=False) for i, p in enumerate(recs)]
-add("prod_10_csv_blank_cells", "production", "prod_10.csv", csv_text(rows), "Blank area cells: those fields must be absent, not 0",
+add("prod_10_csv_blank_cells", "production", "prod_10_csv_blank_cells.csv", csv_text(rows), "Blank area cells: those fields must be absent, not 0",
     r10, difficulty="hard")
 
 # ================================================================== OPERATIONS CASES (for M11 / M12; no field reference)
-add("ops_01_empty_file", "none", "ops_01.csv", "", "Empty file must fail cleanly", [], difficulty="error", expected_status="failed")
+add("ops_01_empty_file", "none", "ops_01_empty_file.csv", "", "Empty file must fail cleanly", [], difficulty="error", expected_status="failed")
 cases[-1]["trajectory"] = ["inspect_file", "read_csv_data", "read_csv_data", "read_json_data"]  # retry, then other parser
-add("ops_02_not_agri_json", "none", "ops_02.json", json.dumps({"title": "meeting notes", "attendees": ["a", "b"]}),
+add("ops_02_not_agri_json", "none", "ops_02_not_agri_json.json", json.dumps({"title": "meeting notes", "attendees": ["a", "b"]}),
     "Valid JSON with no agricultural data must fail cleanly", [], difficulty="error", expected_status="failed")
 cases[-1]["trajectory"] = ["inspect_file", "read_json_data"]
 src = next(c for c in cases if c["id"] == "rain_02_csv_tidy")
-add("ops_03_fault_read", "rainfall", "ops_03.csv", src["content"], "Injected read fault -> retry -> complete",
+add("ops_03_fault_read", "rainfall", "ops_03_fault_read.csv", src["content"], "Injected read fault -> retry -> complete",
     src["records"], difficulty="fault", fault="read")
 cases[-1]["trajectory"] = ["inspect_file", "read_csv_data", "read_csv_data", "rainfall_extract", "sqlite_load"]
 src = next(c for c in cases if c["id"] == "soil_03_csv_long_headers")
-add("ops_04_fault_load", "soil", "ops_04.csv", src["content"], "Injected load fault -> retry -> complete", src["records"],
+add("ops_04_fault_load", "soil", "ops_04_fault_load.csv", src["content"], "Injected load fault -> retry -> complete", src["records"],
     difficulty="fault", fault="load")
 cases[-1]["trajectory"] = ["inspect_file", "read_csv_data", "soil_extract", "sqlite_load", "sqlite_load"]
 

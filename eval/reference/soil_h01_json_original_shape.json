@@ -2,7 +2,7 @@
  "case_id": "soil_h01_json_original_shape",
  "agent": "soil",
  "source_group": "json",
- "file": "cases/soil_h01.json",
+ "file": "cases/soil_h01_json_original_shape.json",
  "description": "Same nesting as the scraped SHC file",
  "difficulty": "normal",
  "needs_llm": false,

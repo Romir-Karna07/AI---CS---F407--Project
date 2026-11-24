@@ -2,7 +2,7 @@
  "case_id": "ai_11_tamil_prose_txt",
  "agent": "production",
  "source_group": "text",
- "file": "dev/ai/cases/ai_11.txt",
+ "file": "dev/ai/cases/ai_11_TAMIL_PROSE.txt",
  "description": "Production figures inside Tamil sentences (a language no code or prompt mentions)",
  "difficulty": "hard",
  "needs_llm": true,

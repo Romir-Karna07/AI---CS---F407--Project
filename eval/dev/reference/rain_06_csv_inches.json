@@ -2,7 +2,7 @@
  "case_id": "rain_06_csv_inches",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "dev/cases/rain_06.csv",
+ "file": "dev/cases/rain_06_csv_inches.csv",
  "description": "Rainfall in inches (unit in header) -> expected mm",
  "difficulty": "hard",
  "needs_llm": false,

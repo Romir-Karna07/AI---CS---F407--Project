@@ -2,7 +2,7 @@
  "case_id": "prod_07_csv_totals_and_grand_total",
  "agent": "production",
  "source_group": "csv",
- "file": "dev/cases/prod_07.csv",
+ "file": "dev/cases/prod_07_csv_totals_and_grand_total.csv",
  "description": "Original layout + Total rows + a Grand Total row that must all be skipped",
  "difficulty": "hard",
  "needs_llm": false,

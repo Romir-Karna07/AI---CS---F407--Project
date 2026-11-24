@@ -2,7 +2,7 @@
  "case_id": "soil_09_ph_zero_is_missing",
  "agent": "soil",
  "source_group": "json",
- "file": "dev/cases/soil_09.json",
+ "file": "dev/cases/soil_09_ph_zero_is_missing.json",
  "description": "pH = 0.0 in the source means 'not measured': expected ph absent",
  "difficulty": "hard",
  "needs_llm": false,

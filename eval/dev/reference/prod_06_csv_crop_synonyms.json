@@ -2,7 +2,7 @@
  "case_id": "prod_06_csv_crop_synonyms",
  "agent": "production",
  "source_group": "csv",
- "file": "dev/cases/prod_06.csv",
+ "file": "dev/cases/prod_06_csv_crop_synonyms.csv",
  "description": "Crop names that need standardising (Redish->Radish, Tapioca->Cassava, ...)",
  "difficulty": "hard",
  "needs_llm": false,

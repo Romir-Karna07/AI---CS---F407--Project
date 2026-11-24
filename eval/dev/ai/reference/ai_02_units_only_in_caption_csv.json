@@ -2,7 +2,7 @@
  "case_id": "ai_02_units_only_in_caption_csv",
  "agent": "production",
  "source_group": "csv",
- "file": "dev/ai/cases/ai_02.csv",
+ "file": "dev/ai/cases/ai_02_UNITS_IN_CAPTION.csv",
  "description": "Columns carry no unit: 'thousand hectares / tonnes' is stated only in the first line",
  "difficulty": "hard",
  "needs_llm": true,

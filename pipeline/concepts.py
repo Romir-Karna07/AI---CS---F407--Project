@@ -36,7 +36,7 @@ SYNONYMS = {
     "state_code": ["statecode", "statelgd", "stateid"],
     "latitude": ["latitude", "lat", "approxlatitude"],
     "longitude": ["longitude", "lon", "long", "lng", "approxlongitude"],
-    "crop": ["crop", "cropname", "commodity"],
+    "crop": ["crop", "cropname", "commodity", "nameofthecrop", "nameofcrop", "nameofcrops", "nameofthecrops", "cropsname"],
     "season": ["season", "cropseason"],
     "period": ["period", "cycle", "shccycles", "shccycle", "year", "agriculturalyear", "financialyear", "fy", "cropyear"],
     "unit": ["unit", "units", "uom"],
@@ -149,8 +149,8 @@ def score_domains(canon_fields) -> dict:
     # soil needs several nutrients, not one stray 'b' / 'k' column
     if scores["soil"] < 3:
         scores["soil"] = 0
-    if scores["production"] < 2:
-        scores["production"] = 0
+    if scores["production"] < 2 and not (scores["production"] == 1 and "crop" in fields):
+        scores["production"] = 0        # one measure is enough only next to a column that names the crop ("Area under fruits": crop + area)
     return scores
 
 

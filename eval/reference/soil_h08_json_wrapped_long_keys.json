@@ -2,7 +2,7 @@
  "case_id": "soil_h08_json_wrapped_long_keys",
  "agent": "soil",
  "source_group": "json",
- "file": "cases/soil_h08.json",
+ "file": "cases/soil_h08_json_wrapped_long_keys.json",
  "description": "Array of records with long unit-bearing keys under wrapper keys",
  "difficulty": "normal",
  "needs_llm": false,

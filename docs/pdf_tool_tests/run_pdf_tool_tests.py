@@ -175,22 +175,34 @@ def t_ocr3(pdf, page):
 
 
 def t_cascade(pdf, page):
-    """the document agent's own cascade (pipeline/pdf_reader.py): pdfplumber ruled tables -> camelot stream, then title-row / shifted-column clean-up"""
+    """the document agent's own cascade, as in pipeline/pdf_reader.py today: pdfplumber ruled tables -> (sideways page: turned upright, camelot stream)
+    -> camelot stream, then title-row / shifted-column clean-up and the caption legend (A = Area ...) expanded"""
     sys.path.insert(0, str(ROOT))
     import pdfplumber
+    import pymupdf
     from pipeline import pdf_reader as pr
+    fdoc = pymupdf.open(str(pdf))
+    lines = pr._page_lines_text(fdoc[page - 1])
     with pdfplumber.open(str(pdf)) as d:
         tabs = [t for t in pr._plumber_tables(d.pages[page - 1]) if pr._usable(t)]
     route = "pdfplumber"
+    if not tabs:
+        rot = pr._sideways(fdoc[page - 1])
+        if rot:
+            up, up_lines = pr._upright_tables(fdoc, page, rot)
+            tabs = [t for t in up if pr._usable(t)]
+            if tabs:
+                route, lines = "camelot_upright", up_lines
     if not tabs:
         route = "camelot_stream"
         tabs = [t for t in pr._camelot_tables(pdf, page) if pr._usable(t)]
     rows = []
     for t in tabs:
-        t, _ = pr.split_title_rows(t)
-        if route != "pdfplumber":
+        t, title = pr.split_title_rows(t)
+        if not route.startswith("pdfplumber"):
             t = pr.merge_shifted_columns(t)
-        rows += [" | ".join(r) for r in t]
+        t = pr.expand_legend(t, pr.legend_of(title + lines[-4:]))
+        rows += [" | ".join(str(c) for c in r) for r in t]
     return rows
 
 

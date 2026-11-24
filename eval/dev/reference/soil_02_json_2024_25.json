@@ -2,7 +2,7 @@
  "case_id": "soil_02_json_2024_25",
  "agent": "soil",
  "source_group": "json",
- "file": "dev/cases/soil_02.json",
+ "file": "dev/cases/soil_02_json_2024_25.json",
  "description": "2024-25 cycle layout (lowercase village, no tehsil)",
  "difficulty": "normal",
  "needs_llm": false,

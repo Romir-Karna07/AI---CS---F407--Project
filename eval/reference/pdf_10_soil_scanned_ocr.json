@@ -3,7 +3,7 @@
  "agent": "soil",
  "owner_agent": "document_agent",
  "source_group": "pdf",
- "file": "cases/pdf_10.pdf",
+ "file": "cases/pdf_10_soil_scanned_ocr.pdf",
  "description": "Scanned page (image only): OCR needed, ruled landscape table",
  "difficulty": "hard",
  "needs_llm": false,

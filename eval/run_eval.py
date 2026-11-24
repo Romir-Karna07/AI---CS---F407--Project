@@ -481,7 +481,7 @@ if xlsx.exists():
     except Exception as e:  # reporting only
         print("could not read inventory workbook:", e)
 # M1 / M2 are measured over ALL inventory sources (one map row per Phase 1 source, ids checked against the workbook).
-# "phase2_scope" marks the 6 sources the team is working on now; their share is reported on its own row for information.
+# "phase2_scope" marks the sources the team is working on now; their share is reported on its own row for information.
 n_inv = len(inv_ids) if inv_ids else len(map_rows)
 ids_match = inv_ids is None or sorted(inv_ids) == sorted(r["source_id"] for r in map_rows)
 mapped = sum(1 for r in map_rows if r["agent"].strip() and (inv_ids is None or r["source_id"] in inv_ids))
@@ -494,7 +494,7 @@ scope_rows = [r for r in map_rows if r.get("phase2_scope") == "in_scope"]
 if scope_rows:
     emit("M2", "in_scope_sources", sum(r["status"] in ("done", "partial") for r in scope_rows) / len(scope_rows),
          sum(r["status"] in ("done", "partial") for r in scope_rows), len(scope_rows), status="reported",
-         notes="the 6 sources the team is working on now (phase2_scope=in_scope); information only, not the scored M2")
+         notes="the sources the team is working on now (phase2_scope=in_scope); information only, not the scored M2")
 try:
     sys.path.insert(0, str(EVAL))
     import contamination_check
@@ -571,7 +571,7 @@ if not args.no_official_db and Path(args.db).exists():
     for t, _ in tabs:
         allrows += [(t, dict(r)) for r in con.execute(f"SELECT * FROM {t}")]
     sample = rng.sample(allrows, 3)
-    SRC = {p.name: p for p in (ROOT / "Data" / "partitions").glob("*")}
+    SRC = {p.name: p for d in ("partitions", "pdf_samples") for p in (ROOT / "Data" / d).glob("*")}   # dev partitions + the real inventory PDFs
     ok3 = 0
     for t, r in sample:
         numeric = {k: r[k] for k in (SOIL_NUTRIENTS + ["rainfall_mm", "area_ha", "production_t", "yield_t_ha"]) if k in r and r[k] is not None}

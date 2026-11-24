@@ -3,7 +3,7 @@
  "agent": "production",
  "owner_agent": "document_agent",
  "source_group": "pdf",
- "file": "cases/pdf_01.pdf",
+ "file": "cases/pdf_01_production_ruled_multipage.pdf",
  "description": "Ruled grid, tidy columns, table continues on the next page with a repeated header",
  "difficulty": "normal",
  "needs_llm": false,

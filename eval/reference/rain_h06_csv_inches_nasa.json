@@ -2,7 +2,7 @@
  "case_id": "rain_h06_csv_inches_nasa",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "cases/rain_h06.csv",
+ "file": "cases/rain_h06_csv_inches_nasa.csv",
  "description": "Rainfall in inches (unit in header) -> expected mm [S21 NASA POWER]",
  "difficulty": "hard",
  "needs_llm": false,

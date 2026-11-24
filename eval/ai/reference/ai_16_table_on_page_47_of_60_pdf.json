@@ -2,7 +2,7 @@
  "case_id": "ai_16_table_on_page_47_of_60_pdf",
  "agent": "rainfall",
  "source_group": "pdf",
- "file": "ai/cases/ai_16.pdf",
+ "file": "ai/cases/ai_16_PDF_60PAGES_TABLE_P47.pdf",
  "description": "60-page report; the only rainfall table (district and year only in its caption) is on page 47, beyond the old 40-page limit",
  "difficulty": "hard",
  "needs_llm": true,

@@ -3,7 +3,7 @@
  "agent": "production",
  "owner_agent": "document_agent",
  "source_group": "pdf",
- "file": "cases/pdf_03.pdf",
+ "file": "cases/pdf_03_production_bilingual_hindi_headers.pdf",
  "description": "English + Hindi (Devanagari) headers; acres and quintals -> expected ha and tonnes",
  "difficulty": "hard",
  "needs_llm": false,

@@ -2,7 +2,7 @@
  "case_id": "ops_03_fault_read",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "cases/ops_03.csv",
+ "file": "cases/ops_03_fault_read.csv",
  "description": "Injected read fault -> retry -> complete",
  "difficulty": "fault",
  "needs_llm": false,

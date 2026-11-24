@@ -251,7 +251,7 @@ for f in list(CASES.glob("pdf_*")) + list(REFS.glob("pdf_*")):
 
 # ---- production
 rs = take(PROD, 36, pkey)
-fn = "pdf_01.pdf"
+fn = "pdf_01_production_ruled_multipage.pdf"
 make_pdf(CASES / fn, [(None, ["Crop", "District", "Year", "Area (ha)", "Production (t)", "Yield (t/ha)"],
                       [[p["crop"], p["district"].title(), p["period"], p["area"], p["prod"], p["yield"]] for p in rs])],
          col_widths=[110, 90, 70, 80, 90, 80])
@@ -267,13 +267,13 @@ for (d, y) in rng.sample(sorted(k for k, v in _cnt.items() if v >= 10), 3):
     rs += sub
     pages.append((f"Table 4.2: Area, production and yield of crops in {d.title()} district, {y}",
                   ["Crop", "Area (Hectare)", "Production (Tonnes)", "Yield (T/Ha)"], [[p["crop"], p["area"], p["prod"], p["yield"]] for p in sub]))
-fn = "pdf_02.pdf"
+fn = "pdf_02_production_unruled_caption_context.pdf"
 make_pdf(CASES / fn, pages, ruled=False, col_widths=[130, 100, 110, 90])
 add("pdf_02_production_unruled_caption_context", "production", fn, "No ruling lines; district and year only in the caption above each table",
     [prod_ref(p) for p in rs], "hard")
 
 rs = take(PROD, 22, pkey)
-fn = "pdf_03.pdf"
+fn = "pdf_03_production_bilingual_hindi_headers.pdf"
 hdr = ["\u092b\u0938\u0932 Crop", "\u091c\u093f\u0932\u093e District", "\u0935\u0930\u094d\u0937 Year",
        "\u0915\u094d\u0937\u0947\u0924\u094d\u0930\u092b\u0932 Area (acres)", "\u0909\u0924\u094d\u092a\u093e\u0926\u0928 Production (quintals)"]
 make_pdf(CASES / fn, [(None, hdr, [[p["crop"], p["district"].title(), p["period"], fmt(round(float(p["area"]) / 0.404686, 4)),
@@ -282,7 +282,7 @@ add("pdf_03_production_bilingual_hindi_headers", "production", fn, "English + Hi
     [prod_ref(p, yld=False) for p in rs], "hard")
 
 rs = take(PROD, 20, pkey)
-fn = "pdf_04.pdf"
+fn = "pdf_04_production_scanned_ocr.pdf"
 make_pdf(CASES / fn, [(None, ["Crop", "District", "Year", "Area (ha)", "Production (t)", "Yield (t/ha)"],
                       [[p["crop"], p["district"].title(), p["period"], p["area"], p["prod"], p["yield"]] for p in rs])],
          col_widths=[110, 90, 70, 80, 90, 80], font_size=9)
@@ -310,7 +310,7 @@ for d in sorted({k[0] for k in imd_b}):
         body.append([y] + [fmt(ms[i]["rainfall_mm"]) if i in ms else "" for i in range(1, 13)])
         rs += list(ms.values())
     pages.append((f"Monthly rainfall (mm) for {d.title()} district", ["Year"] + MONTHS, body))
-fn = "pdf_05.pdf"
+fn = "pdf_05_rainfall_wide_months_caption_district.pdf"
 make_pdf(CASES / fn, pages, landscape_=True, col_widths=[40] + [52] * 12)
 add("pdf_05_rainfall_wide_months_caption_district", "rainfall", fn, "Year x Jan..Dec table; the district is only in the caption (one table per page)",
     [rain_ref(m) for m in rs], "hard")
@@ -320,7 +320,7 @@ chosen = rng.sample(nasa_keys, 5)
 rs = [m for k in chosen for m in nasa_b[k]]
 used.update(("n",) + k for k in chosen)
 rows = sorted(rs, key=lambda m: (m["district"], m["month"]))
-fn = "pdf_06.pdf"
+fn = "pdf_06_rainfall_tidy_ruled_multipage.pdf"
 make_pdf(CASES / fn, [(None, ["District", "Year-Month", "Rainfall (mm)", "Rainy days (>=2.5 mm)"],
                       [[m["district"].title(), m["month"], fmt(m["rainfall_mm"]), m["rainy_days_ge_2.5mm"]] for m in rows])],
          col_widths=[110, 90, 100, 120])
@@ -334,7 +334,7 @@ body = []
 for (d, y) in sorted(chosen):
     ms = {int(m["month"][5:]): m for m in imd_b[(d, y)]}
     body.append([d.title(), y] + [fmt(ms[i]["rainfall_mm"]) if i in ms else "" for i in range(1, 13)])
-fn = "pdf_07.pdf"
+fn = "pdf_07_rainfall_rotated_page_unruled.pdf"
 make_pdf(CASES / fn, [("Table 3.4: Monthly rainfall (mm)", ["District", "Year"] + MONTHS, body)], landscape_=True, ruled=False,
          col_widths=[80, 38] + [46] * 12)
 rotate_physically(CASES / fn)
@@ -342,7 +342,7 @@ add("pdf_07_rainfall_rotated_page_unruled", "rainfall", fn, "Page content physic
 
 # ---- soil
 rs = take(SOIL, 20, lambda s: ("s", s["district"], s["cycle"], s["village"]))
-fn = "pdf_08.pdf"
+fn = "pdf_08_soil_ruled_landscape.pdf"
 make_pdf(CASES / fn, [(None, ["District", "Village", "Cycle"] + ["N", "P", "K", "pH", "OC", "EC", "S", "Zn", "Fe", "Cu", "Mn", "B"],
                       [[s["district"].title(), s["village"], s["cycle"]] + [fmt(s["vals"][k]) for k in NUT] for s in rs])],
          landscape_=True, font_size=7, col_widths=[70, 110] + [48] + [36] * 12)
@@ -359,12 +359,12 @@ for (d, c) in rng.sample(big, min(3, len(big))):
     pages.append((f"Soil Health Card survey, cycle {c}, {d.title()} district",
                   ["Village", "N (kg/ha)", "P (kg/ha)", "K (kg/ha)", "pH", "OC (%)", "EC (dS/m)", "S (ppm)", "Zn (ppm)", "Fe (ppm)", "Cu (ppm)",
                    "Mn (ppm)", "B (ppm)"], [[s["village"]] + [fmt(s["vals"][k]) for k in NUT] for s in sub]))
-fn = "pdf_09.pdf"
+fn = "pdf_09_soil_unruled_caption_cycle_district.pdf"
 make_pdf(CASES / fn, pages, landscape_=True, ruled=False, font_size=7, col_widths=[110] + [52] * 12)
 add("pdf_09_soil_unruled_caption_cycle_district", "soil", fn, "No ruling lines; district and SHC cycle only in the caption", [soil_ref(s) for s in rs], "hard")
 
 rs = take(SOIL, 14, lambda s: ("s", s["district"], s["cycle"], s["village"]))
-fn = "pdf_10.pdf"
+fn = "pdf_10_soil_scanned_ocr.pdf"
 make_pdf(CASES / fn, [(None, ["District", "Village", "Cycle"] + ["N", "P", "K", "pH", "OC", "EC", "S", "Zn", "Fe", "Cu", "Mn", "B"],
                       [[s["district"].title(), s["village"], s["cycle"]] + [fmt(s["vals"][k]) for k in NUT] for s in rs])],
          landscape_=True, font_size=9, col_widths=[80, 120, 55] + [42] * 12)

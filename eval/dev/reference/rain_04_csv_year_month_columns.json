@@ -2,7 +2,7 @@
  "case_id": "rain_04_csv_year_month_columns",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "dev/cases/rain_04.csv",
+ "file": "dev/cases/rain_04_csv_year_month_columns.csv",
  "description": "Separate Year and full month name columns",
  "difficulty": "normal",
  "needs_llm": false,

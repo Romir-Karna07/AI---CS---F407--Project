@@ -1,0 +1,626 @@
+{
+  "run_id": "run_20261124210453_7df656",
+  "input": "S54_mofpi_manipur_state_profile.pdf",
+  "status": "complete",
+  "source_type": "pdf",
+  "groups": [
+    {
+      "pattern": "pdf:p7.t1",
+      "domain": "production",
+      "records": 4,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm+llm_dims+context+state",
+      "mapped_headers": {
+        "Production": "production",
+        "Particulars": "crop"
+      },
+      "unmapped_headers": [
+        "S.No."
+      ]
+    },
+    {
+      "pattern": "pdf:p7.t2",
+      "domain": null,
+      "records": 0,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "no_crop_rows_after_filter",
+      "mapped_headers": {
+        "Production": "production",
+        "Particulars": "crop"
+      },
+      "unmapped_headers": [
+        "S.No."
+      ],
+      "excluded_non_crop": [
+        {
+          "label": "Milk (thousand MT)",
+          "category": "livestock / fishery",
+          "how": "vocabulary"
+        },
+        {
+          "label": "Egg (lakh nos.)",
+          "category": "livestock / fishery",
+          "how": "vocabulary"
+        },
+        {
+          "label": "Meat (thousand MT)",
+          "category": "livestock / fishery",
+          "how": "vocabulary"
+        },
+        {
+          "label": "Fish (lakh MT) (2022-23)29",
+          "category": "livestock / fishery",
+          "how": "vocabulary"
+        }
+      ]
+    },
+    {
+      "pattern": "pdf:p7.t3",
+      "domain": "production",
+      "records": 4,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm+llm_dims+context+state",
+      "mapped_headers": {
+        "Production": "production",
+        "Particulars": "crop"
+      },
+      "unmapped_headers": [
+        "S.No."
+      ]
+    },
+    {
+      "pattern": "pdf:p7.t4",
+      "domain": "production",
+      "records": 4,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm+llm_dims+context+state",
+      "mapped_headers": {
+        "Production": "production",
+        "Particulars": "crop"
+      },
+      "unmapped_headers": [
+        "S.No."
+      ]
+    },
+    {
+      "pattern": "pdf:p7.t5",
+      "domain": "production",
+      "records": 4,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "llm+llm_dims+context+state",
+      "mapped_headers": {
+        "Production": "production",
+        "Particulars": "crop"
+      },
+      "unmapped_headers": [
+        "S.No."
+      ]
+    }
+  ],
+  "result": {
+    "by_agent": {
+      "production_agent": {
+        "table": "crop_production",
+        "extracted": 16,
+        "inserted": 16,
+        "duplicates": 0,
+        "invalid": 0,
+        "rejected": 0,
+        "quarantined": 0
+      }
+    },
+    "rejected": [],
+    "review": 0,
+    "totals": {
+      "extracted": 16,
+      "inserted": 16,
+      "duplicate": 0,
+      "invalid": 0,
+      "rejected": 0,
+      "quarantined": 0
+    },
+    "plausibility": []
+  },
+  "notes": {
+    "error": null,
+    "agent_errors": [],
+    "unclassified_groups": [
+      "pdf:p7.t2"
+    ],
+    "retry_budget": {
+      "max": 2,
+      "used": 0,
+      "strategies": []
+    },
+    "ai": {
+      "enabled": true,
+      "model": "openai/gpt-oss-120b",
+      "calls": 9,
+      "by_purpose": {
+        "headers": 1,
+        "classify": 1,
+        "crops": 4,
+        "context": 3
+      },
+      "max_calls": 16
+    },
+    "quarantined_for_review": 0,
+    "excluded_non_crop": [
+      {
+        "label": "Milk (thousand MT)",
+        "category": "livestock / fishery",
+        "how": "vocabulary"
+      },
+      {
+        "label": "Egg (lakh nos.)",
+        "category": "livestock / fishery",
+        "how": "vocabulary"
+      },
+      {
+        "label": "Meat (thousand MT)",
+        "category": "livestock / fishery",
+        "how": "vocabulary"
+      },
+      {
+        "label": "Fish (lakh MT) (2022-23)29",
+        "category": "livestock / fishery",
+        "how": "vocabulary"
+      }
+    ]
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "S54_mofpi_manipur_state_profile.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 1099863,
+        "type": "pdf",
+        "how": "magic"
+      },
+      "ms": 2654.4
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_data",
+      "args": {
+        "file_path": "S54_mofpi_manipur_state_profile.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 20,
+        "groups": 5,
+        "notes": [
+          "pages=22",
+          "backend=auto",
+          "page range 7",
+          "tables by route: pdfplumber=5"
+        ]
+      },
+      "ms": 3985.9
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "S.No.",
+          "Particulars"
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"Particulars\": \"crop\"}",
+        "chars_in": 2787
+      },
+      "ms": 849.1
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {
+          "Particulars": "crop"
+        },
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "answer": "{\"domain\": \"production\"}",
+        "chars_in": 915
+      },
+      "ms": 297.7
+    },
+    {
+      "step": "ai:crops",
+      "tool": "llm_crops",
+      "args": {
+        "labels": 3
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"labels\": {\"Coarse cereals\": \"crop\", \"Pulses\": \"crop\", \"Oilseeds\": \"crop\"}}",
+        "chars_in": 786
+      },
+      "ms": 394.8
+    },
+    {
+      "step": "ai:context",
+      "tool": "llm_context",
+      "args": {
+        "lines": 2
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"units\": {\"production\": {\"multiplier\": 1000, \"unit\": \"t\", \"quote\": \"‘000 MT\"}}, \"district\": null, \"period\": null, \"crop\": null}",
+        "chars_in": 1478
+      },
+      "ms": 629.8
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "S.No.",
+          "Particulars"
+        ]
+      },
+      "status": "reused",
+      "detail": {
+        "answer": "same columns as an earlier table"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {
+          "Particulars": "crop"
+        },
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "reused",
+      "detail": {
+        "answer": "same columns as an earlier table"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {
+        "pattern": "pdf:p7.t2"
+      },
+      "status": "ok",
+      "detail": {
+        "excluded_non_crop": [
+          {
+            "label": "Milk (thousand MT)",
+            "category": "livestock / fishery",
+            "how": "vocabulary"
+          },
+          {
+            "label": "Egg (lakh nos.)",
+            "category": "livestock / fishery",
+            "how": "vocabulary"
+          },
+          {
+            "label": "Meat (thousand MT)",
+            "category": "livestock / fishery",
+            "how": "vocabulary"
+          },
+          {
+            "label": "Fish (lakh MT) (2022-23)29",
+            "category": "livestock / fishery",
+            "how": "vocabulary"
+          }
+        ],
+        "kept": 0
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "S.No.",
+          "Particulars"
+        ]
+      },
+      "status": "reused",
+      "detail": {
+        "answer": "same columns as an earlier table"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {
+          "Particulars": "crop"
+        },
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "reused",
+      "detail": {
+        "answer": "same columns as an earlier table"
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:crops",
+      "tool": "llm_crops",
+      "args": {
+        "labels": 4
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"labels\": {\"Pineapple\": \"crop\", \"Banana\": \"crop\", \"Passion Fruit\": \"crop\", \"Papaya\": \"crop\"}}",
+        "chars_in": 795
+      },
+      "ms": 1785.5
+    },
+    {
+      "step": "ai:context",
+      "tool": "llm_context",
+      "args": {
+        "lines": 2
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"units\": {\"production\": {\"multiplier\": 1000, \"unit\": \"t\", \"quote\": \"‘000 MT\"}}, \"district\": null, \"period\": null, \"crop\": null}",
+        "chars_in": 1478
+      },
+      "ms": 827.3
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "S.No.",
+          "Particulars"
+        ]
+      },
+      "status": "reused",
+      "detail": {
+        "answer": "same columns as an earlier table"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {
+          "Particulars": "crop"
+        },
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "reused",
+      "detail": {
+        "answer": "same columns as an earlier table"
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:crops",
+      "tool": "llm_crops",
+      "args": {
+        "labels": 3
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"labels\": {\"Cabbage\": \"crop\", \"Tomato\": \"crop\", \"Beans\": \"crop\"}}",
+        "chars_in": 776
+      },
+      "ms": 551.7
+    },
+    {
+      "step": "ai:context",
+      "tool": "llm_context",
+      "args": {
+        "lines": 2
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"units\": {\"production\": {\"multiplier\": 1000, \"unit\": \"t\", \"quote\": \"‘000 MT\"}}, \"district\": null, \"period\": null, \"crop\": null}",
+        "chars_in": 1478
+      },
+      "ms": 867.6
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "S.No.",
+          "Particulars"
+        ]
+      },
+      "status": "reused",
+      "detail": {
+        "answer": "same columns as an earlier table"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "rejected",
+      "detail": {
+        "header_proposal": {
+          "Particulars": "crop"
+        },
+        "accepted": false
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:classify",
+      "tool": "llm_classify",
+      "args": {},
+      "status": "reused",
+      "detail": {
+        "answer": "same columns as an earlier table"
+      },
+      "ms": null
+    },
+    {
+      "step": "ai:crops",
+      "tool": "llm_crops",
+      "args": {
+        "labels": 4
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"labels\": {\"Ginger\": \"crop\", \"Red chillies (dried)\": \"crop\", \"Turmeric\": \"crop\", \"Coriander\": \"crop\"}}",
+        "chars_in": 804
+      },
+      "ms": 3532.3
+    },
+    {
+      "step": "ai:context",
+      "tool": "llm_context",
+      "args": {
+        "lines": 2
+      },
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (9/16 calls, 3/3 for context)"
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "pdf:p7.t1",
+            "production",
+            4
+          ],
+          [
+            "pdf:p7.t2",
+            null,
+            0
+          ],
+          [
+            "pdf:p7.t3",
+            "production",
+            4
+          ],
+          [
+            "pdf:p7.t4",
+            "production",
+            4
+          ],
+          [
+            "pdf:p7.t5",
+            "production",
+            4
+          ]
+        ],
+        "queue": [
+          "production"
+        ],
+        "language": []
+      },
+      "ms": 9756.4
+    },
+    {
+      "step": "production_agent",
+      "tool": "production_extract",
+      "args": {
+        "records_in": 16
+      },
+      "status": "ok",
+      "detail": {
+        "rows_out": 16
+      },
+      "ms": 11.7
+    },
+    {
+      "step": "load",
+      "tool": "sqlite_load",
+      "args": {
+        "db": "manipur.db"
+      },
+      "status": "ok",
+      "detail": {
+        "extracted": 16,
+        "inserted": 16,
+        "duplicate": 0,
+        "invalid": 0,
+        "rejected": 0,
+        "quarantined": 0,
+        "plausibility": []
+      },
+      "ms": 53.8
+    }
+  ]
+}

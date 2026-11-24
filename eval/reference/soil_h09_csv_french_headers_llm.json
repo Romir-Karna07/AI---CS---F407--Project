@@ -2,7 +2,7 @@
  "case_id": "soil_h09_csv_french_headers_llm",
  "agent": "soil",
  "source_group": "csv",
- "file": "cases/soil_h09.csv",
+ "file": "cases/soil_h09_csv_french_headers_llm.csv",
  "description": "Non-English headers; rules cannot map them, the Groq header mapper must",
  "difficulty": "hard",
  "needs_llm": true,

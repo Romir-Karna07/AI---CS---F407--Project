@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | **Tables** | none of its own: it produces the same neutral records as the CSV / JSON readers, and the soil / rainfall / production agents store them in `soil_health`, `rainfall_monthly`, `crop_production` |
-| **Sources** | the 17 PDF-first inventory sources (S05, S08-S12, S14, S19, S20, S25, S27, S30, S31, S45, S50, S53, S54). **No inventory source is marked done or partial yet** (see Limitations) |
+| **Sources** | the 17 PDF-first inventory sources (S05, S08-S12, S14, S19, S20, S25, S27, S30, S31, S45, S50, S53, S54). **S08** (Manipur Agriculture Department area / production / yield sheets, by district), **S54** (MoFPI state profile) and **S10** (Economic Survey Manipur 2024-25, Table 5.12) are **partial**; the rest pending (see Limitations) |
 | **Source group** | Document (PDF with a text layer, scanned PDF) |
 | **Code** | `pipeline/pdf_reader.py` (`read_pdf_file`), `tools/pdf_tool.py` (`read_pdf_data`), graph nodes `read` / `recover` in `pipeline/graph.py` |
 | **Evidence** | `docs/challenge.md` (tool comparison), `eval/cases/pdf_*.pdf` + `eval/reference/pdf_*.json` (10 held-out cases), `eval/dev/cases/pdf_*.pdf` (10 dev twins) |
@@ -47,7 +47,8 @@ the physically rotated page scores 0.629 (December column lost, some district ce
 (10 / 10 at F1 1.0 after development) and on the real PDFs, which is why the held-out result is lower: it is the honest number.
 
 ## Limitations
-* **No real PDF source is loaded.** The 10 real PDFs from the inventory were run through the pipeline (`logs/automation_log.csv`, 8 rows marked as manual because the page
+* **Three real PDF sources are loaded (2026-11-24):** S54 (16 state-level rows), S06 (10), S08 (158 by district, two years), by `db/load_inventory_pdfs.py`. That needed three reader additions: legend codes in a caption are expanded (`A = Area in 000 ha`), crops coded A / P / Y in rows with districts across are turned into records (`melt_coded_blocks`), and a sideways page is turned upright before camelot reads it. Page ranges for S54 / S06 are chosen by hand (logged as manual).
+* Before that, the 10 real PDFs from the inventory were run through the pipeline (`logs/automation_log.csv`, 8 rows marked as manual because the page
   range was chosen by hand): most tables hold data outside the three domains (population, ARIMA statistics, banking profile, land-use and irrigation tables) and the run
   fails cleanly with "no recognised ... records"; the DACP "normal rainfall" table is classified as rainfall but is seasonal, not monthly, so all rows are rejected, and the
   run still reports `complete`; one DACP land-use table was misclassified as production and stored as `invalid` rows (district UNSPECIFIED).

@@ -2,7 +2,7 @@
  "case_id": "ai_15_impossible_values_csv",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "ai/cases/ai_15.csv",
+ "file": "ai/cases/ai_15_IMPOSSIBLE_VALUES.csv",
  "description": "Two impossible rainfall values (99,999 and 45,000 mm in a month): must be set aside for review, not stored",
  "difficulty": "hard",
  "needs_llm": true,

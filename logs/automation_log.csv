@@ -34,3 +34,15 @@ run_20261120192500_studio,2026-11-20T19:26:11,SampleDocument.pdf,complete,no,,16
 run_20261120193852_6df618,2026-11-20T19:47:59,SampleDocument2.pdf,failed,no,,0,0,2,"read failed (text): no verifiable agricultural facts found in the text (prose: stopped after 7 chunk(s), model budget exhausted; prose: 8 chunk(s), 0 verified fact(s), 0 rejected); ai_calls=16"
 run_20261120192540_ee5bc0,2026-11-20T20:02:23,SampleDocument2.pdf,failed,no,,0,0,2,"read failed (text): no verifiable agricultural facts found in the text (prose: stopped after 21 chunk(s), model budget exhausted; prose: 22 chunk(s), 0 verified fact(s), 0 rejected); ai_calls=14"
 run_20261120201528_94f931,2026-11-20T20:22:50,SampleDocument2.pdf,failed,no,,0,0,2,"read failed (text): no verifiable agricultural facts found in the text (prose: stopped after 7 chunk(s), model budget exhausted; prose: 8 chunk(s), 0 verified fact(s), 0 rejected); ai_calls=16"
+run_20261124181438_8f6e1d,2026-11-24T18:14:45,soil_h09_csv_french_headers_llm.csv,complete,no,,7,7,0,ai_calls=1
+run_20261124183007_4f9306,2026-11-24T18:34:40,manipuri_rare.pdf,failed,no,,0,0,2,read failed (pdf_ocr): no tables with numeric data found in the PDF (no text layer; OCR found none); ai_calls=1
+run_20261124183007_4f9306,2026-11-24T18:48:34,manipuri_rare.pdf,failed,no,,0,0,2,read failed (pdf_ocr): no tables with numeric data found in the PDF (no text layer; OCR found none); ai_calls=1
+run_20261124210453_7df656,2026-11-24T21:05:09,S54_mofpi_manipur_state_profile.pdf,complete,yes,S54: pages chosen by hand (7),16,16,0,ai_calls=9
+run_20261124210509_a6c943,2026-11-24T21:05:19,S06_nhb_horticulture_at_a_glance_2018.pdf,complete,yes,"S06: pages chosen by hand (187,192)",10,10,0,ai_calls=3
+run_20261124210520_59bfda,2026-11-24T21:05:31,S08_agri_dept_manipur_apy_2018-19.pdf,complete,no,,79,79,0,ai_calls=1
+run_20261124210532_e05028,2026-11-24T21:05:52,S08_agri_dept_manipur_apy_2019-20.pdf,complete,no,,79,79,0,ai_calls=1
+run_20261124214458_ae1b17,2026-11-24T21:45:50,S54_mofpi_manipur_state_profile.pdf,failed,yes,S54: pages chosen by hand (7),0,0,2,"read failed (text): no verifiable agricultural facts found in the text (prose: stopped after 8 chunk(s), model budget exhausted; prose: 9 chunk(s), 0 verified fact(s), 0 rejected); ai_calls=10"
+run_20261124214550_fe20a1,2026-11-24T21:46:02,S06_nhb_horticulture_at_a_glance_2018.pdf,complete,yes,"S06: pages chosen by hand (187,192)",10,0,0,ai_calls=3
+run_20261124214602_dc9f22,2026-11-24T21:46:06,S10_economic_survey_manipur_2024-25.pdf,complete,yes,S10: pages chosen by hand (90),36,36,0,ai_calls=1
+run_20261124214607_f1a93f,2026-11-24T21:46:09,S08_agri_dept_manipur_apy_2018-19.pdf,complete,no,,79,0,0,ai_calls=1
+run_20261124214609_f7d068,2026-11-24T21:46:12,S08_agri_dept_manipur_apy_2019-20.pdf,complete,no,,79,0,0,ai_calls=1

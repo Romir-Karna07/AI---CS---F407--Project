@@ -2,7 +2,7 @@
  "case_id": "ai_07_html_page_with_other_table_html",
  "agent": "production",
  "source_group": "html",
- "file": "dev/ai/cases/ai_07.html",
+ "file": "dev/ai/cases/ai_07_HTML_WITH_OTHER_TABLE.html",
  "description": "Web page: navigation, an unrelated contact table, then the data table",
  "difficulty": "hard",
  "needs_llm": true,

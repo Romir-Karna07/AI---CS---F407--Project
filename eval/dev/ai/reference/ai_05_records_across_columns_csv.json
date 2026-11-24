@@ -2,7 +2,7 @@
  "case_id": "ai_05_records_across_columns_csv",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "dev/ai/cases/ai_05.csv",
+ "file": "dev/ai/cases/ai_05_TRANSPOSED.csv",
  "description": "Transposed: variables in rows, districts across; the month is only in the title",
  "difficulty": "hard",
  "needs_llm": true,

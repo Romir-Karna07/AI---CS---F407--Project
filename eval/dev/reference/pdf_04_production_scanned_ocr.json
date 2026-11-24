@@ -3,7 +3,7 @@
  "agent": "production",
  "owner_agent": "document_agent",
  "source_group": "pdf",
- "file": "dev/cases/pdf_04.pdf",
+ "file": "dev/cases/pdf_04_production_scanned_ocr.pdf",
  "description": "Scanned page (image only, no text layer): OCR needed, ruled grid",
  "difficulty": "hard",
  "needs_llm": false,

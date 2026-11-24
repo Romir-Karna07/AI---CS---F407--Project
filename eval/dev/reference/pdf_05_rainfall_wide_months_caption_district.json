@@ -3,7 +3,7 @@
  "agent": "rainfall",
  "owner_agent": "document_agent",
  "source_group": "pdf",
- "file": "dev/cases/pdf_05.pdf",
+ "file": "dev/cases/pdf_05_rainfall_wide_months_caption_district.pdf",
  "description": "Year x Jan..Dec table; the district is only in the caption (one table per page)",
  "difficulty": "hard",
  "needs_llm": false,

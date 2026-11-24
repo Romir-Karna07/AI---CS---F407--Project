@@ -3,7 +3,7 @@
  "agent": "production",
  "owner_agent": "document_agent",
  "source_group": "pdf",
- "file": "dev/cases/pdf_02.pdf",
+ "file": "dev/cases/pdf_02_production_unruled_caption_context.pdf",
  "description": "No ruling lines; district and year only in the caption above each table",
  "difficulty": "hard",
  "needs_llm": false,

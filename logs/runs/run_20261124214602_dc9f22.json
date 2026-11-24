@@ -1,0 +1,168 @@
+{
+  "run_id": "run_20261124214602_dc9f22",
+  "input": "S10_economic_survey_manipur_2024-25.pdf",
+  "status": "complete",
+  "source_type": "pdf",
+  "groups": [
+    {
+      "pattern": "pdf:p90.t1",
+      "domain": "production",
+      "records": 36,
+      "scores": {
+        "soil": 0,
+        "rainfall": 0,
+        "production": 1
+      },
+      "method": "rules+crops_unverified+state",
+      "mapped_headers": {
+        "Name of the crop": "crop",
+        "period": "period",
+        "Area (hectares)": "area"
+      },
+      "unmapped_headers": []
+    }
+  ],
+  "result": {
+    "by_agent": {
+      "production_agent": {
+        "table": "crop_production",
+        "extracted": 36,
+        "inserted": 36,
+        "duplicates": 0,
+        "invalid": 0,
+        "rejected": 0,
+        "quarantined": 0
+      }
+    },
+    "rejected": [],
+    "review": 0,
+    "totals": {
+      "extracted": 36,
+      "inserted": 36,
+      "duplicate": 0,
+      "invalid": 0,
+      "rejected": 0,
+      "quarantined": 0
+    },
+    "plausibility": []
+  },
+  "notes": {
+    "error": null,
+    "agent_errors": [],
+    "unclassified_groups": [],
+    "retry_budget": {
+      "max": 2,
+      "used": 0,
+      "strategies": []
+    },
+    "ai": {
+      "enabled": true,
+      "model": "openai/gpt-oss-120b",
+      "calls": 1,
+      "by_purpose": {
+        "context": 1
+      },
+      "max_calls": 16
+    },
+    "quarantined_for_review": 0,
+    "excluded_non_crop": []
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "S10_economic_survey_manipur_2024-25.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 12079597,
+        "type": "pdf",
+        "how": "magic"
+      },
+      "ms": 98.2
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_data",
+      "args": {
+        "file_path": "S10_economic_survey_manipur_2024-25.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 36,
+        "groups": 1,
+        "notes": [
+          "pages=369",
+          "backend=auto",
+          "page range 90",
+          "tables by route: camelot_stream=1"
+        ]
+      },
+      "ms": 4284.8
+    },
+    {
+      "step": "ai:context",
+      "tool": "llm_context",
+      "args": {
+        "lines": 5
+      },
+      "status": "error",
+      "detail": {
+        "error": "model rate limit reached (daily token quota); continuing without the model"
+      },
+      "ms": 116.5
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "pdf:p90.t1",
+            "production",
+            36
+          ]
+        ],
+        "queue": [
+          "production"
+        ],
+        "language": []
+      },
+      "ms": 128.4
+    },
+    {
+      "step": "production_agent",
+      "tool": "production_extract",
+      "args": {
+        "records_in": 36
+      },
+      "status": "ok",
+      "detail": {
+        "rows_out": 36
+      },
+      "ms": 10.4
+    },
+    {
+      "step": "load",
+      "tool": "sqlite_load",
+      "args": {
+        "db": "manipur.db"
+      },
+      "status": "ok",
+      "detail": {
+        "extracted": 36,
+        "inserted": 36,
+        "duplicate": 0,
+        "invalid": 0,
+        "rejected": 0,
+        "quarantined": 0,
+        "plausibility": []
+      },
+      "ms": 22.9
+    }
+  ]
+}

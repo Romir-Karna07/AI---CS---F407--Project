@@ -2,7 +2,7 @@
  "case_id": "rain_h01_json_original_shape_imd",
  "agent": "rainfall",
  "source_group": "json",
- "file": "cases/rain_h01.json",
+ "file": "cases/rain_h01_json_original_shape_imd.json",
  "description": "Same nesting as the monthly file [S22 IMD grid]",
  "difficulty": "normal",
  "needs_llm": false,

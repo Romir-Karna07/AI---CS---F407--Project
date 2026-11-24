@@ -2,7 +2,7 @@
  "case_id": "ai_12_hindi_headers_values_units_csv",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "ai/cases/ai_12.csv",
+ "file": "ai/cases/ai_12_HINDI.csv",
  "description": "Hindi: headers, district names, month names and the unit word (मिमी)",
  "difficulty": "hard",
  "needs_llm": true,

@@ -2,7 +2,7 @@
  "case_id": "rain_07_json_district_keyed",
  "agent": "rainfall",
  "source_group": "json",
- "file": "dev/cases/rain_07.json",
+ "file": "dev/cases/rain_07_json_district_keyed.json",
  "description": "Object keyed by district, list of {month, rain_mm}",
  "difficulty": "normal",
  "needs_llm": false,

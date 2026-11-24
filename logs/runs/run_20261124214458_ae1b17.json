@@ -1,0 +1,361 @@
+{
+  "run_id": "run_20261124214458_ae1b17",
+  "input": "S54_mofpi_manipur_state_profile.pdf",
+  "status": "failed",
+  "source_type": "pdf",
+  "groups": [],
+  "result": {},
+  "notes": {
+    "error": "read failed (text): no verifiable agricultural facts found in the text (prose: stopped after 8 chunk(s), model budget exhausted; prose: 9 chunk(s), 0 verified fact(s), 0 rejected)",
+    "agent_errors": [],
+    "unclassified_groups": [],
+    "retry_budget": {
+      "max": 2,
+      "used": 2,
+      "strategies": [
+        "force_ocr",
+        "as_prose"
+      ]
+    },
+    "ai": {
+      "enabled": true,
+      "model": "openai/gpt-oss-120b",
+      "calls": 10,
+      "by_purpose": {
+        "recover": 2,
+        "prose": 8
+      },
+      "max_calls": 16
+    },
+    "quarantined_for_review": 0,
+    "excluded_non_crop": []
+  },
+  "retries": 2,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "S54_mofpi_manipur_state_profile.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 1099863,
+        "type": "pdf",
+        "how": "magic"
+      },
+      "ms": 6401.0
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_data",
+      "args": {
+        "file_path": "S54_mofpi_manipur_state_profile.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 20,
+        "groups": 5,
+        "notes": [
+          "pages=22",
+          "backend=auto",
+          "page range 7",
+          "tables by route: pdfplumber=5"
+        ]
+      },
+      "ms": 10098.0
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "pdf:p7.t1",
+            null,
+            4
+          ],
+          [
+            "pdf:p7.t2",
+            null,
+            4
+          ],
+          [
+            "pdf:p7.t3",
+            null,
+            4
+          ],
+          [
+            "pdf:p7.t4",
+            null,
+            4
+          ],
+          [
+            "pdf:p7.t5",
+            null,
+            4
+          ]
+        ],
+        "queue": [],
+        "language": []
+      },
+      "ms": 3.9
+    },
+    {
+      "step": "ai:recover",
+      "tool": "llm_recover",
+      "args": {
+        "allowed": [
+          "as_prose",
+          "force_ocr"
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"strategy\": \"force_ocr\", \"why\": \"OCR can extract hidden table data not recognized by the standard parser\"}",
+        "chars_in": 623
+      },
+      "ms": 940.4
+    },
+    {
+      "step": "recover",
+      "tool": null,
+      "args": {
+        "attempt": 1,
+        "budget": 2,
+        "retry_with": "pdf_ocr",
+        "strategy": "force_ocr"
+      },
+      "status": "ok",
+      "detail": {
+        "why": "OCR can extract hidden table data not recognized by the standard parser"
+      },
+      "ms": 940.9
+    },
+    {
+      "step": "read",
+      "tool": "read_pdf_ocr",
+      "args": {
+        "file_path": "S54_mofpi_manipur_state_profile.pdf"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 20,
+        "groups": 5,
+        "notes": [
+          "pages=22",
+          "backend=ocr",
+          "page range 7",
+          "tables by route: ocr=5"
+        ]
+      },
+      "ms": 31945.6
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "pdf:p7.t1",
+            null,
+            4
+          ],
+          [
+            "pdf:p7.t2",
+            null,
+            4
+          ],
+          [
+            "pdf:p7.t3",
+            null,
+            4
+          ],
+          [
+            "pdf:p7.t4",
+            null,
+            4
+          ],
+          [
+            "pdf:p7.t5",
+            null,
+            4
+          ]
+        ],
+        "queue": [],
+        "language": []
+      },
+      "ms": 2.8
+    },
+    {
+      "step": "ai:recover",
+      "tool": "llm_recover",
+      "args": {
+        "allowed": [
+          "as_prose"
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"strategy\": \"as_prose\", \"why\": \"Only prose extraction remains; it can capture missing columns as narrative text.\"}",
+        "chars_in": 625
+      },
+      "ms": 700.8
+    },
+    {
+      "step": "recover",
+      "tool": null,
+      "args": {
+        "attempt": 2,
+        "budget": 2,
+        "retry_with": "text",
+        "strategy": "as_prose"
+      },
+      "status": "ok",
+      "detail": {
+        "why": "Only prose extraction remains; it can capture missing columns as narrative text."
+      },
+      "ms": 701.2
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 1,
+        "chars": 2899,
+        "at": "0"
+      },
+      "status": "error",
+      "detail": {
+        "error": "model rate limit reached (daily token quota); continuing without the model"
+      },
+      "ms": 150.5
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 2,
+        "chars": 2806,
+        "at": "2899"
+      },
+      "status": "error",
+      "detail": {
+        "error": "model rate limit reached (daily token quota); continuing without the model"
+      },
+      "ms": 98.6
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 3,
+        "chars": 2376,
+        "at": "5705"
+      },
+      "status": "error",
+      "detail": {
+        "error": "model rate limit reached (daily token quota); continuing without the model"
+      },
+      "ms": 112.9
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 4,
+        "chars": 2994,
+        "at": "8081"
+      },
+      "status": "error",
+      "detail": {
+        "error": "model rate limit reached (daily token quota); continuing without the model"
+      },
+      "ms": 95.2
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 5,
+        "chars": 2910,
+        "at": "11075"
+      },
+      "status": "error",
+      "detail": {
+        "error": "model rate limit reached (daily token quota); continuing without the model"
+      },
+      "ms": 102.0
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 6,
+        "chars": 2997,
+        "at": "13985"
+      },
+      "status": "error",
+      "detail": {
+        "error": "model rate limit reached (daily token quota); continuing without the model"
+      },
+      "ms": 91.5
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 7,
+        "chars": 2922,
+        "at": "16982"
+      },
+      "status": "error",
+      "detail": {
+        "error": "model rate limit reached (daily token quota); continuing without the model"
+      },
+      "ms": 92.6
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 8,
+        "chars": 2898,
+        "at": "19904"
+      },
+      "status": "error",
+      "detail": {
+        "error": "model rate limit reached (daily token quota); continuing without the model"
+      },
+      "ms": 102.6
+    },
+    {
+      "step": "ai:prose",
+      "tool": "llm_prose",
+      "args": {
+        "chunk": 9,
+        "chars": 2925,
+        "at": "22802"
+      },
+      "status": "skipped",
+      "detail": {
+        "reason": "LLM budget exhausted (10/16 calls, 8/8 for prose)"
+      },
+      "ms": null
+    },
+    {
+      "step": "read",
+      "tool": "read_text_data",
+      "args": {
+        "file_path": "S54_mofpi_manipur_state_profile.pdf"
+      },
+      "status": "error",
+      "detail": "no verifiable agricultural facts found in the text (prose: stopped after 8 chunk(s), model budget exhausted; prose: 9 chunk(s), 0 verified fact(s), 0 rejected)",
+      "ms": 1644.8
+    }
+  ]
+}

@@ -2,7 +2,7 @@
  "case_id": "prod_h05_csv_two_row_header_wide",
  "agent": "production",
  "source_group": "csv",
- "file": "cases/prod_h05.csv",
+ "file": "cases/prod_h05_csv_two_row_header_wide.csv",
  "description": "Years row + Area/Production/Yield row, crop and district in label columns",
  "difficulty": "hard",
  "needs_llm": false,

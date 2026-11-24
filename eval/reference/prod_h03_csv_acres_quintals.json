@@ -2,7 +2,7 @@
  "case_id": "prod_h03_csv_acres_quintals",
  "agent": "production",
  "source_group": "csv",
- "file": "cases/prod_h03.csv",
+ "file": "cases/prod_h03_csv_acres_quintals.csv",
  "description": "Acres + quintals -> expected ha + tonnes",
  "difficulty": "hard",
  "needs_llm": false,

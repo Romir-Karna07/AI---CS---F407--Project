@@ -2,7 +2,7 @@
  "case_id": "soil_h04_csv_semicolon_decimal_comma",
  "agent": "soil",
  "source_group": "csv",
- "file": "cases/soil_h04.csv",
+ "file": "cases/soil_h04_csv_semicolon_decimal_comma.csv",
  "description": "';' delimiter with decimal commas",
  "difficulty": "hard",
  "needs_llm": false,

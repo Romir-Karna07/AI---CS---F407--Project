@@ -2,7 +2,7 @@
  "case_id": "rain_h07_json_district_keyed_imd",
  "agent": "rainfall",
  "source_group": "json",
- "file": "cases/rain_h07.json",
+ "file": "cases/rain_h07_json_district_keyed_imd.json",
  "description": "Object keyed by district, list of {month, rain_mm} [S22 IMD grid]",
  "difficulty": "normal",
  "needs_llm": false,

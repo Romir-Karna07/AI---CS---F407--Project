@@ -66,6 +66,9 @@ check("model proposals are checked against the data (urea is not soil nitrogen; 
       verify_header_proposal({"Urea": "n"}, [{"data": {"Urea": "2860.1"}}]) == {}
       and verify_header_proposal({"Item": "crop"}, [{"data": {"Item": "123"}}]) == {}
       and parse_headers({"ஆண்டு": "year"}, ["ஆண்டு"]) == {"ஆண்டு": "period"})
+check("a column of district names is the district even if the model calls it `state` (French 'Departement')",
+      verify_header_proposal({"Departement": "state"}, [{"data": {"Departement": "THOUBAL"}}, {"data": {"Departement": "Ukhrul"}}]) == {"Departement": "district"}
+      and verify_header_proposal({"Etat": "state"}, [{"data": {"Etat": "Manipur"}}]) == {"Etat": "state"})
 r = run(U / "manipur_state_profile.csv")
 check("livestock rows (milk, fish, egg) never enter crop production; crops do",
       sorted(x[0] for x in q("select crop from crop_production where source_file='manipur_state_profile.csv'")) == ["Banana", "Potato", "Rice"])
@@ -111,14 +114,14 @@ check("real rainfall json: 2112 rows", run(ROOT / "manipur_rainfall_monthly.json
 
 # --- PDF input (document agent): dev PDFs, never the held-out evaluation PDFs -------------------------------
 PDFDIR = ROOT / "eval" / "dev" / "cases"
-r = run(PDFDIR / "pdf_08.pdf")
+r = run(PDFDIR / "pdf_08_soil_ruled_landscape.pdf")
 check("PDF (ruled soil table): complete, 20 rows via read_pdf_data", r["status"] == "complete" and r["result"]["totals"]["extracted"] == 20
       and "read_pdf_data" in [t["tool"] for t in r["trajectory"]], str(r["result"].get("totals")))
-check("  provenance locator names page, table and line", q("select locator from soil_health where source_file='pdf_08.pdf' limit 1")[0][0].startswith("p1 t1 line"))
-r = run(PDFDIR / "pdf_02.pdf")
+check("  provenance locator names page, table and line", q("select locator from soil_health where source_file='pdf_08_soil_ruled_landscape.pdf' limit 1")[0][0].startswith("p1 t1 line"))
+r = run(PDFDIR / "pdf_02_production_unruled_caption_context.pdf")
 check("PDF without ruling lines: district + year taken from the caption", r["status"] == "complete" and
-      q("select count(*) from crop_production where source_file='pdf_02.pdf' and district<>'UNSPECIFIED' and period is not null")[0][0] == 30)
-r = run(PDFDIR / "pdf_08.pdf", inject_fault="read")
+      q("select count(*) from crop_production where source_file='pdf_02_production_unruled_caption_context.pdf' and district<>'UNSPECIFIED' and period is not null")[0][0] == 30)
+r = run(PDFDIR / "pdf_08_soil_ruled_landscape.pdf", inject_fault="read")
 check("PDF injected read fault recovered (retry, retries=1)", r["status"] == "complete" and r["retries"] == 1)
 bad = tmp / "broken.pdf"
 bad.write_bytes(b"%PDF-1.4 this is not a real pdf")

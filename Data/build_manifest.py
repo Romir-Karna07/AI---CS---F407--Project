@@ -88,13 +88,26 @@ for pf in sorted((ROOT / "Data" / "partitions").glob("*")) + sorted((ROOT / "eva
 PDF_URL = {"S04": "https://desagri.gov.in/wp-content/uploads/2024/11/", "S05": "https://desagri.gov.in/wp-content/uploads/2026/", "S06": "https://www.nhb.gov.in/statistics/Publication/",
            "S12": "https://databank.nedfi.com/sites/default/files/2025-09/ (NABARD State Focus Paper, hosted by NEDFI)", "S31": "https://icar-crida.res.in/CP-2012/statewiseplans/Manipur/",
            "S53": "https://eudoxuspress.com/index.php/pub/article/download/1883/1209/3532", "S54": "https://www.mofpi.gov.in/sites/default/files/KnowledgeCentre/State%20Profile/Manipur.pdf"}
-for pf in sorted((ROOT / "Data" / "pdf_samples").glob("*.pdf")):
+PDF_URL_FILE = {"S08_agri_dept_manipur_apy_2018-19.pdf": "https://agrimanipur.mn.gov.in/wp-content/uploads/2021/08/agrimanipur.gov.in_area-production-yield-for-the-year-2018-2019.pdf",
+                "S08_agri_dept_manipur_apy_2019-20.pdf": "https://agrimanipur.mn.gov.in/wp-content/uploads/2021/08/agrimanipur.gov.in_area-production-yield-for-the-year-2019-2020.pdf"}
+for pf in sorted([*(ROOT / "Data" / "pdf_samples").glob("*.pdf"), *(ROOT / "Data" / "pdf_samples").glob("*.xlsx")]):
     key = pf.name[:3]
-    rows.append({"file_path": pf.relative_to(ROOT).as_posix(), "role": "pdf_tool_test_sample (real source, never ingested into the database)", "source_id": key,
-                 "source_name": inv(key, "Source / dataset"), "url": PDF_URL.get(key, inv(key, "Access URL").split(" ")[0]), "collection_date": mtime_date(pf),
-                 "language": "English + Hindi" if key in ("S04", "S12", "S05") else inv(key, "Language"), "license": inv(key, "License / terms"), "format": "pdf",
-                 "bytes": pf.stat().st_size, "sha256": sha(pf), "n_records_loaded": 0, "collection_method": "downloaded 2026-11-01 for docs/pdf_tool_tests",
-                 "notes": "Imphal West is a held-out district; this real PDF was only used to compare extraction tools, not to build evaluation cases" if "imphal_west" in pf.name else "tool-test sample"})
+    loaded = counts.get(pf.name, 0)                 # rows this real file put into db/manipur.db (db/load_inventory_pdfs.py)
+    rows.append({"file_path": pf.relative_to(ROOT).as_posix(),
+                 "role": "inventory_pdf (ingested: db/load_inventory_pdfs.py)" if loaded else (
+                     "inventory_file (not ingested: all-India figures, no Manipur row)" if pf.suffix == ".xlsx" else
+                     "pdf_tool_test_sample (real source, never ingested into the database)"),
+                 "source_id": key, "source_name": inv(key, "Source / dataset"),
+                 "url": PDF_URL_FILE.get(pf.name) or PDF_URL.get(key) or (inv(key, "Access URL").split(" ")[0] if not inv(key, "Access URL").startswith("To be")
+                                                                          else "unknown - supplied by the team; " + inv(key, "Access URL")),
+                 "collection_date": mtime_date(pf),
+                 "language": "English + Hindi" if key in ("S04", "S12", "S05") else inv(key, "Language"), "license": inv(key, "License / terms"), "format": pf.suffix.lstrip(".").lower(),
+                 "bytes": pf.stat().st_size, "sha256": sha(pf), "n_records_loaded": loaded,
+                 "collection_method": "downloaded 2026-11-24 (Manipur Agriculture Department site)" if pf.name in PDF_URL_FILE else
+                 ("supplied by the team 2026-11-24" if key in ("S10",) or pf.suffix == ".xlsx" else "downloaded for docs/pdf_tool_tests"),
+                 "notes": "Imphal West is a held-out district; this real PDF was only used to compare extraction tools, not to build evaluation cases" if "imphal_west" in pf.name
+                 else ("rows of the held-out districts (Imphal West, Thoubal, Ukhrul) were not stored" if loaded and key == "S08" else
+                       ("state-level rows (district MANIPUR (STATE))" if loaded else "tool-test sample"))})
 
 # evaluation cases: synthetic re-shapings of the corpus above (not independent data)
 AGENT_SRC = {"soil": "S24", "rainfall": "S22", "production": "S02"}
@@ -116,4 +129,4 @@ with OUT.open("w", newline="", encoding="utf-8") as fh:
     w = csv.DictWriter(fh, fieldnames=list(rows[0]))
     w.writeheader()
     w.writerows(rows)
-print(f"{len(rows)} files listed ({sum(r['role'] == 'corpus' for r in rows)} corpus, {sum(r['role'] == 'eval_case' for r in rows)} eval cases)")
+print(f"{len(rows)} files listed ({sum(r['role'] == 'corpus' for r in rows)} corpus, {sum(r['role'].startswith('eval_case') for r in rows)} held-out eval cases, {sum(r['role'] == 'dev_case' for r in rows)} dev cases)")

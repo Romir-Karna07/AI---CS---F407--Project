@@ -9,7 +9,7 @@ import json
 import re
 
 from .concepts import SOIL_NUTRIENTS, map_columns, norm_key
-from .normalize import (CANONICAL_UNIT, MONTHS, STATE_CODE, STATE_NAME, UNSPECIFIED, convert_unit,
+from .normalize import (CANONICAL_UNIT, MONTHS, STATE_CODE, STATE_LEVEL_CODE, STATE_LEVEL_NAME, STATE_NAME, UNSPECIFIED, convert_unit, indian_state,
                         normalize_crop, normalize_district, parse_period, parse_year_month)
 from .readers import YEAR_RE, is_missing, to_number
 
@@ -43,7 +43,14 @@ def _mapped(row):
             unmapped = [u for u in unmapped if u != src]
     c = {canon: data[src] for src, canon in mapping.items()}
     src_of = {canon: src for src, canon in mapping.items()}
-    return c, src_of, {k: data[k] for k in unmapped}
+    rest = {k: data[k] for k in unmapped}
+    if is_missing(c.get("state")) and is_missing(c.get("district")):
+        # a state-wise national table ("STATE/UT'S" column): the column whose cell is a state name gives the state
+        for k, v in rest.items():
+            if indian_state(v):
+                c["state"], src_of["state"] = indian_state(v), k
+                break
+    return c, src_of, {k: v for k, v in rest.items() if k != src_of.get("state")}
 
 
 def _extra(unmapped: dict, c: dict) -> str | None:
@@ -68,6 +75,10 @@ def _fill_from_labels(c, labels, crop=False):
     c = dict(c)
     for name, lab in labels:
         if YEAR_RE.search(str(lab)):
+            continue
+        if indian_state(lab):                        # a state name is never a crop
+            if is_missing(c.get("state")) and is_missing(c.get("district")):
+                c["state"] = indian_state(lab)
             continue
         if is_missing(c.get("district")) and _is_district_label(lab):
             c["district"] = lab
@@ -106,7 +117,34 @@ def _location(c):
     scode = str(c["state_code"]).strip() if not is_missing(c.get("state_code")) else UNSPECIFIED
     if state == STATE_NAME and scode == UNSPECIFIED:
         scode = STATE_CODE
+    raw = "" if is_missing(c.get("district")) else re.sub(r"\s+", " ", str(c["district"])).strip().upper()
+    # a state-level figure: no district at all and the state is Manipur, or the "district" cell names the state itself
+    if (how == "missing" and state == STATE_NAME) or (raw == STATE_NAME and state in (STATE_NAME, UNSPECIFIED)):
+        return STATE_LEVEL_NAME, STATE_LEVEL_CODE, STATE_NAME, STATE_CODE, "state_level"
     return name, code, state, scode, how
+
+
+def _statewise_patterns(rows) -> set:
+    """tables (record groups) whose rows are mostly states of India: a row there that names no state (a name wrapped over two lines,
+    a stray line) cannot be attributed and is not stored"""
+    seen = {}
+    for r in rows:
+        n, k = seen.get(r.get("pattern"), (0, 0))
+        seen[r.get("pattern")] = (n + 1, k + any(indian_state(v) for v in r["data"].values()))
+    return {p for p, (n, k) in seen.items() if n >= 5 and k / n >= 0.5}
+
+
+def _excluded_districts() -> set:
+    """districts whose rows must not be stored in this run (AGRI_EXCLUDE_DISTRICTS="IMPHAL WEST,THOUBAL,UKHRUL"): used when loading the real
+    database, which must never hold the districts held out for evaluation"""
+    import os
+    raw = os.getenv("AGRI_EXCLUDE_DISTRICTS", "")
+    return {normalize_district(d.strip())[0] for d in raw.split(",") if d.strip()}
+
+
+def _other_state(state) -> bool:
+    """a row of a state-wise national table that is about another state (or All India): not Manipur data, never stored"""
+    return state not in (STATE_NAME, UNSPECIFIED)
 
 
 def _text(c, key, default=UNSPECIFIED):
@@ -130,11 +168,17 @@ def _num(c, key):
 
 # ----------------------------------------------------------------------------- soil
 def soil_agent(rows):
-    out = []
+    out, statewise = [], _statewise_patterns(rows)
     for row in rows:
         c, src_of, unmapped = _mapped(row)
         c = _apply_ctx(_fill_from_labels(c, row["labels"]), row)
         name, code, state, scode, how = _location(c)
+        if _other_state(state) or (row.get("pattern") in statewise and code == UNSPECIFIED and state == UNSPECIFIED):
+            out.append({"_out_of_state": state if state != UNSPECIFIED else "unrecognised row of a state-wise table", "locator": row["locator"]})
+            continue
+        if name in _excluded_districts():
+            out.append({"_out_of_state": f"{name} (excluded: AGRI_EXCLUDE_DISTRICTS)", "locator": row["locator"]})
+            continue
         period, year = _period(c, row["labels"])
         rec = dict(district=name, district_code=code, state=state, state_code=scode, crop=_text(c, "crop"),
                    unit=";".join(f"{k}:{u}" for k, u in SOIL_UNITS.items()), unit_status="assumed",
@@ -156,11 +200,17 @@ def soil_agent(rows):
 
 # ----------------------------------------------------------------------------- rainfall
 def rainfall_agent(rows):
-    out = []
+    out, statewise = [], _statewise_patterns(rows)
     for row in rows:
         c, src_of, unmapped = _mapped(row)
         c = _apply_ctx(_fill_from_labels(c, row["labels"]), row)
         name, code, state, scode, how = _location(c)
+        if _other_state(state) or (row.get("pattern") in statewise and code == UNSPECIFIED and state == UNSPECIFIED):
+            out.append({"_out_of_state": state if state != UNSPECIFIED else "unrecognised row of a state-wise table", "locator": row["locator"]})
+            continue
+        if name in _excluded_districts():
+            out.append({"_out_of_state": f"{name} (excluded: AGRI_EXCLUDE_DISTRICTS)", "locator": row["locator"]})
+            continue
         unit_text = c.get("unit")
         if is_missing(unit_text):  # a unit resolved for this column (e.g. translated from another language)
             unit_text = row["units"].get(src_of.get("rainfall_mm", "")) or None
@@ -207,11 +257,17 @@ def rainfall_agent(rows):
 
 # ----------------------------------------------------------------------------- production
 def production_agent(rows):
-    out = []
+    out, statewise = [], _statewise_patterns(rows)
     for row in rows:
         c, src_of, unmapped = _mapped(row)
         c = _apply_ctx(_fill_from_labels(c, row["labels"], crop=True), row)
         name, code, state, scode, how = _location(c)
+        if _other_state(state) or (row.get("pattern") in statewise and code == UNSPECIFIED and state == UNSPECIFIED):
+            out.append({"_out_of_state": state if state != UNSPECIFIED else "unrecognised row of a state-wise table", "locator": row["locator"]})
+            continue
+        if name in _excluded_districts():
+            out.append({"_out_of_state": f"{name} (excluded: AGRI_EXCLUDE_DISTRICTS)", "locator": row["locator"]})
+            continue
         period, year = _period(c, row["labels"])
         if period is None and c.get("period"):
             period, year = parse_period(c.get("period"))

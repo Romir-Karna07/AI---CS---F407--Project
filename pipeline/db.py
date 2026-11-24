@@ -3,7 +3,7 @@ import json
 import sqlite3
 from pathlib import Path
 
-from .normalize import STATE_CODE, STATE_NAME, _districts
+from .normalize import STATE_CODE, STATE_LEVEL_CODE, STATE_LEVEL_NAME, STATE_NAME, _districts
 from .schemas import TABLES
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -15,7 +15,8 @@ def connect(path=DEFAULT_DB) -> sqlite3.Connection:
     con.execute("PRAGMA foreign_keys = ON")
     con.executescript((ROOT / "db" / "schema.sql").read_text(encoding="utf-8"))
     con.executemany("INSERT OR IGNORE INTO districts VALUES (?,?,?,?)",
-                    [(d["code"], d["name"], STATE_NAME, STATE_CODE) for d in _districts["districts"]])
+                    [(d["code"], d["name"], STATE_NAME, STATE_CODE) for d in _districts["districts"]]
+                    + [(STATE_LEVEL_CODE, STATE_LEVEL_NAME, STATE_NAME, STATE_CODE)])     # pseudo-district for whole-state figures
     con.commit()
     return con
 

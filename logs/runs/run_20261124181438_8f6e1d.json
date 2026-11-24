@@ -1,0 +1,194 @@
+{
+  "run_id": "run_20261124181438_8f6e1d",
+  "input": "soil_h09_csv_french_headers_llm.csv",
+  "status": "complete",
+  "source_type": "csv",
+  "groups": [
+    {
+      "pattern": "csv",
+      "domain": "soil",
+      "records": 7,
+      "scores": {
+        "soil": 5,
+        "rainfall": 0,
+        "production": 0
+      },
+      "method": "rules+llm_headers",
+      "mapped_headers": {
+        "Departement": "district",
+        "Commune": "village",
+        "Azote": "n",
+        "Phosphore": "p",
+        "Potasse": "k",
+        "Acidite_pH": "ph",
+        "Carbone_org": "oc",
+        "Cycle": "period"
+      },
+      "unmapped_headers": []
+    }
+  ],
+  "result": {
+    "by_agent": {
+      "soil_agent": {
+        "table": "soil_health",
+        "extracted": 7,
+        "inserted": 7,
+        "duplicates": 0,
+        "invalid": 0,
+        "rejected": 0,
+        "quarantined": 0
+      }
+    },
+    "rejected": [],
+    "review": 0,
+    "totals": {
+      "extracted": 7,
+      "inserted": 7,
+      "duplicate": 0,
+      "invalid": 0,
+      "rejected": 0,
+      "quarantined": 0
+    },
+    "plausibility": []
+  },
+  "notes": {
+    "error": null,
+    "agent_errors": [],
+    "unclassified_groups": [],
+    "retry_budget": {
+      "max": 2,
+      "used": 0,
+      "strategies": []
+    },
+    "ai": {
+      "enabled": true,
+      "model": "openai/gpt-oss-20b",
+      "calls": 1,
+      "by_purpose": {
+        "headers": 1
+      },
+      "max_calls": 16
+    },
+    "quarantined_for_review": 0,
+    "excluded_non_crop": []
+  },
+  "retries": 0,
+  "trajectory": [
+    {
+      "step": "inspect",
+      "tool": "inspect_file",
+      "args": {
+        "file": "soil_h09_csv_french_headers_llm.csv"
+      },
+      "status": "ok",
+      "detail": {
+        "bytes": 473,
+        "type": "csv",
+        "how": "content"
+      },
+      "ms": 5002.5
+    },
+    {
+      "step": "read",
+      "tool": "read_csv_data",
+      "args": {
+        "file_path": "soil_h09_csv_french_headers_llm.csv"
+      },
+      "status": "ok",
+      "detail": {
+        "records": 7,
+        "groups": 1,
+        "notes": [
+          "csv: 1 grid(s), 1 table(s) read"
+        ]
+      },
+      "ms": 27.2
+    },
+    {
+      "step": "ai:headers",
+      "tool": "llm_map_headers",
+      "args": {
+        "columns": [
+          "Departement",
+          "Commune",
+          "Azote",
+          "Acidite_pH",
+          "Carbone_org"
+        ]
+      },
+      "status": "ok",
+      "detail": {
+        "answer": "{\"Departement\": \"state\", \"Commune\": \"village\", \"Azote\": \"n\", \"Acidite_pH\": \"ph\", \"Carbone_org\": \"oc\", \"Cycle\": \"period\"}",
+        "chars_in": 3147
+      },
+      "ms": 1254.3
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "header_proposal": {
+          "Departement": "district",
+          "Commune": "village",
+          "Azote": "n",
+          "Acidite_pH": "ph",
+          "Carbone_org": "oc"
+        },
+        "accepted": true
+      },
+      "ms": null
+    },
+    {
+      "step": "classify",
+      "tool": null,
+      "args": {},
+      "status": "ok",
+      "detail": {
+        "groups": [
+          [
+            "csv",
+            "soil",
+            7
+          ]
+        ],
+        "queue": [
+          "soil"
+        ],
+        "language": []
+      },
+      "ms": 1263.7
+    },
+    {
+      "step": "soil_agent",
+      "tool": "soil_extract",
+      "args": {
+        "records_in": 7
+      },
+      "status": "ok",
+      "detail": {
+        "rows_out": 7
+      },
+      "ms": 3.3
+    },
+    {
+      "step": "load",
+      "tool": "sqlite_load",
+      "args": {
+        "db": "manipur.db"
+      },
+      "status": "ok",
+      "detail": {
+        "extracted": 7,
+        "inserted": 7,
+        "duplicate": 0,
+        "invalid": 0,
+        "rejected": 0,
+        "quarantined": 0,
+        "plausibility": []
+      },
+      "ms": 194.2
+    }
+  ]
+}

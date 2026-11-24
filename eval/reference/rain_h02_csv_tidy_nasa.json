@@ -2,7 +2,7 @@
  "case_id": "rain_h02_csv_tidy_nasa",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "cases/rain_h02.csv",
+ "file": "cases/rain_h02_csv_tidy_nasa.csv",
  "description": "Tidy CSV with YYYY-MM [S21 NASA POWER]",
  "difficulty": "normal",
  "needs_llm": false,

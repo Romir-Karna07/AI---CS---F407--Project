@@ -3,7 +3,7 @@
  "agent": "rainfall",
  "owner_agent": "document_agent",
  "source_group": "pdf",
- "file": "cases/pdf_06.pdf",
+ "file": "cases/pdf_06_rainfall_tidy_ruled_multipage.pdf",
  "description": "Tidy ruled table, 60 rows over several pages",
  "difficulty": "normal",
  "needs_llm": false,

@@ -2,7 +2,7 @@
  "case_id": "rain_05_csv_mon_dash_year",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "dev/cases/rain_05.csv",
+ "file": "dev/cases/rain_05_csv_mon_dash_year.csv",
  "description": "Month as 'Jan-2019'",
  "difficulty": "normal",
  "needs_llm": false,

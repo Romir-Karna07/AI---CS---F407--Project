@@ -1,13 +1,13 @@
 # The AI layer: where the model is used, how it is checked, and what it cost
 
 *Written 2026-11-18. Code: `pipeline/ai.py` (the one wrapper every model call goes through), `triage.py`, `page_select.py`, `structure.py` + `tabular.py`,
-`prose.py`, `context.py`, `lang.py`, `plausibility.py`, and the changed `graph.py`. Evidence: `eval/ai/`, `eval/dev/ai/`, `eval/README.md`.*
+`prose.py`, `context.py`, `crops.py`, `lang.py`, `plausibility.py`, and the changed `graph.py`. Evidence: `eval/ai/`, `eval/dev/ai/`, `eval/README.md`.*
 
 ## 1. The principle: deterministic first, the model only where the code is uncertain, and every answer verified
 
 Before this change the language model was used for two things only (mapping unknown column headers and breaking a classification tie); everything else was
 fixed code. That cannot read a file it was not written around (a title above the header, an Excel workbook, figures in a sentence, a Tamil table).
-The model is now used at **eleven** points of a file's journey, but always under the same rules:
+The model is now used at **thirteen** points of a file's journey, but always under the same rules:
 
 1. **Deterministic first.** Each stage has a cheap code check; the model is asked only when that check is uncertain. A clean file costs **zero** model calls and
    is parsed exactly as before (verified: 88 known-good CSV / text files give byte-identical output through the old and the new reader).
@@ -15,7 +15,7 @@ The model is now used at **eleven** points of a file's journey, but always under
    fixed vocabulary, districts from the 16-name reference list, months are 1-12. An answer that fails the check is dropped, never trusted.
 3. **Strict budgets.** At most **16 model calls per file** (`AGRI_LLM_MAX_CALLS`), a per-purpose cap, and at most **2 recoveries per file**. When the budget is
    spent the run fails with the reason; it does not loop.
-4. **Everything is traced.** Every call is a step in the run trajectory (purpose, cached or fresh, seconds, the answer) and, with LangSmith on, a child run with the full prompt.
+4. **Everything is traced.** Every call is a step in the run trajectory (purpose, seconds, the answer) and, with LangSmith on, a child run with the full prompt.
 5. **Switchable.** There is no cross-run cache: every run asks the model afresh (inside one run, tables with identical columns share an answer). `python run.py --no-ai` (or `AGRI_AI=0`) switches the layer off.
 
 ## 2. Stage by stage
@@ -31,8 +31,10 @@ The model is now used at **eleven** points of a file's journey, but always under
 | 7 | **Language** (`classify`) | interprets headers in any language (header prompt), translates district / crop / season / month values and unit words | only values the English lookups cannot resolve | district: one of the 16 or null; month 1-12; unit from a fixed vocabulary that fits the variable; the original text is kept in `extra` |
 | 8 | **Prose extraction** (`read`) | extracts production / rainfall / soil facts from sentences, any language | free-text files and PDF pages the table reader could not read | the **verbatim quote must occur in the source** (its character offsets become the locator, `chars 120-260`); **every number must occur in its quote** (numbers written only in words are dropped); identity fields must occur in a Latin-script chunk |
 | 9 | **Plausibility** (`load`) | judges only the flagged values: "physically possible?" | only values outside the declared range, physically impossible combinations, or extreme outliers (z > 25 and more than 10x the median) | only `implausible` rows are removed from the data tables and put in `review_queue` (`pending_review`) for a person; **a value is never edited**; with no model nothing is set aside |
-| 10 | Header mapping | maps unknown column names to canonical fields (existing step, now through the shared wrapper) | unrecognised headers | the proposal is checked against the data (a column of plain years is the year, not the month) and must make the table a recognisable domain |
+| 10 | Header mapping | maps unknown column names to canonical fields; sees four sample rows, the cover / title text and the scope of the three tables (existing step, now through the shared wrapper) | unrecognised headers | only canonical field names are accepted (`year` is read as `period`); the proposal is checked against the data (`verify_header_proposal`: a column of plain years is the year, not the month; a fertiliser column is not a soil nutrient; a milk / fish column is not production; numeric fields need numeric cells; a `crop` column must not hold numbers) and must make the table a recognisable domain. Once the domain is known, further proposals (a `crop` column called `Particulars`, `state`, `season`) are applied for that table only. Tables with the same columns reuse one answer |
 | 11 | Classification tie-break | existing step, now through the shared wrapper | rules tie or find nothing | accepted only with the matching measurement columns |
+| 12 | **Crop or not** (`classify`, `pipeline/crops.py`) | says, for row labels the vocabulary cannot place, whether each is a crop, livestock, fishery, forestry or other | production tables only; known crop names and livestock / dairy / fishery words are decided by fixed code first | answer must use the closed category list and only for labels that occur in the table; rows that are not crops are **left out of `crop_production` and reported** (`excluded_non_crop` in the run notes), never stored; without a model, unplaceable labels are kept and flagged `crops_unverified` |
+| 13 | **State** (`classify`, `context.find_state`) | reads the cover lines and file name and says which state the document is about | only when the table has no state / district column and no district is known; the name `Manipur` is searched for in the cover, file name and title first (free) | value must be `Manipur` and the **quote must occur in those lines**; rows then get `state = MANIPUR`, code 14, with the evidence in `extra.context_facts`; one call per document |
 
 **Decided against (by design):** the model does not invent schemas or domains (the three tables are fixed; a price table fails cleanly instead of being forced
 into one), does not "repair" OCR-garbled names, and does not write the run report.
@@ -77,15 +79,17 @@ Three arms, the same files and the same scorer:
 | **AI layer**, first cold run (gpt-oss-20b) | **16 / 17** | **0.974** | **0 of 2** (both set aside) |
 | AI layer, second run (same files, same code) | 15 / 17 | 0.961 | 0 of 2 |
 | AI layer, after a fix informed by that second run (*not cold*) | 16 / 17 | 0.974 | 0 of 2 |
+| AI layer, final code, run 2026-11-24 (twice; *not cold*, see `eval/README.md`) | 16 / 17 | 0.974 | 0 of 2 |
+| AI layer with `gpt-oss-120b` (last measurement, not re-run on the final code) | 14 / 17 | 0.959 | 0 of 2 |
 
-All 3 must-fail files failed cleanly within the budget and stored nothing (no invented rows), in every arm. The original 44-case official set still scores field F1 **0.985**
-(it was 0.987 before this work; see section 6 for why), and the 44-case dev set 1.000.
+All 3 must-fail files failed cleanly within the budget and stored nothing (no invented rows), in every arm. The original 44-case official set scores field F1 **0.9868** on the final code (run 2026-11-24;
+it was 0.987 before this work, 0.985 in between; see section 6 for why), and the 44-case dev set 0.9968.
 
 ## 6. Limits and honest findings
 
 * **The run-to-run variation is real.** Two runs of the same code on the same files gave 16 and 15 fully correct cases: in the second run the model labelled both the month and the
   year column `year_month`. Temperature is 0, but the model is not deterministic. The fix (a column of plain years is the year) is a code check on the model's proposal, added after seeing that
-  failure, so the third run is **not** a cold number. Cached answers make a repeated run deterministic, which hides this variation unless the cache is cleared.
+  failure, so the third run is **not** a cold number. There is no answer cache, so a repeated run measures the model afresh and shows this variation.
 * **The model was `gpt-oss-20b` with low reasoning effort**, because the free tier's daily quota for `gpt-oss-120b` (200,000 tokens) was exhausted by development; the 120b model was not re-evaluated.
   Development of the AI set used about 100 model calls a day. The free tier is therefore a real constraint: a full AI evaluation costs tens of thousands of tokens. When the quota is hit the pipeline
   says so in the trace and continues without the model (`ai:* ... model rate limit reached`).

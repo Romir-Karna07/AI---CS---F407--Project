@@ -3,7 +3,7 @@
  "agent": "rainfall",
  "owner_agent": "document_agent",
  "source_group": "pdf",
- "file": "cases/pdf_07.pdf",
+ "file": "cases/pdf_07_rainfall_rotated_page_unruled.pdf",
  "description": "Page content physically rotated 90 degrees, no ruling lines",
  "difficulty": "hard",
  "needs_llm": false,

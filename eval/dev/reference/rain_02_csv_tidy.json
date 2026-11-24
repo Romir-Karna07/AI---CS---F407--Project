@@ -2,7 +2,7 @@
  "case_id": "rain_02_csv_tidy",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "dev/cases/rain_02.csv",
+ "file": "dev/cases/rain_02_csv_tidy.csv",
  "description": "Tidy CSV with YYYY-MM",
  "difficulty": "normal",
  "needs_llm": false,

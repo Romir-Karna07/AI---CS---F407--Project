@@ -2,7 +2,7 @@
  "case_id": "rain_03_csv_wide_months",
  "agent": "rainfall",
  "source_group": "csv",
- "file": "dev/cases/rain_03.csv",
+ "file": "dev/cases/rain_03_csv_wide_months.csv",
  "description": "One column per month (Jan..Dec)",
  "difficulty": "hard",
  "needs_llm": false,
