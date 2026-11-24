@@ -41,11 +41,11 @@ the code; no number in the documents was typed in from memory. The members remai
 ## Member sections (each member fills in their own)
 
 ### Romir Karna (`Romir-Karna07`)
-- Responsibilities: _to be written by the member_
+- Responsibilities: Source Lead, Model Lead
 - Files / commits I can explain in the viva: _to be written by the member_
 
 ### Angad Singh Marwaha
-- Responsibilities: _to be written by the member_
+- Responsibilities: Data Engineering Lead and Evaluation Lead
 - Files / commits I can explain in the viva: _to be written by the member_
 
 ### Other team members (if any)
